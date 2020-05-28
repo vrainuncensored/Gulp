@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="gulp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <segue destination="PYE-2P-sNR" kind="show" identifier="HomeSegue" id="EpO-je-Me4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-893" y="73"/>
+        </scene>
+        <!--Home Page-->
+        <scene sceneID="eiA-oG-jPz">
+            <objects>
+                <viewController storyboardIdentifier="homePage" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" id="8mQ-qD-gGJ" customClass="HomePage" customModule="gulp" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="eje-4f-3f3"/>
+                    <connections>
+                        <segue destination="zHI-4S-anM" kind="show" identifier="MenuSegue" id="pPS-g7-CgS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8eS-FG-6bT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="904" y="48"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Xm5-Ji-R77">
+            <objects>
+                <navigationController wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" id="PYE-2P-sNR" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="DK0-G5-F1m"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bua-JX-wRL">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="8mQ-qD-gGJ" kind="relationship" relationship="rootViewController" id="6iS-Zc-xgs"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gku-GF-EQc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="103" y="68"/>
+        </scene>
+        <!--Menu Page-->
+        <scene sceneID="miK-1L-pND">
+            <objects>
+                <viewController wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" id="zHI-4S-anM" customClass="MenuPage" customModule="gulp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xd7-ef-brL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Mqm-3L-DWe"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="wRK-bA-Zna"/>
+                    <connections>
+                        <segue destination="VLk-lD-Kc6" kind="show" identifier="segueToPayments" id="wce-uX-9u0"/>
+                        <segue destination="oHG-9l-ipd" kind="show" identifier="userCartSegue" id="Agj-K8-y9P"/>
+                        <segue destination="9OK-Wq-Efe" kind="show" identifier="segueToCustomizeEntreeVC" id="qUd-38-4uW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HPe-F6-i9Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1670" y="73"/>
+        </scene>
+        <!--customizeEntreeVC-->
+        <scene sceneID="okV-q0-I2e">
+            <objects>
+                <viewController title="customizeEntreeVC" modalPresentationStyle="fullScreen" id="9OK-Wq-Efe" customClass="customizeEntreeVC" customModule="gulp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BYF-gA-Dlw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Fpe-th-iV5"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Gww-bv-a3M"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kfs-bR-bvO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1668" y="881"/>
+        </scene>
+        <!--userCartVC-->
+        <scene sceneID="dYF-oW-cFI">
+            <objects>
+                <viewController title="userCartVC" id="oHG-9l-ipd" customClass="userCartVC" customModule="gulp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qVf-Q5-CfU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="KJF-QI-Q9A"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="j6G-Yg-ekV"/>
+                    <connections>
+                        <segue destination="VLk-lD-Kc6" kind="show" identifier="userPaymentSegue" id="nVb-VU-tpb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N7t-Iw-7xJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2134" y="-653"/>
+        </scene>
+        <!--PaymentsPage-->
+        <scene sceneID="rGN-EL-gal">
+            <objects>
+                <viewController title="PaymentsPage" wantsFullScreenLayout="YES" id="VLk-lD-Kc6" customClass="PaymentPage" customModule="gulp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JAY-7q-hwT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="dBk-8A-IpM"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="NFK-SL-zZO"/>
+                    <connections>
+                        <segue destination="Yga-6X-PE7" kind="show" identifier="confirmationSegue" id="wmB-yG-Lw0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I7o-FR-fd2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2475" y="69"/>
+        </scene>
+        <!--ConfirmationPage-->
+        <scene sceneID="j3d-PA-WUU">
+            <objects>
+                <viewController title="ConfirmationPage" id="Yga-6X-PE7" customClass="confirmationPage" customModule="gulp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hh3-8P-e5F">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="UpW-o1-H1Z"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="4h7-J6-Q3y"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8cT-Ce-QZq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3546" y="68"/>
+        </scene>
+    </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="wce-uX-9u0"/>
+    </inferredMetricsTieBreakers>
+</document>

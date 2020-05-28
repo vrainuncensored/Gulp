@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7G4-Bm-rRU">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--loginPage-->
+        <scene sceneID="T3E-4D-yW5">
+            <objects>
+                <viewController storyboardIdentifier="loginPage" title="loginPage" id="7G4-Bm-rRU" customClass="merchantLoginPage" customModule="gulpMerchant" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="STZ-D0-VgH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Od1-UT-6Ce"/>
+                    </view>
+                    <connections>
+                        <segue destination="IMi-Wo-5xf" kind="show" identifier="toSignup" id="48j-V1-Ita"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K0d-Tg-J7R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-20" y="114"/>
+        </scene>
+        <!--signupPage-->
+        <scene sceneID="jFu-Vm-DJs">
+            <objects>
+                <viewController storyboardIdentifier="signupPage" title="signupPage" id="IMi-Wo-5xf" customClass="signupPage" customModule="gulp" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ey6-F3-y2M">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="baW-G8-ycO"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ye5-ND-Sr4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Co-zu-kBe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1091" y="127"/>
+        </scene>
+    </scenes>
+</document>

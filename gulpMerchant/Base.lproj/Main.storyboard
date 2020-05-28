@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3uC-Re-986">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Menu-->
+        <scene sceneID="5bG-Au-Ral">
+            <objects>
+                <navigationController storyboardIdentifier="MENU" title="Menu" id="U0Q-XB-7RG" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="RNl-A2-SJv"/>
+                    <navigationItem key="navigationItem" id="CLo-JC-fXI"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="o7z-v8-hEl">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="PZP-jj-d4e" kind="relationship" relationship="rootViewController" id="mFx-uR-zw4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="unp-km-Ijf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-430" y="200"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="mPN-ZR-bcP">
+            <objects>
+                <viewController id="cvr-vU-eg9" customClass="paymentHistory" customModule="gulpMerchant" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2Wz-4D-e3o">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Lit-Ok-A3e"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="MME-ak-6gY"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qtY-Kz-Uk7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-430" y="1086"/>
+        </scene>
+        <!--Menu Items-->
+        <scene sceneID="mZY-zv-Erk">
+            <objects>
+                <viewController storyboardIdentifier="Menu" id="PZP-jj-d4e" customClass="menuItems" customModule="gulpMerchant" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ogH-0L-fRo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="KKI-xm-EqQ"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="WJU-pA-HIz"/>
+                    <connections>
+                        <segue destination="6gb-Vk-syz" kind="show" identifier="individalItemSegue" id="kxL-eD-gQP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="API-Hl-PRf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="524" y="164"/>
+        </scene>
+        <!--Adding Menu Item-->
+        <scene sceneID="lT1-53-1rE">
+            <objects>
+                <viewController id="6gb-Vk-syz" customClass="addingMenuItem" customModule="gulpMerchant" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eLb-Ij-UbM">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Hd4-dU-6Y6"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="oV2-gN-Vwt"/>
+                    <connections>
+                        <segue destination="U0Q-XB-7RG" kind="show" identifier="itemAdded" id="wgg-5k-oKh"/>
+                        <segue destination="muc-XN-DLO" kind="show" identifier="segueToCustomizeEntreesSettings" id="sKG-oK-4mO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WUj-bX-jIt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1493" y="159"/>
+        </scene>
+        <!--EntreeCustomize-->
+        <scene sceneID="9Bp-BY-hNA">
+            <objects>
+                <viewController title="EntreeCustomize" id="muc-XN-DLO" customClass="EntreeCustomizeOptionsVC" customModule="gulpMerchant" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="D0D-A7-AdJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="OLd-ct-w0X"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="AVS-Og-Xiq"/>
+                    <connections>
+                        <segue destination="U0Q-XB-7RG" kind="show" identifier="segueToMenuItems" id="1rG-gO-G8H"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b5T-G4-Bdo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2362" y="155"/>
+        </scene>
+        <!--Item 1-->
+        <scene sceneID="Hja-6S-uVd">
+            <objects>
+                <viewController id="0KM-RJ-poC" customClass="orders" customModule="gulpMerchant" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CLP-0F-GRN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Pjk-VM-kj0"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 1" id="zf2-A5-Lyv"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aQh-Kr-uDQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-551" y="-589"/>
+        </scene>
+        <!--Custom Tab Bar-->
+        <scene sceneID="YWt-ei-GMF">
+            <objects>
+                <tabBarController id="3uC-Re-986" customClass="CustomTabBar" customModule="gulpMerchant" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="sdp-Mv-mzd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="0KM-RJ-poC" kind="relationship" relationship="viewControllers" id="FIy-Jk-QBw"/>
+                        <segue destination="U0Q-XB-7RG" kind="relationship" relationship="viewControllers" id="p3s-2G-aW5"/>
+                        <segue destination="cvr-vU-eg9" kind="relationship" relationship="viewControllers" id="uSz-qf-UtI"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n74-sd-14j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1469" y="-265"/>
+        </scene>
+    </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="1rG-gO-G8H"/>
+    </inferredMetricsTieBreakers>
+</document>

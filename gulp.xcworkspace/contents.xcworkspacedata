@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:gulpMerchant/menuItems.swift">
+   </FileRef>
+   <FileRef
+      location = "group:confirmationPage.swift">
+   </FileRef>
+   <FileRef
+      location = "group:gulp/HomeBackground.swift">
+   </FileRef>
+   <FileRef
+      location = "group:gulp/loginPage.swift">
+   </FileRef>
+   <FileRef
+      location = "group:gulp/MenuItems.swift">
+   </FileRef>
+   <FileRef
+      location = "group:../../../Downloads/GoogleService-Info.plist">
+   </FileRef>
+   <FileRef
+      location = "group:Login.storyboard">
+   </FileRef>
+   <FileRef
+      location = "group:gulp.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
+</Workspace>
