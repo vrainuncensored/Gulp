@@ -23,6 +23,13 @@
       location = "group:Login.storyboard">
    </FileRef>
    <FileRef
+      location = "group:/Users/vkahuja2/Desktop/gulp/gulp/Login.storyboard">
+   </FileRef>
+   <Group
+      location = "group:gulp/../New Group"
+      name = "Shared">
+   </Group>
+   <FileRef
       location = "group:gulp.xcodeproj">
    </FileRef>
    <FileRef

@@ -7,12 +7,22 @@
 //
 
 import UIKit
+import CoreLocation
 
-class orders: UIViewController {
+class orders: UIViewController, CLLocationManagerDelegate {
+    let locationManager = CLLocationManager()
+       func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+           let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+           }
     override func viewDidLoad() {
         self.view.addLabel(text: "orders")
         super.viewDidLoad()
-
+        locationManager.delegate = self;
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+        print(locationManager.location!.coordinate)
+        
         // Do any additional setup after loading the view.
     }
     

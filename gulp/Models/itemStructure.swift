@@ -14,9 +14,10 @@ struct MenuItem {
     var name: String
     
     init(
-         price: String = "",
+         price: String = "" ,
          itemCategory: String = "",
-         name: String = "") {
+         name: String = "" )
+        {
         
         self.itemCategory = itemCategory
         self.name = name

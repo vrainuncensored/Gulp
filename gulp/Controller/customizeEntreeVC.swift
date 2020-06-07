@@ -91,6 +91,8 @@ class customizeEntreeVC: UIViewController {
         customerRequests.delegate = self
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.allowsMultipleSelection = true
+        tableView.allowsMultipleSelectionDuringEditing = true
         tableView.rowHeight = 75
         tableView.register(MenuItems.self, forCellReuseIdentifier: "Test")
         fbCall(tableView: tableView)
@@ -174,7 +176,12 @@ extension customizeEntreeVC: UITableViewDataSource, UITableViewDelegate {
         
         return cell
     }
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! MenuItems
+        if cell.itemLabel.text != "" {
+            print(cell.itemLabel.text ?? "hello")
+        }
+    }
     func numberOfSections(in tableView: UITableView) -> Int {
        return 2
        }
@@ -198,7 +205,9 @@ extension customizeEntreeVC: UITableViewDataSource, UITableViewDelegate {
           
            return 0
        }
-
+     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
 }
 extension customizeEntreeVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
