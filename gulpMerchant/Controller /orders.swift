@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import Firebase
 
 class orders: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
@@ -21,7 +22,17 @@ class orders: UIViewController, CLLocationManagerDelegate {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
-        print(locationManager.location!.coordinate)
+        
+        
+        let longitude = locationManager.location!.coordinate.longitude
+        let latitude = locationManager.location!.coordinate.latitude
+        
+        let user = Auth.auth().currentUser
+        if let user = user {
+        let id = user.id
+        }
+        
+
         
         // Do any additional setup after loading the view.
     }

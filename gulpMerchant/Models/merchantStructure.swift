@@ -23,7 +23,7 @@ struct Merchant {
          id: String = "",
          stripeId: String = "",
          name: String = "",
-         locationCoordinates:GeoPoint = GeoPoint(latitude: null ,longitude: null) ) {
+         locationCoordinates:GeoPoint = GeoPoint(latitude: 0.0 ,longitude: 0.0) ) {
         
         self.email = email
         self.id = id
@@ -37,7 +37,7 @@ struct Merchant {
         email = data["email"] as? String ?? ""
         stripeId = data["stripeId"] as? String ?? ""
         name = data["name"] as? String ?? ""
-        locationCoordinates = data["locationCoordinates"] as? CLLocationCoordinate2D ?? CLLocationCoordinate2D()
+        locationCoordinates = data["locationCoordinates"] as? GeoPoint ?? GeoPoint(latitude: 0.0, longitude: 0.0)
 
     }
     //this is the code needed to take input and send to the database
@@ -47,7 +47,7 @@ struct Merchant {
             "id": merchant.id,
             "stripeId": merchant.stripeId,
             "name": merchant.name,
-            "locationCoordinates": merchant.locationCoordinates ?? CLLocationCoordinate2D(latitude:0, longitude:0)
+            "locationCoordinates": merchant.locationCoordinates ?? GeoPoint(latitude: 0.0, longitude: 0.0)
         ]
         return data
     }
