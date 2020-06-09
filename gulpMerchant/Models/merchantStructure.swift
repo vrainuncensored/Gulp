@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 
 
@@ -15,16 +16,19 @@ struct Merchant {
     var id: String
     var stripeId: String
     var name: String
-    
+    var locationCoordinates: CLLocationCoordinate2D?
+
     init(email: String = "",
          id: String = "",
          stripeId: String = "",
-         name: String = "") {
+         name: String = "",
+         locationCoordinates:CLLocationCoordinate2D = CLLocationCoordinate2D() ) {
         
         self.email = email
         self.id = id
         self.stripeId = stripeId
         self.name = name
+        self.locationCoordinates = locationCoordinates
     }
     //the initializer for taking firebase results into useable data
     init(data: [String: Any]) {
@@ -32,6 +36,7 @@ struct Merchant {
         email = data["email"] as? String ?? ""
         stripeId = data["stripeId"] as? String ?? ""
         name = data["name"] as? String ?? ""
+        locationCoordinates = data["locationCoordinates"] as? CLLocationCoordinate2D ?? CLLocationCoordinate2D()
 
     }
     //this is the code needed to take input and send to the database

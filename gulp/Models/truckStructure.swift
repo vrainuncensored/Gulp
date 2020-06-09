@@ -7,23 +7,27 @@
 //
 
 import Foundation
+import CoreLocation
 
 struct Truck {
     var email: String
     var id: String
     var name: String
     var stripeId: String
+    var locationCoordinates: CLLocationCoordinate2D
     
     init(
          email: String = "",
          id: String = "",
          name: String = "",
-         stripeId: String = "") {
+         stripeId: String = "",
+         locationCoordinates: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude:0, longitude:0)  ) {
         
         self.email = email
         self.name = name
         self.id = id
         self.stripeId = stripeId
+        self.locationCoordinates = locationCoordinates
     }
     //the initializer for taking firebase results into useable data
     init(data: [String: Any]) {
@@ -31,6 +35,7 @@ struct Truck {
         id = data["id"] as? String ?? ""
         name = data["name"] as? String ?? ""
         stripeId = data["stripeId"] as? String ?? ""
+        locationCoordinates = data["locationCoordinates"] as? CLLocationCoordinate2D ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
 
     }
     //this is the code needed to take input and send to the database
@@ -39,7 +44,8 @@ struct Truck {
             "email": truck.email,
             "id": truck.id,
             "name": truck.name,
-            "stripeId": truck.stripeId
+            "stripeId": truck.stripeId,
+            "locationCoordinates": truck.locationCoordinates
         ]
         return data
     }

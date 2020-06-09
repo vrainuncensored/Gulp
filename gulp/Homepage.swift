@@ -32,7 +32,8 @@ class HomePage: UIViewController,  CLLocationManagerDelegate {
     
     
     
-    
+    var coordinateArray = [CLLocationCoordinate2D]()
+
     
     override func viewDidLoad() {
         let width = UIScreen.main.bounds.size.width
@@ -107,6 +108,7 @@ class HomePage: UIViewController,  CLLocationManagerDelegate {
                 for document in querySnapshot!.documents {
                    let data = document.data()
                     let test = Truck(data: data)
+                    self.coordinateArray.append(test.locationCoordinates)
                     self.trucksList.append(test)
                     tableView.reloadData()
                     
