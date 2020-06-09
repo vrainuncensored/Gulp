@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import Firebase
 
 
 
@@ -16,13 +17,13 @@ struct Merchant {
     var id: String
     var stripeId: String
     var name: String
-    var locationCoordinates: CLLocationCoordinate2D?
+    var locationCoordinates: GeoPoint?
 
     init(email: String = "",
          id: String = "",
          stripeId: String = "",
          name: String = "",
-         locationCoordinates:CLLocationCoordinate2D = CLLocationCoordinate2D() ) {
+         locationCoordinates:GeoPoint = GeoPoint(latitude: null ,longitude: null) ) {
         
         self.email = email
         self.id = id
@@ -45,7 +46,8 @@ struct Merchant {
             "email": merchant.email,
             "id": merchant.id,
             "stripeId": merchant.stripeId,
-            "name": merchant.name
+            "name": merchant.name,
+            "locationCoordinates": merchant.locationCoordinates ?? CLLocationCoordinate2D(latitude:0, longitude:0)
         ]
         return data
     }

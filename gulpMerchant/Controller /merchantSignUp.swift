@@ -85,6 +85,7 @@ class merchantSignupPage: UIViewController {
         }
     }
     func createFireStoreUser (merchant: Merchant) {
+        //this is where in the database the user will be added. The name of the truck is the unique id created when the auth method is called
         let newUserRef = Firestore.firestore().collection("merchant").document(merchant.id)
         let data = Merchant.modelToData(merchant: merchant)
         newUserRef.setData(data)

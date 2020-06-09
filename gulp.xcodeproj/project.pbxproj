@@ -262,6 +262,8 @@
 				64D6E8ED245F7A7100A3B852 /* navigationBar.swift */,
 				64D6E8DD245E383700A3B852 /* orderLabel.swift */,
 				644B061124846095003DE98A /* updateLocation .swift */,
+				64D6E8D3245DD8C800A3B852 /* orders.swift */,
+				64D6E8F32461010C00A3B852 /* merchantSignUp.swift */,
 			);
 			path = "Controller ";
 			sourceTree = "<group>";
@@ -298,14 +300,12 @@
 				64D6E8D9245E338700A3B852 /* menuItems.swift */,
 				64D6E8DF245EA73200A3B852 /* Login.storyboard */,
 				64D6E8EB245F304F00A3B852 /* GoogleService-Info.plist */,
-				64D6E8D3245DD8C800A3B852 /* orders.swift */,
 				64D6E8D5245DDDE500A3B852 /* CustomTabBar.swift */,
 				64B7279B245C8FFF0082BBD6 /* Assets.xcassets */,
 				64D6E8F9246B0CFB00A3B852 /* 324.jpg */,
 				64B727A0245C8FFF0082BBD6 /* Info.plist */,
 				64D6E8E5245F284A00A3B852 /* signIn.swift */,
 				64D6E8EF246059E900A3B852 /* paymentHistory.swift */,
-				64D6E8F32461010C00A3B852 /* merchantSignUp.swift */,
 				64D6E8F52463479D00A3B852 /* addingMenuItem.swift */,
 				644B0600247B1673003DE98A /* EntreeCustomizeOptionsVC.swift */,
 			);

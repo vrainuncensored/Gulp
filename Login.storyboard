@@ -10,7 +10,7 @@
         <!--loginPage-->
         <scene sceneID="T3E-4D-yW5">
             <objects>
-                <viewController storyboardIdentifier="loginPage" title="loginPage" id="7G4-Bm-rRU" customClass="merchantLoginPage" customModule="gulpMerchant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginPage" title="loginPage" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" id="7G4-Bm-rRU" customClass="merchantLoginPage" customModule="gulpMerchant" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="STZ-D0-VgH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -28,9 +28,9 @@
         <!--signupPage-->
         <scene sceneID="jFu-Vm-DJs">
             <objects>
-                <viewController storyboardIdentifier="signupPage" title="signupPage" id="IMi-Wo-5xf" customClass="signupPage" customModule="gulp" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="signupPage" title="signupPage" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" id="IMi-Wo-5xf" customClass="merchantSignupPage" customModule="gulpMerchant" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ey6-F3-y2M">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="baW-G8-ycO"/>
