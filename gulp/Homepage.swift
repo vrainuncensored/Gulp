@@ -32,8 +32,7 @@ class HomePage: UIViewController,  CLLocationManagerDelegate {
     
     
     
-    var coordinateArray = [CLLocationCoordinate2D]()
-
+    var coordinateArray = [GeoPoint]()
     
     override func viewDidLoad() {
         let width = UIScreen.main.bounds.size.width
@@ -64,7 +63,14 @@ class HomePage: UIViewController,  CLLocationManagerDelegate {
     tableView.rowHeight = 100
     tableView.register(TruckItems.self, forCellReuseIdentifier: Cells.truckNames)
     fbCall(tableView : tableView)
+        
+    
+//    let coordinateTest = MKPointAnnotation()
+//    coordinateTest.coordinate = coordinateArray[8]
+//    map.addAnnotation(coordinateTest)
            
+        
+   
 
     
     
@@ -111,6 +117,8 @@ class HomePage: UIViewController,  CLLocationManagerDelegate {
                     self.coordinateArray.append(test.locationCoordinates)
                     self.trucksList.append(test)
                     tableView.reloadData()
+                    print(self.coordinateArray)
+
                     
                 }
                 

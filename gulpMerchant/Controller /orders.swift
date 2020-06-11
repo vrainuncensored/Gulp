@@ -15,6 +15,9 @@ class orders: UIViewController, CLLocationManagerDelegate {
        func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
            let locValue:CLLocationCoordinate2D = manager.location!.coordinate
            }
+    var longitude = 0.0
+    var latitude = 0.0
+    
     override func viewDidLoad() {
         self.view.addLabel(text: "orders")
         super.viewDidLoad()
@@ -24,15 +27,27 @@ class orders: UIViewController, CLLocationManagerDelegate {
         locationManager.startUpdatingLocation()
         
         
-        let longitude = locationManager.location!.coordinate.longitude
-        let latitude = locationManager.location!.coordinate.latitude
-        
-        let user = Auth.auth().currentUser
-        if let user = user {
-        let id = user.id
+        self.longitude = locationManager.location!.coordinate.longitude
+        self.latitude = locationManager.location!.coordinate.latitude
+        fbCall(latitude: latitude, longitude: longitude)
+    
         }
         
-
+    func fbCall (latitude: Double, longitude:Double) {
+           let user = Auth.auth().currentUser
+           if let user = user {
+               let uid = user.uid
+               if Auth.auth().currentUser != nil {
+                   let docRef = Firestore.firestore().collection("merchant").document(uid)
+                docRef.updateData([
+                    "locationCoordinates": GeoPoint(latitude: latitude, longitude: longitude)
+                ]) { err in
+                    if let err = err {
+                        print("Error updating document: \(err)")
+                    } else {
+                        print("Document successfully updated")
+                    }
+                }
         
         // Do any additional setup after loading the view.
     }
@@ -48,4 +63,6 @@ class orders: UIViewController, CLLocationManagerDelegate {
     }
     */
 
+        }
+}
 }

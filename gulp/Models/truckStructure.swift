@@ -8,20 +8,21 @@
 
 import Foundation
 import CoreLocation
+import Firebase
 
 struct Truck {
     var email: String
     var id: String
     var name: String
     var stripeId: String
-    var locationCoordinates: CLLocationCoordinate2D
+    var locationCoordinates: GeoPoint
     
     init(
          email: String = "",
          id: String = "",
          name: String = "",
          stripeId: String = "",
-         locationCoordinates: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude:0, longitude:0)  ) {
+         locationCoordinates: GeoPoint = GeoPoint(latitude:0, longitude:0)  ) {
         
         self.email = email
         self.name = name
@@ -35,8 +36,7 @@ struct Truck {
         id = data["id"] as? String ?? ""
         name = data["name"] as? String ?? ""
         stripeId = data["stripeId"] as? String ?? ""
-        locationCoordinates = data["locationCoordinates"] as? CLLocationCoordinate2D ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
-
+        locationCoordinates = data["locationCoordinates"] as? GeoPoint ?? GeoPoint(latitude: 0.0, longitude: 0.0)
     }
     //this is the code needed to take input and send to the database
     static func modelToData(truck: Truck) -> [String: Any] {
