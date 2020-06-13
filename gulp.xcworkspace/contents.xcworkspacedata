@@ -17,10 +17,13 @@
       location = "group:gulp/MenuItems.swift">
    </FileRef>
    <FileRef
-      location = "group:../../../Downloads/GoogleService-Info.plist">
+      location = "group:Login.storyboard">
    </FileRef>
    <FileRef
       location = "group:Login.storyboard">
+   </FileRef>
+   <FileRef
+      location = "group:../../../Downloads/GoogleService-Info.plist">
    </FileRef>
    <FileRef
       location = "group:/Users/vkahuja2/Desktop/gulp/gulp/Login.storyboard">
@@ -28,6 +31,12 @@
    <Group
       location = "group:gulp/../New Group"
       name = "Shared">
+      <FileRef
+         location = "group:New Group/Login.storyboard">
+      </FileRef>
+      <FileRef
+         location = "group:/Users/vkahuja2/Desktop/gulp/gulp/gulp/Storyboards/Login.storyboard">
+      </FileRef>
    </Group>
    <FileRef
       location = "group:gulp.xcodeproj">

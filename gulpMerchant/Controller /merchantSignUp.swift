@@ -22,6 +22,8 @@ class merchantSignupPage: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addBackground()
+        
+        self.view.addBackground()
         userName.frame = CGRect(x:0, y:300, width:self.view.frame.width * 5/6 , height:self.view.frame.height * 1/10)
         let width = UIScreen.main.bounds.size.width
         let height = UIScreen.main.bounds.size.height

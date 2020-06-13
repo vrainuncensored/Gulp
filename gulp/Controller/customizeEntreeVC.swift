@@ -53,11 +53,7 @@ class customizeEntreeVC: UIViewController {
 //        entreeLabel.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: 0).isActive = true
 //
         self.navigationItem.title = "\(self.entreeItemSelected!)"
-           let userLogo = "cart.badge.plus"
-           let buttonConfig = UIImage.SymbolConfiguration(pointSize: UIFont.systemFontSize, weight: .medium, scale: .large)
-           let userImage = UIImage(systemName: userLogo, withConfiguration: buttonConfig)
-           let addToCartNavButton = UIBarButtonItem(image: userImage, style: .plain, target: self, action: #selector(segueToUserCartPage))
-           navigationItem.rightBarButtonItem = addToCartNavButton
+       
         
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
