@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 import Firebase
 
-class HomePage: UIViewController,  CLLocationManagerDelegate {
+class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate {
 /*
  This method will be invoked after iOS app's view is loaded.
  */
@@ -32,7 +32,7 @@ class HomePage: UIViewController,  CLLocationManagerDelegate {
     
     
     
-    var coordinateArray = [GeoPoint]()
+    var coordinateArray = [CLLocationCoordinate2D]()
     
     override func viewDidLoad() {
         let width = UIScreen.main.bounds.size.width
@@ -40,6 +40,7 @@ class HomePage: UIViewController,  CLLocationManagerDelegate {
         let mapView = CGRect(x: 0, y: 0, width: width, height: height/2)
         map.frame = mapView
         map.showsUserLocation = true
+        map.delegate = self
         
         
 
@@ -66,9 +67,9 @@ class HomePage: UIViewController,  CLLocationManagerDelegate {
         
     
 //    let coordinateTest = MKPointAnnotation()
-//    coordinateTest.coordinate = coordinateArray[8]
+//    coordinateTest.coordinate = coordinateArray[7]
 //    map.addAnnotation(coordinateTest)
-           
+//
         
    
 
@@ -114,13 +115,27 @@ class HomePage: UIViewController,  CLLocationManagerDelegate {
                 for document in querySnapshot!.documents {
                    let data = document.data()
                     let test = Truck(data: data)
-                    self.coordinateArray.append(test.locationCoordinates)
+                    let longitude = test.locationCoordinates.longitude
+                    let latitude = test.locationCoordinates.latitude
+                    let coordinateTest = MKPointAnnotation()
+                    let mapCoordinates = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                    //loading the specific truck info into a Structure. Did this intentionally to later add hours of operation if needed
+                    let mapData = MapData(truckName: test.name, truckCoordinates: mapCoordinates)
+                    coordinateTest.coordinate = mapData.truckCoordinates
+                    coordinateTest.title = mapData.truckName
+                    self.map.addAnnotation(coordinateTest)
+                    self.coordinateArray.append(CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
                     self.trucksList.append(test)
                     tableView.reloadData()
-                    print(self.coordinateArray)
-
-                    
+               
                 }
+//                let coordinateTest = MKPointAnnotation()
+//                //coordinateTest.coordinate = self.coordinateArray[8]
+//                coordinateTest.coordinate = CLLocationCoordinate2D(latitude: 37.5630, longitude: -122.3255)
+//                coordinateTest.title = "Test Truck"
+//                self.map.addAnnotation(coordinateTest)
+
+                
                 
             }
         }

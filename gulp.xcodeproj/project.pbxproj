@@ -41,6 +41,7 @@
 		64754A9E2432F7E00088D0F5 /* HomeBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64754A9D2432F7E00088D0F5 /* HomeBackground.swift */; };
 		64754AA024342C9C0088D0F5 /* mainLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64754A9F24342C9C0088D0F5 /* mainLogo.swift */; };
 		64754AA224342CEA0088D0F5 /* GulpLogo .pdf in Resources */ = {isa = PBXBuildFile; fileRef = 64754AA124342CE90088D0F5 /* GulpLogo .pdf */; };
+		6485276B249551ED00E89866 /* mapsStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6485276A249551ED00E89866 /* mapsStructure.swift */; };
 		64B72793245C8FFA0082BBD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B72792245C8FFA0082BBD6 /* AppDelegate.swift */; };
 		64B72795245C8FFA0082BBD6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B72794245C8FFA0082BBD6 /* SceneDelegate.swift */; };
 		64B72797245C8FFA0082BBD6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B72796245C8FFA0082BBD6 /* ViewController.swift */; };
@@ -111,6 +112,7 @@
 		64754A9D2432F7E00088D0F5 /* HomeBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBackground.swift; sourceTree = "<group>"; };
 		64754A9F24342C9C0088D0F5 /* mainLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainLogo.swift; sourceTree = "<group>"; };
 		64754AA124342CE90088D0F5 /* GulpLogo .pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "GulpLogo .pdf"; sourceTree = "<group>"; };
+		6485276A249551ED00E89866 /* mapsStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapsStructure.swift; sourceTree = "<group>"; };
 		64B72790245C8FFA0082BBD6 /* gulpMerchant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gulpMerchant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64B72792245C8FFA0082BBD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		64B72794245C8FFA0082BBD6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 				644765CE24529AE6004FCDEA /* userStructure.swift */,
 				644B060B24831843003DE98A /*  cartItemStructure.swift */,
 				644B06132484A15B003DE98A /* orderStructure.swift */,
+				6485276A249551ED00E89866 /* mapsStructure.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -627,6 +630,7 @@
 				64320CC82448068E00ED486D /* signupPage.swift in Sources */,
 				64320CB4243E130800ED486D /* MenuItems.swift in Sources */,
 				64DDE6AD242D876C0068223D /* SceneDelegate.swift in Sources */,
+				6485276B249551ED00E89866 /* mapsStructure.swift in Sources */,
 				644765CD244DF975004FCDEA /* confirmationPage.swift in Sources */,
 				644B05FF247AEA25003DE98A /* customizeEntreeVC.swift in Sources */,
 				644765C9244DD4D8004FCDEA /* truckStructure.swift in Sources */,
