@@ -94,7 +94,7 @@
 		64320CC72448068E00ED486D /* signupPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signupPage.swift; sourceTree = "<group>"; };
 		644765C6244DD317004FCDEA /* TruckItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TruckItems.swift; sourceTree = "<group>"; };
 		644765C8244DD4D8004FCDEA /* truckStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = truckStructure.swift; sourceTree = "<group>"; };
-		644765CC244DF975004FCDEA /* confirmationPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = confirmationPage.swift; sourceTree = SOURCE_ROOT; };
+		644765CC244DF975004FCDEA /* confirmationPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = confirmationPage.swift; path = gulp/Controller/confirmationPage.swift; sourceTree = SOURCE_ROOT; };
 		644765CE24529AE6004FCDEA /* userStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userStructure.swift; sourceTree = "<group>"; };
 		644B05FA247AC7A0003DE98A /* navigation bar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "navigation bar.swift"; sourceTree = "<group>"; };
 		644B05FC247AE80F003DE98A /* userCartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userCartVC.swift; sourceTree = "<group>"; };
@@ -124,7 +124,7 @@
 		64D6E8D5245DDDE500A3B852 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		64D6E8D9245E338700A3B852 /* menuItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = menuItems.swift; sourceTree = "<group>"; };
 		64D6E8DD245E383700A3B852 /* orderLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = orderLabel.swift; sourceTree = "<group>"; };
-		64D6E8DF245EA73200A3B852 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = SOURCE_ROOT; };
+		64D6E8DF245EA73200A3B852 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Login.storyboard; path = gulpMerchant/Storyboards/Login.storyboard; sourceTree = SOURCE_ROOT; };
 		64D6E8E1245F1A6300A3B852 /* merchantStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = merchantStructure.swift; sourceTree = "<group>"; };
 		64D6E8E5245F284A00A3B852 /* signIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signIn.swift; sourceTree = "<group>"; };
 		64D6E8E7245F2E7B00A3B852 /* HomeBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeBackground.swift; path = gulp/HomeBackground.swift; sourceTree = SOURCE_ROOT; };
@@ -209,6 +209,16 @@
 		644B06072480A2BA003DE98A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				64320CAF2439B3DB00ED486D /* MenuPage.swift */,
+				64DDE6AC242D876C0068223D /* SceneDelegate.swift */,
+				64DDE6AA242D876C0068223D /* AppDelegate.swift */,
+				64320CA62434654D00ED486D /* Homepage.swift */,
+				64320CC72448068E00ED486D /* signupPage.swift */,
+				64320CC5244805D700ED486D /* loginPage.swift */,
+				644765CC244DF975004FCDEA /* confirmationPage.swift */,
+				64320CB7243EBACB00ED486D /* PaymentPage.swift */,
+				644B05FC247AE80F003DE98A /* userCartVC.swift */,
+				64DDE6AE242D876C0068223D /* ViewController.swift */,
 				644B05FE247AEA25003DE98A /* customizeEntreeVC.swift */,
 			);
 			path = Controller;
@@ -244,18 +254,27 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
-		644B060D24845A53003DE98A /* New Group */ = {
+		644B060D24845A53003DE98A /* Layout */ = {
 			isa = PBXGroup;
 			children = (
+				64320CB1243E0FBA00ED486D /* UIView+EXT.swift */,
+				64320CB3243E130800ED486D /* MenuItems.swift */,
+				644B05FA247AC7A0003DE98A /* navigation bar.swift */,
+				64754A9D2432F7E00088D0F5 /* HomeBackground.swift */,
+				64320CB92442AB6800ED486D /* checkoutButton.swift */,
+				64754A9F24342C9C0088D0F5 /* mainLogo.swift */,
+				64320CAA243817FD00ED486D /* stackTest.swift */,
+				644765C6244DD317004FCDEA /* TruckItems.swift */,
 			);
-			name = "New Group";
-			path = "../New Group";
+			name = Layout;
+			path = ../Layout;
 			sourceTree = "<group>";
 		};
 		644B060E24845A75003DE98A /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
 				64D6E8FB24738CA000A3B852 /* Main.storyboard */,
+				64D6E8DF245EA73200A3B852 /* Login.storyboard */,
 				64B7279D245C8FFF0082BBD6 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
@@ -265,9 +284,17 @@
 			isa = PBXGroup;
 			children = (
 				64D6E8ED245F7A7100A3B852 /* navigationBar.swift */,
+				64B72792245C8FFA0082BBD6 /* AppDelegate.swift */,
+				64B72794245C8FFA0082BBD6 /* SceneDelegate.swift */,
 				64D6E8DD245E383700A3B852 /* orderLabel.swift */,
 				644B061124846095003DE98A /* updateLocation .swift */,
 				64D6E8D3245DD8C800A3B852 /* orders.swift */,
+				64D6E8EF246059E900A3B852 /* paymentHistory.swift */,
+				644B0600247B1673003DE98A /* EntreeCustomizeOptionsVC.swift */,
+				64D6E8E5245F284A00A3B852 /* signIn.swift */,
+				64B72796245C8FFA0082BBD6 /* ViewController.swift */,
+				64D6E8F52463479D00A3B852 /* addingMenuItem.swift */,
+				64D6E8D9245E338700A3B852 /* menuItems.swift */,
 				64D6E8F32461010C00A3B852 /* merchantSignUp.swift */,
 			);
 			path = "Controller ";
@@ -298,30 +325,29 @@
 			path = ../../../../.Trash/assets;
 			sourceTree = "<group>";
 		};
+		6485276C24955A4200E89866 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				64D6E8D5245DDDE500A3B852 /* CustomTabBar.swift */,
+			);
+			path = Layout;
+			sourceTree = "<group>";
+		};
 		64B72791245C8FFA0082BBD6 /* gulpMerchant */ = {
 			isa = PBXGroup;
 			children = (
+				6485276C24955A4200E89866 /* Layout */,
 				6458B5B8248F4B8D00B132B5 /* Services */,
 				644B061024845B1B003DE98A /* Models */,
 				644B060F24845B0A003DE98A /* Controller  */,
 				644B060E24845A75003DE98A /* Storyboards */,
-				64B72792245C8FFA0082BBD6 /* AppDelegate.swift */,
 				64D6E8FE2475DF2300A3B852 /* MenuItems.swift */,
 				64D6E8F12460FECB00A3B852 /* loginPage.swift */,
-				64B72794245C8FFA0082BBD6 /* SceneDelegate.swift */,
 				64D6E8E7245F2E7B00A3B852 /* HomeBackground.swift */,
-				64B72796245C8FFA0082BBD6 /* ViewController.swift */,
-				64D6E8D9245E338700A3B852 /* menuItems.swift */,
-				64D6E8DF245EA73200A3B852 /* Login.storyboard */,
 				64D6E8EB245F304F00A3B852 /* GoogleService-Info.plist */,
-				64D6E8D5245DDDE500A3B852 /* CustomTabBar.swift */,
 				64B7279B245C8FFF0082BBD6 /* Assets.xcassets */,
 				64D6E8F9246B0CFB00A3B852 /* 324.jpg */,
 				64B727A0245C8FFF0082BBD6 /* Info.plist */,
-				64D6E8E5245F284A00A3B852 /* signIn.swift */,
-				64D6E8EF246059E900A3B852 /* paymentHistory.swift */,
-				64D6E8F52463479D00A3B852 /* addingMenuItem.swift */,
-				644B0600247B1673003DE98A /* EntreeCustomizeOptionsVC.swift */,
 			);
 			path = gulpMerchant;
 			sourceTree = "<group>";
@@ -349,7 +375,7 @@
 		64DDE6A9242D876C0068223D /* gulp */ = {
 			isa = PBXGroup;
 			children = (
-				644B060D24845A53003DE98A /* New Group */,
+				644B060D24845A53003DE98A /* Layout */,
 				644B060A2482DBEC003DE98A /* Storyboards */,
 				644B06092482230E003DE98A /* View  */,
 				644B0608248222D5003DE98A /* Models */,
@@ -357,19 +383,6 @@
 				644B0604247F9AB7003DE98A /* Services */,
 				64EF271E2459495200BD68C5 /* gulp.entitlements */,
 				6458A6E62459249B00F415AA /* gulpRelease.entitlements */,
-				64DDE6AA242D876C0068223D /* AppDelegate.swift */,
-				64DDE6AC242D876C0068223D /* SceneDelegate.swift */,
-				64320CAA243817FD00ED486D /* stackTest.swift */,
-				64DDE6AE242D876C0068223D /* ViewController.swift */,
-				64320CB92442AB6800ED486D /* checkoutButton.swift */,
-				64754A9D2432F7E00088D0F5 /* HomeBackground.swift */,
-				64754A9F24342C9C0088D0F5 /* mainLogo.swift */,
-				64320CC72448068E00ED486D /* signupPage.swift */,
-				64320CC5244805D700ED486D /* loginPage.swift */,
-				64320CB7243EBACB00ED486D /* PaymentPage.swift */,
-				64320CA62434654D00ED486D /* Homepage.swift */,
-				644B05FA247AC7A0003DE98A /* navigation bar.swift */,
-				644765CC244DF975004FCDEA /* confirmationPage.swift */,
 				64754AA124342CE90088D0F5 /* GulpLogo .pdf */,
 				64754A962432DDCF0088D0F5 /* 324.jpg */,
 				64320CA424342D7800ED486D /* logo.png */,
@@ -379,11 +392,6 @@
 				64754A982432DDFA0088D0F5 /* assets */,
 				64320CC12447FE9900ED486D /* GoogleService-Info.plist */,
 				64DDE6B8242D876D0068223D /* Info.plist */,
-				64320CAF2439B3DB00ED486D /* MenuPage.swift */,
-				64320CB3243E130800ED486D /* MenuItems.swift */,
-				644765C6244DD317004FCDEA /* TruckItems.swift */,
-				64320CB1243E0FBA00ED486D /* UIView+EXT.swift */,
-				644B05FC247AE80F003DE98A /* userCartVC.swift */,
 			);
 			path = gulp;
 			sourceTree = "<group>";
