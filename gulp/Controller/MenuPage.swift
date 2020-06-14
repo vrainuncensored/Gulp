@@ -110,7 +110,7 @@ class MenuPage: UIViewController {
         }
 
     func segueToUserCartPage(){
-               self.performSegue(withIdentifier: "userCartSegue", sender: self)
+        self.performSegue(withIdentifier: Segue.segueToUserCart, sender: self)
     }
     func segueToEntreeCustomizePage(){
                self.performSegue(withIdentifier: "segueToCustomizeEntreeVC", sender: self)

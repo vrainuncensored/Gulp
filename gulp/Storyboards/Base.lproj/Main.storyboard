@@ -68,7 +68,7 @@
                     <navigationItem key="navigationItem" id="wRK-bA-Zna"/>
                     <connections>
                         <segue destination="VLk-lD-Kc6" kind="show" identifier="segueToPayments" id="wce-uX-9u0"/>
-                        <segue destination="oHG-9l-ipd" kind="show" identifier="userCartSegue" id="Agj-K8-y9P"/>
+                        <segue destination="oHG-9l-ipd" kind="show" identifier="segueToUserCart" id="Agj-K8-y9P"/>
                         <segue destination="9OK-Wq-Efe" kind="show" identifier="segueToCustomizeEntreeVC" id="qUd-38-4uW"/>
                     </connections>
                 </viewController>
@@ -148,6 +148,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="wce-uX-9u0"/>
+        <segue reference="nVb-VU-tpb"/>
     </inferredMetricsTieBreakers>
 </document>

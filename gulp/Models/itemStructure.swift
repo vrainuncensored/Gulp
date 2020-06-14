@@ -9,12 +9,12 @@
 import Foundation
 
 struct MenuItem {
-    var price: String
+    var price: Double
     var itemCategory: String
     var name: String
     
     init(
-         price: String = "" ,
+        price: Double = 0.0 ,
          itemCategory: String = "",
          name: String = "" )
         {
@@ -25,7 +25,7 @@ struct MenuItem {
     }
     //the initializer for taking firebase results into useable data
     init(data: [String: Any]) {
-        price = data["price"] as? String ?? ""
+        price = data["price"] as? Double ?? 0.0
         itemCategory = data["itemCategory"] as? String ?? ""
         name = data["name"] as? String ?? ""
 

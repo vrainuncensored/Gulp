@@ -56,8 +56,11 @@ final class _UserService{
         
     }
     
-    func updateCart( ) {
+    func updateCart(price: Double, item: String ) {
         let cartRef = db.collection("users").document(user.id).collection("Cart")
+        var cartPriceTotal = 0.0
+        var carPriceTotal = cartPriceTotal + price
+        //let selectedItems : [String] = 
     }
    
     

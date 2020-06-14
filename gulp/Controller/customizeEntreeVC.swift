@@ -92,6 +92,8 @@ class customizeEntreeVC: UIViewController {
         tableView.rowHeight = 75
         tableView.register(MenuItems.self, forCellReuseIdentifier: "Test")
         fbCall(tableView: tableView)
+        //userservice.updateCart
+        
         // Do any additional setup after loading the view.
     }
     

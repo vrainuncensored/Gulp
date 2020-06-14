@@ -30,7 +30,7 @@ class MenuItems: UITableViewCell {
     
     func set(item: MenuItem) {
         itemLabel.text = item.name
-        priceLabel.text = item.price
+        priceLabel.text = item.price.description
         
     }
     func configureTitleLabel(){
