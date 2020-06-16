@@ -19,4 +19,17 @@ extension ShoppingCart {
             }
         }
     }
+    func remove(item: MenuItem) {
+        guard let index = items.firstIndex(where: { $0.item == item }) else { return}
+        items.remove(at: index)
+    }
+    func add(item: MenuItem) {
+        let itemTest = items.filter { $0.item == item }
+        
+        if itemTest.first != nil {
+            itemTest.first!.quantity += 1
+        } else {
+            items.append(CartItem(item: item))
+        }
+    }
 }

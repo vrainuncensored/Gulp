@@ -40,3 +40,10 @@ struct MenuItem {
         return data
     }
 }
+extension MenuItem {
+// MARK: Equatable
+static func ==(lhs: MenuItem, rhs: MenuItem) -> Bool {
+    return lhs.name == rhs.name
+}
+}
+

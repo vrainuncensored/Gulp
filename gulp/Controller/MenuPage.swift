@@ -5,7 +5,7 @@ class MenuPage: UIViewController {
     /*
      This method will be invoked after iOS app's view is loaded.
      */
-    
+    let cart = ShoppingCart()
     var entreeItems = [MenuItem]()
     var sidesItems =  [MenuItem]()
     var drinksItems = [MenuItem]()
@@ -32,6 +32,8 @@ class MenuPage: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = 100
+        tableView.allowsMultipleSelectionDuringEditing = true
+        tableView.allowsMultipleSelection = true
         tableView.register(MenuItems.self, forCellReuseIdentifier: "Test")
         fbCall(tableView: tableView)
         
@@ -110,7 +112,7 @@ class MenuPage: UIViewController {
         }
 
     func segueToUserCartPage(){
-        self.performSegue(withIdentifier: Segue.segueToUserCart, sender: self)
+        self.performSegue(withIdentifier: Segues.ToUserCart, sender: self)
     }
     func segueToEntreeCustomizePage(){
                self.performSegue(withIdentifier: "segueToCustomizeEntreeVC", sender: self)
@@ -205,24 +207,49 @@ extension MenuPage: UITableViewDataSource, UITableViewDelegate {
             reloadInputViews()
 
         }
-        
-
 
         return cell
     }
-     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //        let cell = tableView.dequeueReusableCell(withIdentifier: Cells.truckNames) as! TruckItems
-    //        cell.menuButton.tag = indexPath.row
-    //        cell.menuButton.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
-            reloadInputViews()
-          tableView.deselectRow(at: indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //        let cell = tableView.dequeueReusableCell(withIdentifier: Cells.truckNames) as! TruckItems
+        //        cell.menuButton.tag = indexPath.row
+        //        cell.menuButton.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
+        //            reloadInputViews()
+        //          tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 0 {
             let entreeSelected = entreeItems[indexPath.row]
             self.entreeSelected = entreeSelected.name
             
             self.segueToEntreeCustomizePage()
         }
+        if indexPath.section == 1 {
+            let sideSelected = sidesItems[indexPath.row]
+            self.cart.add(item: sideSelected)
+        }
+        if indexPath.section == 2 {
+            let drinkSelected = drinksItems[indexPath.row]
+            self.cart.add(item: drinkSelected)
+        }
+        let cell = tableView.cellForRow(at: indexPath) as! MenuItems
         
+        if cell.itemLabel.text != "" {
+            print(cell.itemLabel.text ?? "hello")
+        }
+        //tableView.deselectRow(at: indexPath, animated: true)
+    }
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+          let cell = tableView.cellForRow(at: indexPath) as! MenuItems
+              if cell.itemLabel.text != "" {
+                  print(cell.itemLabel.text ?? "hello")
+              }
+    }
+        
+    }
+
+        
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+           return true
+    }
         
         
 //            let truck = trucksList[indexPath.row]
@@ -231,5 +258,4 @@ extension MenuPage: UITableViewDataSource, UITableViewDelegate {
 //            seguetoTruckMenu()
 //        }
 
-}
-}
+

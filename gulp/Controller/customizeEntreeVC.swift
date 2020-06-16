@@ -181,28 +181,28 @@ extension customizeEntreeVC: UITableViewDataSource, UITableViewDelegate {
         }
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-       return 2
-       }
-       func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-          if (section == 0){
-               return "Choice of Protein"
-           }
-           if (section == 1){
-               return "Add ons"
-           }
-           
-           return ""
-       }
-       func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-           if (section == 0){
+        return 2
+    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if (section == 0){
+            return "Choice of Protein"
+        }
+        if (section == 1){
+            return "Add ons"
+        }
+        
+        return ""
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if (section == 0){
             return proteinOption.count
-           }
-           if (section == 1){
+        }
+        if (section == 1){
             return addOnOptions.count
-           }
-          
-           return 0
-       }
+        }
+        
+        return 0
+    }
      func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return true
     }
