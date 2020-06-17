@@ -8,11 +8,13 @@
 
 import Foundation
 
-class ShoppingCart {
+let shoppingCart = _ShoppingCart()
+
+final class _ShoppingCart {
     private(set) var items: [CartItem] = []
 }
 
-extension ShoppingCart {
+extension _ShoppingCart {
     var total: Double {
         get { return items.reduce(0.0) { value, item in
             value + item.subTotal
