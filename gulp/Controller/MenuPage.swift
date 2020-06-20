@@ -5,7 +5,7 @@ class MenuPage: UIViewController {
     /*
      This method will be invoked after iOS app's view is loaded.
      */
-    let cart = ShoppingCart()
+    let cart = shoppingCart.items
     var entreeItems = [MenuItem]()
     var sidesItems =  [MenuItem]()
     var drinksItems = [MenuItem]()
@@ -224,11 +224,11 @@ extension MenuPage: UITableViewDataSource, UITableViewDelegate {
         }
         if indexPath.section == 1 {
             let sideSelected = sidesItems[indexPath.row]
-            self.cart.add(item: sideSelected)
+           shoppingCart.add(item: sideSelected)
         }
         if indexPath.section == 2 {
             let drinkSelected = drinksItems[indexPath.row]
-            self.cart.add(item: drinkSelected)
+            shoppingCart.add(item: drinkSelected)
         }
         let cell = tableView.cellForRow(at: indexPath) as! MenuItems
         
