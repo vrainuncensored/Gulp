@@ -12,7 +12,11 @@ class userCartVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let array : [CartItem] = shoppingCart.items
+        print(array[0].item.name)
+        self.view.addCheckoutButton()
+        
+        
         // Do any additional setup after loading the view.
     }
     

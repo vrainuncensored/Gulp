@@ -49,6 +49,7 @@
 		64B72797245C8FFA0082BBD6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B72796245C8FFA0082BBD6 /* ViewController.swift */; };
 		64B7279C245C8FFF0082BBD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64B7279B245C8FFF0082BBD6 /* Assets.xcassets */; };
 		64B7279F245C8FFF0082BBD6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64B7279D245C8FFF0082BBD6 /* LaunchScreen.storyboard */; };
+		64BDB85124A2F51900C7C318 /* checkoutToStripe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BDB85024A2F51900C7C318 /* checkoutToStripe.swift */; };
 		64D6E8D4245DD8C800A3B852 /* orders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D6E8D3245DD8C800A3B852 /* orders.swift */; };
 		64D6E8D6245DDDE500A3B852 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D6E8D5245DDDE500A3B852 /* CustomTabBar.swift */; };
 		64D6E8DA245E338700A3B852 /* menuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D6E8D9245E338700A3B852 /* menuItems.swift */; };
@@ -125,6 +126,7 @@
 		64B7279B245C8FFF0082BBD6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		64B7279E245C8FFF0082BBD6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		64B727A0245C8FFF0082BBD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		64BDB85024A2F51900C7C318 /* checkoutToStripe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkoutToStripe.swift; sourceTree = "<group>"; };
 		64D6E8D3245DD8C800A3B852 /* orders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = orders.swift; sourceTree = "<group>"; };
 		64D6E8D5245DDDE500A3B852 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		64D6E8D9245E338700A3B852 /* menuItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = menuItems.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 				64754A9F24342C9C0088D0F5 /* mainLogo.swift */,
 				64320CAA243817FD00ED486D /* stackTest.swift */,
 				644765C6244DD317004FCDEA /* TruckItems.swift */,
+				64BDB85024A2F51900C7C318 /* checkoutToStripe.swift */,
 			);
 			name = Layout;
 			path = ../Layout;
@@ -642,6 +645,7 @@
 				648527762496E1C400E89866 /* Constants .swift in Sources */,
 				644B05FD247AE80F003DE98A /* userCartVC.swift in Sources */,
 				64320CB8243EBACB00ED486D /* PaymentPage.swift in Sources */,
+				64BDB85124A2F51900C7C318 /* checkoutToStripe.swift in Sources */,
 				64DDE6AB242D876C0068223D /* AppDelegate.swift in Sources */,
 				644B0606247F9ADB003DE98A /* UserService.swift in Sources */,
 				64320CB2243E0FBA00ED486D /* UIView+EXT.swift in Sources */,

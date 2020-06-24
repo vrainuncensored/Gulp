@@ -225,10 +225,13 @@ extension MenuPage: UITableViewDataSource, UITableViewDelegate {
         if indexPath.section == 1 {
             let sideSelected = sidesItems[indexPath.row]
            shoppingCart.add(item: sideSelected)
+            print(sideSelected.price)
+            print(shoppingCart.total)
         }
         if indexPath.section == 2 {
             let drinkSelected = drinksItems[indexPath.row]
             shoppingCart.add(item: drinkSelected)
+            print(shoppingCart.items)
         }
         let cell = tableView.cellForRow(at: indexPath) as! MenuItems
         
