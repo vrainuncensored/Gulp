@@ -7,7 +7,8 @@
 //
 
 import Foundation
-import Firebase
+import FirebaseAuth
+import FirebaseFirestore
 
 let userservice = _UserService()
 
@@ -62,7 +63,15 @@ final class _UserService{
         var carPriceTotal = cartPriceTotal + price
         //let selectedItems : [String] = 
     }
-   
+    func logoutUser(){
+        userListner?.remove()
+        userListner = nil
+        cartListner?.remove()
+        cartListner = nil
+        user = User()
+        cart.removeAll()
+        
+    }
     
 }
 

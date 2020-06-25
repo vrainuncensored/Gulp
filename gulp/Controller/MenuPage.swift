@@ -121,6 +121,9 @@ class MenuPage: UIViewController {
     @objc func addToCart () {
        if Auth.auth().currentUser != nil {
         self.segueToUserCartPage()
+        if userservice.userListner == nil {
+            userservice.getUser()
+        }
        } else {
          let signUpMessage = "Let's get you signed in so you can order from \(self.truckName!)"
          let alertController = UIAlertController(title: "Please sign in", message: signUpMessage, preferredStyle: .alert)

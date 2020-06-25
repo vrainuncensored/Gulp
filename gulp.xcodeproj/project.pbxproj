@@ -50,6 +50,7 @@
 		64B7279C245C8FFF0082BBD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64B7279B245C8FFF0082BBD6 /* Assets.xcassets */; };
 		64B7279F245C8FFF0082BBD6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64B7279D245C8FFF0082BBD6 /* LaunchScreen.storyboard */; };
 		64BDB85124A2F51900C7C318 /* checkoutToStripe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BDB85024A2F51900C7C318 /* checkoutToStripe.swift */; };
+		64BDB85424A3FC7B00C7C318 /* StripeApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BDB85324A3FC7B00C7C318 /* StripeApi.swift */; };
 		64D6E8D4245DD8C800A3B852 /* orders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D6E8D3245DD8C800A3B852 /* orders.swift */; };
 		64D6E8D6245DDDE500A3B852 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D6E8D5245DDDE500A3B852 /* CustomTabBar.swift */; };
 		64D6E8DA245E338700A3B852 /* menuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D6E8D9245E338700A3B852 /* menuItems.swift */; };
@@ -127,6 +128,7 @@
 		64B7279E245C8FFF0082BBD6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		64B727A0245C8FFF0082BBD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64BDB85024A2F51900C7C318 /* checkoutToStripe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkoutToStripe.swift; sourceTree = "<group>"; };
+		64BDB85324A3FC7B00C7C318 /* StripeApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeApi.swift; sourceTree = "<group>"; };
 		64D6E8D3245DD8C800A3B852 /* orders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = orders.swift; sourceTree = "<group>"; };
 		64D6E8D5245DDDE500A3B852 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		64D6E8D9245E338700A3B852 /* menuItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = menuItems.swift; sourceTree = "<group>"; };
@@ -370,6 +372,14 @@
 			path = gulpMerchant;
 			sourceTree = "<group>";
 		};
+		64BDB85224A3FC5D00C7C318 /* Stripe */ = {
+			isa = PBXGroup;
+			children = (
+				64BDB85324A3FC7B00C7C318 /* StripeApi.swift */,
+			);
+			path = Stripe;
+			sourceTree = "<group>";
+		};
 		64DDE69E242D876C0068223D = {
 			isa = PBXGroup;
 			children = (
@@ -393,6 +403,7 @@
 		64DDE6A9242D876C0068223D /* gulp */ = {
 			isa = PBXGroup;
 			children = (
+				64BDB85224A3FC5D00C7C318 /* Stripe */,
 				648527702496C1FF00E89866 /* Utils  */,
 				644B060D24845A53003DE98A /* Layout */,
 				644B060A2482DBEC003DE98A /* Storyboards */,
@@ -640,6 +651,7 @@
 			files = (
 				644765CF24529AE7004FCDEA /* userStructure.swift in Sources */,
 				64320CAB243817FD00ED486D /* stackTest.swift in Sources */,
+				64BDB85424A3FC7B00C7C318 /* StripeApi.swift in Sources */,
 				64754A9E2432F7E00088D0F5 /* HomeBackground.swift in Sources */,
 				64DDE6AF242D876C0068223D /* ViewController.swift in Sources */,
 				648527762496E1C400E89866 /* Constants .swift in Sources */,
