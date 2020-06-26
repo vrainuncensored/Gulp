@@ -34,4 +34,7 @@ extension _ShoppingCart {
             items.append(CartItem(item: item))
         }
     }
+    func clearCart() {
+        items.removeAll()
+    }
 }
