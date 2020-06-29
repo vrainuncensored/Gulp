@@ -123,7 +123,7 @@ extension userCartVC : STPPaymentContextDelegate {
         let idempotency = UUID().uuidString.replacingOccurrences(of: "-", with: "")
         
         let data : [String : Any] = [
-            "total" : 5000,
+            "total" : shoppingCart.totalCost,
             "customerId" : userservice.user.stripeId,
             "payment_method_id" : paymentResult.paymentMethod?.stripeId,
             "idempotency" : idempotency

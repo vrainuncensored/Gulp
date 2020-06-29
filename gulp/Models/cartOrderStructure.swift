@@ -12,15 +12,41 @@ let shoppingCart = _ShoppingCart()
 
 final class _ShoppingCart {
     private(set) var items: [CartItem] = []
+    private let stripeCreditCardCut = 0.029
+    private let flatFeeCents = 30
+    var shippingFees = 0
 }
 
 extension _ShoppingCart {
-    var total: Double {
-        get { return items.reduce(0.0) { value, item in
-            value + item.subTotal
-            }
+//    var total: Double {
+//        get { return items.reduce(0.0) { value, item in
+//            value + item.subTotal
+//            }
+//        }
+//    }
+    var subtotal: Int {
+        var amount = 0
+        for item in items {
+            let pricePennies = Int(item.subTotal * 100)
+            amount += pricePennies
         }
+        return amount
     }
+    
+    var processingFees : Int {
+        if subtotal == 0 {
+            return 0
+        }
+        
+        let sub = Double(subtotal)
+        let feesAndSub = Int(sub * stripeCreditCardCut) + flatFeeCents
+        return feesAndSub
+    }
+    
+    var totalCost : Int {
+        return subtotal + processingFees + shippingFees
+    }
+    
     func remove(item: MenuItem) {
         guard let index = items.firstIndex(where: { $0.item == item }) else { return}
         items.remove(at: index)

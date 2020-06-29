@@ -229,7 +229,7 @@ extension MenuPage: UITableViewDataSource, UITableViewDelegate {
             let sideSelected = sidesItems[indexPath.row]
            shoppingCart.add(item: sideSelected)
             print(sideSelected.price)
-            print(shoppingCart.total)
+            print(shoppingCart.totalCost)
         }
         if indexPath.section == 2 {
             let drinkSelected = drinksItems[indexPath.row]

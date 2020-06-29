@@ -28,7 +28,7 @@
         <!--signupPage-->
         <scene sceneID="jFu-Vm-DJs">
             <objects>
-                <viewController storyboardIdentifier="signupPage" title="signupPage" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" id="IMi-Wo-5xf" customClass="merchantSignupPage" customModule="gulpMerchant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="signupPage" title="signupPage" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" id="IMi-Wo-5xf" customClass="loginPage" customModule="gulp" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ey6-F3-y2M">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
