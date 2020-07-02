@@ -43,6 +43,7 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
         map.delegate = self
         
         
+        
 
     
 
@@ -152,6 +153,8 @@ func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> 
 
 func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: Cells.truckNames) as! TruckItems
+    cell.layer.borderWidth = 2.0
+    cell.layer.borderColor = CG_Colors.lightPurple
     let truck = trucksList[indexPath.row]
     cell.set(item: truck)
     reloadInputViews()

@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var signupButton: UIButton!
     @IBOutlet weak var signinButton: UIButton!
     @IBOutlet weak var skipButton: UIButton!
+    @IBOutlet weak var slogan: UILabel!
     override func viewDidLoad() {
     super.viewDidLoad()
     //self.view.addBackground()
@@ -22,16 +23,20 @@ class ViewController: UIViewController {
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
         
+        slogan.textColor  = UI_Colors.darkPurple
+        //slogan.font = UIFont(name: OpenSans.bold, size: 48)
+        
         mainLogo.image = UIImage(named: "GulpLogo")
         
         signupButton.layer.borderWidth = 2
-        signupButton.layer.borderColor = AppColors.darkPurple
+        signupButton.layer.borderColor = CG_Colors.darkPurple
         signupButton.setTitle("Sign Up", for: .normal)
         
         signinButton.addTarget(self, action: #selector(loginAction), for: .touchUpInside)
+        skipButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         
         signinButton.layer.borderWidth = 2
-        signinButton.layer.borderColor = AppColors.darkPurple
+        signinButton.layer.borderColor = CG_Colors.darkPurple
         signinButton.setTitle("Sign In", for: .normal)
            // UIColor(red: 204, green: 102, blue: 153, alpha: 1) as! CGColor
         

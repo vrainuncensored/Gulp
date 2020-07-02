@@ -12,7 +12,6 @@ class TruckItems: UITableViewCell {
 
    var truckName = UILabel()
     //var menuButton = UIButton()
-  
 
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -21,6 +20,7 @@ class TruckItems: UITableViewCell {
             
             configureTruckLabel()
             setTruckConstraints()
+            
            // setButtonConstraints()
         }
         
@@ -36,6 +36,7 @@ class TruckItems: UITableViewCell {
             truckName.numberOfLines = 0
             truckName.adjustsFontSizeToFitWidth = true
         }
+    
         
         func setTruckConstraints() {
             truckName.translatesAutoresizingMaskIntoConstraints = false

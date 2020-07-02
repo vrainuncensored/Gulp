@@ -17,6 +17,7 @@ class RoundedShadowView : UIView {
         layer.shadowOpacity = 0.4
         layer.shadowOffset = CGSize.zero
         layer.shadowRadius = 3
+        
     }
 }
 
