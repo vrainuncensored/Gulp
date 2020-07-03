@@ -63,6 +63,7 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
     tableView.dataSource = self
     tableView.delegate = self
     tableView.rowHeight = 100
+    tableView.separatorColor = UIColor.white
     tableView.register(TruckItems.self, forCellReuseIdentifier: Cells.truckNames)
     fbCall(tableView : tableView)
         
@@ -153,8 +154,9 @@ func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> 
 
 func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: Cells.truckNames) as! TruckItems
-    cell.layer.borderWidth = 2.0
+    cell.layer.borderWidth = 1.0
     cell.layer.borderColor = CG_Colors.lightPurple
+    cell.layer.cornerRadius = 30.0
     let truck = trucksList[indexPath.row]
     cell.set(item: truck)
     reloadInputViews()
