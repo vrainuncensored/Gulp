@@ -11,7 +11,7 @@ import UIKit
 class TruckItems: UITableViewCell {
 
    var truckName = UILabel()
-    //var menuButton = UIButton()
+
 
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -35,13 +35,15 @@ class TruckItems: UITableViewCell {
         func configureTruckLabel(){
             truckName.numberOfLines = 0
             truckName.adjustsFontSizeToFitWidth = true
+            truckName.font = UIFont(name: "AvenirNext-Bold" , size: 17.0)
+            truckName.textColor = UIColor.black
         }
     
         
         func setTruckConstraints() {
             truckName.translatesAutoresizingMaskIntoConstraints = false
             truckName.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-            truckName.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
+            truckName.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30).isActive = true
             truckName.heightAnchor.constraint(equalToConstant: 25).isActive = true
             truckName.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 10).isActive = true
         }
