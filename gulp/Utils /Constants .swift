@@ -41,3 +41,20 @@ struct UI_Colors {
     static let blue: UIColor = #colorLiteral(red: 0.6544036865, green: 0.8693754673, blue: 0.9504790902, alpha: 1)
     static let gold: UIColor = #colorLiteral(red: 0.9457510114, green: 0.8288354874, blue: 0.29682073, alpha: 1)
 }
+
+extension Int {
+ func penniesToFormattedCurrency() -> String {
+        // if the int this function is being called on is 1234
+        // dollars = 1234/100 = $12.34
+        let dollars = Double(self) / 100
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        
+        if let dollarString = formatter.string(from: dollars as NSNumber) {
+            return dollarString
+        }
+        
+        return "$0.00"
+    }
+
+}

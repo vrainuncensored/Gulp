@@ -11,39 +11,37 @@ import Stripe
 import FirebaseFunctions
 
 class userCartVC: UIViewController {
-var paymentContext: STPPaymentContext!
+    
+//Buttons Outlets
+    @IBOutlet weak var paymentMethodBtn: UIButton!
+    @IBOutlet weak var placeOrderBtn: UIButton!
+//Label Outlets
+    @IBOutlet weak var subTotalLbl: UILabel!
+    @IBOutlet weak var taxTotalLbl: UILabel!
+    @IBOutlet weak var totalLbl: UILabel!
+    
+    var paymentContext: STPPaymentContext!
     override func viewDidLoad() {
         super.viewDidLoad()
         setupStripeConfig()
+        self.navigationItem.title = "Checkout"
         let width = UIScreen.main.bounds.size.width
         let height = UIScreen.main.bounds.size.height
         let array : [CartItem] = shoppingCart.items
         print(array[0].item.name)
         let label = UILabel()
             label.text = "Confirm Checkout"
-
-        let imageViewBackground = UIButton(frame: CGRect(x:  0, y: 0, width: width/4, height: height/4))
-        //    imageViewBackground.setImage(image, for: .normal)
-        // you can change the content mode:
-        imageViewBackground.setTitle("Confirm Checkout", for: .normal)
-        imageViewBackground.setTitleColor(UIColor.blue, for: .normal)
-        imageViewBackground.contentMode = UIView.ContentMode.scaleAspectFill
-        imageViewBackground.alpha = 1
-        imageViewBackground.addTarget(self, action: #selector(stripeAction), for: .touchUpInside)
+        
+       
+        setupPaymentInfo()
+        paymentMethodBtn.addTarget(self, action: #selector(stripeAction), for: .touchUpInside)
         
         
-        let checkout = UIButton(frame: CGRect(x:  0, y: 200, width: width/4, height: height/4))
-               //    imageViewBackground.setImage(image, for: .normal)
-               // you can change the content mode:
-               checkout.setTitle("Confirm Checkout", for: .normal)
-               checkout.setTitleColor(UIColor.blue, for: .normal)
-               checkout.contentMode = UIView.ContentMode.scaleAspectFill
-               checkout.alpha = 1
-               checkout.addTarget(self, action: #selector(stripeCheckout), for: .touchUpInside)
+       
+        placeOrderBtn.addTarget(self, action: #selector(stripeCheckout), for: .touchUpInside)
+        placeOrderBtn.layer.borderWidth = 2
+        placeOrderBtn.layer.borderColor = CG_Colors.darkPurple
         
-        
-        self.view.addSubview(checkout)
-        self.view.addSubview(imageViewBackground)
         
         
 //        imageViewBackground.translatesAutoresizingMaskIntoConstraints = false
@@ -82,6 +80,11 @@ var paymentContext: STPPaymentContext!
         paymentContext.requestPayment()
         
     }
+    func setupPaymentInfo() {
+        subTotalLbl.text = shoppingCart.subtotal.penniesToFormattedCurrency()
+        taxTotalLbl.text = shoppingCart.tax.penniesToFormattedCurrency()
+        totalLbl.text = shoppingCart.totalCost.penniesToFormattedCurrency()
+    }
 
     /*
     // MARK: - Navigation
@@ -116,8 +119,12 @@ extension userCartVC : STPPaymentContextDelegate {
     }
     
     func paymentContextDidChange(_ paymentContext: STPPaymentContext) {
-        
-    }
+        if let paymentMethod = paymentContext.selectedPaymentOption {
+            paymentMethodBtn.setTitle(paymentMethod.label, for: .normal)
+        } else {
+            paymentMethodBtn.setTitle("Select Method", for: .normal)
+        }
+            }
     
     func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPPaymentStatusBlock) {
         let idempotency = UUID().uuidString.replacingOccurrences(of: "-", with: "")

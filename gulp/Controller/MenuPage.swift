@@ -34,8 +34,7 @@ class MenuPage: UIViewController {
         tableView.rowHeight = 100
         tableView.allowsMultipleSelectionDuringEditing = true
         tableView.allowsMultipleSelection = true
-        tableView.backgroundColor = UI_Colors.lightPurple
-        tableView.backgroundView = 
+        tableView.backgroundColor = UIColor.white
         tableView.separatorStyle = .none
         tableView.register(MenuItems.self, forCellReuseIdentifier: "Test")
         fbCall(tableView: tableView)
@@ -198,7 +197,7 @@ extension MenuPage: UITableViewDataSource, UITableViewDelegate {
             let item = entreeItems[indexPath.row]
             cell.set(item: item)
             cell.layer.borderWidth = 1.5
-            cell.layer.borderColor = CG_Colors.darkPurple
+            cell.layer.borderColor = CG_Colors.lightPurple
             cell.layer.cornerRadius = 30.0
             //this line below is what creates the arrow in each tableview cell
             cell.accessoryType = .disclosureIndicator
@@ -210,7 +209,7 @@ extension MenuPage: UITableViewDataSource, UITableViewDelegate {
             let item = sidesItems[indexPath.row]
             cell.set(item: item)
             cell.layer.borderWidth = 1.5
-            cell.layer.borderColor = CG_Colors.darkPurple
+            cell.layer.borderColor = CG_Colors.lightPurple
             cell.layer.cornerRadius = 30.0
             //this line below is what creates the arrow in each tableview cell
             cell.accessoryType = .disclosureIndicator
@@ -221,7 +220,7 @@ extension MenuPage: UITableViewDataSource, UITableViewDelegate {
             let item = drinksItems[indexPath.row]
             cell.set(item: item)
             cell.layer.borderWidth = 1.5
-            cell.layer.borderColor = CG_Colors.darkPurple
+            cell.layer.borderColor = CG_Colors.lightPurple
             cell.layer.cornerRadius = 30.0
             //this line below is what creates the arrow in each tableview cell
             cell.accessoryType = .disclosureIndicator

@@ -36,24 +36,29 @@ class MenuItems: UITableViewCell {
     func configureTitleLabel(){
         itemLabel.numberOfLines = 0
         itemLabel.adjustsFontSizeToFitWidth = true
+        itemLabel.font = UIFont(name: "AvenirNext-Bold" , size: 17.0)
+        itemLabel.textColor = UIColor.black
+
     }
     func configurePriceLabel(){
         priceLabel.numberOfLines = 0
         priceLabel.adjustsFontSizeToFitWidth = true
+        priceLabel.font = UIFont(name: "AvenirNext-Bold" , size: 17.0)
+        priceLabel.textColor = UIColor.black
     }
     
     func setItemConstraints() {
         itemLabel.translatesAutoresizingMaskIntoConstraints = false
         itemLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        itemLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
+        itemLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30).isActive = true
         itemLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        itemLabel.trailingAnchor.constraint(equalTo: priceLabel.leadingAnchor, constant: -20).isActive = true
+        itemLabel.trailingAnchor.constraint(equalTo: priceLabel.leadingAnchor, constant: -40).isActive = true
     }
     func setPriceConstraints() {
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
         priceLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         priceLabel.leadingAnchor.constraint(equalTo: itemLabel.trailingAnchor, constant: 10).isActive = true
         priceLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        priceLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
+        priceLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -40).isActive = true
     }
 }

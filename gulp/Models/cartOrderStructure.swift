@@ -14,6 +14,7 @@ final class _ShoppingCart {
     private(set) var items: [CartItem] = []
     private let stripeCreditCardCut = 0.029
     private let flatFeeCents = 30
+    private let salesTaxRate = 0.0725
     var shippingFees = 0
 }
 
@@ -42,10 +43,20 @@ extension _ShoppingCart {
         let feesAndSub = Int(sub * stripeCreditCardCut) + flatFeeCents
         return feesAndSub
     }
+    var tax : Int {
+        let sub = Double(subtotal)
+        let salesTax = Int(sub * salesTaxRate)
+        return salesTax
+    }
+    
     
     var totalCost : Int {
-        return subtotal + processingFees + shippingFees
+        if subtotal == 0 {
+            return 0
+        }
+        return subtotal + processingFees + tax
     }
+    
     
     func remove(item: MenuItem) {
         guard let index = items.firstIndex(where: { $0.item == item }) else { return}

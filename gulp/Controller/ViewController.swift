@@ -24,10 +24,11 @@ class ViewController: UIViewController {
     let height = UIScreen.main.bounds.size.height
         
         slogan.textColor  = UI_Colors.darkPurple
+        slogan.font = UIFont(name: "AvenirNext-Bold" , size: 40.0)
+        slogan.textColor = UIColor.black
         //slogan.font = UIFont(name: OpenSans.bold, size: 48)
         
         mainLogo.image = UIImage(named: "GulpLogo")
-        
         signupButton.layer.borderWidth = 2
         signupButton.layer.borderColor = CG_Colors.darkPurple
         signupButton.setTitle("Sign Up", for: .normal)
