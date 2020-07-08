@@ -44,6 +44,7 @@
 		648527722496D70B00E89866 /* cartItemStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648527712496D70B00E89866 /* cartItemStructure.swift */; };
 		648527742496DA6800E89866 /* cartOrderStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648527732496DA6800E89866 /* cartOrderStructure.swift */; };
 		648527762496E1C400E89866 /* Constants .swift in Sources */ = {isa = PBXBuildFile; fileRef = 648527752496E1C400E89866 /* Constants .swift */; };
+		649A3DB024B56D64007F6367 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649A3DAF24B56D64007F6367 /* TableViewCell.swift */; };
 		64B72793245C8FFA0082BBD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B72792245C8FFA0082BBD6 /* AppDelegate.swift */; };
 		64B72795245C8FFA0082BBD6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B72794245C8FFA0082BBD6 /* SceneDelegate.swift */; };
 		64B72797245C8FFA0082BBD6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B72796245C8FFA0082BBD6 /* ViewController.swift */; };
@@ -124,6 +125,7 @@
 		648527712496D70B00E89866 /* cartItemStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cartItemStructure.swift; sourceTree = "<group>"; };
 		648527732496DA6800E89866 /* cartOrderStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cartOrderStructure.swift; sourceTree = "<group>"; };
 		648527752496E1C400E89866 /* Constants .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constants .swift"; sourceTree = "<group>"; };
+		649A3DAF24B56D64007F6367 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		64B72790245C8FFA0082BBD6 /* gulpMerchant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gulpMerchant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64B72792245C8FFA0082BBD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		64B72794245C8FFA0082BBD6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 				644765C6244DD317004FCDEA /* TruckItems.swift */,
 				64BDB85024A2F51900C7C318 /* checkoutToStripe.swift */,
 				64DB3F9524A9425900D08211 /* Button.swift */,
+				649A3DAF24B56D64007F6367 /* TableViewCell.swift */,
 			);
 			name = Layout;
 			path = ../Layout;
@@ -670,6 +673,7 @@
 				64DB3F9624A9425900D08211 /* Button.swift in Sources */,
 				64754A9E2432F7E00088D0F5 /* HomeBackground.swift in Sources */,
 				64DDE6AF242D876C0068223D /* ViewController.swift in Sources */,
+				649A3DB024B56D64007F6367 /* TableViewCell.swift in Sources */,
 				648527762496E1C400E89866 /* Constants .swift in Sources */,
 				644B05FD247AE80F003DE98A /* userCartVC.swift in Sources */,
 				64320CB8243EBACB00ED486D /* PaymentPage.swift in Sources */,

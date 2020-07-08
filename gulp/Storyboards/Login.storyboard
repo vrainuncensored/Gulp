@@ -10,7 +10,7 @@
         <!--loginPage-->
         <scene sceneID="T3E-4D-yW5">
             <objects>
-                <viewController storyboardIdentifier="loginPage" title="loginPage" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" id="7G4-Bm-rRU" customClass="merchantLoginPage" customModule="gulpMerchant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginPage" title="loginPage" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" id="7G4-Bm-rRU" customClass="merchantLoginPage" customModule="gulp" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="STZ-D0-VgH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

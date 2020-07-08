@@ -20,6 +20,10 @@ class userCartVC: UIViewController {
     @IBOutlet weak var taxTotalLbl: UILabel!
     @IBOutlet weak var totalLbl: UILabel!
     
+//TableView Outlets
+    @IBOutlet weak var tableView: UITableView!
+    
+    
     var paymentContext: STPPaymentContext!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,10 +34,11 @@ class userCartVC: UIViewController {
         let array : [CartItem] = shoppingCart.items
         print(array[0].item.name)
         let label = UILabel()
-            label.text = "Confirm Checkout"
+        label.text = "Confirm Checkout"
         
        
         setupPaymentInfo()
+        setupTableView()
         paymentMethodBtn.addTarget(self, action: #selector(stripeAction), for: .touchUpInside)
         
         
@@ -41,6 +46,7 @@ class userCartVC: UIViewController {
         placeOrderBtn.addTarget(self, action: #selector(stripeCheckout), for: .touchUpInside)
         placeOrderBtn.layer.borderWidth = 2
         placeOrderBtn.layer.borderColor = CG_Colors.darkPurple
+        placeOrderBtn.backgroundColor = UI_Colors.darkPurple
         
         
         
@@ -85,7 +91,13 @@ class userCartVC: UIViewController {
         taxTotalLbl.text = shoppingCart.tax.penniesToFormattedCurrency()
         totalLbl.text = shoppingCart.totalCost.penniesToFormattedCurrency()
     }
-
+    func setupTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(CartItemCheckout.self, forCellReuseIdentifier: "Test")
+        tableView.separatorStyle = .none
+        tableView.rowHeight = 100
+    }
     /*
     // MARK: - Navigation
 
@@ -173,3 +185,28 @@ extension userCartVC : STPPaymentContextDelegate {
     
     
 }
+extension userCartVC: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return( shoppingCart.items.count)
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Test") as! CartItemCheckout
+        let item = shoppingCart.items[indexPath.row]
+        
+        cell.set(item: item)
+        cell.layer.borderWidth = 1.5
+        cell.layer.borderColor = CG_Colors.lightPurple
+        cell.layer.cornerRadius = 30.0
+        
+        return cell
+        
+        
+    }
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+           return false
+    }
+      
+    
+}
+
