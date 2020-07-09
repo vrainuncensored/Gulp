@@ -34,6 +34,7 @@ class ViewController: UIViewController {
         signupButton.setTitle("Sign Up", for: .normal)
         
         signinButton.addTarget(self, action: #selector(loginAction), for: .touchUpInside)
+        signupButton.addTarget(self, action: #selector(signUpAction), for: .touchUpInside)
         skipButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         
         signinButton.layer.borderWidth = 2
@@ -66,10 +67,15 @@ class ViewController: UIViewController {
         self.performSegue(withIdentifier: "HomeSegue", sender: self)
     }
     @objc func loginAction(sender: UIButton!) {
-        let loginFlow = UIStoryboard(name: "Login", bundle: nil)
+        let loginFlow = UIStoryboard(name: "LoginFlowCustomer", bundle: nil)
         let controller = loginFlow.instantiateViewController(identifier: "loginPage")
         present(controller, animated: true, completion: nil)
       }
+    @objc func signUpAction(sender: UIButton!) {
+          let loginFlow = UIStoryboard(name: "LoginFlowCustomer", bundle: nil)
+          let controller = loginFlow.instantiateViewController(identifier: "signupPage")
+          present(controller, animated: true, completion: nil)
+        }
     
 }
 

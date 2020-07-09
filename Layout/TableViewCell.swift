@@ -12,16 +12,20 @@ class CartItemCheckout: UITableViewCell {
     
     var itemLabel = UILabel()
     var priceLabel = UILabel()
+    var deleteButton = UIButton()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubview(itemLabel)
         addSubview(priceLabel)
+        addSubview(deleteButton)
         
         configurePriceLabel()
         configureTitleLabel()
+        configureEditLabel()
         setItemConstraints()
         setPriceConstraints()
+        setEditConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -46,6 +50,13 @@ class CartItemCheckout: UITableViewCell {
         priceLabel.font = UIFont(name: "AvenirNext-Bold" , size: 17.0)
         priceLabel.textColor = UIColor.black
     }
+    func configureEditLabel(){
+        let userLogo = "minus.circle.fill"
+        let buttonConfig = UIImage.SymbolConfiguration(pointSize: UIFont.systemFontSize, weight: .medium, scale: .medium)
+        let userImage = UIImage(systemName: userLogo, withConfiguration: buttonConfig)
+        deleteButton.setBackgroundImage(userImage, for: .normal)
+        
+    }
     
     func setItemConstraints() {
         itemLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -57,9 +68,16 @@ class CartItemCheckout: UITableViewCell {
     func setPriceConstraints() {
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
         priceLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        priceLabel.leadingAnchor.constraint(equalTo: itemLabel.trailingAnchor, constant: 10).isActive = true
+        priceLabel.leadingAnchor.constraint(equalTo: itemLabel.trailingAnchor, constant: 40).isActive = true
         priceLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        priceLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -40).isActive = true
+        priceLabel.trailingAnchor.constraint(equalTo: deleteButton.leadingAnchor, constant: -40).isActive = true
     }
+    func setEditConstraints() {
+           deleteButton.translatesAutoresizingMaskIntoConstraints = false
+           deleteButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+           deleteButton.leadingAnchor.constraint(equalTo: priceLabel.trailingAnchor, constant: 30).isActive = true
+           deleteButton.heightAnchor.constraint(equalToConstant: 25).isActive = true
+           deleteButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -40).isActive = true
+       }
 }
 

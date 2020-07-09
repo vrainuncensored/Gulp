@@ -18,7 +18,11 @@ class signupPage: UIViewController {
         let userPassowrd = UITextField()
         let userPassowrdConfirmation = UITextField()
         let db = Firestore.firestore()
-
+    
+    //Text Outlets
+    @IBOutlet weak var name: UITextField!
+    @IBOutlet weak var email: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addBackground()
