@@ -76,7 +76,7 @@ class CartItemCheckout: UITableViewCell {
            deleteButton.translatesAutoresizingMaskIntoConstraints = false
            deleteButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
            deleteButton.leadingAnchor.constraint(equalTo: priceLabel.trailingAnchor, constant: 30).isActive = true
-           deleteButton.heightAnchor.constraint(equalToConstant: 25).isActive = true
+           //deleteButton.heightAnchor.constraint(equalToConstant: 25).isActive = true
            deleteButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -40).isActive = true
        }
 }

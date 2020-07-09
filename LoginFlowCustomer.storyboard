@@ -66,6 +66,8 @@
                     <connections>
                         <outlet property="email" destination="rla-Oh-Rk6" id="SSi-7G-LQN"/>
                         <outlet property="name" destination="Fzw-1e-BLX" id="21v-Ie-Yvg"/>
+                        <outlet property="userPassword" destination="meO-2n-TZg" id="bN9-sw-sBH"/>
+                        <outlet property="userPasswordConfirmation" destination="zAf-oi-dh7" id="tzb-cQ-6ub"/>
                         <segue destination="0gS-2V-wQ7" kind="show" identifier="toSignup" id="yPP-kF-dnK"/>
                     </connections>
                 </viewController>

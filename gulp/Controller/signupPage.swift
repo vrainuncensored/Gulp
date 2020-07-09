@@ -22,11 +22,14 @@ class signupPage: UIViewController {
     //Text Outlets
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var email: UITextField!
+    @IBOutlet weak var userPassword: UITextField!
+    @IBOutlet weak var userPasswordConfirmation: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.addBackground()
-        userName.frame = CGRect(x:0, y:300, width:self.view.frame.width * 5/6 , height:self.view.frame.height * 1/10)
+        configName()
+        
+      
         let width = UIScreen.main.bounds.size.width
         let height = UIScreen.main.bounds.size.height
         
@@ -49,10 +52,10 @@ class signupPage: UIViewController {
         userPassowrdConfirmation.layer.borderWidth = 1
         userPassowrdConfirmation.layer.borderColor = UIColor.systemPink.cgColor
 
-        userName.layer.cornerRadius = 5
-        userName.layer.borderWidth = 1
-        userName.layer.borderColor = UIColor.systemPink.cgColor
-        userName.layer.borderColor = UIColor.systemPink.cgColor
+//        userName.layer.cornerRadius = 5
+//        userName.layer.borderWidth = 1
+//        userName.layer.borderColor = UIColor.systemPink.cgColor
+//        userName.layer.borderColor = UIColor.systemPink.cgColor
         
         self.view.addSubview(userEmail)
         self.view.addSubview(userPassowrd)
@@ -73,6 +76,9 @@ class signupPage: UIViewController {
             signupButton.layer.borderColor = UIColor.systemPink.cgColor
             signupButton.addTarget(self, action: #selector(signUp), for: .touchUpInside)
             self.view.addSubview(signupButton)
+    }
+    func configName() {
+        name.placeholder = "Full Name"
     }
     @objc func signUp(sender: UIButton!) {
         Auth.auth().createUser(withEmail: userEmail.text!, password: userPassowrdConfirmation.text!) { (result, error) in
