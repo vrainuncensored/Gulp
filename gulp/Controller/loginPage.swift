@@ -10,12 +10,15 @@ import UIKit
 import FirebaseAuth
 import Firebase
 
-class merchantLoginPage: UIViewController {
+class LoginPage: UIViewController {
         let forgotPassword = UIButton()
-        let userEmail = UITextField()
         let userPassowrd = UITextField()
         let signIn = UIButton()
         let signUp = UIButton()
+    
+    
+    @IBOutlet weak var userEmail: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addBackground()
@@ -40,7 +43,7 @@ class merchantLoginPage: UIViewController {
 
         
         
-        userEmail.frame = CGRect(x:  0, y: 0, width: width * 5/6, height: height * 1/10)
+     
         userEmail.autocapitalizationType = UITextAutocapitalizationType.none
         userEmail.placeholder = "Your email address"
         userEmail.layer.cornerRadius = 5
@@ -54,7 +57,6 @@ class merchantLoginPage: UIViewController {
         userPassowrd.layer.borderWidth = 1
         userPassowrd.layer.borderColor = UIColor.systemPink.cgColor
         
-        self.view.addSubview(userEmail)
         self.view.addSubview(userPassowrd)
         self.view.addSubview(forgotPassword)
         self.view.addSubview(signIn)
@@ -108,6 +110,6 @@ class merchantLoginPage: UIViewController {
     */
 
 
-extension merchantLoginPage: UITextFieldDelegate {
+extension LoginPage: UITextFieldDelegate {
     
 }

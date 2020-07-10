@@ -20,10 +20,8 @@ class signupPage: UIViewController {
         let db = Firestore.firestore()
     
     //Text Outlets
-    @IBOutlet weak var name: UITextField!
-    @IBOutlet weak var email: UITextField!
-    @IBOutlet weak var userPassword: UITextField!
-    @IBOutlet weak var userPasswordConfirmation: UITextField!
+  
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,7 +76,7 @@ class signupPage: UIViewController {
             self.view.addSubview(signupButton)
     }
     func configName() {
-        name.placeholder = "Full Name"
+        //name.placeholder = "Full Name"
     }
     @objc func signUp(sender: UIButton!) {
         Auth.auth().createUser(withEmail: userEmail.text!, password: userPassowrdConfirmation.text!) { (result, error) in
