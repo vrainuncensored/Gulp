@@ -11,21 +11,20 @@ import FirebaseAuth
 import Firebase
 
 class LoginPage: UIViewController {
-        let forgotPassword = UIButton()
-        let userPassowrd = UITextField()
-        let signIn = UIButton()
-        let signUp = UIButton()
-    
-    
+    //Text Outlet
+    @IBOutlet weak var userPassword: UITextField!
     @IBOutlet weak var userEmail: UITextField!
+    //Button Outlet
+    @IBOutlet weak var forgotPassword: UIButton!
+    @IBOutlet weak var signUp: UIButton!
+    @IBOutlet weak var signIn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.addBackground()
         let width = UIScreen.main.bounds.size.width
         let height = UIScreen.main.bounds.size.height
         
-        forgotPassword.frame = CGRect(x:  0, y: 200, width: width * 5/6, height: height * 1/10)
+       
         forgotPassword.layer.cornerRadius = 5
         forgotPassword.layer.borderWidth = 1
         forgotPassword.layer.borderColor = UIColor.systemPink.cgColor
@@ -33,7 +32,7 @@ class LoginPage: UIViewController {
         forgotPassword.setTitleColor(.black, for: .normal)
         forgotPassword.addTarget(self, action: #selector(forgotPasswordOption), for: .touchUpInside)
         
-        signUp.frame = CGRect(x:  0, y: 300, width: width * 5/6, height: height * 1/10)
+        
         signUp.layer.cornerRadius = 5
         signUp.layer.borderWidth = 1
         signUp.layer.borderColor = UIColor.systemPink.cgColor
@@ -45,30 +44,28 @@ class LoginPage: UIViewController {
         
      
         userEmail.autocapitalizationType = UITextAutocapitalizationType.none
-        userEmail.placeholder = "Your email address"
-        userEmail.layer.cornerRadius = 5
-        userEmail.layer.borderWidth = 1
-        userEmail.layer.borderColor = UIColor.systemPink.cgColor
-        userPassowrd.frame = CGRect(x:  0, y: 100,  width: width * 5/6, height: height * 1/10)
-        userPassowrd.autocorrectionType = UITextAutocorrectionType.no
-        userPassowrd.isSecureTextEntry = true
-        userPassowrd.placeholder = "Your account password!"
-        userPassowrd.layer.cornerRadius = 5
-        userPassowrd.layer.borderWidth = 1
-        userPassowrd.layer.borderColor = UIColor.systemPink.cgColor
+        userEmail.placeholder = "E-mail address"
+//        userEmail.layer.cornerRadius = 5
+//        userEmail.layer.borderWidth = 1
+//        userEmail.layer.borderColor = UIColor.systemPink.cgColor
         
-        self.view.addSubview(userPassowrd)
-        self.view.addSubview(forgotPassword)
-        self.view.addSubview(signIn)
-        self.view.addSubview(signUp)
+        
+        userPassword.autocorrectionType = UITextAutocorrectionType.no
+        userPassword.isSecureTextEntry = true
+        userPassword.placeholder = "Password"
+        userPassword.layer.cornerRadius = 5
+        userPassword.layer.borderWidth = 1
+        userPassword.layer.borderColor = UIColor.systemPink.cgColor
+        
+        
         
         
         userEmail.delegate = self
-        userPassowrd.delegate = self
+        userPassword.delegate = self
         
         
         
-        signIn.frame = CGRect(x: 0, y: height * (6/8), width: width, height: height/8)
+    
         signIn.setTitle("Sign In", for: .normal)
         signIn.showsTouchWhenHighlighted = true
         signIn.layer.cornerRadius = 5
@@ -83,7 +80,7 @@ class LoginPage: UIViewController {
         @objc func signinOption(sender: UIButton!) {
             let mainFlow = UIStoryboard(name: "Main", bundle: nil)
             let controller = mainFlow.instantiateViewController(identifier: "homePage")
-            Auth.auth().signIn(withEmail: userEmail.text!, password: userPassowrd.text!) { [weak self] authResult, error in
+            Auth.auth().signIn(withEmail: userEmail.text!, password: userPassword.text!) { [weak self] authResult, error in
               guard let strongSelf = self else { return }
               print( "user signed in")
             self!.present(controller, animated: true, completion: nil)
