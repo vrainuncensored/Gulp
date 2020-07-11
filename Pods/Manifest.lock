@@ -296,6 +296,7 @@ PODS:
   - nanopb/encode (0.3.9011)
   - PromisesObjC (1.2.8)
   - Stripe (18.4.0)
+  - SwiftPhoneNumberFormatter (1.5)
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -305,6 +306,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - FirebaseFirestoreSwift
   - Stripe
+  - SwiftPhoneNumberFormatter
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -334,6 +336,8 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - Stripe
+  trunk:
+    - SwiftPhoneNumberFormatter
 
 SPEC CHECKSUMS:
   abseil: 18063d773f5366ff8736a050fe035a28f635fd27
@@ -362,7 +366,8 @@ SPEC CHECKSUMS:
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   Stripe: fa837c60f0644b488c994024ce7d9b001ea4e97c
+  SwiftPhoneNumberFormatter: 0cc91f4daa06dd606a9defb21048a75c36a771a2
 
-PODFILE CHECKSUM: eda84e4e2c5f67607ebdad21b2debd566f873660
+PODFILE CHECKSUM: 6ed9c8051ac1209684ac9f968350dda1c5a97224
 
 COCOAPODS: 1.9.1

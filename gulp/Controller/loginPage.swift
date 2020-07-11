@@ -33,20 +33,20 @@ class LoginPage: UIViewController {
 //        forgotPassword.addTarget(self, action: #selector(forgotPasswordOption), for: .touchUpInside)
         
         
-        signUp.layer.cornerRadius = 5
-        signUp.layer.borderWidth = 1
-        signUp.layer.borderColor = UIColor.systemPink.cgColor
-        signUp.setTitle("Sign Up", for: .normal)
+//        signUp.layer.cornerRadius = 5
+//        signUp.layer.borderWidth = 1
+//        signUp.layer.borderColor = UIColor.systemPink.cgColor
+        signUp.setTitle("Don't have an account? Create one.", for: .normal)
         signUp.setTitleColor(.black, for: .normal)
         signUp.addTarget(self, action: #selector(signupOption), for: .touchUpInside)
-        userEmail.borderStyle = UITextField.BorderStyle.none
 
         
         
-     
+        userEmail.borderStyle = UITextField.BorderStyle.none
         userEmail.autocapitalizationType = UITextAutocapitalizationType.none
-        //userEmail.placeholder = "E-mail address"
+        userEmail.borderStyle = UITextField.BorderStyle.none
         userEmail.attributedPlaceholder = NSAttributedString(string:"E-mail address", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        userEmail.adjustsFontSizeToFitWidth = true
 //        userEmail.layer.cornerRadius = 5
 //        userEmail.layer.borderWidth = 1
 //        userEmail.layer.borderColor = UIColor.systemPink.cgColor
@@ -56,11 +56,12 @@ class LoginPage: UIViewController {
         userPassword.isSecureTextEntry = true
         userPassword.attributedPlaceholder = NSAttributedString(string:"Password ", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
         userPassword.borderStyle = UITextField.BorderStyle.none
+        userPassword.adjustsFontSizeToFitWidth = true
 //        userPassword.layer.cornerRadius = 5
 //        userPassword.layer.borderWidth = 1
 //        userPassword.layer.borderColor = UIColor.systemPink.cgColor
 //
-        
+       
         
         
         userEmail.delegate = self
@@ -74,6 +75,7 @@ class LoginPage: UIViewController {
         signIn.layer.cornerRadius = 5
         signIn.layer.borderWidth = 1
         signIn.layer.borderColor = CG_Colors.darkPurple
+        signIn.backgroundColor = UI_Colors.darkPurple
         signIn.addTarget(self, action: #selector(signinOption), for: .touchUpInside)
         self.view.addSubview(signIn)
         }
