@@ -298,11 +298,35 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dg4-mZ-vi3">
+                                <rect key="frame" x="20" y="503" width="374" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="cSX-fq-B9o"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="upL-jM-h1g">
+                                <rect key="frame" x="20" y="561" width="374" height="5"/>
+                                <color key="backgroundColor" red="0.79530912639999995" green="0.50914984939999997" blue="0.65883803370000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="5" id="lcY-Oh-HeC"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="e6S-sE-auD"/>
                     </view>
                     <navigationItem key="navigationItem" id="qAZ-vb-yz3"/>
+                    <connections>
+                        <outlet property="signinButton" destination="rWi-Xn-tBy" id="zYc-yR-q6T"/>
+                        <outlet property="signupButton" destination="8zR-vg-jaI" id="8bM-A0-rZY"/>
+                        <outlet property="userEmail" destination="REG-A6-q9C" id="wTE-Zm-YC2"/>
+                        <outlet property="userName" destination="8jC-Un-qk1" id="ZhN-KO-gJm"/>
+                        <outlet property="userPassword" destination="IqA-bi-xVu" id="Nal-fh-gd9"/>
+                        <outlet property="userPasswordConfirmation" destination="zQ4-pJ-tID" id="JxN-KQ-qdP"/>
+                        <outlet property="userPhoneNumber" destination="dg4-mZ-vi3" id="Rk4-vi-9lg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lbC-tG-IbO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

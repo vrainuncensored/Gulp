@@ -13,15 +13,19 @@ import FirebaseAuth
 
 
 class signupPage: UIViewController {
-        let userName = UITextField()
-        let userEmail = UITextField()
-        let userPassowrd = UITextField()
-        let userPassowrdConfirmation = UITextField()
         let db = Firestore.firestore()
     
     //Text Outlets
   
+    @IBOutlet weak var userName: UITextField!
+    @IBOutlet weak var userEmail: UITextField!
+    @IBOutlet weak var userPassword: UITextField!
+    @IBOutlet weak var userPasswordConfirmation: UITextField!
+    @IBOutlet weak var userPhoneNumber: UITextField!
     
+    //Button Outlets
+    @IBOutlet weak var signupButton: UIButton!
+    @IBOutlet weak var signinButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,48 +42,38 @@ class signupPage: UIViewController {
         userEmail.layer.borderWidth = 1
         userEmail.layer.borderColor = UIColor.systemPink.cgColor
         
-        userPassowrd.frame = CGRect(x:  0, y: 100,  width: width * 5/6, height: height * 1/10)
-        userPassowrd.placeholder = "Your account password!"
-        userPassowrd.layer.cornerRadius = 5
-        userPassowrd.layer.borderWidth = 1
-        userPassowrd.layer.borderColor = UIColor.systemPink.cgColor
+        userPassword.placeholder = "Your account password!"
+      
         
-        userPassowrdConfirmation.frame = CGRect(x:  0, y: 200,  width: width * 5/6, height: height * 1/10)
-        userPassowrdConfirmation.placeholder = "Password confirmation!"
-        userPassowrdConfirmation.layer.cornerRadius = 5
-        userPassowrdConfirmation.layer.borderWidth = 1
-        userPassowrdConfirmation.layer.borderColor = UIColor.systemPink.cgColor
+        userPasswordConfirmation.frame = CGRect(x:  0, y: 200,  width: width * 5/6, height: height * 1/10)
+        userPasswordConfirmation.placeholder = "Password confirmation!"
+        userPasswordConfirmation.layer.cornerRadius = 5
+        userPasswordConfirmation.layer.borderWidth = 1
+        userPasswordConfirmation.layer.borderColor = UIColor.systemPink.cgColor
 
 //        userName.layer.cornerRadius = 5
 //        userName.layer.borderWidth = 1
 //        userName.layer.borderColor = UIColor.systemPink.cgColor
 //        userName.layer.borderColor = UIColor.systemPink.cgColor
         
-        self.view.addSubview(userEmail)
-        self.view.addSubview(userPassowrd)
-        self.view.addSubview(userPassowrdConfirmation)
-        self.view.addSubview(userName)
+     
 
         userEmail.delegate = self
-        userPassowrd.delegate = self
-        userPassowrdConfirmation.delegate = self
+        userPassword.delegate = self
+        userPasswordConfirmation.delegate = self
         userName.delegate = self
         
         
-        let signupButton = UIButton(frame: CGRect(x: 0, y: height * (6/8), width: width, height: height/8))
+       
             signupButton.setTitle("Sign Up", for: .normal)
             signupButton.showsTouchWhenHighlighted = true
-            signupButton.layer.cornerRadius = 5
-            signupButton.layer.borderWidth = 1
-            signupButton.layer.borderColor = UIColor.systemPink.cgColor
             signupButton.addTarget(self, action: #selector(signUp), for: .touchUpInside)
-            self.view.addSubview(signupButton)
     }
     func configName() {
         //name.placeholder = "Full Name"
     }
     @objc func signUp(sender: UIButton!) {
-        Auth.auth().createUser(withEmail: userEmail.text!, password: userPassowrdConfirmation.text!) { (result, error) in
+        Auth.auth().createUser(withEmail: userEmail.text!, password: userPasswordConfirmation.text!) { (result, error) in
             if let error = error {
                 debugPrint(error)
             } else {
