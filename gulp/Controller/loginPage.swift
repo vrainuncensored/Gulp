@@ -15,7 +15,8 @@ class LoginPage: UIViewController {
     @IBOutlet weak var userPassword: UITextField!
     @IBOutlet weak var userEmail: UITextField!
     //Button Outlet
-    @IBOutlet weak var forgotPassword: UIButton!
+
+    
     @IBOutlet weak var signUp: UIButton!
     @IBOutlet weak var signIn: UIButton!
     
@@ -27,9 +28,9 @@ class LoginPage: UIViewController {
 //        forgotPassword.layer.cornerRadius = 5
 //        forgotPassword.layer.borderWidth = 1
 //        forgotPassword.layer.borderColor = UIColor.systemPink.cgColor
-        forgotPassword.setTitle("I forgot my password:(", for: .normal)
-        forgotPassword.setTitleColor(.black, for: .normal)
-        forgotPassword.addTarget(self, action: #selector(forgotPasswordOption), for: .touchUpInside)
+//        forgotPassword.setTitle("I forgot my password", for: .normal)
+//        forgotPassword.setTitleColor(.black, for: .normal)
+//        forgotPassword.addTarget(self, action: #selector(forgotPasswordOption), for: .touchUpInside)
         
         
         signUp.layer.cornerRadius = 5
@@ -44,7 +45,8 @@ class LoginPage: UIViewController {
         
      
         userEmail.autocapitalizationType = UITextAutocapitalizationType.none
-        userEmail.placeholder = "E-mail address"
+        //userEmail.placeholder = "E-mail address"
+        userEmail.attributedPlaceholder = NSAttributedString(string:"E-mail address", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
 //        userEmail.layer.cornerRadius = 5
 //        userEmail.layer.borderWidth = 1
 //        userEmail.layer.borderColor = UIColor.systemPink.cgColor
@@ -52,7 +54,7 @@ class LoginPage: UIViewController {
         
         userPassword.autocorrectionType = UITextAutocorrectionType.no
         userPassword.isSecureTextEntry = true
-        userPassword.placeholder = "Password"
+        userPassword.attributedPlaceholder = NSAttributedString(string:"Password ", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
         userPassword.borderStyle = UITextField.BorderStyle.none
 //        userPassword.layer.cornerRadius = 5
 //        userPassword.layer.borderWidth = 1
