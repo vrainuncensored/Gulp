@@ -21,14 +21,13 @@ class LoginPage: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let width = UIScreen.main.bounds.size.width
-        let height = UIScreen.main.bounds.size.height
         
-       
-        forgotPassword.layer.cornerRadius = 5
-        forgotPassword.layer.borderWidth = 1
-        forgotPassword.layer.borderColor = UIColor.systemPink.cgColor
-        forgotPassword.setTitle("Forgot Password", for: .normal)
+        
+//       
+//        forgotPassword.layer.cornerRadius = 5
+//        forgotPassword.layer.borderWidth = 1
+//        forgotPassword.layer.borderColor = UIColor.systemPink.cgColor
+        forgotPassword.setTitle("I forgot my password:(", for: .normal)
         forgotPassword.setTitleColor(.black, for: .normal)
         forgotPassword.addTarget(self, action: #selector(forgotPasswordOption), for: .touchUpInside)
         
@@ -39,6 +38,7 @@ class LoginPage: UIViewController {
         signUp.setTitle("Sign Up", for: .normal)
         signUp.setTitleColor(.black, for: .normal)
         signUp.addTarget(self, action: #selector(signupOption), for: .touchUpInside)
+        userEmail.borderStyle = UITextField.BorderStyle.none
 
         
         
@@ -53,10 +53,11 @@ class LoginPage: UIViewController {
         userPassword.autocorrectionType = UITextAutocorrectionType.no
         userPassword.isSecureTextEntry = true
         userPassword.placeholder = "Password"
-        userPassword.layer.cornerRadius = 5
-        userPassword.layer.borderWidth = 1
-        userPassword.layer.borderColor = UIColor.systemPink.cgColor
-        
+        userPassword.borderStyle = UITextField.BorderStyle.none
+//        userPassword.layer.cornerRadius = 5
+//        userPassword.layer.borderWidth = 1
+//        userPassword.layer.borderColor = UIColor.systemPink.cgColor
+//
         
         
         
@@ -70,7 +71,7 @@ class LoginPage: UIViewController {
         signIn.showsTouchWhenHighlighted = true
         signIn.layer.cornerRadius = 5
         signIn.layer.borderWidth = 1
-        signIn.layer.borderColor = UIColor.systemPink.cgColor
+        signIn.layer.borderColor = CG_Colors.darkPurple
         signIn.addTarget(self, action: #selector(signinOption), for: .touchUpInside)
         self.view.addSubview(signIn)
         }

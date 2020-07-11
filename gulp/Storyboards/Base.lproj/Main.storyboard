@@ -58,7 +58,7 @@
                                 <attributedString key="attributedText">
                                     <fragment content="Foodtrucks, Instantly        ">
                                         <attributes>
-                                            <font key="NSFont" size="48" name="OpenSans-Extrabold"/>
+                                            <font key="NSFont" metaFont="system" size="48"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
