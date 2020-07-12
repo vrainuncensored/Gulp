@@ -141,6 +141,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ozs-PL-YDs"/>
                     </view>
+                    <navigationItem key="navigationItem" id="ddu-hj-iNM"/>
                     <connections>
                         <outlet property="signIn" destination="GAV-4r-nEC" id="dv9-a9-LSX"/>
                         <outlet property="signUp" destination="c2o-KR-irX" id="vA4-VD-cCL"/>
@@ -352,6 +353,7 @@
                         <outlet property="userPassword" destination="IqA-bi-xVu" id="Nal-fh-gd9"/>
                         <outlet property="userPasswordConfirmation" destination="zQ4-pJ-tID" id="JxN-KQ-qdP"/>
                         <outlet property="userPhoneNumber" destination="dg4-mZ-vi3" id="Rk4-vi-9lg"/>
+                        <segue destination="ZMB-4Q-fRX" kind="show" identifier="toSignin" id="Rxg-OQ-UQW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lbC-tG-IbO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

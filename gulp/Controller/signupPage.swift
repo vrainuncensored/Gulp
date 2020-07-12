@@ -35,8 +35,7 @@ class signupPage: UIViewController {
         configName()
         
       
-        let width = UIScreen.main.bounds.size.width
-        let height = UIScreen.main.bounds.size.height
+      
         
         
         userEmail.autocapitalizationType = UITextAutocapitalizationType.none
@@ -72,7 +71,7 @@ class signupPage: UIViewController {
         userName.attributedPlaceholder = NSAttributedString(string:"Your full name" , attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
         userName.borderStyle = UITextField.BorderStyle.none
         
-        userEmail.attributedPlaceholder = NSAttributedString(string:"Your E-mail address", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        userEmail.attributedPlaceholder = NSAttributedString(string:"Your E-mail address (required)", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
         userEmail.borderStyle = UITextField.BorderStyle.none
         
         userPassword.attributedPlaceholder = NSAttributedString(string:"E-mail address", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
@@ -81,12 +80,13 @@ class signupPage: UIViewController {
         userPasswordConfirmation.attributedPlaceholder = NSAttributedString(string:"Confirm your password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
         userPasswordConfirmation.borderStyle = UITextField.BorderStyle.none
         
-        userPhoneNumber.attributedPlaceholder = NSAttributedString(string:"Your phone number", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        userPhoneNumber.attributedPlaceholder = NSAttributedString(string:"Your phone number (required)", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
         userPhoneNumber.borderStyle = UITextField.BorderStyle.none
        
             signupButton.setTitle("Sign Up", for: .normal)
             signupButton.showsTouchWhenHighlighted = true
             signupButton.addTarget(self, action: #selector(signUp), for: .touchUpInside)
+        signinButton.addTarget(self, action: #selector(signInAction), for: .touchUpInside)
     }
     func configName() {
         //name.placeholder = "Full Name"
@@ -109,7 +109,9 @@ class signupPage: UIViewController {
         let data = User.modelToData(user: user)
         newUserRef.setData(data)
     }
-    
+    @objc func signInAction(sender: UIButton!) {
+        self.performSegue(withIdentifier: "toSignin", sender: self)
+    }
 }
 
 
