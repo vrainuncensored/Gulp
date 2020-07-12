@@ -49,7 +49,7 @@ class addingMenuItem: UIViewController {
         
         
         self.navigationItem.title = "New Menu Item!"
-        self.view.addBackground()
+        //self.view.addBackground()
         let width = UIScreen.main.bounds.size.width
         let height = UIScreen.main.bounds.size.height
         

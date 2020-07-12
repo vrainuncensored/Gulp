@@ -18,7 +18,7 @@ class loginPage: UIViewController {
         let signUp = UIButton()
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.addBackground()
+        //self.view.addBackground()
         let width = UIScreen.main.bounds.size.width
         let height = UIScreen.main.bounds.size.height
         

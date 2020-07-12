@@ -41,8 +41,8 @@ class signupPage: UIViewController {
       
       
         
-        
        
+
         
       
         
@@ -93,19 +93,22 @@ class signupPage: UIViewController {
     }
     func setupUserPasswordField() {
         userPassword.placeholder = "Your account password!"
-        userPassword.attributedPlaceholder = NSAttributedString(string:"E-mail address", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        userPassword.attributedPlaceholder = NSAttributedString(string:"Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
         userPassword.borderStyle = UITextField.BorderStyle.none
+        userPassword.isSecureTextEntry = true
     }
     func setupUserPasswordConfirmationField() {
         userPasswordConfirmation.placeholder = "Password confirmation!"
         userPasswordConfirmation.attributedPlaceholder = NSAttributedString(string:"Confirm your password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
         userPasswordConfirmation.borderStyle = UITextField.BorderStyle.none
+        userPasswordConfirmation.isSecureTextEntry = true
         
     }
     func setupUserPhoneNumberField() {
         userPhoneNumber.attributedPlaceholder = NSAttributedString(string:"Your phone number (required)", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
         userPhoneNumber.borderStyle = UITextField.BorderStyle.none
     }
+    
     @objc func signUp(sender: UIButton!) {
         Auth.auth().createUser(withEmail: userEmail.text!, password: userPasswordConfirmation.text!) { (result, error) in
             if let error = error {
@@ -114,11 +117,13 @@ class signupPage: UIViewController {
             let authUser = result!.user.uid
             let email = self.userEmail.text
             let name = self.userName.text
-            let dbUser = User.init(email: email!, id: authUser, stripeId: "", name: name!)
+            let dbUser = User.init(email: email!, id: authUser, stripeId: "", name: name!, phoneNumber: self.userPhoneNumber.text!)
             self.createFireStoreUser(user: dbUser)
             }
         }
     }
+    
+    
     func createFireStoreUser (user: User) {
         let newUserRef = Firestore.firestore().collection("users").document(user.id)
         let data = User.modelToData(user: user)
