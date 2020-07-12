@@ -68,7 +68,7 @@ class LoginPage: UIViewController {
     }
     @objc func signinOption(sender: UIButton!) {
         let mainFlow = UIStoryboard(name: "Main", bundle: nil)
-        let controller = mainFlow.instantiateViewController(identifier: "homePage")
+        let controller = mainFlow.instantiateViewController(identifier: "mainFlow")
         Auth.auth().signIn(withEmail: userEmail.text!, password: userPassword.text!) { [weak self] authResult, error in
             guard let strongSelf = self else { return }
             print( "user signed in")

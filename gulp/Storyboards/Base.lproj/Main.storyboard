@@ -104,7 +104,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Xm5-Ji-R77">
             <objects>
-                <navigationController wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" id="PYE-2P-sNR" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="mainFlow" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" id="PYE-2P-sNR" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="DK0-G5-F1m"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bua-JX-wRL">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
