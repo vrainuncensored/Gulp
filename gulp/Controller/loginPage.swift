@@ -14,62 +14,27 @@ class LoginPage: UIViewController {
     //Text Outlet
     @IBOutlet weak var userPassword: UITextField!
     @IBOutlet weak var userEmail: UITextField!
-    //Button Outlet
-
     
+    
+    //Button Outlet
     @IBOutlet weak var signUp: UIButton!
     @IBOutlet weak var signIn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-//       
-//        forgotPassword.layer.cornerRadius = 5
-//        forgotPassword.layer.borderWidth = 1
-//        forgotPassword.layer.borderColor = UIColor.systemPink.cgColor
-//        forgotPassword.setTitle("I forgot my password", for: .normal)
-//        forgotPassword.setTitleColor(.black, for: .normal)
-//        forgotPassword.addTarget(self, action: #selector(forgotPasswordOption), for: .touchUpInside)
-        
-        
-//        signUp.layer.cornerRadius = 5
-//        signUp.layer.borderWidth = 1
-//        signUp.layer.borderColor = UIColor.systemPink.cgColor
-        signUp.setTitle("Don't have an account? Create one.", for: .normal)
-        signUp.setTitleColor(.black, for: .normal)
-        signUp.addTarget(self, action: #selector(signupOption), for: .touchUpInside)
-
-        
-        
-        userEmail.borderStyle = UITextField.BorderStyle.none
-        userEmail.autocapitalizationType = UITextAutocapitalizationType.none
-        userEmail.borderStyle = UITextField.BorderStyle.none
-        userEmail.attributedPlaceholder = NSAttributedString(string:"E-mail address", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
-        userEmail.adjustsFontSizeToFitWidth = true
-//        userEmail.layer.cornerRadius = 5
-//        userEmail.layer.borderWidth = 1
-//        userEmail.layer.borderColor = UIColor.systemPink.cgColor
-        
-        
-        userPassword.autocorrectionType = UITextAutocorrectionType.no
-        userPassword.isSecureTextEntry = true
-        userPassword.attributedPlaceholder = NSAttributedString(string:"Password ", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
-        userPassword.borderStyle = UITextField.BorderStyle.none
-        userPassword.adjustsFontSizeToFitWidth = true
-//        userPassword.layer.cornerRadius = 5
-//        userPassword.layer.borderWidth = 1
-//        userPassword.layer.borderColor = UIColor.systemPink.cgColor
-//
-       
-        
-        
+        //setup for the buttons
+        setupSignInButton()
+        setupSignUpButton()
+        //setup for the TexFields
+        setupUserEmailTextField()
+        setupUserPasswordField()
+        //establishing delegates
         userEmail.delegate = self
         userPassword.delegate = self
-        
-        
-        
+        }
     
+    
+    func setupSignInButton() {
         signIn.setTitle("Sign In", for: .normal)
         signIn.showsTouchWhenHighlighted = true
         signIn.layer.cornerRadius = 5
@@ -77,26 +42,45 @@ class LoginPage: UIViewController {
         signIn.layer.borderColor = CG_Colors.darkPurple
         signIn.backgroundColor = UI_Colors.darkPurple
         signIn.addTarget(self, action: #selector(signinOption), for: .touchUpInside)
-        self.view.addSubview(signIn)
-        }
-         @objc func signupOption(sender: UIButton!) {
-               self.performSegue(withIdentifier: "toSignup", sender: self)
-           }
-        @objc func signinOption(sender: UIButton!) {
-            let mainFlow = UIStoryboard(name: "Main", bundle: nil)
-            let controller = mainFlow.instantiateViewController(identifier: "homePage")
-            Auth.auth().signIn(withEmail: userEmail.text!, password: userPassword.text!) { [weak self] authResult, error in
-              guard let strongSelf = self else { return }
-              print( "user signed in")
+    }
+    func setupSignUpButton() {
+        signUp.setTitle("Don't have an account? Create one.", for: .normal)
+        signUp.setTitleColor(.black, for: .normal)
+        signUp.addTarget(self, action: #selector(signupOption), for: .touchUpInside)
+    }
+    func setupUserEmailTextField() {
+        userEmail.borderStyle = UITextField.BorderStyle.none
+        userEmail.autocapitalizationType = UITextAutocapitalizationType.none
+        userEmail.borderStyle = UITextField.BorderStyle.none
+        userEmail.attributedPlaceholder = NSAttributedString(string:"E-mail address", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        userEmail.adjustsFontSizeToFitWidth = true
+    
+    }
+    func setupUserPasswordField() {
+        userPassword.autocorrectionType = UITextAutocorrectionType.no
+        userPassword.isSecureTextEntry = true
+        userPassword.attributedPlaceholder = NSAttributedString(string:"Password ", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        userPassword.borderStyle = UITextField.BorderStyle.none
+        userPassword.adjustsFontSizeToFitWidth = true
+    }
+    @objc func signupOption(sender: UIButton!) {
+        self.performSegue(withIdentifier: "toSignup", sender: self)
+    }
+    @objc func signinOption(sender: UIButton!) {
+        let mainFlow = UIStoryboard(name: "Main", bundle: nil)
+        let controller = mainFlow.instantiateViewController(identifier: "homePage")
+        Auth.auth().signIn(withEmail: userEmail.text!, password: userPassword.text!) { [weak self] authResult, error in
+            guard let strongSelf = self else { return }
+            print( "user signed in")
             self!.present(controller, animated: true, completion: nil)
-                
-            }
+            
+        }
         
-              }
+    }
     @objc func forgotPasswordOption(sender: UIButton!) {
         Auth.auth().sendPasswordReset(withEmail: userEmail.text!) { error in
-      // ...
-    }
+            // ...
+        }
         // Do any additional setup after loading the view.
     }
 }
