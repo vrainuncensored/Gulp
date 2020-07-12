@@ -25,7 +25,7 @@ class LoginPage: UIViewController {
         //setup for the buttons
         setupSignInButton()
         setupSignUpButton()
-        //setup for the TexFields
+        //setup for the TextFields
         setupUserEmailTextField()
         setupUserPasswordField()
         //establishing delegates
