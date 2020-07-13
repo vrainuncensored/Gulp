@@ -16,7 +16,6 @@ class signupPage: UIViewController {
         let db = Firestore.firestore()
     
     //Text Outlets
-  
     @IBOutlet weak var userName: UITextField!
     @IBOutlet weak var userEmail: UITextField!
     @IBOutlet weak var userPassword: UITextField!
@@ -38,48 +37,20 @@ class signupPage: UIViewController {
         setupUserPasswordField()
         setupUserPasswordConfirmationField()
         setupUserPhoneNumberField()
-      
-      
         
-       
-
+        //setup for Labels
+        setupPhoneDisclamer()
         
-      
+        //setup for Buttons
+        setupSignUpButton()
+        setupSignInButton()
         
-        
-        
-        phoneDisclamer.adjustsFontSizeToFitWidth = true
-        
-
-     
-
+        //establishing delegates
         userEmail.delegate = self
         userPassword.delegate = self
         userPasswordConfirmation.delegate = self
         userName.delegate = self
-       
-        signupButton.layer.cornerRadius = 5
-        signupButton.layer.borderWidth = 1
-        signupButton.layer.borderColor = CG_Colors.darkPurple
-        signupButton.backgroundColor = UI_Colors.darkPurple
         
-       
-        
-       
-        
-      
-        
-      
-        
-      
-       
-            signupButton.setTitle("Sign Up", for: .normal)
-            signupButton.showsTouchWhenHighlighted = true
-            signupButton.addTarget(self, action: #selector(signUp), for: .touchUpInside)
-        signinButton.addTarget(self, action: #selector(signInAction), for: .touchUpInside)
-    }
-    func configName() {
-        //name.placeholder = "Full Name"
     }
     func setupUserNameField() {
         userName.attributedPlaceholder = NSAttributedString(string:"Your full name" , attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
@@ -108,7 +79,21 @@ class signupPage: UIViewController {
         userPhoneNumber.attributedPlaceholder = NSAttributedString(string:"Your phone number (required)", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
         userPhoneNumber.borderStyle = UITextField.BorderStyle.none
     }
-    
+    func setupPhoneDisclamer() {
+        phoneDisclamer.adjustsFontSizeToFitWidth = true
+    }
+    func setupSignUpButton() {
+        signupButton.layer.cornerRadius = 5
+        signupButton.layer.borderWidth = 1
+        signupButton.layer.borderColor = CG_Colors.darkPurple
+        signupButton.backgroundColor = UI_Colors.darkPurple
+        signupButton.setTitle("Sign Up", for: .normal)
+        signupButton.showsTouchWhenHighlighted = true
+        signupButton.addTarget(self, action: #selector(signUp), for: .touchUpInside)
+    }
+    func setupSignInButton() {
+        signinButton.addTarget(self, action: #selector(signInAction), for: .touchUpInside)
+    }
     @objc func signUp(sender: UIButton!) {
         Auth.auth().createUser(withEmail: userEmail.text!, password: userPasswordConfirmation.text!) { (result, error) in
             if let error = error {
@@ -122,7 +107,6 @@ class signupPage: UIViewController {
             }
         }
     }
-    
     
     func createFireStoreUser (user: User) {
         let newUserRef = Firestore.firestore().collection("users").document(user.id)
