@@ -94,16 +94,20 @@ class signupPage: UIViewController {
     func setupSignInButton() {
         signinButton.addTarget(self, action: #selector(signInAction), for: .touchUpInside)
     }
+    
     @objc func signUp(sender: UIButton!) {
-        Auth.auth().createUser(withEmail: userEmail.text!, password: userPasswordConfirmation.text!) { (result, error) in
-            if let error = error {
-                debugPrint(error)
-            } else {
-            let authUser = result!.user.uid
-            let email = self.userEmail.text
-            let name = self.userName.text
-            let dbUser = User.init(email: email!, id: authUser, stripeId: "", name: name!, phoneNumber: self.userPhoneNumber.text!)
-            self.createFireStoreUser(user: dbUser)
+        if testForVaildPhoneNumber() == true{
+            Auth.auth().createUser(withEmail: userEmail.text!, password: userPasswordConfirmation.text!) { (result, error) in
+                if let error = error {
+                    debugPrint(error)
+                } else {
+                    let authUser = result!.user.uid
+                    let email = self.userEmail.text
+                    let name = self.userName.text
+                    let phoneNumber = self.convertPhoneNumber(userPhoneNumber: self.userPhoneNumber)
+                    let dbUser = User.init(email: email!, id: authUser, stripeId: "", name: name!, phoneNumber: phoneNumber)
+                    self.createFireStoreUser(user: dbUser)
+                }
             }
         }
     }
@@ -122,5 +126,16 @@ class signupPage: UIViewController {
 
 
 extension signupPage: UITextFieldDelegate {
-    
+    func convertPhoneNumber(userPhoneNumber: UITextField) -> String {
+        let acceptedPhoneNumber = userPhoneNumber.text!
+        let phoneNumberForDB = "+1" + "\(acceptedPhoneNumber)"
+        return(phoneNumberForDB)
+    }
+    func testForVaildPhoneNumber() -> Bool  {
+        if userPhoneNumber.text?.count == 0 || userPhoneNumber.text!.count > 10 ||  userPhoneNumber.text!.count < 10 {
+           print("invalid")
+            return (false)
+        }
+        return (true)
+    }
 }
