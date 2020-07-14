@@ -34,6 +34,7 @@
 		644B061224846095003DE98A /* updateLocation .swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B061124846095003DE98A /* updateLocation .swift */; };
 		644B06142484A15B003DE98A /* orderStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B06132484A15B003DE98A /* orderStructure.swift */; };
 		6450618B24BBD4D2002B7C09 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6450618A24BBD4D2002B7C09 /* TableViewCell.swift */; };
+		6450618D24BD6853002B7C09 /* Constants .swift in Sources */ = {isa = PBXBuildFile; fileRef = 648527752496E1C400E89866 /* Constants .swift */; };
 		6458B5BA248F4BAA00B132B5 /* userServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6458B5B9248F4BAA00B132B5 /* userServices.swift */; };
 		64646A8224B62A0F00A4691B /* LoginFlowCustomer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64646A8124B62A0F00A4691B /* LoginFlowCustomer.storyboard */; };
 		64754A972432DDCF0088D0F5 /* 324.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64754A962432DDCF0088D0F5 /* 324.jpg */; };
@@ -330,6 +331,13 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		6450618C24BD683A002B7C09 /* sharedConstants */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = sharedConstants;
+			sourceTree = "<group>";
+		};
 		6458B5B8248F4B8D00B132B5 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -391,6 +399,7 @@
 		64DDE69E242D876C0068223D = {
 			isa = PBXGroup;
 			children = (
+				6450618C24BD683A002B7C09 /* sharedConstants */,
 				64DDE6A9242D876C0068223D /* gulp */,
 				64B72791245C8FFA0082BBD6 /* gulpMerchant */,
 				64DDE6A8242D876C0068223D /* Products */,
@@ -643,6 +652,7 @@
 				64D6E8EE245F7A7100A3B852 /* navigationBar.swift in Sources */,
 				64D6E8E6245F284A00A3B852 /* signIn.swift in Sources */,
 				64D6E8F42461010C00A3B852 /* merchantSignUp.swift in Sources */,
+				6450618D24BD6853002B7C09 /* Constants .swift in Sources */,
 				64D6E8D6245DDDE500A3B852 /* CustomTabBar.swift in Sources */,
 				64B72793245C8FFA0082BBD6 /* AppDelegate.swift in Sources */,
 				64D6E8D4245DD8C800A3B852 /* orders.swift in Sources */,

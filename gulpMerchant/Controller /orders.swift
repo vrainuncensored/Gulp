@@ -19,7 +19,6 @@ class orders: UIViewController, CLLocationManagerDelegate {
     var latitude = 0.0
     
     override func viewDidLoad() {
-        self.view.addLabel(text: "orders")
         super.viewDidLoad()
         locationManager.delegate = self;
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -31,6 +30,21 @@ class orders: UIViewController, CLLocationManagerDelegate {
         self.latitude = locationManager.location!.coordinate.latitude
         fbCall(latitude: latitude, longitude: longitude)
     
+        
+        self.navigationItem.title = "Orders"
+               let userLogo = "person"
+               let buttonConfig = UIImage.SymbolConfiguration(pointSize: UIFont.systemFontSize, weight: .medium, scale: .large)
+               let userImage = UIImage(systemName: userLogo, withConfiguration: buttonConfig)
+            
+               
+               let userLogin = UIBarButtonItem(image: userImage, style: .plain, target: self, action: #selector(addItem))
+               let addAction = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addItem))
+               navigationItem.rightBarButtonItem = addAction
+               navigationItem.leftBarButtonItem = userLogin
+        
+        
+        
+        
         }
         
     func fbCall (latitude: Double, longitude:Double) {
@@ -65,4 +79,7 @@ class orders: UIViewController, CLLocationManagerDelegate {
 
         }
 }
+    @objc func addItem(sender: UIButton!) {
+        self.performSegue(withIdentifier: "individalItemSegue", sender: self)
+      }
 }
