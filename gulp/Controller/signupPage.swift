@@ -118,7 +118,7 @@ class signupPage: UIViewController {
                     let phoneNumber = self.convertPhoneNumber(userPhoneNumber: self.userPhoneNumber)
                     let dbUser = User.init(email: email!, id: authUser, stripeId: "", name: name!, phoneNumber: phoneNumber)
                     self.createFireStoreUser(user: dbUser)
-                    self.segueToHome()
+                    segueToHome()
                 }
             }
         }
@@ -132,11 +132,6 @@ class signupPage: UIViewController {
     @objc func signInAction(sender: UIButton!) {
         self.performSegue(withIdentifier: "toSignin", sender: self)
     }
-    func segueToHome() {
-            let loginFlow = UIStoryboard(name: "Main", bundle: nil)
-            let controller = loginFlow.instantiateViewController(identifier: "mainFlow")
-            present(controller, animated: true, completion: nil)
-          }
 }
 
 

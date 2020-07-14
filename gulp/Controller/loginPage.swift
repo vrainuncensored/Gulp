@@ -67,19 +67,16 @@ class LoginPage: UIViewController {
         self.performSegue(withIdentifier: "toSignup", sender: self)
     }
     @objc func signinOption(sender: UIButton!) {
-        let mainFlow = UIStoryboard(name: "Main", bundle: nil)
-        let controller = mainFlow.instantiateViewController(identifier: "mainFlow")
         Auth.auth().signIn(withEmail: userEmail.text!, password: userPassword.text!) { [weak self] authResult, error in
             guard let strongSelf = self else { return }
-            print( "user signed in")
-            self!.present(controller, animated: true, completion: nil)
+            segueToHome()
             
         }
         
     }
     @objc func forgotPasswordOption(sender: UIButton!) {
         Auth.auth().sendPasswordReset(withEmail: userEmail.text!) { error in
-            // ...
+            simpleAlert(title: "Password Reset" , msg: "We have a password reset link to your email! Please take a look")
         }
         // Do any additional setup after loading the view.
     }

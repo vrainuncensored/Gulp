@@ -20,11 +20,18 @@ struct Segues {
 
 extension UIViewController {
 
-    
+    //alerts
     func simpleAlert(title: String, msg: String) {
         let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
+    }
+    
+    //segues
+    func segueToHome() {
+      let loginFlow = UIStoryboard(name: "Main", bundle: nil)
+      let controller = loginFlow.instantiateViewController(identifier: "mainFlow")
+      present(controller, animated: true, completion: nil)
     }
 }
 
