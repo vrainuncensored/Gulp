@@ -98,8 +98,19 @@ class signupPage: UIViewController {
     @objc func signUp(sender: UIButton!) {
         if testForVaildPhoneNumber() == true{
             Auth.auth().createUser(withEmail: userEmail.text!, password: userPasswordConfirmation.text!) { (result, error) in
-                if let error = error {
-                    debugPrint(error)
+                if let errors = error {
+                    if let errorcode = AuthErrorCode(rawValue: error!._code) {
+                        switch errorcode {
+                        case .invalidEmail:
+                            self.simpleAlert(title: "Invalid email", msg: "Please be sure your formatting is correct")
+                            print("invalid email")
+                        case .emailAlreadyInUse:
+                            self.simpleAlert(title: "Incorrect Email", msg: "This email is already in use!")
+                        default:
+                            print("Create User Error: \(error!)")
+                        }
+                    }
+          
                 } else {
                     let authUser = result!.user.uid
                     let email = self.userEmail.text
@@ -107,6 +118,7 @@ class signupPage: UIViewController {
                     let phoneNumber = self.convertPhoneNumber(userPhoneNumber: self.userPhoneNumber)
                     let dbUser = User.init(email: email!, id: authUser, stripeId: "", name: name!, phoneNumber: phoneNumber)
                     self.createFireStoreUser(user: dbUser)
+                    self.segueToHome()
                 }
             }
         }
@@ -120,6 +132,11 @@ class signupPage: UIViewController {
     @objc func signInAction(sender: UIButton!) {
         self.performSegue(withIdentifier: "toSignin", sender: self)
     }
+    func segueToHome() {
+            let loginFlow = UIStoryboard(name: "Main", bundle: nil)
+            let controller = loginFlow.instantiateViewController(identifier: "mainFlow")
+            present(controller, animated: true, completion: nil)
+          }
 }
 
 
@@ -133,7 +150,7 @@ extension signupPage: UITextFieldDelegate {
     }
     func testForVaildPhoneNumber() -> Bool  {
         if userPhoneNumber.text?.count == 0 || userPhoneNumber.text!.count > 10 ||  userPhoneNumber.text!.count < 10 {
-           print("invalid")
+           simpleAlert(title: "Invalid Phone number", msg: "Your phone number has been incorrectly inputted. Make sure it is the full 10 digits")
             return (false)
         }
         return (true)
