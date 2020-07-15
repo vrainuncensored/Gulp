@@ -30,6 +30,7 @@ class menuItems: UIViewController {
         tableView.delegate = self
         tableView.rowHeight = 100
         tableView.allowsMultipleSelectionDuringEditing = false
+        tableView.allowsSelection = false
         tableView.allowsMultipleSelection = false
         tableView.backgroundColor = UIColor.white
         tableView.separatorStyle = .none

@@ -11,7 +11,7 @@ import UIKit
 class paymentHistory: UIViewController {
 
     override func viewDidLoad() {
-        self.view.addLabel(text: "order history")
+        self.navigationItem.title = "Payment History"
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.

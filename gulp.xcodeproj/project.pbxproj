@@ -10,6 +10,8 @@
 		0B43ADEBB0D8E5A95B333342 /* Pods_gulp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C698ECD505BFA746DB3BC1 /* Pods_gulp.framework */; };
 		642BD26D24BED1230081178B /* LoginFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 642BD26C24BED1230081178B /* LoginFlow.storyboard */; };
 		642BD27124BED2340081178B /* testViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BD27024BED2340081178B /* testViewController.swift */; };
+		642BD27324BF65F90081178B /* ordersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BD27224BF65F90081178B /* ordersTableViewCell.swift */; };
+		642BD27524BF66C30081178B /* orderStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BD27424BF66C30081178B /* orderStructure.swift */; };
 		64320CA524342D7800ED486D /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 64320CA424342D7800ED486D /* logo.png */; };
 		64320CA72434654D00ED486D /* Homepage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64320CA62434654D00ED486D /* Homepage.swift */; };
 		64320CAB243817FD00ED486D /* stackTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64320CAA243817FD00ED486D /* stackTest.swift */; };
@@ -90,6 +92,8 @@
 		22A1D8A4467BC8754AF50863 /* Pods-gulp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gulp.release.xcconfig"; path = "Target Support Files/Pods-gulp/Pods-gulp.release.xcconfig"; sourceTree = "<group>"; };
 		642BD26C24BED1230081178B /* LoginFlow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginFlow.storyboard; sourceTree = "<group>"; };
 		642BD27024BED2340081178B /* testViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testViewController.swift; sourceTree = "<group>"; };
+		642BD27224BF65F90081178B /* ordersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ordersTableViewCell.swift; sourceTree = "<group>"; };
+		642BD27424BF66C30081178B /* orderStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = orderStructure.swift; sourceTree = "<group>"; };
 		64320CA424342D7800ED486D /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		64320CA62434654D00ED486D /* Homepage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Homepage.swift; sourceTree = "<group>"; };
 		64320CAA243817FD00ED486D /* stackTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stackTest.swift; sourceTree = "<group>"; };
@@ -333,6 +337,7 @@
 			children = (
 				64D6E8E1245F1A6300A3B852 /* merchantStructure.swift */,
 				64D6E8E9245F2FB400A3B852 /* menuItemStructure.swift */,
+				642BD27424BF66C30081178B /* orderStructure.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -365,6 +370,7 @@
 			children = (
 				64D6E8D5245DDDE500A3B852 /* CustomTabBar.swift */,
 				6450618A24BBD4D2002B7C09 /* TableViewCell.swift */,
+				642BD27224BF65F90081178B /* ordersTableViewCell.swift */,
 			);
 			path = Layout;
 			sourceTree = "<group>";
@@ -662,6 +668,7 @@
 				64D6E8F42461010C00A3B852 /* merchantSignUp.swift in Sources */,
 				6450618D24BD6853002B7C09 /* Constants .swift in Sources */,
 				64D6E8D6245DDDE500A3B852 /* CustomTabBar.swift in Sources */,
+				642BD27324BF65F90081178B /* ordersTableViewCell.swift in Sources */,
 				64B72793245C8FFA0082BBD6 /* AppDelegate.swift in Sources */,
 				64D6E8D4245DD8C800A3B852 /* orders.swift in Sources */,
 				6450618B24BBD4D2002B7C09 /* TableViewCell.swift in Sources */,
@@ -670,6 +677,7 @@
 				644B0601247B1673003DE98A /* EntreeCustomizeOptionsVC.swift in Sources */,
 				64D6E8F0246059E900A3B852 /* paymentHistory.swift in Sources */,
 				64D6E8E2245F1A6300A3B852 /* merchantStructure.swift in Sources */,
+				642BD27524BF66C30081178B /* orderStructure.swift in Sources */,
 				64B72795245C8FFA0082BBD6 /* SceneDelegate.swift in Sources */,
 				642BD27124BED2340081178B /* testViewController.swift in Sources */,
 				64D6E8DA245E338700A3B852 /* menuItems.swift in Sources */,
