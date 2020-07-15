@@ -69,14 +69,14 @@ class LoginPage: UIViewController {
     @objc func signinOption(sender: UIButton!) {
         Auth.auth().signIn(withEmail: userEmail.text!, password: userPassword.text!) { [weak self] authResult, error in
             guard let strongSelf = self else { return }
-            segueToHome()
+            self?.segueToHome()
             
         }
         
     }
     @objc func forgotPasswordOption(sender: UIButton!) {
         Auth.auth().sendPasswordReset(withEmail: userEmail.text!) { error in
-            simpleAlert(title: "Password Reset" , msg: "We have a password reset link to your email! Please take a look")
+            self.simpleAlert(title: "Password Reset" , msg: "We have a password reset link to your email! Please take a look")
         }
         // Do any additional setup after loading the view.
     }

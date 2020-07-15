@@ -118,7 +118,7 @@ class signupPage: UIViewController {
                     let phoneNumber = self.convertPhoneNumber(userPhoneNumber: self.userPhoneNumber)
                     let dbUser = User.init(email: email!, id: authUser, stripeId: "", name: name!, phoneNumber: phoneNumber)
                     self.createFireStoreUser(user: dbUser)
-                    segueToHome()
+                    self.segueToHome()
                 }
             }
         }

@@ -29,6 +29,10 @@ class menuItems: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = 100
+        tableView.allowsMultipleSelectionDuringEditing = false
+        tableView.allowsMultipleSelection = false
+        tableView.backgroundColor = UIColor.white
+        tableView.separatorStyle = .none
         tableView.register(MenuItems.self, forCellReuseIdentifier: "Test")
         fbCall(tableView : tableView)
 
@@ -47,7 +51,7 @@ class menuItems: UIViewController {
 
     }
      @objc func loginAction(sender: UIButton!) {
-       let loginFlow = UIStoryboard(name: "Login", bundle: nil)
+       let loginFlow = UIStoryboard(name: "LoginFlow", bundle: nil)
        let controller = loginFlow.instantiateViewController(identifier: "loginPage")
        present(controller, animated: true, completion: nil)
      }
@@ -152,6 +156,9 @@ extension menuItems: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Test") as! MenuItems
         if (indexPath.section == 0){
+            cell.layer.borderWidth = 1.5
+            cell.layer.borderColor = CG_Colors.lightPurple
+            cell.layer.cornerRadius = 30.0
             let item = entreeItems[indexPath.row]
             cell.set(item: item)
             reloadInputViews()
@@ -159,12 +166,18 @@ extension menuItems: UITableViewDataSource, UITableViewDelegate {
             
         }
         if (indexPath.section == 1){
+            cell.layer.borderWidth = 1.5
+            cell.layer.borderColor = CG_Colors.lightPurple
+            cell.layer.cornerRadius = 30.0
             let item = sidesItems[indexPath.row]
             cell.set(item: item)
             reloadInputViews()
 
         }
         if (indexPath.section == 2){
+            cell.layer.borderWidth = 1.5
+            cell.layer.borderColor = CG_Colors.lightPurple
+            cell.layer.cornerRadius = 30.0
             let item = drinksItems[indexPath.row]
             cell.set(item: item)
             reloadInputViews()
