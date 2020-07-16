@@ -10,7 +10,7 @@
         <!--loginPage-->
         <scene sceneID="ANa-ez-QRZ">
             <objects>
-                <viewController storyboardIdentifier="loginPage" title="loginPage" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" id="ZXd-yc-fKF" customClass="testViewController" customModule="gulpMerchant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginPage" title="loginPage" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" id="ZXd-yc-fKF" customClass="loginPage" customModule="gulpMerchant" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XBI-O7-89U">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -142,12 +142,6 @@
                         <viewLayoutGuide key="safeArea" id="m9B-AA-jPU"/>
                     </view>
                     <navigationItem key="navigationItem" id="7On-0w-ILR"/>
-                    <connections>
-                        <outlet property="signIn" destination="eQX-z4-2Io" id="ami-nh-Jcg"/>
-                        <outlet property="signUp" destination="YyX-zW-vmX" id="gEk-SK-Et7"/>
-                        <outlet property="userEmail" destination="vVR-BC-WVX" id="HmM-oQ-B3F"/>
-                        <outlet property="userPassword" destination="J3h-Sl-MaK" id="huY-dW-O78"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8WM-Ho-6Kw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -322,7 +316,7 @@
                                 <rect key="frame" x="20" y="580" width="362" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="Your cell number is how we alert you when your food is ready:)">
+                                    <fragment content="Your cell is how we alert you of an order:)">
                                         <attributes>
                                             <font key="NSFont" size="13" name="AvenirNext-Regular"/>
                                         </attributes>
@@ -330,6 +324,17 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eeo-2Z-bqu">
+                                <rect key="frame" x="20" y="647" width="374" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="22"/>
+                                <state key="normal" title="Add Bank Account">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="dSc-Io-D38" kind="show" id="3hN-gz-VNr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -357,6 +362,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NWZ-gJ-Qt2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1588" y="82"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="XhF-j2-k3I">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="dSc-Io-D38" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ATA-Fo-UNA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="lv0-pl-rdS"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="erG-Ri-z5d"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KW9-A1-o0e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2410" y="84"/>
         </scene>
     </scenes>
 </document>

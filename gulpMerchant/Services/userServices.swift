@@ -6,7 +6,8 @@
 //  Copyright © 2020 Gulp. All rights reserved.
 //
 //
-//import Foundation
+import Foundation
+import UIKit
 //import Firebase
 //
 //let userservice = _UserService()
@@ -37,3 +38,7 @@
 //            guard let data = snap?.data() else {return}
 //            //self.user = User.init(data: data)
 //        })
+func generateRandomNumber() -> String {
+    let uuid = UUID().uuidString
+    return(uuid)
+}
