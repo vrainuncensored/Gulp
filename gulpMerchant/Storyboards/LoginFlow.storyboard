@@ -10,7 +10,7 @@
         <!--loginPage-->
         <scene sceneID="ANa-ez-QRZ">
             <objects>
-                <viewController storyboardIdentifier="loginPage" title="loginPage" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" id="ZXd-yc-fKF" customClass="loginPage" customModule="gulpMerchant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginPage" title="loginPage" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" id="ZXd-yc-fKF" customClass="LoginPage" customModule="gulpMerchant" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XBI-O7-89U">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -142,6 +142,12 @@
                         <viewLayoutGuide key="safeArea" id="m9B-AA-jPU"/>
                     </view>
                     <navigationItem key="navigationItem" id="7On-0w-ILR"/>
+                    <connections>
+                        <outlet property="signIn" destination="eQX-z4-2Io" id="iYx-p6-5lg"/>
+                        <outlet property="signUp" destination="YyX-zW-vmX" id="AX7-JZ-mij"/>
+                        <outlet property="userEmail" destination="vVR-BC-WVX" id="zdy-Dv-idb"/>
+                        <outlet property="userPassword" destination="J3h-Sl-MaK" id="8av-Xg-kEY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8WM-Ho-6Kw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -150,7 +156,7 @@
         <!--signupPage-->
         <scene sceneID="juO-Gy-SD2">
             <objects>
-                <viewController storyboardIdentifier="signupPage" title="signupPage" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" id="vCY-zH-Xe1" customClass="signupPage" customModule="gulp" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="signupPage" title="signupPage" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" id="vCY-zH-Xe1" customClass="merchantSignupPage" customModule="gulpMerchant" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Y0P-78-W9p">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -348,20 +354,10 @@
                         <viewLayoutGuide key="safeArea" id="ieX-9s-vd9"/>
                     </view>
                     <navigationItem key="navigationItem" id="dSg-SO-uA3"/>
-                    <connections>
-                        <outlet property="phoneDisclamer" destination="Am3-nm-PHz" id="EPc-2q-3ND"/>
-                        <outlet property="signinButton" destination="AkD-G7-cJQ" id="DAg-Jy-dfe"/>
-                        <outlet property="signupButton" destination="fJF-yC-3YC" id="LXg-Zm-pgV"/>
-                        <outlet property="userEmail" destination="lTj-Rs-1cI" id="AfY-JU-77X"/>
-                        <outlet property="userName" destination="yEv-47-7W0" id="vh2-1g-JDV"/>
-                        <outlet property="userPassword" destination="XgA-Rb-cqv" id="Eay-O0-xsr"/>
-                        <outlet property="userPasswordConfirmation" destination="zs7-YB-jcd" id="CnN-Fj-me6"/>
-                        <outlet property="userPhoneNumber" destination="Ncp-l4-O7h" id="tQF-NX-uB7"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NWZ-gJ-Qt2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1588" y="82"/>
+            <point key="canvasLocation" x="1629" y="82"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="XhF-j2-k3I">

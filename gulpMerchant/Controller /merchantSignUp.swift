@@ -19,6 +19,8 @@ class merchantSignupPage: UIViewController {
         let userPassowrdConfirmation = UITextField()
         let db = Firestore.firestore()
 
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.view.addBackground()
