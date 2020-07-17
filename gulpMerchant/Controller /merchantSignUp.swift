@@ -13,99 +13,160 @@ import FirebaseAuth
 
 
 class merchantSignupPage: UIViewController {
-        let userName = UITextField()
-        let userEmail = UITextField()
-        let userPassowrd = UITextField()
-        let userPassowrdConfirmation = UITextField()
-        let db = Firestore.firestore()
-
+   //Text Outlets
+    @IBOutlet weak var userName: UITextField!
     
+    @IBOutlet weak var userEmail: UITextField!
+    
+    @IBOutlet weak var userPassword: UITextField!
+    
+    
+    @IBOutlet weak var userPasswordConfirmation: UITextField!
+    
+    @IBOutlet weak var userPhoneNumber: UITextField!
+    
+    
+    
+    //Button Outlets
+   
+    
+    @IBOutlet weak var signupButton: UIButton!
+    
+    @IBOutlet weak var signinButton: UIButton!
+    
+    //Label Outlets
+    
+    @IBOutlet weak var phoneDisclamer: UILabel!
+    
+    
+    
+    
+            let db = Firestore.firestore()
+
+   
+
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.view.addBackground()
+        //setup for the TextFields
+        setupUserNameField()
+        setupUserEmailField()
+        setupUserPasswordField()
+        setupUserPasswordConfirmationField()
+        setupUserPhoneNumberField()
         
-        //self.view.addBackground()
-        userName.frame = CGRect(x:0, y:300, width:self.view.frame.width * 5/6 , height:self.view.frame.height * 1/10)
-        let width = UIScreen.main.bounds.size.width
-        let height = UIScreen.main.bounds.size.height
+        //setup for Labels
+        setupPhoneDisclamer()
         
-        userEmail.frame = CGRect(x:  0, y: 0, width: width * 5/6, height: height * 1/10)
-        userEmail.autocapitalizationType = UITextAutocapitalizationType.none
-        userEmail.placeholder = "Your email address"
-        userEmail.layer.cornerRadius = 5
-        userEmail.layer.borderWidth = 1
-        userEmail.layer.borderColor = UIColor.systemPink.cgColor
+        //setup for Buttons
+        setupSignUpButton()
+        setupSignInButton()
         
-        userPassowrd.frame = CGRect(x:  0, y: 100,  width: width * 5/6, height: height * 1/10)
-        userPassowrd.placeholder = "Your account password!"
-        userPassowrd.layer.cornerRadius = 5
-        userPassowrd.layer.borderWidth = 1
-        userPassowrd.layer.borderColor = UIColor.systemPink.cgColor
-        
-        userPassowrdConfirmation.frame = CGRect(x:  0, y: 200,  width: width * 5/6, height: height * 1/10)
-        userPassowrdConfirmation.placeholder = "Password confirmation!"
-        userPassowrdConfirmation.layer.cornerRadius = 5
-        userPassowrdConfirmation.layer.borderWidth = 1
-        userPassowrdConfirmation.layer.borderColor = UIColor.systemPink.cgColor
-
-        userName.layer.cornerRadius = 5
-        userName.layer.borderWidth = 1
-        userName.layer.borderColor = UIColor.systemPink.cgColor
-        userName.layer.borderColor = UIColor.systemPink.cgColor
-        
-        self.view.addSubview(userEmail)
-        self.view.addSubview(userPassowrd)
-        self.view.addSubview(userPassowrdConfirmation)
-        self.view.addSubview(userName)
-
+        //establishing delegates
         userEmail.delegate = self
-        userPassowrd.delegate = self
-        userPassowrdConfirmation.delegate = self
+        userPassword.delegate = self
+        userPasswordConfirmation.delegate = self
         userName.delegate = self
         
-        
-        let signupButton = UIButton(frame: CGRect(x: 0, y: height * (6/8), width: width, height: height/8))
-            signupButton.setTitle("Sign Up", for: .normal)
-            signupButton.showsTouchWhenHighlighted = true
-            signupButton.layer.cornerRadius = 5
-            signupButton.layer.borderWidth = 1
-            signupButton.layer.borderColor = UIColor.systemPink.cgColor
-            signupButton.addTarget(self, action: #selector(signUp), for: .touchUpInside)
-            self.view.addSubview(signupButton)
     }
+    func setupUserNameField() {
+        userName.attributedPlaceholder = NSAttributedString(string:"Your full name" , attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        userName.borderStyle = UITextField.BorderStyle.none
+    }
+    func setupUserEmailField() {
+        userEmail.autocapitalizationType = UITextAutocapitalizationType.none
+        userEmail.placeholder = "Your email address"
+        userEmail.attributedPlaceholder = NSAttributedString(string:"Your E-mail address (required)", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        userEmail.borderStyle = UITextField.BorderStyle.none
+    }
+    func setupUserPasswordField() {
+        userPassword.placeholder = "Your account password!"
+        userPassword.attributedPlaceholder = NSAttributedString(string:"Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        userPassword.borderStyle = UITextField.BorderStyle.none
+        userPassword.isSecureTextEntry = true
+    }
+    func setupUserPasswordConfirmationField() {
+        userPasswordConfirmation.placeholder = "Password confirmation!"
+        userPasswordConfirmation.attributedPlaceholder = NSAttributedString(string:"Confirm your password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        userPasswordConfirmation.borderStyle = UITextField.BorderStyle.none
+        userPasswordConfirmation.isSecureTextEntry = true
+        
+    }
+    func setupUserPhoneNumberField() {
+        userPhoneNumber.attributedPlaceholder = NSAttributedString(string:"Your phone number (required)", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        userPhoneNumber.borderStyle = UITextField.BorderStyle.none
+    }
+    func setupPhoneDisclamer() {
+        phoneDisclamer.adjustsFontSizeToFitWidth = true
+    }
+    func setupSignUpButton() {
+        signupButton.layer.cornerRadius = 5
+        signupButton.layer.borderWidth = 1
+        signupButton.layer.borderColor = CG_Colors.darkPurple
+        signupButton.backgroundColor = UI_Colors.darkPurple
+        signupButton.setTitle("Sign Up", for: .normal)
+        signupButton.showsTouchWhenHighlighted = true
+        signupButton.addTarget(self, action: #selector(signUp), for: .touchUpInside)
+    }
+    func setupSignInButton() {
+        signinButton.addTarget(self, action: #selector(signInAction), for: .touchUpInside)
+    }
+    
     @objc func signUp(sender: UIButton!) {
-        Auth.auth().createUser(withEmail: userEmail.text!, password: userPassowrdConfirmation.text!) { (result, error) in
-            if let error = error {
-                debugPrint(error)
-            } else {
-            let authUser = result!.user.uid
-            let email = self.userEmail.text
-            let name = self.userName.text
-            let dbUser = Merchant.init(email: email!, id: authUser, stripeId: "", name: name!)
-            self.createFireStoreUser(merchant: dbUser)
-            self.loggedInSegue()
+        if testForVaildPhoneNumber() == true{
+            Auth.auth().createUser(withEmail: userEmail.text!, password: userPasswordConfirmation.text!) { (result, error) in
+                if let errors = error {
+                    if let errorcode = AuthErrorCode(rawValue: error!._code) {
+                        switch errorcode {
+                        case .invalidEmail:
+                            self.simpleAlert(title: "Invalid email", msg: "Please be sure your formatting is correct")
+                            print("invalid email")
+                        case .emailAlreadyInUse:
+                            self.simpleAlert(title: "Incorrect Email", msg: "This email is already in use!")
+                        default:
+                            print("Create User Error: \(error!)")
+                        }
+                    }
+          
+                } else {
+                    let authUser = result!.user.uid
+                    let email = self.userEmail.text
+                    let name = self.userName.text
+                    let phoneNumber = self.convertPhoneNumber(userPhoneNumber: self.userPhoneNumber)
+                    let defaultLocation = GeoPoint(latitude: 0.0, longitude: 0.0)
+                    let dbUser = Merchant.init(email: email!, id: authUser, stripeId: "", name: name!, locationCoordinates: defaultLocation , phoneNumber: phoneNumber)
+                    self.createFireStoreUser(merchant: dbUser)
+                    self.segueToOrders()
+                }
             }
         }
     }
+    
     func createFireStoreUser (merchant: Merchant) {
-        //this is where in the database the user will be added. The name of the truck is the unique id created when the auth method is called
         let newUserRef = Firestore.firestore().collection("merchant").document(merchant.id)
         let data = Merchant.modelToData(merchant: merchant)
         newUserRef.setData(data)
     }
-    func loggedInSegue() {
-        let mainFlow = UIStoryboard(name: "Main", bundle: nil)
-        let controller = mainFlow.instantiateViewController(identifier: "MENU")
-        self.present(controller, animated: true, completion: nil)
-        }
-    
-    
+    @objc func signInAction(sender: UIButton!) {
+        self.performSegue(withIdentifier: "toSignin", sender: self)
+    }
 }
 
 
 
 
 extension merchantSignupPage: UITextFieldDelegate {
-    
+    func convertPhoneNumber(userPhoneNumber: UITextField) -> String {
+        let acceptedPhoneNumber = userPhoneNumber.text!
+        let phoneNumberForDB = "+1" + "\(acceptedPhoneNumber)"
+        return(phoneNumberForDB)
+    }
+    func testForVaildPhoneNumber() -> Bool  {
+        if userPhoneNumber.text?.count == 0 || userPhoneNumber.text!.count > 10 ||  userPhoneNumber.text!.count < 10 {
+           simpleAlert(title: "Invalid Phone number", msg: "Your phone number has been incorrectly inputted. Make sure it is the full 10 digits")
+            return (false)
+        }
+        return (true)
+    }
 }

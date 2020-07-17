@@ -33,6 +33,12 @@ extension UIViewController {
       let controller = loginFlow.instantiateViewController(identifier: "mainFlow")
       present(controller, animated: true, completion: nil)
     }
+
+func segueToOrders() {
+      let loginFlow = UIStoryboard(name: "Main", bundle: nil)
+      let controller = loginFlow.instantiateViewController(identifier: "MainFlow")
+      present(controller, animated: true, completion: nil)
+    }
 }
 
 struct CG_Colors {
