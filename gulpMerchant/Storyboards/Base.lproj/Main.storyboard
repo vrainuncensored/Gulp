@@ -157,7 +157,7 @@
         <!--MainFlow-->
         <scene sceneID="YWt-ei-GMF">
             <objects>
-                <tabBarController title="MainFlow" id="3uC-Re-986" customClass="CustomTabBar" customModule="gulpMerchant" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="entry" title="MainFlow" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" id="3uC-Re-986" customClass="CustomTabBar" customModule="gulpMerchant" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="sdp-Mv-mzd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

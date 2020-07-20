@@ -36,7 +36,7 @@ extension UIViewController {
 
 func segueToOrders() {
       let loginFlow = UIStoryboard(name: "Main", bundle: nil)
-      let controller = loginFlow.instantiateViewController(identifier: "MainFlow")
+      let controller = loginFlow.instantiateViewController(identifier: "entry")
       present(controller, animated: true, completion: nil)
     }
 }

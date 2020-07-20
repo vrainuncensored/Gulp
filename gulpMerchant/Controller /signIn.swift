@@ -79,7 +79,7 @@ class LoginPage: UIViewController {
     @objc func signinOption(sender: UIButton!) {
         Auth.auth().signIn(withEmail: userEmail.text!, password: userPassword.text!) { [weak self] authResult, error in
             guard let strongSelf = self else { return }
-            self?.segueToHome()
+            self?.segueToOrders()
             
         }
         

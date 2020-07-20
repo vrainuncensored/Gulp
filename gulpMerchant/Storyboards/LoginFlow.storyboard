@@ -331,17 +331,6 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eeo-2Z-bqu">
-                                <rect key="frame" x="20" y="647" width="374" height="54"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="22"/>
-                                <state key="normal" title="Add Bank Account">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <segue destination="dSc-Io-D38" kind="show" id="3hN-gz-VNr"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -356,9 +345,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="dSg-SO-uA3"/>
                     <connections>
+                        <outlet property="addBankAccount" destination="fJF-yC-3YC" id="7Ng-tT-JWX"/>
                         <outlet property="phoneDisclamer" destination="Am3-nm-PHz" id="6tp-ZY-60p"/>
                         <outlet property="signinButton" destination="AkD-G7-cJQ" id="i9n-9Q-C8q"/>
-                        <outlet property="signupButton" destination="fJF-yC-3YC" id="7Ng-tT-JWX"/>
                         <outlet property="userEmail" destination="lTj-Rs-1cI" id="NIJ-3K-IJn"/>
                         <outlet property="userName" destination="yEv-47-7W0" id="KmP-pG-chO"/>
                         <outlet property="userPassword" destination="XgA-Rb-cqv" id="kOu-qH-eVi"/>

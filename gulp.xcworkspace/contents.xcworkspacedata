@@ -26,9 +26,6 @@
       location = "group:Login.storyboard">
    </FileRef>
    <FileRef
-      location = "group:../../../Downloads/GoogleService-Info.plist">
-   </FileRef>
-   <FileRef
       location = "group:/Users/vkahuja2/Desktop/gulp/gulp/Login.storyboard">
    </FileRef>
    <Group

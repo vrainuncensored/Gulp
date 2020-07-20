@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
-
+import SafariServices
 
 
 class merchantSignupPage: UIViewController {
@@ -30,7 +30,7 @@ class merchantSignupPage: UIViewController {
     //Button Outlets
    
     
-    @IBOutlet weak var signupButton: UIButton!
+    @IBOutlet weak var addBankAccount: UIButton!
     
     @IBOutlet weak var signinButton: UIButton!
     
@@ -43,7 +43,9 @@ class merchantSignupPage: UIViewController {
     
             let db = Firestore.firestore()
 
-   
+   let state: String = generateRandomNumber()// generate a unique value for this
+   let clientID: String = "ca_HDc2f2N9XftwO50jLFIp0uDsSx1CZqOS"// the client ID found in your platform settings
+
 
 
     
@@ -60,7 +62,7 @@ class merchantSignupPage: UIViewController {
         setupPhoneDisclamer()
         
         //setup for Buttons
-        setupSignUpButton()
+        setupAddBankButton()
         setupSignInButton()
         
         //establishing delegates
@@ -100,14 +102,14 @@ class merchantSignupPage: UIViewController {
     func setupPhoneDisclamer() {
         phoneDisclamer.adjustsFontSizeToFitWidth = true
     }
-    func setupSignUpButton() {
-        signupButton.layer.cornerRadius = 5
-        signupButton.layer.borderWidth = 1
-        signupButton.layer.borderColor = CG_Colors.darkPurple
-        signupButton.backgroundColor = UI_Colors.darkPurple
-        signupButton.setTitle("Sign Up", for: .normal)
-        signupButton.showsTouchWhenHighlighted = true
-        signupButton.addTarget(self, action: #selector(signUp), for: .touchUpInside)
+    func setupAddBankButton() {
+        addBankAccount.layer.cornerRadius = 5
+        addBankAccount.layer.borderWidth = 1
+        addBankAccount.layer.borderColor = CG_Colors.darkPurple
+        addBankAccount.backgroundColor = UI_Colors.darkPurple
+        addBankAccount.setTitle("Add Bank Account", for: .normal)
+        addBankAccount.showsTouchWhenHighlighted = true
+        addBankAccount.addTarget(self, action: #selector(didSelectConnectWithStripe), for: .touchUpInside)
     }
     func setupSignInButton() {
         signinButton.addTarget(self, action: #selector(signInAction), for: .touchUpInside)
@@ -151,6 +153,23 @@ class merchantSignupPage: UIViewController {
     @objc func signInAction(sender: UIButton!) {
         self.performSegue(withIdentifier: "toSignin", sender: self)
     }
+    @objc
+      func didSelectConnectWithStripe() {
+          // set the redirect_uri to a deep link back into your app to automatically
+          // detect when the user has completed the onboarding flow
+          let redirect = "https://www.example.com/connect-onboard-redirect"
+
+          // Construct authorization URL
+          guard let authorizationURL = URL(string: "https://connect.stripe.com/express/oauth/authorize?client_id=\(clientID)&state=\(state)&redirect_uri=\(redirect)") else {
+              return
+          }
+
+          let safariViewController = SFSafariViewController(url: authorizationURL)
+          safariViewController.delegate = self
+
+          present(safariViewController, animated: true, completion: nil)
+      }
+
 }
 
 
@@ -168,5 +187,11 @@ extension merchantSignupPage: UITextFieldDelegate {
             return (false)
         }
         return (true)
+    }
+}
+extension merchantSignupPage: SFSafariViewControllerDelegate {
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        // the user may have closed the SFSafariViewController instance before a redirect
+        // occurred. Sync with your backend to confirm the correct state
     }
 }

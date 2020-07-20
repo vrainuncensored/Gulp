@@ -27,9 +27,9 @@ class orders: UIViewController, CLLocationManagerDelegate {
         locationManager.startUpdatingLocation()
         
         
-        self.longitude = locationManager.location!.coordinate.longitude
-        self.latitude = locationManager.location!.coordinate.latitude
-        fbCall(latitude: latitude, longitude: longitude)
+        //self.longitude = locationManager.location!.coordinate.longitude
+        //self.latitude = locationManager.location!.coordinate.latitude
+        //fbCall(latitude: latitude, longitude: longitude)
     
         
         self.navigationItem.title = "Orders"
