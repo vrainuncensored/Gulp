@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>applinks:ordergulp.page.link</string>
+		<string>applinks:gulpstripe.page.link</string>
 	</array>
 </dict>
 </plist>
