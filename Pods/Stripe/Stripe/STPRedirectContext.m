@@ -200,8 +200,7 @@ typedef void (^STPBoolCompletionBlock)(BOOL success);
     if (self.state == STPRedirectContextStateNotStarted) {
         self.state = STPRedirectContextStateInProgress;
         [self subscribeToURLAndForegroundNotifications];
-        
-        [[UIApplication sharedApplication] openURL:self.redirectURL options:@{} completionHandler:nil];
+        [[UIApplication sharedApplication] openURL:self.redirectURL];
     }
 }
 
@@ -284,9 +283,14 @@ typedef void (^STPBoolCompletionBlock)(BOOL success);
     }
     
     UIApplication *application = [UIApplication sharedApplication];
-    [application openURL:nativeURL options:@{} completionHandler:^(BOOL success) {
-        onCompletion(success);
-    }];
+    if (@available(iOS 10, *)) {
+        [application openURL:nativeURL options:@{} completionHandler:^(BOOL success) {
+            onCompletion(success);
+        }];
+    } else {
+        BOOL opened = [application openURL:nativeURL];
+        onCompletion(opened);
+    }
 }
 
 

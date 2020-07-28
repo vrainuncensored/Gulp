@@ -13,7 +13,6 @@
 #import "STPCard.h"
 #import "STPColorUtils.h"
 #import "STPCoreViewController+Private.h"
-#import "STPCustomerContext+Private.h"
 #import "STPDispatchFunctions.h"
 #import "STPLocalizationUtils.h"
 #import "STPPaymentActivityIndicatorView.h"
@@ -77,20 +76,11 @@
                                                                      apiAdapter:(id<STPBackendAPIAdapter>)apiAdapter {
     STPPromise<STPPaymentOptionTuple *> *promise = [STPPromise new];
     [apiAdapter listPaymentMethodsForCustomerWithCompletion:^(NSArray<STPPaymentMethod *> * _Nullable paymentMethods, NSError * _Nullable error) {
-        // We don't use stpDispatchToMainThreadIfNecessary here because we want this completion block to always be called asynchronously, so that users can set self.defaultPaymentMethod in time.
-        dispatch_async(dispatch_get_main_queue(), ^{
+        stpDispatchToMainThreadIfNecessary(^{
             if (error) {
                 [promise fail:error];
             } else {
-                NSString *defaultPaymentMethod = self.defaultPaymentMethod;
-                if (defaultPaymentMethod == nil && [apiAdapter isKindOfClass:[STPCustomerContext class]]) {
-                    // Retrieve the last selected payment method saved by STPCustomerContext
-                    [((STPCustomerContext *)apiAdapter) retrieveLastSelectedPaymentMethodIDForCustomerWithCompletion:^(NSString * _Nullable paymentMethodID, NSError * _Nullable __unused _) {
-                        STPPaymentOptionTuple *paymentTuple = [STPPaymentOptionTuple tupleFilteredForUIWithPaymentMethods:paymentMethods selectedPaymentMethod:paymentMethodID configuration:configuration];
-                        [promise succeed:paymentTuple];
-                    }];
-                }
-                STPPaymentOptionTuple *paymentTuple = [STPPaymentOptionTuple tupleFilteredForUIWithPaymentMethods:paymentMethods selectedPaymentMethod:defaultPaymentMethod configuration:configuration];
+                STPPaymentOptionTuple *paymentTuple = [STPPaymentOptionTuple tupleFilteredForUIWithPaymentMethods:paymentMethods selectedPaymentMethod:self.defaultPaymentMethod configuration:configuration];
                 [promise succeed:paymentTuple];
             }
         });
@@ -176,19 +166,6 @@
 }
     
 - (void)finishWithPaymentOption:(id<STPPaymentOption>)paymentOption {
-    BOOL isReusablePaymentMethod = [paymentOption isKindOfClass:[STPPaymentMethod class]] && ((STPPaymentMethod *)paymentOption).isReusable;
-    
-    if ([self.apiAdapter isKindOfClass:[STPCustomerContext class]]) {
-        if (isReusablePaymentMethod) {
-            // Save the payment method
-            STPPaymentMethod *paymentMethod = (STPPaymentMethod *)paymentOption;
-            [((STPCustomerContext *)self.apiAdapter) saveLastSelectedPaymentMethodIDForCustomer:paymentMethod.stripeId completion:nil];
-        } else {
-            // The customer selected something else (like Apple Pay)
-            [((STPCustomerContext *)self.apiAdapter) saveLastSelectedPaymentMethodIDForCustomer:nil completion:nil];
-        }
-    }
-    
     if ([self.delegate respondsToSelector:@selector(paymentOptionsViewController:didSelectPaymentOption:)]) {
         [self.delegate paymentOptionsViewController:self didSelectPaymentOption:paymentOption];
     }
@@ -206,14 +183,8 @@
         [paymentContext removePaymentOption:paymentOption];
     }
 }
-
-- (void)internalViewControllerDidCreatePaymentOption:(id<STPPaymentOption>)paymentOption completion:(STPErrorBlock)completion {
-    if (!paymentOption.reusable) {
-        // Don't save a non-reusable payment option
-        [self finishWithPaymentOption:paymentOption];
-        return;
-    }
-    STPPaymentMethod *paymentMethod = (STPPaymentMethod *)paymentOption;
+    
+- (void)internalViewControllerDidCreatePaymentMethod:(STPPaymentMethod *)paymentMethod completion:(STPErrorBlock)completion {
     [self.apiAdapter attachPaymentMethodToCustomer:paymentMethod completion:^(NSError *error) {
         stpDispatchToMainThreadIfNecessary(^{
             completion(error);
@@ -254,7 +225,7 @@
 - (void)addCardViewController:(__unused STPAddCardViewController *)addCardViewController
        didCreatePaymentMethod:(STPPaymentMethod *)paymentMethod
                    completion:(STPErrorBlock)completion {
-    [self internalViewControllerDidCreatePaymentOption:paymentMethod completion:completion];
+    [self internalViewControllerDidCreatePaymentMethod:paymentMethod completion:completion];
 }
     
 - (void)dismissWithCompletion:(STPVoidBlock)completion {

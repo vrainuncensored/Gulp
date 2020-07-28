@@ -14,6 +14,7 @@ pod 'FirebaseFirestoreSwift'
 pod 'SwiftPhoneNumberFormatter'
 pod 'Stripe'
 pod 'Firebase/Functions'
+pod 'Firebase/DynamicLinks'
 end
 
 target 'gulp' do

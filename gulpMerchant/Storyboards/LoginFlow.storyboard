@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -95,46 +95,56 @@
                                     <constraint firstAttribute="trailing" secondItem="IQf-it-ens" secondAttribute="trailing" constant="20" id="qkG-bT-ac6"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YyX-zW-vmX">
-                                <rect key="frame" x="89" y="785" width="258" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="Don't have an account? Create one.">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <font key="NSFont" size="15" name="AvenirNext-Bold"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                <integer key="NSUnderline" value="1"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eQX-z4-2Io">
-                                <rect key="frame" x="20" y="715" width="374" height="54"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="22"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Foodtruck Awaits!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rhx-gN-YIZ">
                                 <rect key="frame" x="20" y="84" width="374" height="44"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="32"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Gf8-2Z-e1n">
+                                <rect key="frame" x="20" y="750.5" width="374" height="91.5"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eQX-z4-2Io">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="43"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="22"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YyX-zW-vmX">
+                                        <rect key="frame" x="58" y="59" width="258" height="32.5"/>
+                                        <state key="normal">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="Don't have an account? Create one.">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <font key="NSFont" size="15" name="AvenirNext-Bold"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        <integer key="NSUnderline" value="1"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="eQX-z4-2Io" secondAttribute="trailing" id="gI1-rI-DX0"/>
+                                    <constraint firstItem="eQX-z4-2Io" firstAttribute="leading" secondItem="Gf8-2Z-e1n" secondAttribute="leading" id="qcu-cV-OYK"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Wr2-oR-OCv" firstAttribute="top" secondItem="rhx-gN-YIZ" secondAttribute="bottom" constant="60" id="3cr-8k-GzO"/>
                             <constraint firstItem="Wr2-oR-OCv" firstAttribute="leading" secondItem="m9B-AA-jPU" secondAttribute="leading" constant="20" id="5Kq-g9-JrS"/>
                             <constraint firstItem="Mbk-1Q-Kle" firstAttribute="top" secondItem="Wr2-oR-OCv" secondAttribute="bottom" constant="20" id="Gga-fi-p91"/>
+                            <constraint firstItem="Gf8-2Z-e1n" firstAttribute="leading" secondItem="m9B-AA-jPU" secondAttribute="leading" constant="20" id="Gjp-KL-jec"/>
                             <constraint firstItem="m9B-AA-jPU" firstAttribute="trailing" secondItem="Wr2-oR-OCv" secondAttribute="trailing" constant="20" id="M41-8P-JcW"/>
                             <constraint firstItem="m9B-AA-jPU" firstAttribute="trailing" secondItem="Mbk-1Q-Kle" secondAttribute="trailing" constant="40" id="O4f-L1-tr1"/>
+                            <constraint firstItem="m9B-AA-jPU" firstAttribute="bottom" secondItem="Gf8-2Z-e1n" secondAttribute="bottom" constant="20" id="OMB-Vp-A2p"/>
                             <constraint firstItem="Mbk-1Q-Kle" firstAttribute="leading" secondItem="m9B-AA-jPU" secondAttribute="leading" constant="40" id="Syy-tl-2eR"/>
                             <constraint firstItem="rhx-gN-YIZ" firstAttribute="centerX" secondItem="XBI-O7-89U" secondAttribute="centerX" id="V9X-OI-I2w"/>
+                            <constraint firstItem="m9B-AA-jPU" firstAttribute="trailing" secondItem="Gf8-2Z-e1n" secondAttribute="trailing" constant="20" id="sPy-vD-kEy"/>
                             <constraint firstItem="rhx-gN-YIZ" firstAttribute="leading" secondItem="m9B-AA-jPU" secondAttribute="leading" constant="20" id="t0y-xK-ROR"/>
                             <constraint firstItem="rhx-gN-YIZ" firstAttribute="top" secondItem="m9B-AA-jPU" secondAttribute="top" constant="40" id="vSB-dV-v7p"/>
                             <constraint firstItem="m9B-AA-jPU" firstAttribute="trailing" secondItem="rhx-gN-YIZ" secondAttribute="trailing" constant="20" id="xTG-Gr-UVa"/>
@@ -295,30 +305,33 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AkD-G7-cJQ">
-                                <rect key="frame" x="85" y="787" width="245" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="Already have an account? Sign in.">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <font key="NSFont" size="15" name="AvenirNext-Bold"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                <integer key="NSUnderline" value="1"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fJF-yC-3YC">
-                                <rect key="frame" x="20" y="725" width="374" height="54"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="22"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="4xc-EJ-sDY">
+                                <rect key="frame" x="20" y="758.5" width="374" height="83.5"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fJF-yC-3YC">
+                                        <rect key="frame" x="151" y="0.0" width="72" height="43"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="22"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AkD-G7-cJQ">
+                                        <rect key="frame" x="64.5" y="51" width="245" height="32.5"/>
+                                        <state key="normal">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="Already have an account? Sign in.">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <font key="NSFont" size="15" name="AvenirNext-Bold"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        <integer key="NSUnderline" value="1"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </state>
+                                    </button>
+                                </subviews>
+                            </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Am3-nm-PHz">
                                 <rect key="frame" x="20" y="580" width="362" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -335,11 +348,14 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="JtR-G9-63b" firstAttribute="leading" secondItem="ieX-9s-vd9" secondAttribute="leading" constant="20" id="409-Aw-kTN"/>
+                            <constraint firstItem="4xc-EJ-sDY" firstAttribute="leading" secondItem="ieX-9s-vd9" secondAttribute="leading" constant="20" id="9kC-iN-wbN"/>
                             <constraint firstItem="MOs-Yt-a79" firstAttribute="top" secondItem="JtR-G9-63b" secondAttribute="bottom" constant="60" id="B1S-I7-CO1"/>
+                            <constraint firstItem="ieX-9s-vd9" firstAttribute="bottom" secondItem="4xc-EJ-sDY" secondAttribute="bottom" constant="20" id="Djt-PX-nRX"/>
                             <constraint firstItem="MOs-Yt-a79" firstAttribute="leading" secondItem="ieX-9s-vd9" secondAttribute="leading" constant="20" id="ITy-DS-v3O"/>
                             <constraint firstItem="ieX-9s-vd9" firstAttribute="trailing" secondItem="JtR-G9-63b" secondAttribute="trailing" constant="20" id="Jfh-PX-hEN"/>
                             <constraint firstItem="ieX-9s-vd9" firstAttribute="trailing" secondItem="MOs-Yt-a79" secondAttribute="trailing" constant="20" id="kdR-u4-lLk"/>
                             <constraint firstItem="JtR-G9-63b" firstAttribute="top" secondItem="ieX-9s-vd9" secondAttribute="top" constant="40" id="lL6-Mw-v4L"/>
+                            <constraint firstItem="ieX-9s-vd9" firstAttribute="trailing" secondItem="4xc-EJ-sDY" secondAttribute="trailing" constant="20" id="o9S-KB-hek"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ieX-9s-vd9"/>
                     </view>

@@ -17,8 +17,6 @@
 - (void)addressViewModelDidChange:(STPAddressViewModel *)addressViewModel;
 - (void)addressViewModel:(STPAddressViewModel *)addressViewModel addedCellAtIndex:(NSUInteger)index;
 - (void)addressViewModel:(STPAddressViewModel *)addressViewModel removedCellAtIndex:(NSUInteger)index;
-- (void)addressViewModelWillUpdate:(STPAddressViewModel *)addressViewModel;
-- (void)addressViewModelDidUpdate:(STPAddressViewModel *)addressViewModel;
 
 @end
 

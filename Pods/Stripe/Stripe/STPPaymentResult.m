@@ -9,35 +9,19 @@
 #import "STPPaymentResult.h"
 
 #import "STPPaymentMethod.h"
-#import "STPPaymentMethodParams.h"
 
 @interface STPPaymentResult()
 @property (nonatomic) STPPaymentMethod *paymentMethod;
-@property (nonatomic) STPPaymentMethodParams *paymentMethodParams;
 @end
 
 @implementation STPPaymentResult
 
-- (instancetype)initWithPaymentOption:(id<STPPaymentOption>)paymentOption {
+- (nonnull instancetype)initWithPaymentMethod:(STPPaymentMethod *)paymentMethod {
     self = [super init];
     if (self) {
-        if ([paymentOption isKindOfClass:[STPPaymentMethod class]]) {
-            _paymentMethod = (STPPaymentMethod *)paymentOption;
-        } else if ([paymentOption isKindOfClass:[STPPaymentMethodParams class]]) {
-            _paymentMethodParams = (STPPaymentMethodParams *)paymentOption;
-        } else {
-            return nil;
-        }
+        _paymentMethod = paymentMethod;
     }
     return self;
-}
-
-- (id<STPPaymentOption>)paymentOption {
-    if (_paymentMethod != nil) {
-        return _paymentMethod;
-    } else {
-        return _paymentMethodParams;
-    }
 }
 
 @end

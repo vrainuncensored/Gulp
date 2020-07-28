@@ -74,6 +74,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  The capitalization style of the button title.
+ @note This has no effect < iOS 9.0.
  */
 @property (nonatomic) STPThreeDSButtonTitleStyle titleStyle;
 

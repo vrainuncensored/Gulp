@@ -39,7 +39,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _additionalPaymentOptions = STPPaymentOptionTypeDefault;
+        _additionalPaymentOptions = STPPaymentOptionTypeAll;
         _requiredBillingAddressFields = STPBillingAddressFieldsNone;
         _requiredShippingAddressFields = nil;
         _verifyPrefilledShippingAddress = YES;
@@ -73,8 +73,8 @@
 - (NSString *)description {
     NSString *additionalPaymentOptionsDescription;
 
-    if (self.additionalPaymentOptions == STPPaymentOptionTypeDefault) {
-        additionalPaymentOptionsDescription = @"STPPaymentOptionTypeDefault";
+    if (self.additionalPaymentOptions == STPPaymentOptionTypeAll) {
+        additionalPaymentOptionsDescription = @"STPPaymentOptionTypeAll";
     } else if (self.additionalPaymentOptions == STPPaymentOptionTypeNone) {
         additionalPaymentOptionsDescription = @"STPPaymentOptionTypeNone";
     } else {
@@ -84,10 +84,6 @@
             [paymentOptions addObject:@"STPPaymentOptionTypeApplePay"];
         }
 
-        if (self.additionalPaymentOptions & STPPaymentOptionTypeFPX) {
-            [paymentOptions addObject:@"STPPaymentOptionTypeFPX"];
-        }
-        
         additionalPaymentOptionsDescription = [paymentOptions componentsJoinedByString:@"|"];
     }
 

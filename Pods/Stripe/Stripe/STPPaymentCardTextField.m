@@ -145,9 +145,11 @@ CGFloat const STPPaymentCardTextFieldMinimumPadding = 10;
     self.brandImageView = brandImageView;
     
     STPFormTextField *numberField = [self buildTextField];
-    // This does not offer quick-type suggestions (as iOS 11.2), but does pick
-    // the best keyboard (maybe other, hidden behavior?)
-    numberField.textContentType = UITextContentTypeCreditCardNumber;
+    if (@available(iOS 10.0, *)) {
+        // This does not offer quick-type suggestions (as iOS 11.2), but does pick
+        // the best keyboard (maybe other, hidden behavior?)
+        numberField.textContentType = UITextContentTypeCreditCardNumber;
+    }
     numberField.autoFormattingBehavior = STPFormTextFieldAutoFormattingBehaviorCardNumbers;
     numberField.tag = STPCardFieldTypeNumber;
     numberField.accessibilityLabel = STPLocalizedString(@"card number", @"accessibility label for text field");
@@ -172,7 +174,9 @@ CGFloat const STPPaymentCardTextFieldMinimumPadding = 10;
     self.cvcField.accessibilityLabel = [self defaultCVCPlaceholder];
 
     STPFormTextField *postalCodeField = [self buildTextField];
-    postalCodeField.textContentType = UITextContentTypePostalCode;
+    if (@available(iOS 10.0, *)) {
+        postalCodeField.textContentType = UITextContentTypePostalCode;
+    }
     postalCodeField.tag = STPCardFieldTypePostalCode;
     postalCodeField.alpha = 0;
     postalCodeField.isAccessibilityElement = NO;
@@ -548,7 +552,6 @@ CGFloat const STPPaymentCardTextFieldMinimumPadding = 10;
     [super resignFirstResponder];
     BOOL success = [self.currentFirstResponderField resignFirstResponder];
     [self layoutViewsToFocusField:nil
-             becomeFirstResponder:NO
                          animated:YES
                        completion:nil];
     [self updateImageForFieldType:STPCardFieldTypeNumber];
@@ -579,7 +582,6 @@ CGFloat const STPPaymentCardTextFieldMinimumPadding = 10;
     [self updateCVCPlaceholder];
     __weak typeof(self) weakSelf = self;
     [self layoutViewsToFocusField:@(STPCardFieldTypePostalCode)
-             becomeFirstResponder:YES
                          animated:YES
                        completion:^(__unused BOOL completed){
         __strong typeof(self) strongSelf = weakSelf;
@@ -692,7 +694,6 @@ CGFloat const STPPaymentCardTextFieldMinimumPadding = 10;
         }
     } else {
         [self layoutViewsToFocusField:nil
-                 becomeFirstResponder:YES
                              animated:NO
                            completion:nil];
     }
@@ -1063,9 +1064,9 @@ typedef NS_ENUM(NSInteger, STPCardTextFieldState) {
 
         BOOL hasEnteredCardNumber = self.cardNumber.length > 0;
         NSString *compressedCardNumber = self.viewModel.compressedCardNumber;
-        NSString *cardNumberToHide = [(hasEnteredCardNumber ? self.cardNumber : self.numberPlaceholder) stp_stringByRemovingSuffix:compressedCardNumber];
+        NSString *cardNumberToHide = [(hasEnteredCardNumber ? self.cardNumber : self.viewModel.defaultPlaceholder) stp_stringByRemovingSuffix:compressedCardNumber];
 
-        if (cardNumberToHide.length > 0 && [STPCardValidator stringIsNumeric:cardNumberToHide]) {
+        if (cardNumberToHide.length > 0) {
             width = hasEnteredCardNumber ? [self widthForCardNumber:self.cardNumber] : [self numberFieldFullWidth];
 
             CGFloat hiddenWidth = [self widthForCardNumber:cardNumberToHide];
@@ -1077,7 +1078,7 @@ typedef NS_ENUM(NSInteger, STPCardTextFieldState) {
             maskView.backgroundColor = [UIColor blackColor];
             #ifdef __IPHONE_13_0
                 if (@available(iOS 13.0, *)) {
-                    maskView.backgroundColor = [UIColor labelColor];
+                    maskView.backgroundColor = [UIColor systemBackgroundColor];
                 }
             #endif
             maskView.opaque = YES;
@@ -1141,7 +1142,11 @@ typedef NS_ENUM(NSInteger, STPCardTextFieldState) {
     STPFormTextField *textField = [[STPFormTextField alloc] initWithFrame:CGRectZero];
     textField.backgroundColor = [UIColor clearColor];
     // setCountryCode: updates the postalCodeField keyboardType, this is safe
-    textField.keyboardType = UIKeyboardTypeASCIICapableNumberPad;
+    if (@available(iOS 10, *)) {
+        textField.keyboardType = UIKeyboardTypeASCIICapableNumberPad;
+    } else {
+        textField.keyboardType = UIKeyboardTypePhonePad;
+    }
     textField.textAlignment = NSTextAlignmentLeft;
     textField.font = self.font;
     textField.defaultColor = self.textColor;
@@ -1154,7 +1159,6 @@ typedef NS_ENUM(NSInteger, STPCardTextFieldState) {
 
 typedef void (^STPLayoutAnimationCompletionBlock)(BOOL completed);
 - (void)layoutViewsToFocusField:(NSNumber *)focusedField
-           becomeFirstResponder:(BOOL)shouldBecomeFirstResponder
                        animated:(BOOL)animated
                      completion:(STPLayoutAnimationCompletionBlock)completion {
 
@@ -1164,9 +1168,7 @@ typedef void (^STPLayoutAnimationCompletionBlock)(BOOL completed);
         && ![self.focusedTextFieldForLayout isEqualToNumber:@(STPCardFieldTypeNumber)]
         && ([self.viewModel validationStateForField:STPCardFieldTypeNumber] != STPCardValidationStateValid)) {
         fieldtoFocus = @(STPCardFieldTypeNumber);
-        if (shouldBecomeFirstResponder) {
-            [self.numberField becomeFirstResponder];
-        }
+        [self.numberField becomeFirstResponder];
     }
 
     if ((fieldtoFocus == nil && self.focusedTextFieldForLayout == nil)
@@ -1398,7 +1400,6 @@ typedef NS_ENUM(NSInteger, STPFieldEditingTransitionCallSite) {
     BOOL isMidSubviewEditingTransition = [self getAndUpdateSubviewEditingTransitionStateFromCall:STPFieldEditingTransitionCallSiteDidBegin];
 
     [self layoutViewsToFocusField:@(textField.tag)
-             becomeFirstResponder:YES
                          animated:YES
                        completion:nil];
 
@@ -1471,7 +1472,6 @@ typedef NS_ENUM(NSInteger, STPFieldEditingTransitionCallSite) {
 
     if (!isMidSubviewEditingTransition) {
         [self layoutViewsToFocusField:nil
-                 becomeFirstResponder:NO
                              animated:YES
                            completion:nil];
         [self updateImageForFieldType:STPCardFieldTypeNumber];

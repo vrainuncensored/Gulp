@@ -9,7 +9,6 @@
 #import <libkern/OSAtomic.h>
 #import <objc/runtime.h>
 #import <objc/message.h>
-#import <os/lock.h>
 
 NS_INLINE void STPAspectLog(__unused NSString *format, ...) {
     // intentionally commented out as a no-op. Can be uncommented for additional debugging
@@ -176,10 +175,10 @@ static BOOL stp_aspect_remove(STPAspectIdentifier *aspect, NSError * __autorelea
 }
 
 static void stp_aspect_performLocked(dispatch_block_t block) {
-    static os_unfair_lock aspect_lock = OS_UNFAIR_LOCK_INIT;
-    os_unfair_lock_lock(&aspect_lock);
+    static OSSpinLock aspect_lock = OS_SPINLOCK_INIT;
+    OSSpinLockLock(&aspect_lock);
     block();
-    os_unfair_lock_unlock(&aspect_lock);
+    OSSpinLockUnlock(&aspect_lock);
 }
 
 static SEL stp_aspect_aliasForSelector(SEL selector) {

@@ -11,7 +11,7 @@
 
 #import "PKPaymentAuthorizationViewController+Stripe_Blocks.h"
 #import "STPAddCardViewController+Private.h"
-#import "STPCustomerContext+Private.h"
+#import "STPCustomerContext.h"
 #import "STPDispatchFunctions.h"
 #import "STPPaymentConfiguration+Private.h"
 #import "STPPaymentContext+Private.h"
@@ -157,18 +157,8 @@ typedef NS_ENUM(NSUInteger, STPPaymentContextState) {
                         [strongSelf2.loadingPromise fail:error];
                         return;
                     }
-
-                    if (self.defaultPaymentMethod == nil && [strongSelf2.apiAdapter isKindOfClass:[STPCustomerContext class]]) {
-                        // Retrieve the last selected payment method saved by STPCustomerContext
-                        [((STPCustomerContext *)strongSelf2.apiAdapter) retrieveLastSelectedPaymentMethodIDForCustomerWithCompletion:^(NSString * _Nullable paymentMethodID, NSError * _Nullable __unused _) {
-                            __strong typeof(self) strongSelf3 = weakSelf;
-                            STPPaymentOptionTuple *paymentTuple = [STPPaymentOptionTuple tupleFilteredForUIWithPaymentMethods:paymentMethods selectedPaymentMethod:paymentMethodID configuration:strongSelf3.configuration];
-                            [strongSelf3.loadingPromise succeed:paymentTuple];
-                        }];
-                    } else {
-                        STPPaymentOptionTuple *paymentTuple = [STPPaymentOptionTuple tupleFilteredForUIWithPaymentMethods:paymentMethods selectedPaymentMethod:self.defaultPaymentMethod configuration:strongSelf2.configuration];
-                        [strongSelf2.loadingPromise succeed:paymentTuple];
-                    }
+                    STPPaymentOptionTuple *paymentTuple = [STPPaymentOptionTuple tupleFilteredForUIWithPaymentMethods:paymentMethods selectedPaymentMethod:strongSelf2.defaultPaymentMethod configuration:strongSelf2.configuration];
+                    [strongSelf2.loadingPromise succeed:paymentTuple];
                 });
             }];
         });
@@ -243,9 +233,7 @@ typedef NS_ENUM(NSUInteger, STPPaymentContextState) {
 
 - (void)setSelectedPaymentOption:(id<STPPaymentOption>)selectedPaymentOption {
     if (selectedPaymentOption && ![self.paymentOptions containsObject:selectedPaymentOption]) {
-        if (selectedPaymentOption.reusable) {
-            self.paymentOptions = [self.paymentOptions arrayByAddingObject:selectedPaymentOption];
-        }
+        self.paymentOptions = [self.paymentOptions arrayByAddingObject:selectedPaymentOption];
     }
     if (![_selectedPaymentOption isEqual:selectedPaymentOption]) {
         _selectedPaymentOption = selectedPaymentOption;
@@ -600,9 +588,9 @@ typedef NS_ENUM(NSUInteger, STPPaymentContextState) {
             [strongSelf presentPaymentOptionsViewControllerWithNewState:STPPaymentContextStateRequestingPayment];
         } else if ([strongSelf requestPaymentShouldPresentShippingViewController]) {
             [strongSelf presentShippingViewControllerWithNewState:STPPaymentContextStateRequestingPayment];
-        } else if ([strongSelf.selectedPaymentOption isKindOfClass:[STPPaymentMethod class]] || [self.selectedPaymentOption isKindOfClass:[STPPaymentMethodParams class]]) {
+        } else if ([strongSelf.selectedPaymentOption isKindOfClass:[STPPaymentMethod class]]) {
             strongSelf.state = STPPaymentContextStateRequestingPayment;
-            STPPaymentResult *result = [[STPPaymentResult alloc] initWithPaymentOption:strongSelf.selectedPaymentOption];
+            STPPaymentResult *result = [[STPPaymentResult alloc] initWithPaymentMethod:(STPPaymentMethod *)strongSelf.selectedPaymentOption];
             [strongSelf.delegate paymentContext:self didCreatePaymentResult:result completion:^(STPPaymentStatus status, NSError * _Nullable error) {
                 stpDispatchToMainThreadIfNecessary(^{
                     [strongSelf didFinishWithStatus:status error:error];
@@ -644,8 +632,8 @@ typedef NS_ENUM(NSUInteger, STPPaymentContextState) {
                         if (attachPaymentMethodError) {
                             completion(STPPaymentStatusError, attachPaymentMethodError);
                         } else {
-                            STPPaymentResult *result = [[STPPaymentResult alloc] initWithPaymentOption:paymentMethod];
-                            [strongSelf.delegate paymentContext:strongSelf didCreatePaymentResult:result completion:^(STPPaymentStatus status, NSError * error) {
+                            STPPaymentResult *result = [[STPPaymentResult alloc] initWithPaymentMethod:paymentMethod];
+                            [strongSelf.delegate paymentContext:self didCreatePaymentResult:result completion:^(STPPaymentStatus status, NSError * error) {
                                 // for Apple Pay, the didFinishWithStatus callback is fired later when Apple Pay VC finishes
                                 completion(status, error);
                             }];
@@ -697,18 +685,7 @@ typedef NS_ENUM(NSUInteger, STPPaymentContextState) {
 
     NSArray<PKPaymentSummaryItem *> *summaryItems = self.paymentSummaryItems;
     paymentRequest.paymentSummaryItems = summaryItems;
-
-
-    if (@available(iOS 11, *)) {
-        NSSet<PKContactField> *requiredFields = [STPAddress applePayContactFieldsFromBillingAddressFields:self.configuration.requiredBillingAddressFields];
-        if (requiredFields) {
-            paymentRequest.requiredBillingContactFields = requiredFields;
-        }
-    } else {
-#if !(defined(TARGET_OS_MACCATALYST) && (TARGET_OS_MACCATALYST != 0))
-        paymentRequest.requiredBillingAddressFields = [STPAddress applePayAddressFieldsFromBillingAddressFields:self.configuration.requiredBillingAddressFields];
-#endif
-    }
+    paymentRequest.requiredBillingAddressFields = [STPAddress applePayAddressFieldsFromBillingAddressFields:self.configuration.requiredBillingAddressFields];
 
     if (@available(iOS 11, *)) {
         NSSet<PKContactField> *requiredFields = [STPAddress pkContactFieldsFromStripeContactFields:self.configuration.requiredShippingAddressFields];
@@ -716,9 +693,7 @@ typedef NS_ENUM(NSUInteger, STPPaymentContextState) {
             paymentRequest.requiredShippingContactFields = requiredFields;
         }
     } else {
-#if !(defined(TARGET_OS_MACCATALYST) && (TARGET_OS_MACCATALYST != 0))
         paymentRequest.requiredShippingAddressFields = [STPAddress pkAddressFieldsFromStripeContactFields:self.configuration.requiredShippingAddressFields];
-#endif
     }
 
     paymentRequest.currencyCode = self.paymentCurrency.uppercaseString;
@@ -731,7 +706,7 @@ typedef NS_ENUM(NSUInteger, STPPaymentContextState) {
         paymentRequest.shippingMethods = self.shippingMethods;
     }
 
-    paymentRequest.shippingType = [[self class] pkShippingType:self.configuration.shippingType];
+    paymentRequest.shippingType = [[self class] pkShippingType:self.configuration.shippingType];;
 
     if (self.shippingAddress != nil) {
         paymentRequest.shippingContact = [self.shippingAddress PKContactValue];

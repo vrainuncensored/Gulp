@@ -27,7 +27,6 @@
 #import "STPEmptyStripeResponse.h"
 #import "STPEphemeralKey.h"
 #import "STPFormEncoder.h"
-#import "STPFPXBankStatusResponse.h"
 #import "STPGenericStripeObject.h"
 #import "STPAppInfo.h"
 #import "STPMultipartFormDataEncoder.h"
@@ -38,10 +37,8 @@
 #import "STPPaymentMethod+Private.h"
 #import "STPPaymentIntent+Private.h"
 #import "STPPaymentIntentParams.h"
-#import "STPPaymentIntentParams+Utilities.h"
 #import "STPSetupIntent+Private.h"
 #import "STPSetupIntentConfirmParams.h"
-#import "STPSetupIntentConfirmParams+Utilities.h"
 #import "STPSource+Private.h"
 #import "STPSourceParams.h"
 #import "STPSourceParams+Private.h"
@@ -64,7 +61,6 @@ static NSString * const APIEndpointPaymentIntents = @"payment_intents";
 static NSString * const APIEndpointSetupIntents = @"setup_intents";
 static NSString * const APIEndpointPaymentMethods = @"payment_methods";
 static NSString * const APIEndpoint3DS2 = @"3ds2";
-static NSString * const APIEndpointFPXStatus = @"fpx/bank_statuses";
 
 #pragma mark - Stripe
 
@@ -279,15 +275,9 @@ static NSArray<PKPaymentNetwork> *_additionalEnabledApplePayNetworks;
     NSMutableDictionary *params = [@{@"pii": @{ @"personal_id_number": pii }} mutableCopy];
     [[STPTelemetryClient sharedInstance] addTelemetryFieldsToParams:params];
     [self createTokenWithParameters:params completion:completion];
-    [[STPTelemetryClient sharedInstance] sendTelemetryData];}
-
-- (void)createTokenWithSSNLast4:(NSString *)ssnLast4 completion:(STPTokenCompletionBlock)completion {
-    NSMutableDictionary *params = [@{@"pii": @{ @"ssn_last_4": ssnLast4 }} mutableCopy];
-    [[STPTelemetryClient sharedInstance] addTelemetryFieldsToParams:params];
-    [self createTokenWithParameters:params completion:completion];
     [[STPTelemetryClient sharedInstance] sendTelemetryData];
 }
-    
+
 @end
 
 #pragma mark - Connect Accounts
@@ -501,7 +491,9 @@ static NSArray<PKPaymentNetwork> *_additionalEnabledApplePayNetworks;
     }];
 }
 
-- (NSURLSessionDataTask *)retrieveSourceWithId:(NSString *)identifier clientSecret:(NSString *)secret responseCompletion:(STPAPIResponseBlock)completion {
+- (NSURLSessionDataTask *)retrieveSourceWithId:(NSString *)identifier
+                                  clientSecret:(NSString *)secret
+                            responseCompletion:(void (^)(STPSource * _Nullable, NSHTTPURLResponse * _Nullable, NSError * _Nullable))completion {
     NSString *endpoint = [NSString stringWithFormat:@"%@/%@", APIEndpointSources, identifier];
     NSDictionary *parameters = @{@"client_secret": secret};
     return [STPAPIRequest<STPSource *> getWithAPIClient:self
@@ -691,30 +683,15 @@ toCustomerUsingKey:(STPEphemeralKey *)ephemeralKey
 
 - (void)retrievePaymentIntentWithClientSecret:(NSString *)secret
                                    completion:(STPPaymentIntentCompletionBlock)completion {
-    [self retrievePaymentIntentWithClientSecret:secret
-                                         expand:nil
-                                     completion:completion];
-}
-
-- (void)retrievePaymentIntentWithClientSecret:(NSString *)secret
-                                       expand:(nullable NSArray<NSString *> *)expand
-                                   completion:(STPPaymentIntentCompletionBlock)completion {
     NSCAssert(secret != nil, @"'secret' is required to retrieve a PaymentIntent");
-    NSCAssert([STPPaymentIntentParams isClientSecretValid:secret], @"`secret` format does not match expected client secret formatting.");
     NSCAssert(completion != nil, @"'completion' is required to use the PaymentIntent that is retrieved");
     NSString *identifier = [STPPaymentIntent idFromClientSecret:secret];
 
     NSString *endpoint = [NSString stringWithFormat:@"%@/%@", APIEndpointPaymentIntents, identifier];
 
-    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    parameters[@"client_secret"] = secret;
-    if (expand.count > 0) {
-        parameters[@"expand"] = expand;
-    }
-
     [STPAPIRequest<STPPaymentIntent *> getWithAPIClient:self
                                                endpoint:endpoint
-                                             parameters:[parameters copy]
+                                             parameters:@{ @"client_secret": secret }
                                            deserializer:[STPPaymentIntent new]
                                              completion:^(STPPaymentIntent *paymentIntent, __unused NSHTTPURLResponse *response, NSError *error) {
                                                  completion(paymentIntent, error);
@@ -723,17 +700,7 @@ toCustomerUsingKey:(STPEphemeralKey *)ephemeralKey
 
 - (void)confirmPaymentIntentWithParams:(STPPaymentIntentParams *)paymentIntentParams
                             completion:(STPPaymentIntentCompletionBlock)completion {
-    [self confirmPaymentIntentWithParams:paymentIntentParams
-                                  expand:nil
-                              completion:completion];
-}
-
-- (void)confirmPaymentIntentWithParams:(STPPaymentIntentParams *)paymentIntentParams
-                                expand:(nullable NSArray<NSString *> *)expand
-                            completion:(STPPaymentIntentCompletionBlock)completion {
     NSCAssert(paymentIntentParams.clientSecret != nil, @"'clientSecret' is required to confirm a PaymentIntent");
-    NSCAssert([STPPaymentIntentParams isClientSecretValid:paymentIntentParams.clientSecret], @"`paymentIntentParams.clientSecret` format does not match expected client secret formatting.");
-
     NSString *identifier = paymentIntentParams.stripeId;
     NSString *sourceType = [STPSource stringFromType:paymentIntentParams.sourceParams.type];
     [[STPAnalyticsClient sharedClient] logPaymentIntentConfirmationAttemptWithConfiguration:self.configuration
@@ -747,9 +714,6 @@ toCustomerUsingKey:(STPEphemeralKey *)ephemeralKey
         [[STPTelemetryClient sharedInstance] addTelemetryFieldsToParams:sourceParamsDict];
         params[@"source_data"] = [sourceParamsDict copy];
     }
-    if (expand.count > 0) {
-        params[@"expand"] = expand;
-    }
 
     [STPAPIRequest<STPPaymentIntent *> postWithAPIClient:self
                                                 endpoint:endpoint
@@ -758,18 +722,6 @@ toCustomerUsingKey:(STPEphemeralKey *)ephemeralKey
                                               completion:^(STPPaymentIntent *paymentIntent, __unused NSHTTPURLResponse *response, NSError *error) {
                                                   completion(paymentIntent, error);
                                               }];
-}
-
-- (void)cancel3DSAuthenticationForPaymentIntent:(NSString *)paymentIntentID
-                                     withSource:(NSString *)sourceID
-                                     completion:(STPPaymentIntentCompletionBlock)completion {
-    [STPAPIRequest<STPPaymentIntent *> postWithAPIClient:self
-                                                endpoint:[NSString stringWithFormat:@"%@/%@/source_cancel", APIEndpointPaymentIntents, paymentIntentID]
-                                              parameters:@{ @"source": sourceID }
-                                            deserializer:[STPPaymentIntent new]
-                                              completion:^(STPPaymentIntent *paymentIntent, __unused NSHTTPURLResponse *response, NSError *responseError) {
-        completion(paymentIntent, responseError);
-    }];
 }
 
 @end
@@ -781,7 +733,6 @@ toCustomerUsingKey:(STPEphemeralKey *)ephemeralKey
 - (void)retrieveSetupIntentWithClientSecret:(NSString *)secret
                                    completion:(STPSetupIntentCompletionBlock)completion {
     NSCAssert(secret != nil, @"'secret' is required to retrieve a SetupIntent");
-    NSCAssert([STPSetupIntentConfirmParams isClientSecretValid:secret], @"`secret` format does not match expected client secret formatting.");
     NSCAssert(completion != nil, @"'completion' is required to use the SetupIntent that is retrieved");
     NSString *identifier = [STPSetupIntent idFromClientSecret:secret];
     
@@ -799,7 +750,6 @@ toCustomerUsingKey:(STPEphemeralKey *)ephemeralKey
 - (void)confirmSetupIntentWithParams:(STPSetupIntentConfirmParams *)setupIntentParams
                             completion:(STPSetupIntentCompletionBlock)completion {
     NSCAssert(setupIntentParams.clientSecret != nil, @"'clientSecret' is required to confirm a SetupIntent");
-    NSCAssert([STPSetupIntentConfirmParams isClientSecretValid:setupIntentParams.clientSecret], @"`setupIntentParams.clientSecret` format does not match expected client secret formatting.");
 
     NSString *paymentMethodType = [STPPaymentMethod stringFromType:setupIntentParams.paymentMethodParams.type];
     [[STPAnalyticsClient sharedClient] logSetupIntentConfirmationAttemptWithConfiguration:self.configuration
@@ -815,18 +765,6 @@ toCustomerUsingKey:(STPEphemeralKey *)ephemeralKey
                                               completion:^(STPSetupIntent *setupIntent, __unused NSHTTPURLResponse *response, NSError *error) {
                                                   completion(setupIntent, error);
                                               }];
-}
-
-- (void)cancel3DSAuthenticationForSetupIntent:(NSString *)setupIntentID
-                                   withSource:(NSString *)sourceID
-                                   completion:(STPSetupIntentCompletionBlock)completion {
-    [STPAPIRequest<STPSetupIntent *> postWithAPIClient:self
-                                              endpoint:[NSString stringWithFormat:@"%@/%@/source_cancel", APIEndpointSetupIntents, setupIntentID]
-                                            parameters:@{ @"source": sourceID }
-                                          deserializer:[STPSetupIntent new]
-                                            completion:^(STPSetupIntent *setupIntent, __unused NSHTTPURLResponse *response, NSError *responseError) {
-        completion(setupIntent, responseError);
-    }];
 }
 
 @end
@@ -850,18 +788,6 @@ toCustomerUsingKey:(STPEphemeralKey *)ephemeralKey
                                                  completion(paymentMethod, error);
                                              }];
 
-}
-
-#pragma mark - FPX
-
-- (void)retrieveFPXBankStatusWithCompletion:(STPFPXBankStatusCompletionBlock)completion {
-    [STPAPIRequest<STPFPXBankStatusResponse *> getWithAPIClient:self
-                                               endpoint:APIEndpointFPXStatus
-                                             parameters:@{ @"account_holder_type": @"individual" }
-                                           deserializer:[STPFPXBankStatusResponse new]
-                                             completion:^(STPFPXBankStatusResponse *statusResponse, __unused NSHTTPURLResponse *response, NSError *error) {
-                                                 completion(statusResponse, error);
-                                             }];
 }
 
 @end

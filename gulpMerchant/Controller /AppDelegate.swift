@@ -22,7 +22,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Stripe.setDefaultPublishableKey("pk_test_LdIj43U3AT5gKjMChrv0cdFV00GsaCO40A")
         return true
     }
-
+    func handelIncomingDynamicLink(_ dynamicLink: DynamicLink) {
+        guard let url = dynamicLink.url else {
+            print("The link is not working!")
+            return
+        }
+        print("your url is \(url.absoluteString)")
+    }
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        if let incomingURL = userActivity.webpageURL {
+            print("incoming URL is \(incomingURL)")
+            let linkHandeled = DynamicLinks.dynamicLinks().handleUniversalLink(incomingURL) { (dynamicLink, error ) in
+                guard error == nil else {
+                    print(" the error is \(error!.localizedDescription)")
+                    return
+                }
+                if let dynamicLink = dynamicLink {
+                    self.handelIncomingDynamicLink(dynamicLink)
+                }
+            }
+            if linkHandeled {
+                return true
+            } else {
+                return false
+            }
+        }
+        return false
+    }
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {

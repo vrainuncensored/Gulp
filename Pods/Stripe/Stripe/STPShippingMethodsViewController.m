@@ -70,7 +70,6 @@ static NSString *const STPShippingMethodCellReuseIdentifier = @"STPShippingMetho
     self.tableView.tableHeaderView = imageView;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    [self.tableView reloadData];
 
     STPSectionHeaderView *headerView = [STPSectionHeaderView new];
     headerView.theme = self.theme;
