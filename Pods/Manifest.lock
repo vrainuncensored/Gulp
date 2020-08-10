@@ -317,16 +317,18 @@ DEPENDENCIES:
   - SwiftPhoneNumberFormatter
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - abseil
     - BoringSSL-GRPC
     - Firebase
     - FirebaseAnalytics
+    - FirebaseAnalyticsInterop
     - FirebaseAuth
     - FirebaseAuthInterop
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseCoreDiagnosticsInterop
+    - FirebaseDynamicLinks
     - FirebaseFirestore
     - FirebaseFirestoreSwift
     - FirebaseFunctions
@@ -343,9 +345,6 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - PromisesObjC
-  trunk:
-    - FirebaseAnalyticsInterop
-    - FirebaseDynamicLinks
     - Stripe
     - SwiftPhoneNumberFormatter
 
@@ -382,4 +381,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: a8dbf8730a9bf5e5bc21aee58d061dc6058a4573
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.3

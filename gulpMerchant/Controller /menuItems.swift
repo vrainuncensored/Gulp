@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class menuItems: UIViewController {
     var entreeItems = [MenuItem]()

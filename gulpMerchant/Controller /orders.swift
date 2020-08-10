@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import Firebase
+import FirebaseAuth
 
 class orders: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()

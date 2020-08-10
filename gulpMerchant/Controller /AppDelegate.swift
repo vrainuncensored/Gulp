@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import Stripe
+import FirebaseDynamicLinks
 
 
 @UIApplicationMain

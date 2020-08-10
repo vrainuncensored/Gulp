@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3uC-Re-986">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3uC-Re-986">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -47,15 +47,60 @@
         <!--Item-->
         <scene sceneID="mPN-ZR-bcP">
             <objects>
-                <viewController id="cvr-vU-eg9" customClass="paymentHistory" customModule="gulpMerchant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="cvr-vU-eg9" customClass="ManageLocation" customModule="gulpMerchant" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2Wz-4D-e3o">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="e4I-09-X4v">
+                                <rect key="frame" x="0.0" y="88" width="414" height="579"/>
+                            </mapView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="OqW-l2-Jw9">
+                                <rect key="frame" x="20" y="687" width="374" height="106"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AjG-aM-DBy">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="43"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="22"/>
+                                        <state key="normal" title="Update Location ">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oJX-C3-gmf">
+                                        <rect key="frame" x="0.0" y="63" width="374" height="43"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="22"/>
+                                        <state key="normal" title="Closed">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="oJX-C3-gmf" secondAttribute="trailing" id="EJL-0T-P0M"/>
+                                    <constraint firstItem="oJX-C3-gmf" firstAttribute="leading" secondItem="OqW-l2-Jw9" secondAttribute="leading" id="EYy-hn-Dio"/>
+                                    <constraint firstItem="AjG-aM-DBy" firstAttribute="leading" secondItem="OqW-l2-Jw9" secondAttribute="leading" id="d21-Xq-fWj"/>
+                                    <constraint firstAttribute="trailing" secondItem="AjG-aM-DBy" secondAttribute="trailing" id="oby-ad-xqQ"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="OqW-l2-Jw9" firstAttribute="top" secondItem="e4I-09-X4v" secondAttribute="bottom" constant="20" id="46E-8R-mWa"/>
+                            <constraint firstItem="Lit-Ok-A3e" firstAttribute="trailing" secondItem="e4I-09-X4v" secondAttribute="trailing" id="7sf-HR-AIy"/>
+                            <constraint firstItem="OqW-l2-Jw9" firstAttribute="leading" secondItem="Lit-Ok-A3e" secondAttribute="leading" constant="20" id="CIr-QK-nCz"/>
+                            <constraint firstItem="Lit-Ok-A3e" firstAttribute="trailing" secondItem="OqW-l2-Jw9" secondAttribute="trailing" constant="20" id="Hrj-JW-uJC"/>
+                            <constraint firstItem="e4I-09-X4v" firstAttribute="leading" secondItem="Lit-Ok-A3e" secondAttribute="leading" id="Vb5-Ix-UiU"/>
+                            <constraint firstItem="Lit-Ok-A3e" firstAttribute="bottom" secondItem="OqW-l2-Jw9" secondAttribute="bottom" constant="20" id="dOl-bz-1oD"/>
+                            <constraint firstItem="OqW-l2-Jw9" firstAttribute="top" secondItem="e4I-09-X4v" secondAttribute="bottom" constant="20" id="eDq-jP-7rA"/>
+                            <constraint firstItem="e4I-09-X4v" firstAttribute="top" secondItem="Lit-Ok-A3e" secondAttribute="top" id="sRO-cX-PyF"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Lit-Ok-A3e"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="MME-ak-6gY"/>
                     <navigationItem key="navigationItem" id="1cG-BF-opx"/>
+                    <connections>
+                        <outlet property="closedButton" destination="oJX-C3-gmf" id="grS-fN-au9"/>
+                        <outlet property="truckLocation" destination="e4I-09-X4v" id="uJO-LN-TZK"/>
+                        <outlet property="updateLocationButton" destination="AjG-aM-DBy" id="7Jp-QQ-hg0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qtY-Kz-Uk7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

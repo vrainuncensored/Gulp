@@ -13,7 +13,7 @@ class CustomTabBar: UITabBarController {
     var customTabItem = UITabBarItem()
     let defaultOrdersIcon = "tray.and.arrow.down"
     let defaulutMenuIcon = "table.badge.more"
-    let defaultMoneyIcon = "dollarsign.circle"
+    let defaultLocationIcon = "location.circle"
     let orderLabel = "Orders"
     let menuLabel = "Menu Items"
     let tabConfig = UIImage.SymbolConfiguration(pointSize: UIFont.systemFontSize, weight: .medium, scale: .large)
@@ -21,7 +21,7 @@ class CustomTabBar: UITabBarController {
     override func viewDidLoad() {
     let orders = UIImage(systemName: defaultOrdersIcon , withConfiguration: tabConfig )
     let menu = UIImage(systemName: defaulutMenuIcon, withConfiguration: tabConfig)
-    let money = UIImage(systemName: defaultMoneyIcon, withConfiguration: tabConfig)
+    let location = UIImage(systemName: defaultLocationIcon, withConfiguration: tabConfig)
 
         customTabItem = self.tabBar.items![0]
         customTabItem.title = orderLabel
@@ -33,8 +33,8 @@ class CustomTabBar: UITabBarController {
         customTabItem.title = menuLabel
         
         customTabItem = self.tabBar.items![2]
-        customTabItem.image = money
-        customTabItem.title = "History"
+        customTabItem.image = location
+        customTabItem.title = "Location"
 
 
         // Do any additional setup after loading the view.

@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
+
 
 class addingMenuItem: UIViewController {
     let itemCategory = UITextField()
