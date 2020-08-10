@@ -1,0 +1,170 @@
+const functions = require('firebase-functions');
+const admin = require('firebase-admin');
+const express = require('express');
+const app = express();
+app.use(express.json());
+const { resolve } = require("path");
+// const notify = require('./notify');
+// exports.notify = notify.notify;
+
+admin.initializeApp();
+
+// // Create and Deploy Your First Cloud Functions
+// // https://firebase.google.com/docs/functions/write-firebase-functions
+//
+//functions.config().stripe.seceret_test_key
+const stripe = require("stripe")("sk_test_rKhIPOAfQ7A9el8L570woVpR00q861QZVx");
+
+app.get("/", (req, res) => {
+  // Display landing page.
+  const path = resolve("./index.html");
+  res.sendFile(path);
+});
+
+app.get("/connect/oauth", async (req, res) => {
+  const { code, state } = req.query;
+
+  // Assert the state matches the state you provided in the OAuth link (optional).
+  if(!stateMatches(state)) {
+    return res.status(403).json({ error: 'Incorrect state parameter: ' + state });
+  }
+
+  // Send the authorization code to Stripe's API.
+  stripe.oauth.token({
+    grant_type: 'authorization_code',
+    code: code
+  }).then(
+    (response) => {
+      var connected_account_id = response.stripe_user_id;
+      saveAccountId(connected_account_id);
+
+      // Render some HTML or redirect to a different page.
+      return res.status(200).json({success: true});
+    })
+    .catch((err) => {
+      if (err.type === 'StripeInvalidGrantError') {
+        return res.status(400).json({error: 'Invalid authorization code: ' + code});
+      } else {
+        return res.status(500).json({error: 'An unknown error occurred.'});
+      }
+    });
+
+});
+
+const stateMatches = (state_parameter) => {
+  // Load the same state value that you randomly generated for your OAuth link.
+  const saved_state = state;
+
+  return saved_state === state_parameter;
+}
+
+const saveAccountId = (id) => {
+  // Save the connected account ID from the response to your database.
+  console.log('Connected account ID: ' + id);
+}
+
+app.listen(4242, () => console.log(`Node server listening on port ${4242}!`));
+
+
+exports.merchantOnboarding = functions.https.onRequest(app);
+
+  exports.createStripeCustomer = functions.firestore.document('users/{userId}').onCreate(async (snap, context) => {
+   const data = snap.data();
+   const email = data.email;
+   const customer = await stripe.customers.create({ email: email })
+   return admin.firestore().collection('users').doc(data.id).update({ stripeId: customer.id})
+
+});
+
+exports.createStripeMerchant = functions.firestore.document('merchant/{userId}').onCreate(async (snap, context) => {
+ const data = snap.data();
+ const email = data.email;
+ const customer = await stripe.accounts.create({ email: email ,country : 'US', type: 'custom', requested_capabilities: [
+      'card_payments',
+      'transfers',
+    ] })
+ return admin.firestore().collection('merchant').doc(data.id).update({ stripeId: customer.id})
+});
+
+
+
+
+
+exports.makeCharge = functions.https.onCall( async (data, context) => {
+  const customerId = data.customerId
+  const totalAmount = data.total
+  const idempotency = data.idempotency
+  const paymentMethodId = data.payment_method_id
+//this code chunk below checks for authorized user.
+  // if (uid === null) {
+  //     console.log('Illegal access attempt due to unathenticated user');
+  //     throw new functions.https.HttpsError('permission-denied', 'Illegal access attempt.')
+  // }
+  return stripe.paymentIntents.create({
+          payment_method: paymentMethodId,
+          customer: customerId,
+          amount: totalAmount,
+          currency: 'usd',
+          confirm: true,
+          payment_method_types: ['card']
+      }, {
+              idempotency_key: idempotency
+          }).then(intent => {
+              console.log('Charge Success: ', intent)
+              return
+          }).catch(err => {
+              console.log(err);
+              throw new functions.https.HttpsError('internal', ' Unable to create charge: ' + err);
+          });
+  });
+
+//  exports.helloWorld = functions.https.onRequest((request, response) => {
+//   response.send("Hello from Firebase!");
+//   console.log("suck my fat fucking cock");
+// });
+// exports.createStripeIntent = functions.https.onCall( async (data, context) => {
+//   const amount = data.price
+//   const customer = await stripe.paymentIntents.create({
+//   amount: amount,
+//   currency: 'usd',
+//   });
+//   const clientSecret = customer.client_secret
+//   return { clientSecret: clientSecret };
+// });
+
+
+exports.createEphemeralKey = functions.https.onCall(async(data, context) => {
+
+  const customerId = data.customer_id;
+  const stripeVersion = data.apiVersion;
+  const uid = context.auth.uid;
+
+  if (uid === null) {
+      console.log('Illegal access attempt due to unathenticated user');
+      throw new functions.https.HttpsError('permission-denied', 'Illegal access attempt.')
+  }
+
+  return stripe.ephemeralKeys.create(
+    {customer: customerId},
+    {apiVersion: stripeVersion}
+  ).then((key) => {
+    return key
+  }).catch((err) => {
+    console.log(err)
+    throw new functions.https.HttpsError('internal', 'Unable to create ephemeral key.')
+  })
+});
+
+// function updateMerchatOrders(truckId) => {
+//
+// }
+
+// exports.createStripeIntent = functions.https.onCall(async (data, context) => {
+//
+//   return stripe.paymentIntents.create({
+//     amount: 1099,
+//     currency: 'usd',
+//   }).then( _ => {
+//     return { clientSecret: paymentIntent.client_secret }
+//   })
+// });
