@@ -13,9 +13,9 @@ import FirebaseAuth
 
 class orders: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
-       func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-           let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-           }
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+    }
     var longitude = 0.0
     var latitude = 0.0
     

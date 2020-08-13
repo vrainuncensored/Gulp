@@ -82,6 +82,7 @@
 		7B5A36920485832D72E86419 /* Pods_gulpMerchant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B4A07C4173718B8938FA70 /* Pods_gulpMerchant.framework */; };
 		E335229E24D7B5D000E0827D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E335229D24D7B5D000E0827D /* Assets.xcassets */; };
 		E36FF0B124D7BD790014B443 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E36FF0B024D7BD790014B443 /* GoogleService-Info.plist */; };
+		E3781BC824E438A5002841E1 /* LocationPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3781BC724E438A5002841E1 /* LocationPageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -172,6 +173,7 @@
 		E335229D24D7B5D000E0827D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../test/test/Assets.xcassets; sourceTree = "<group>"; };
 		E36FF0AF24D7BD650014B443 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "gulp/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		E36FF0B024D7BD790014B443 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E3781BC724E438A5002841E1 /* LocationPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -322,6 +324,7 @@
 				64D6E8F32461010C00A3B852 /* merchantSignUp.swift */,
 				642BD27024BED2340081178B /* testViewController.swift */,
 				64593BE324BFCF51009F5B39 /* ConnectOnboardViewController.swift */,
+				E3781BC724E438A5002841E1 /* LocationPageViewController.swift */,
 			);
 			path = "Controller ";
 			sourceTree = "<group>";
@@ -656,6 +659,7 @@
 				64D6E8E6245F284A00A3B852 /* signIn.swift in Sources */,
 				64D6E8F42461010C00A3B852 /* merchantSignUp.swift in Sources */,
 				6450618D24BD6853002B7C09 /* Constants .swift in Sources */,
+				E3781BC824E438A5002841E1 /* LocationPageViewController.swift in Sources */,
 				64D6E8D6245DDDE500A3B852 /* CustomTabBar.swift in Sources */,
 				642BD27324BF65F90081178B /* ordersTableViewCell.swift in Sources */,
 				64B72793245C8FFA0082BBD6 /* AppDelegate.swift in Sources */,
