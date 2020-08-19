@@ -309,7 +309,7 @@
                                 <rect key="frame" x="20" y="758.5" width="374" height="83.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fJF-yC-3YC">
-                                        <rect key="frame" x="151" y="0.0" width="72" height="43"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="43"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="22"/>
                                         <state key="normal" title="Button">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -331,6 +331,10 @@
                                         </state>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="fJF-yC-3YC" secondAttribute="trailing" id="3SV-hA-6ax"/>
+                                    <constraint firstItem="fJF-yC-3YC" firstAttribute="leading" secondItem="4xc-EJ-sDY" secondAttribute="leading" id="o8e-yH-P7k"/>
+                                </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Am3-nm-PHz">
                                 <rect key="frame" x="20" y="580" width="362" height="18"/>
@@ -369,27 +373,15 @@
                         <outlet property="userPassword" destination="XgA-Rb-cqv" id="kOu-qH-eVi"/>
                         <outlet property="userPasswordConfirmation" destination="zs7-YB-jcd" id="Dk2-c6-dAE"/>
                         <outlet property="userPhoneNumber" destination="Ncp-l4-O7h" id="nKg-Z3-LYF"/>
+                        <segue destination="ZXd-yc-fKF" kind="show" identifier="segueToSignIn" id="QLl-Lu-Uk4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NWZ-gJ-Qt2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1629" y="82"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="XhF-j2-k3I">
-            <objects>
-                <viewController modalPresentationStyle="fullScreen" id="dSc-Io-D38" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ATA-Fo-UNA">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="lv0-pl-rdS"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="erG-Ri-z5d"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KW9-A1-o0e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2410" y="84"/>
-        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="OVO-De-lX6"/>
+    </inferredMetricsTieBreakers>
 </document>

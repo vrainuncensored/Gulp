@@ -10,7 +10,19 @@ import UIKit
 import Firebase
 
 class EntreeCustomizeOptionsVC: UIViewController {
-    let categoryOptions = ["Protein", "Add ons"]
+    //UITextField Outlet
+    @IBOutlet weak var addOnName: UITextField!
+    @IBOutlet weak var addOnPrice: UITextField!
+    
+    
+    //UIButton Outlet
+    @IBOutlet weak var addOn: UIButton!
+    
+    //UIPickerView Outlet
+    
+    @IBOutlet weak var categorySelection: UIPickerView!
+    
+    let categoryOptions = ["Protein Options", "Add ons"]
     let pickerView = UIPickerView()
     let customizeButton = UILabel()
     let itemName = UITextField()
@@ -20,28 +32,22 @@ class EntreeCustomizeOptionsVC: UIViewController {
         super.viewDidLoad()
         let width = UIScreen.main.bounds.size.width
              let height = UIScreen.main.bounds.size.height
-                    customizeButton.frame = CGRect(x: 300, y: 100, width: 106, height: 53)
-                    self.view.addSubview(customizeButton)
-        customizeButton.text = "choose category"
-        self.view.addSubview(pickerView)
-        pickerView.dataSource = self
-        pickerView.delegate = self
-        itemName.textColor = UIColor.red
-               itemName.frame = CGRect(x:  0, y:250, width: width * 5/6, height: height * 1/10)
-               itemName.autocapitalizationType = UITextAutocapitalizationType.none
-               itemName.placeholder = "Menu Item Name"
-               itemName.layer.cornerRadius = 5
-               itemName.layer.borderWidth = 1
-               self.view.addSubview(itemName)
-        
-        itemPrice.textColor = UIColor.red
-        itemPrice.frame = CGRect(x:  0, y:500, width: width * 5/6, height: height * 1/10)
-        itemPrice.autocapitalizationType = UITextAutocapitalizationType.none
-        itemPrice.placeholder = "Menu Item Price"
-        itemPrice.layer.cornerRadius = 5
-        itemPrice.layer.borderWidth = 1
-        itemPrice.text = "$0.00"
-        self.view.addSubview(itemPrice)
+//                    customizeButton.frame = CGRect(x: 300, y: 100, width: 106, height: 53)
+//                    self.view.addSubview(customizeButton)
+//        customizeButton.text = "choose category"
+//        self.view.addSubview(pickerView)
+        categorySelection.dataSource = self
+        categorySelection.delegate = self
+//        itemName.textColor = UIColor.red
+//               itemName.frame = CGRect(x:  0, y:250, width: width * 5/6, height: height * 1/10)
+//               itemName.autocapitalizationType = UITextAutocapitalizationType.none
+//               itemName.placeholder = "Menu Item Name"
+//               itemName.layer.cornerRadius = 5
+//               itemName.layer.borderWidth = 1
+//               self.view.addSubview(itemName)
+   setupAddOnName()
+   setupAddOnNamePrice()
+        setupDoneCustomizingButton()
                
                itemName.delegate = self
                itemPrice.delegate = self
@@ -52,15 +58,16 @@ class EntreeCustomizeOptionsVC: UIViewController {
                itemPrice.keyboardType = UIKeyboardType.decimalPad
                self.addDoneButtonOnKeyboard()
         
-        let button = UIButton()
-         button.setTitle("Return", for: UIControl.State())
-         button.setTitleColor(UIColor.black, for: UIControl.State())
-         button.frame = CGRect(x: 0, y: 400, width: 106, height: 53)
-         button.adjustsImageWhenHighlighted = false
-         self.view.addSubview(button)
-         button.addTarget(self, action: Selector(("createMenuItem")), for: UIControl.Event.touchUpInside)
+//        let button = UIButton()
+//         button.setTitle("Return", for: UIControl.State())
+//         button.setTitleColor(UIColor.black, for: UIControl.State())
+//         button.frame = CGRect(x: 0, y: 400, width: 106, height: 53)
+//         button.adjustsImageWhenHighlighted = false
+//         self.view.addSubview(button)
+//         button.addTarget(self, action: Selector(("createMenuItem")), for: UIControl.Event.touchUpInside)
 
-
+        
+       
         // Do any additional setup after loading the view.
     }
     func addDoneButtonOnKeyboard()
@@ -98,7 +105,35 @@ class EntreeCustomizeOptionsVC: UIViewController {
             // The alert was presented
         }
     }
-
+    func setupAddOnName() {
+        addOnName.textColor = UIColor.red
+        addOnName.autocapitalizationType = UITextAutocapitalizationType.none
+        addOnName.placeholder = "Add On Name"
+        addOnName.layer.cornerRadius = 5
+        addOnName.layer.borderWidth = 1
+        addOnName.layer.borderColor = CG_Colors.lightPurple
+    }
+    func setupAddOnNamePrice() {
+        //addOnPrice.textColor = UIColor.black
+        addOnPrice.autocapitalizationType = UITextAutocapitalizationType.none
+        addOnPrice.placeholder = "Menu Item Price"
+        addOnPrice.layer.cornerRadius = 5
+        addOnPrice.layer.borderWidth = 1
+        addOnPrice.layer.borderColor = CG_Colors.lightPurple
+        addOnPrice.text = "$0.00"
+    }
+    func setupCategoryName() {
+    
+    }
+    func setupDoneCustomizingButton() {
+        addOn.layer.cornerRadius = 5
+        addOn.layer.borderWidth = 1
+        addOn.layer.borderColor = CG_Colors.darkPurple
+        addOn.backgroundColor = UI_Colors.darkPurple
+        addOn.setTitle("Customization Complete", for: .normal)
+        addOn.showsTouchWhenHighlighted = true
+    }
+    
     @objc func createMenuItem () {
           if customizeButton.text == "" || itemPrice.text == "" || itemName.text == ""  {
                agreeToTerms()

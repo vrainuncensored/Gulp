@@ -51,6 +51,16 @@ class merchantSignupPage: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        userName.tag = 0
+        userEmail.tag = 1
+        userPassword.tag = 2
+        userPasswordConfirmation.tag = 3
+        userPhoneNumber.tag = 4
+        
+        
+        
         //setup for the TextFields
         setupUserNameField()
         setupUserEmailField()
@@ -70,6 +80,7 @@ class merchantSignupPage: UIViewController {
         userPassword.delegate = self
         userPasswordConfirmation.delegate = self
         userName.delegate = self
+        userPhoneNumber.delegate = self
         
     }
     func setupUserNameField() {
@@ -107,9 +118,9 @@ class merchantSignupPage: UIViewController {
         addBankAccount.layer.borderWidth = 1
         addBankAccount.layer.borderColor = CG_Colors.darkPurple
         addBankAccount.backgroundColor = UI_Colors.darkPurple
-        addBankAccount.setTitle("Add Bank Account", for: .normal)
+        addBankAccount.setTitle("Sign Up", for: .normal)
         addBankAccount.showsTouchWhenHighlighted = true
-        addBankAccount.addTarget(self, action: #selector(didSelectConnectWithStripe), for: .touchUpInside)
+        addBankAccount.addTarget(self, action: #selector(signUp), for: .touchUpInside)
     }
     func setupSignInButton() {
         signinButton.addTarget(self, action: #selector(signInAction), for: .touchUpInside)
@@ -151,7 +162,7 @@ class merchantSignupPage: UIViewController {
         newUserRef.setData(data)
     }
     @objc func signInAction(sender: UIButton!) {
-        self.performSegue(withIdentifier: "toSignin", sender: self)
+        self.performSegue(withIdentifier: "segueToSignIn", sender: self)
     }
     @objc
       func didSelectConnectWithStripe() {
@@ -188,7 +199,20 @@ extension merchantSignupPage: UITextFieldDelegate {
         }
         return (true)
     }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+         // Try to find next responder
+        if let nextField = self.view.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
+         } else {
+            // Not found, so remove keyboard.
+            textField.resignFirstResponder()
+    
+         }
+         // Do not add a line break
+         return false
+      }
 }
+
 extension merchantSignupPage: SFSafariViewControllerDelegate {
     func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
         // the user may have closed the SFSafariViewController instance before a redirect

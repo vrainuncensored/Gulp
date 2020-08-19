@@ -20,6 +20,7 @@ class menuItems: UIViewController {
     override func viewDidLoad() {
         viewWillLayoutSubviews()
         
+        print(entreeItems.count)
         
         let width = UIScreen.main.bounds.size.width
         let height = UIScreen.main.bounds.size.height
@@ -78,18 +79,18 @@ class menuItems: UIViewController {
                             //print("\(document.data())")
                             let data = document.data()
                             let test = MenuItem.init(data: data)
-                            if test.itemCategory == "entree" {
+                            if test.itemCategory == "entrees" {
                                 let entreeData: MenuItem = test
                                 self.entreeItems.append(entreeData)
                                 self.testArray.append(self.entreeItems)
-                                //self.printInfo(self.entreeItems)
+                                self.printInfo(self.entreeItems)
                                 tableView.reloadData()
 
 //                                let indexPath = IndexPath(row: 0 , section: 0)
 //                                self.tableView.reloadRows(at: [indexPath], with: .right)
                                 
                             }
-                            else if test.itemCategory == "side" {
+                            else if test.itemCategory == "sides" {
                                 let sidesData: MenuItem = test
                                 self.sidesItems.append(sidesData)
                                 self.testArray.append(self.sidesItems)
@@ -97,7 +98,7 @@ class menuItems: UIViewController {
                                 tableView.reloadData()
 
                             }
-                            else if test.itemCategory == "drink" {
+                            else if test.itemCategory == "drinks" {
                                 let drinksData: MenuItem = test
                                 self.drinksItems.append(drinksData)
                                 self.testArray.append(self.drinksItems)

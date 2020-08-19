@@ -32,6 +32,9 @@ class LoginPage: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        userEmail.tag = 0
+        userPassword.tag = 1
         //setup for the buttons
         setupSignInButton()
         setupSignUpButton()
@@ -104,5 +107,16 @@ class LoginPage: UIViewController {
 
 
 extension LoginPage: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+         // Try to find next responder
+         if let nextField = self.view.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
+         } else {
+            // Not found, so remove keyboard.
+            textField.resignFirstResponder()
     
+         }
+         // Do not add a line break
+         return false
+      }
 }

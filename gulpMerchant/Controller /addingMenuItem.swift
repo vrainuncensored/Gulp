@@ -12,11 +12,23 @@ import FirebaseAuth
 
 
 class addingMenuItem: UIViewController {
-    let itemCategory = UITextField()
-    let itemName = UITextField()
-    let itemPrice = UITextField()
-    let createItemButton = UIButton()
-    let setEntreeOptions = UIButton()
+    //UITextLabel Outlets
+    @IBOutlet weak var itemLabel: UILabel!
+    
+   //UITextField Outlets
+    @IBOutlet weak var itemName: UITextField!
+    @IBOutlet weak var itemPrice: UITextField!
+    //UIButton Outlets
+    @IBOutlet weak var customizeItem: UIButton!
+    @IBOutlet weak var addItem: UIButton!
+    
+    //UIPickerView Outlet
+    
+    @IBOutlet weak var itemCategory: UIPickerView!
+    
+    
+    let categoryOptions = ["entrees", "sides", "drinks"]
+    let itemCategoryName = UILabel()
     var id = ""
     
     override func viewDidLoad() {
@@ -24,6 +36,13 @@ class addingMenuItem: UIViewController {
         //self.navigationController?.navigationBar.prefersLargeTitles = true
         
         viewWillLayoutSubviews()
+        itemCategory.dataSource = self
+        itemCategory.delegate = self
+        
+        
+
+        
+        
         let user = Auth.auth().currentUser
         if let user = user {
         // The user's ID, unique to the Firebase project.
@@ -41,7 +60,7 @@ class addingMenuItem: UIViewController {
         }
         id = (user?.uid)!
         
-        let itemCategoryText = itemCategory.text
+        //let itemCategoryText = itemCategory.text
         let itemNameText = itemName.text
         let itemPriceText = itemPrice.text
         
@@ -50,7 +69,7 @@ class addingMenuItem: UIViewController {
         
         
         
-        self.navigationItem.title = "New Menu Item!"
+        setupAddItemButton()
         //self.view.addBackground()
         let width = UIScreen.main.bounds.size.width
         let height = UIScreen.main.bounds.size.height
@@ -58,62 +77,31 @@ class addingMenuItem: UIViewController {
         
         
         
-        itemCategory.textColor = UIColor.red
-        itemCategory.frame = CGRect(x:  0, y: 100, width: width * 5/6, height: height * 1/10)
-        itemCategory.autocapitalizationType = UITextAutocapitalizationType.none
-        itemCategory.placeholder = "Item Category"
-        itemCategory.layer.cornerRadius = 5
-        itemCategory.layer.borderWidth = 1
-        self.view.addSubview(itemCategory)
+       
         super.viewDidLoad()
         
+        setupItemNameField()
+        setupItemPriceField()
+        //setupItemCategoryField()
+        setupCustomizeItemButton()
         
-        itemName.textColor = UIColor.red
-        itemName.frame = CGRect(x:  0, y: 300, width: width * 5/6, height: height * 1/10)
-        itemName.autocapitalizationType = UITextAutocapitalizationType.none
-        itemName.placeholder = "Menu Item Name"
-        itemName.layer.cornerRadius = 5
-        itemName.layer.borderWidth = 1
-        self.view.addSubview(itemName)
-        super.viewDidLoad()
         
-        itemPrice.textColor = UIColor.red
-        itemPrice.frame = CGRect(x:  0, y:500, width: width * 5/6, height: height * 1/10)
-        itemPrice.autocapitalizationType = UITextAutocapitalizationType.none
-        itemPrice.placeholder = "Menu Item Price"
-        itemPrice.layer.cornerRadius = 5
-        itemPrice.layer.borderWidth = 1
-        self.view.addSubview(itemPrice)
         super.viewDidLoad()
         
         itemCategory.delegate = self
         itemName.delegate = self
-        itemPrice.delegate = self
+        itemName.delegate = self
         
-        itemCategory.tag = 0
-        itemName.tag = 1
+        itemName.tag = 0
         itemPrice.tag = 2
         
-        itemPrice.keyboardType = UIKeyboardType.decimalPad
+        itemName.keyboardType = UIKeyboardType.decimalPad
         self.addDoneButtonOnKeyboard()
 
         
-        let button = UIButton()
-        button.setTitle("Return", for: UIControl.State())
-        button.setTitleColor(UIColor.black, for: UIControl.State())
-        button.frame = CGRect(x: 0, y: 400, width: 106, height: 53)
-        button.adjustsImageWhenHighlighted = false
-        self.view.addSubview(button)
-        button.addTarget(self, action: Selector(("createMenuItem")), for: UIControl.Event.touchUpInside)
-
+       
         
-        let customizeButton = UIButton()
-               customizeButton.setTitle("Customize Settings", for: UIControl.State())
-               customizeButton.setTitleColor(UIColor.black, for: UIControl.State())
-               customizeButton.frame = CGRect(x: 300, y: 100, width: 106, height: 53)
-               customizeButton.adjustsImageWhenHighlighted = false
-               self.view.addSubview(customizeButton)
-               customizeButton.addTarget(self, action: Selector(("segueToEntreeCustomizingPage")), for: UIControl.Event.touchUpInside)
+      
         
         
         // Do any additional setup after loading the view.
@@ -155,18 +143,53 @@ class addingMenuItem: UIViewController {
 
     
     @objc func createMenuItem () {
-        if itemCategory.text == "" || itemPrice.text == "" || itemName.text == ""  {
+        if itemCategoryName.text == "" || itemPrice.text == "" || itemName.text == ""  {
              agreeToTerms()
                 }
         else{
-           let dbItem = MenuItem.init(price: itemPrice.text!, itemCategory: itemCategory.text!, name: itemName.text!)
+           let dbItem = MenuItem.init(price: itemPrice.text!, itemCategory: itemCategoryName.text!, name: itemName.text!)
            self.createFireStoreItem(item: dbItem)
         }
     }
     func itemAdded() {
       self.performSegue(withIdentifier: "itemAdded", sender: self)
     }
-    
+    func setupAddItemButton() {
+        addItem.layer.cornerRadius = 5
+        addItem.layer.borderWidth = 1
+        addItem.layer.borderColor = CG_Colors.darkPurple
+        addItem.backgroundColor = UI_Colors.darkPurple
+        addItem.setTitle("Add Item", for: .normal)
+        addItem.showsTouchWhenHighlighted = true
+        addItem.addTarget(self, action: #selector(createMenuItem), for: .touchUpInside)
+    }
+    func setupItemNameField() {
+        itemName.layer.cornerRadius = 5
+        itemName.layer.borderWidth = 1
+        itemName.layer.borderColor = CG_Colors.lightPurple
+        itemName.textColor = UIColor.black
+        itemName.autocapitalizationType = UITextAutocapitalizationType.none
+        itemName.placeholder = "Menu Item Name"
+    }
+    func setupItemPriceField() {
+           itemPrice.layer.cornerRadius = 5
+           itemPrice.layer.borderWidth = 1
+           itemPrice.layer.borderColor = CG_Colors.lightPurple
+           itemPrice.textColor = UIColor.black
+           itemPrice.autocapitalizationType = UITextAutocapitalizationType.none
+           itemPrice.placeholder = "Item Price"
+       }
+//    func setupItemCategoryField() {
+//              itemCategory.layer.cornerRadius = 5
+//              itemCategory.layer.borderWidth = 1
+//              itemCategory.layer.borderColor = CG_Colors.lightPurple
+//              itemCategory.textColor = UIColor.black
+//              itemCategory.autocapitalizationType = UITextAutocapitalizationType.none
+//              itemCategory.placeholder = "Category"
+//          }
+    func setupCustomizeItemButton() {
+        customizeItem.addTarget(self, action: Selector(("segueToEntreeCustomizingPage")), for: UIControl.Event.touchUpInside)
+    }
     func createFireStoreItem (item : MenuItem) {
         let newItemRef = Firestore.firestore().collection("merchant").document(self.id).collection("menu").document(item.name)
         let data = MenuItem.modelToData(menuItem: item)
@@ -196,19 +219,19 @@ class addingMenuItem: UIViewController {
       doneToolbar.items = items
       doneToolbar.sizeToFit()
       
-      self.itemPrice.inputAccessoryView = doneToolbar
+      self.itemName.inputAccessoryView = doneToolbar
       
     }
      @objc func doneButtonAction()
     {
-      self.itemPrice.resignFirstResponder()
+      self.itemName.resignFirstResponder()
     }
 }
 
 extension addingMenuItem: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
          // Try to find next responder
-         if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {
+        if let nextField = self.view.viewWithTag(textField.tag + 1) as? UITextField {
             nextField.becomeFirstResponder()
          } else {
             // Not found, so remove keyboard.
@@ -219,4 +242,20 @@ extension addingMenuItem: UITextFieldDelegate{
          return false
       }
     
+}
+
+extension addingMenuItem: UIPickerViewDelegate, UIPickerViewDataSource{
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return categoryOptions.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return categoryOptions[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+         itemCategoryName.text = categoryOptions[row]
+    }
 }

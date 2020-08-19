@@ -83,7 +83,7 @@ class orders: UIViewController, CLLocationManagerDelegate {
         
         // Do any additional setup after loading the view.
     }
-    
+        }
 
     /*
     // MARK: - Navigation
@@ -95,7 +95,7 @@ class orders: UIViewController, CLLocationManagerDelegate {
     }
     */
 
-        }
+        
 }
     
       func fbCallOrders (tableView: UITableView) {

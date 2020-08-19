@@ -34,7 +34,6 @@ class LocationPageViewController: UIViewController, CLLocationManagerDelegate {
         self.latitude = locationManager.location!.coordinate.latitude
         let data : [String : Any] = [
             "location" : GeoPoint(latitude: latitude, longitude: longitude),
-            
         ]
         
         Functions.functions().httpsCallable("updateLocation").call(data) { (result, error) in

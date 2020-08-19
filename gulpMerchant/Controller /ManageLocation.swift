@@ -8,8 +8,11 @@
 
 import UIKit
 import MapKit
+import FirebaseFunctions
+import CoreLocation
+import Firebase
 
-class ManageLocation: UIViewController {
+class ManageLocation: UIViewController, CLLocationManagerDelegate {
     //map outlets
     @IBOutlet weak var truckLocation: MKMapView!
     
@@ -18,9 +21,21 @@ class ManageLocation: UIViewController {
     @IBOutlet weak var updateLocationButton: UIButton!
     @IBOutlet weak var closedButton: UIButton!
     
+    
+    let locationManager = CLLocationManager()
+     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+     let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+     }
+     var longitude = 0.0
+     var latitude = 0.0
+    
     override func viewDidLoad() {
         self.navigationItem.title = "Manage Your Location"
         super.viewDidLoad()
+        locationManager.delegate = self;
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
         setupUpdateButton()
         setupClosedButton()
         // Do any additional setup after loading the view.
@@ -32,7 +47,7 @@ class ManageLocation: UIViewController {
         updateLocationButton.backgroundColor = UI_Colors.darkPurple
         updateLocationButton.setTitle("Update Location", for: .normal)
         updateLocationButton.showsTouchWhenHighlighted = true
-        //updateLocation.addTarget(self, action: #selector(didSelectConnectWithStripe), for: .touchUpInside)
+        updateLocationButton.addTarget(self, action: #selector(updateUser), for: .touchUpInside)
     }
     func setupClosedButton() {
            closedButton.layer.cornerRadius = 5
@@ -41,16 +56,68 @@ class ManageLocation: UIViewController {
            closedButton.backgroundColor = UI_Colors.darkPurple
            closedButton.setTitle("Closed", for: .normal)
            closedButton.showsTouchWhenHighlighted = true
-           //updateLocation.addTarget(self, action: #selector(didSelectConnectWithStripe), for: .touchUpInside)
+           closedButton.addTarget(self, action: #selector(closeUser), for: .touchUpInside)
        }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @objc func updateUser() {
+        self.longitude = locationManager.location!.coordinate.longitude
+        self.latitude = locationManager.location!.coordinate.latitude
+        print(longitude)
+        print(latitude)
+    
+        let user = Auth.auth().currentUser
+        if let user = user {
+            let uid = user.uid
+            if Auth.auth().currentUser != nil {
+                let docRef = Firestore.firestore().collection("merchant").document(uid)
+                docRef.updateData([
+                    "locationCoordinates": GeoPoint(latitude: latitude, longitude: longitude)
+                ]) { err in
+                    if let err = err {
+                        print("Error updating document: \(err)")
+                        self.simpleAlert(title: "Error", msg: "Unable to change location.")
+                    } else {
+                        print("Document successfully updated")
+                    }
+                }
+                
+                // Do any additional setup after loading the view.
+            }
+        }
     }
-    */
 
+
+    @objc func closeUser() {
+        let user = Auth.auth().currentUser
+        let nullLatitude = 0.0
+        let nullLongitude = 0.0
+        if let user = user {
+               let uid = user.uid
+               if Auth.auth().currentUser != nil {
+                   let docRef = Firestore.firestore().collection("merchant").document(uid)
+                   docRef.updateData([
+                       "locationCoordinates": GeoPoint(latitude: nullLatitude, longitude: nullLongitude)
+                   ]) { err in
+                       if let err = err {
+                           print("Error updating document: \(err)")
+                           self.simpleAlert(title: "Error", msg: "Unable to change location.")
+                       } else {
+                           print("Document successfully updated")
+                       }
+                   }
+                   
+                   // Do any additional setup after loading the view.
+               }
+           }
+    }
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
+
