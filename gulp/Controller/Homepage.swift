@@ -42,7 +42,7 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
         map.showsUserLocation = true
         map.delegate = self
         
-        
+       
         
 
     

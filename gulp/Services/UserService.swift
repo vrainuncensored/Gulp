@@ -50,9 +50,9 @@ final class _UserService{
         snap?.documents.forEach({ (document) in
             let cartSelection = MenuItem.init(data: document.data())
             self.cart.append(cartSelection)
-                
+
             })
-            
+
         })
         
     }

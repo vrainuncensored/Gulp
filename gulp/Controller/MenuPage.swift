@@ -1,6 +1,6 @@
 import UIKit
 import Firebase
-
+import FirebaseAuth
 class MenuPage: UIViewController {
     /*
      This method will be invoked after iOS app's view is loaded.
@@ -21,16 +21,29 @@ class MenuPage: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //viewWillLayoutSubviews()
+        //let user = Auth.auth().currentUser
+        //let currentUser = auth.currentUser
         
-        Functions.functions().httpsCallable("notify").call{(result, error) in
-                   if let error = error {
-                       debugPrint(error.localizedDescription)
-                       self.simpleAlert(title: "Error", msg: "Unable to make charge.")
-                       return
-                   }
-                   //this is the code that has been executed for after a successful charge has been made
-                  print("success")
-            }  
+        if Auth.auth().currentUser != nil {
+          print("working")
+            userservice.getUser()
+            print(userservice.user.phoneNumber)
+            print("\(userservice.user.name)")
+        } else {
+          print("not working")
+        }
+        
+        let user = Auth.auth().currentUser
+        if let user = user {
+        // The user's ID, unique to the Firebase project.
+        // Do NOT use this value to authenticate with your backend server,
+        // if you have one. Use getTokenWithCompletion:completion: instead.
+            let name = user.email
+            print(name)
+        }
+        
+//        print(user?.email)
+        cloudFunctions.notifyCustomer( phoneNumber: "\(userservice.user.phoneNumber)" )
         
         let width = UIScreen.main.bounds.size.width
         let height = UIScreen.main.bounds.size.height

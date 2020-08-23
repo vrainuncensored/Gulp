@@ -161,6 +161,7 @@ extension userCartVC : STPPaymentContextDelegate {
             }
             //this is the code that has been executed for after a successful charge has been made
             shoppingCart.clearCart()
+            cloudFunctions.notifyCustomer(phoneNumber: userservice.user.phoneNumber)
             completion(.success, nil)
         }
     }

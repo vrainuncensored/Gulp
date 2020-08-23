@@ -82,6 +82,7 @@
 		E38A879724EDF8D4001A66C0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E38A879624EDF8D4001A66C0 /* GoogleService-Info.plist */; };
 		E38A879A24EF1D18001A66C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64DDE6B0242D876C0068223D /* Main.storyboard */; };
 		E38A879C24EF1E65001A66C0 /* GulpLogo12.png in Resources */ = {isa = PBXBuildFile; fileRef = E38A879B24EF1E65001A66C0 /* GulpLogo12.png */; };
+		E38A879E24F2AFC9001A66C0 /* FirebaseFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38A879D24F2AFC9001A66C0 /* FirebaseFunctions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -172,6 +173,7 @@
 		E38A879624EDF8D4001A66C0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../vrain/Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E38A879824EF112D001A66C0 /* GulpLogo.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = GulpLogo.pdf; sourceTree = "<group>"; };
 		E38A879B24EF1E65001A66C0 /* GulpLogo12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GulpLogo12.png; path = ../../GulpLogo12.png; sourceTree = "<group>"; };
+		E38A879D24F2AFC9001A66C0 /* FirebaseFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFunctions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				644B0605247F9ADA003DE98A /* UserService.swift */,
+				E38A879D24F2AFC9001A66C0 /* FirebaseFunctions.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -707,6 +710,7 @@
 				644B05FF247AEA25003DE98A /* customizeEntreeVC.swift in Sources */,
 				644765C9244DD4D8004FCDEA /* truckStructure.swift in Sources */,
 				64320CBA2442AB6900ED486D /* checkoutButton.swift in Sources */,
+				E38A879E24F2AFC9001A66C0 /* FirebaseFunctions.swift in Sources */,
 				644B06142484A15B003DE98A /* orderStructure.swift in Sources */,
 				64320CC6244805D700ED486D /* loginPage.swift in Sources */,
 				64754AA024342C9C0088D0F5 /* mainLogo.swift in Sources */,
