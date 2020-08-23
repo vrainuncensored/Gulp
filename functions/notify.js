@@ -26,7 +26,7 @@ exports.orderCreated = functions.https.onCall( async (data , context) => {
   const customerPhoneNumber = data.phoneNumber;
   return client.messages.create({
     body: 'Thanks for your order! You can grab your food in 10 minutes',
-    to: "+17038191285",  // Text this number
+    to: customerPhoneNumber,  // Text this number
     from: '+12029528407' // From a valid Twilio number
 })
 .then(message => {
