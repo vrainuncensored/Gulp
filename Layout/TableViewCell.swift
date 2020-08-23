@@ -55,7 +55,6 @@ class CartItemCheckout: UITableViewCell {
         let buttonConfig = UIImage.SymbolConfiguration(pointSize: UIFont.systemFontSize, weight: .medium, scale: .medium)
         let userImage = UIImage(systemName: userLogo, withConfiguration: buttonConfig)
         deleteButton.setBackgroundImage(userImage, for: .normal)
-        
     }
     
     func setItemConstraints() {

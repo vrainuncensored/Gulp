@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -48,10 +48,6 @@
                                     <constraint firstItem="YCP-jQ-lxF" firstAttribute="leading" secondItem="0N4-DF-1sf" secondAttribute="leading" constant="30" id="sCA-51-yS1"/>
                                 </constraints>
                             </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6P6-8k-1Tw">
-                                <rect key="frame" x="78" y="171" width="274" height="173"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="bottomLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbt-rC-LeP">
                                 <rect key="frame" x="79" y="406" width="273" height="141"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -65,18 +61,27 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo copy.png" translatesAutoresizingMaskIntoConstraints="NO" id="lJA-Gz-cMc">
+                                <rect key="frame" x="87" y="184" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="tBq-M5-6Ta"/>
+                                    <constraint firstAttribute="height" constant="128" id="tVW-vF-dWt"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="lJA-Gz-cMc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3ey-hd-bHs"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0N4-DF-1sf" secondAttribute="trailing" constant="20" id="NV2-lK-3At"/>
                             <constraint firstItem="0N4-DF-1sf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="U6q-dE-F19"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="0N4-DF-1sf" secondAttribute="bottom" constant="20" id="WFW-RM-QXd"/>
+                            <constraint firstItem="lJA-Gz-cMc" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-200" id="cSa-Ck-adO"/>
                             <constraint firstItem="0N4-DF-1sf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qbG-2a-3Hc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="mainLogo" destination="6P6-8k-1Tw" id="thM-bg-FwR"/>
+                        <outlet property="mainLogo" destination="lJA-Gz-cMc" id="5Q1-of-XuY"/>
                         <outlet property="signinButton" destination="YCP-jQ-lxF" id="SMe-nB-OeM"/>
                         <outlet property="signupButton" destination="BDH-hz-WyL" id="6xv-fK-taY"/>
                         <outlet property="skipButton" destination="Qk6-u3-BeH" id="czF-UO-eC6"/>
@@ -199,6 +204,11 @@
                                                 <state key="normal" title="Select Method"/>
                                             </button>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="1Gm-1p-h10" secondAttribute="trailing" id="3Id-nF-Ysh"/>
+                                            <constraint firstAttribute="trailing" secondItem="1Gm-1p-h10" secondAttribute="trailing" id="Iul-BS-LnA"/>
+                                            <constraint firstAttribute="trailing" secondItem="1Gm-1p-h10" secondAttribute="trailing" id="U4g-S3-fPe"/>
+                                        </constraints>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JfH-yy-4bF">
                                         <rect key="frame" x="0.0" y="71" width="374" height="1"/>
@@ -264,6 +274,9 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="JzC-ID-D4p" secondAttribute="trailing" id="XEm-4X-e6d"/>
+                                        </constraints>
                                     </stackView>
                                 </subviews>
                                 <constraints>
@@ -273,13 +286,13 @@
                                     <constraint firstAttribute="trailing" secondItem="JfH-yy-4bF" secondAttribute="trailing" id="I3t-Sq-URK"/>
                                     <constraint firstItem="JfH-yy-4bF" firstAttribute="leading" secondItem="J2N-Nb-d7D" secondAttribute="leading" id="Kg3-DI-YkB"/>
                                     <constraint firstAttribute="trailing" secondItem="zQD-km-cVl" secondAttribute="trailing" id="N6A-sb-XLN"/>
-                                    <constraint firstItem="VCi-gf-i54" firstAttribute="leading" secondItem="J2N-Nb-d7D" secondAttribute="leading" constant="20" id="NbW-hK-8Sp"/>
+                                    <constraint firstItem="VCi-gf-i54" firstAttribute="leading" secondItem="J2N-Nb-d7D" secondAttribute="leading" constant="20" id="Of1-n0-n5F"/>
                                     <constraint firstItem="eQV-bB-LaW" firstAttribute="leading" secondItem="J2N-Nb-d7D" secondAttribute="leading" constant="20" id="OzA-cL-UYu"/>
                                     <constraint firstAttribute="trailing" secondItem="tdN-aA-Eyo" secondAttribute="trailing" id="QR3-pq-MWs"/>
                                     <constraint firstItem="ytC-Cf-GEV" firstAttribute="leading" secondItem="J2N-Nb-d7D" secondAttribute="leading" constant="20" id="ZUE-eX-glY"/>
+                                    <constraint firstAttribute="trailing" secondItem="VCi-gf-i54" secondAttribute="trailing" constant="20" id="c75-g4-MZX"/>
                                     <constraint firstAttribute="trailing" secondItem="0yv-9Y-TZs" secondAttribute="trailing" constant="20" id="c93-Is-g3U"/>
                                     <constraint firstAttribute="trailing" secondItem="eQV-bB-LaW" secondAttribute="trailing" constant="20" id="gOr-p3-kS6"/>
-                                    <constraint firstAttribute="trailing" secondItem="VCi-gf-i54" secondAttribute="trailing" constant="-20" id="rJ0-JG-QjB"/>
                                     <constraint firstAttribute="trailing" secondItem="ytC-Cf-GEV" secondAttribute="trailing" constant="20" id="vHs-TX-ggY"/>
                                 </constraints>
                             </stackView>
@@ -354,4 +367,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="nVb-VU-tpb"/>
     </inferredMetricsTieBreakers>
+    <resources>
+        <image name="logo copy.png" width="1280.1600341796875" height="1024.3199462890625"/>
+    </resources>
 </document>

@@ -22,7 +22,15 @@ class MenuPage: UIViewController {
         super.viewDidLoad()
         //viewWillLayoutSubviews()
         
-        
+        Functions.functions().httpsCallable("notify").call{(result, error) in
+                   if let error = error {
+                       debugPrint(error.localizedDescription)
+                       self.simpleAlert(title: "Error", msg: "Unable to make charge.")
+                       return
+                   }
+                   //this is the code that has been executed for after a successful charge has been made
+                  print("success")
+            }  
         
         let width = UIScreen.main.bounds.size.width
         let height = UIScreen.main.bounds.size.height
@@ -66,7 +74,7 @@ class MenuPage: UIViewController {
                     //print("\(document.data())")
                     let data = document.data()
                     let test = MenuItem.init(data: data)
-                    if test.itemCategory == "entree" {
+                    if test.itemCategory == "entrees" {
                         let entreeData: MenuItem = test
                         self.entreeItems.append(entreeData)
                         self.testArray.append(self.entreeItems)
@@ -77,7 +85,7 @@ class MenuPage: UIViewController {
                         //                                self.tableView.reloadRows(at: [indexPath], with: .right)
                         
                     }
-                    else if test.itemCategory == "side" {
+                    else if test.itemCategory == "sides" {
                         let sidesData: MenuItem = test
                         self.sidesItems.append(sidesData)
                         self.testArray.append(self.sidesItems)
@@ -85,7 +93,7 @@ class MenuPage: UIViewController {
                         tableView.reloadData()
                         
                     }
-                    else if test.itemCategory == "drink" {
+                    else if test.itemCategory == "drinks" {
                         let drinksData: MenuItem = test
                         self.drinksItems.append(drinksData)
                         self.testArray.append(self.drinksItems)

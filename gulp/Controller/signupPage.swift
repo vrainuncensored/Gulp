@@ -45,6 +45,9 @@ class signupPage: UIViewController {
         setupSignUpButton()
         setupSignInButton()
         
+        
+        
+        
         //establishing delegates
         userEmail.delegate = self
         userPassword.delegate = self
@@ -94,7 +97,7 @@ class signupPage: UIViewController {
     func setupSignInButton() {
         signinButton.addTarget(self, action: #selector(signInAction), for: .touchUpInside)
     }
-    
+  
     @objc func signUp(sender: UIButton!) {
         if testForVaildPhoneNumber() == true{
             Auth.auth().createUser(withEmail: userEmail.text!, password: userPasswordConfirmation.text!) { (result, error) in

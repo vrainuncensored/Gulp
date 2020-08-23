@@ -9,6 +9,7 @@
 import UIKit
 import Stripe
 import FirebaseFunctions
+import Firebase
 
 class userCartVC: UIViewController {
     
@@ -24,6 +25,8 @@ class userCartVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     
+
+    
     var paymentContext: STPPaymentContext!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +35,7 @@ class userCartVC: UIViewController {
         let width = UIScreen.main.bounds.size.width
         let height = UIScreen.main.bounds.size.height
         let array : [CartItem] = shoppingCart.items
-        print(array[0].item.name)
+        //print(array[0].item.name)
         let label = UILabel()
         label.text = "Confirm Checkout"
         
@@ -47,16 +50,6 @@ class userCartVC: UIViewController {
         placeOrderBtn.layer.borderWidth = 2
         placeOrderBtn.layer.borderColor = CG_Colors.darkPurple
         placeOrderBtn.backgroundColor = UI_Colors.darkPurple
-        
-        
-        
-//        imageViewBackground.translatesAutoresizingMaskIntoConstraints = false
-//        imageViewBackground.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-//        imageViewBackground.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
-//        imageViewBackground.heightAnchor.constraint(equalToConstant: 25).isActive = true
-//        imageViewBackground.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
-        
-        
         
         
         
@@ -98,6 +91,17 @@ class userCartVC: UIViewController {
         tableView.separatorStyle = .none
         tableView.rowHeight = 100
     }
+//    func createOrder() {
+//        let docRef = Firestore.firestore().collection("merchant").document(truckIdForQuery!)
+//        docRef.getDocument { (query, err) in
+//            if let err = err {
+//                print("Error getting documents: \(err)")
+//        } else {
+//                let merchant = query?.data()
+//                print(merchant)
+//            }
+//    }
+//    }
     /*
     // MARK: - Navigation
 
@@ -113,23 +117,23 @@ class userCartVC: UIViewController {
 extension userCartVC : STPPaymentContextDelegate {
     func paymentContext(_ paymentContext: STPPaymentContext, didFailToLoadWithError error: Error) {
         //activityIndicator.stopAnimating()
-            
+
             let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
-            
+
             let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
                 self.navigationController?.popViewController(animated: true)
             }
             let retry = UIAlertAction(title: "Retry", style: .default) { (action) in
                 self.paymentContext.retryLoading()
             }
-            
+
         alertController.addAction(cancel)
         alertController.addAction(retry)
         present(alertController, animated: true, completion: nil)
-        
-        
+
+
     }
-    
+
     func paymentContextDidChange(_ paymentContext: STPPaymentContext) {
         if let paymentMethod = paymentContext.selectedPaymentOption {
             paymentMethodBtn.setTitle(paymentMethod.label, for: .normal)
@@ -137,17 +141,17 @@ extension userCartVC : STPPaymentContextDelegate {
             paymentMethodBtn.setTitle("Select Method", for: .normal)
         }
             }
-    
+
     func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPPaymentStatusBlock) {
         let idempotency = UUID().uuidString.replacingOccurrences(of: "-", with: "")
-        
+
         let data : [String : Any] = [
             "total" : shoppingCart.totalCost,
             "customerId" : userservice.user.stripeId,
-            "payment_method_id" : paymentResult.paymentMethod?.stripeId,
+            "payment_method_id" : paymentResult.paymentMethod.stripeId,
             "idempotency" : idempotency
         ]
-        
+
         Functions.functions().httpsCallable("makeCharge").call(data) { (result, error) in
             if let error = error {
                 debugPrint(error.localizedDescription)
@@ -155,15 +159,16 @@ extension userCartVC : STPPaymentContextDelegate {
                 completion(STPPaymentStatus.error, error)
                 return
             }
+            //this is the code that has been executed for after a successful charge has been made
             shoppingCart.clearCart()
             completion(.success, nil)
         }
     }
-    
+
     func paymentContext(_ paymentContext: STPPaymentContext, didFinishWith status: STPPaymentStatus, error: Error?) {
         let title: String
         let message: String
-        
+
         switch status {
         case .error:
             title = "Error"
@@ -182,8 +187,8 @@ extension userCartVC : STPPaymentContextDelegate {
         alertController.addAction(action)
         self.present(alertController, animated: true,completion: nil)
     }
-    
-    
+
+
 }
 extension userCartVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -193,15 +198,27 @@ extension userCartVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Test") as! CartItemCheckout
         let item = shoppingCart.items[indexPath.row]
-        
         cell.set(item: item)
         cell.layer.borderWidth = 1.5
         cell.layer.borderColor = CG_Colors.lightPurple
         cell.layer.cornerRadius = 30.0
+        //cell.deleteButton.actions(forTarget: shoppingCart.remove(item: associatedMenuItem), forControlEvent: .touchUpInside)
         
         return cell
         
         
+    }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let cell = tableView.cellForRow(at: indexPath) as! CartItemCheckout
+//        let item = shoppingCart.items[indexPath.row]
+//        let associatedMenuItem : MenuItem = item.item
+//        cell.deleteButton.actions(forTarget: shoppingCart.remove(item: associatedMenuItem), forControlEvent: .touchUpInside)
+//        print(associatedMenuItem)
+//
+//       }
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
+        print("hello")
     }
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
            return false

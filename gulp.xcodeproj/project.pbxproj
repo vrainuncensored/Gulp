@@ -44,7 +44,7 @@
 		64754A9C2432DDFA0088D0F5 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 64754A9A2432DDFA0088D0F5 /* splash.png */; };
 		64754A9E2432F7E00088D0F5 /* HomeBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64754A9D2432F7E00088D0F5 /* HomeBackground.swift */; };
 		64754AA024342C9C0088D0F5 /* mainLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64754A9F24342C9C0088D0F5 /* mainLogo.swift */; };
-		64754AA224342CEA0088D0F5 /* penis .pdf in Resources */ = {isa = PBXBuildFile; fileRef = 64754AA124342CE90088D0F5 /* penis .pdf */; };
+		64754AA224342CEA0088D0F5 /* mainLogo.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 64754AA124342CE90088D0F5 /* mainLogo.pdf */; };
 		6485276B249551ED00E89866 /* mapsStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6485276A249551ED00E89866 /* mapsStructure.swift */; };
 		648527722496D70B00E89866 /* cartItemStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648527712496D70B00E89866 /* cartItemStructure.swift */; };
 		648527742496DA6800E89866 /* cartOrderStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648527732496DA6800E89866 /* cartOrderStructure.swift */; };
@@ -57,8 +57,6 @@
 		64B7279F245C8FFF0082BBD6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64B7279D245C8FFF0082BBD6 /* LaunchScreen.storyboard */; };
 		64BDB85124A2F51900C7C318 /* checkoutToStripe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BDB85024A2F51900C7C318 /* checkoutToStripe.swift */; };
 		64BDB85424A3FC7B00C7C318 /* StripeApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BDB85324A3FC7B00C7C318 /* StripeApi.swift */; };
-		64BDB85624A91F4400C7C318 /* Main logo.svg in Resources */ = {isa = PBXBuildFile; fileRef = 64BDB85524A91F4300C7C318 /* Main logo.svg */; };
-		64BDB85824A938D800C7C318 /* GulpLogo.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 64BDB85724A938D700C7C318 /* GulpLogo.pdf */; };
 		64D6E8D4245DD8C800A3B852 /* orders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D6E8D3245DD8C800A3B852 /* orders.swift */; };
 		64D6E8D6245DDDE500A3B852 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D6E8D5245DDDE500A3B852 /* CustomTabBar.swift */; };
 		64D6E8DA245E338700A3B852 /* menuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D6E8D9245E338700A3B852 /* menuItems.swift */; };
@@ -75,13 +73,15 @@
 		64DDE6AB242D876C0068223D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DDE6AA242D876C0068223D /* AppDelegate.swift */; };
 		64DDE6AD242D876C0068223D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DDE6AC242D876C0068223D /* SceneDelegate.swift */; };
 		64DDE6AF242D876C0068223D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DDE6AE242D876C0068223D /* ViewController.swift */; };
-		64DDE6B2242D876C0068223D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64DDE6B0242D876C0068223D /* Main.storyboard */; };
 		64DDE6B4242D876D0068223D /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 64DDE6B3242D876D0068223D /* assets */; };
 		64DDE6B7242D876D0068223D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64DDE6B5242D876D0068223D /* LaunchScreen.storyboard */; };
 		64EF27202459495200BD68C5 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EF271F2459495200BD68C5 /* PassKit.framework */; };
 		7B5A36920485832D72E86419 /* Pods_gulpMerchant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B4A07C4173718B8938FA70 /* Pods_gulpMerchant.framework */; };
 		E335229E24D7B5D000E0827D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E335229D24D7B5D000E0827D /* Assets.xcassets */; };
 		E36FF0B124D7BD790014B443 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E36FF0B024D7BD790014B443 /* GoogleService-Info.plist */; };
+		E38A879724EDF8D4001A66C0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E38A879624EDF8D4001A66C0 /* GoogleService-Info.plist */; };
+		E38A879A24EF1D18001A66C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64DDE6B0242D876C0068223D /* Main.storyboard */; };
+		E38A879C24EF1E65001A66C0 /* GulpLogo12.png in Resources */ = {isa = PBXBuildFile; fileRef = E38A879B24EF1E65001A66C0 /* GulpLogo12.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -125,7 +125,7 @@
 		64754A9A2432DDFA0088D0F5 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		64754A9D2432F7E00088D0F5 /* HomeBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeBackground.swift; path = ../HomeBackground.swift; sourceTree = "<group>"; };
 		64754A9F24342C9C0088D0F5 /* mainLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainLogo.swift; sourceTree = "<group>"; };
-		64754AA124342CE90088D0F5 /* penis .pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "penis .pdf"; sourceTree = "<group>"; };
+		64754AA124342CE90088D0F5 /* mainLogo.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = mainLogo.pdf; sourceTree = "<group>"; };
 		6485276A249551ED00E89866 /* mapsStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapsStructure.swift; sourceTree = "<group>"; };
 		648527712496D70B00E89866 /* cartItemStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cartItemStructure.swift; sourceTree = "<group>"; };
 		648527732496DA6800E89866 /* cartOrderStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cartOrderStructure.swift; sourceTree = "<group>"; };
@@ -140,8 +140,6 @@
 		64B727A0245C8FFF0082BBD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64BDB85024A2F51900C7C318 /* checkoutToStripe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkoutToStripe.swift; sourceTree = "<group>"; };
 		64BDB85324A3FC7B00C7C318 /* StripeApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeApi.swift; sourceTree = "<group>"; };
-		64BDB85524A91F4300C7C318 /* Main logo.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Main logo.svg"; path = "../../../Main logo.svg"; sourceTree = "<group>"; };
-		64BDB85724A938D700C7C318 /* GulpLogo.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = GulpLogo.pdf; path = ../../../GulpLogo.pdf; sourceTree = "<group>"; };
 		64D6E8D3245DD8C800A3B852 /* orders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = orders.swift; sourceTree = "<group>"; };
 		64D6E8D5245DDDE500A3B852 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		64D6E8D9245E338700A3B852 /* menuItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = menuItems.swift; sourceTree = "<group>"; };
@@ -170,8 +168,10 @@
 		A9A68096033DD4EC8EBBAC28 /* Pods-gulpMerchant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gulpMerchant.debug.xcconfig"; path = "Target Support Files/Pods-gulpMerchant/Pods-gulpMerchant.debug.xcconfig"; sourceTree = "<group>"; };
 		C3D30B1C79573C3F4367EF55 /* Pods-gulp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gulp.debug.xcconfig"; path = "Target Support Files/Pods-gulp/Pods-gulp.debug.xcconfig"; sourceTree = "<group>"; };
 		E335229D24D7B5D000E0827D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../test/test/Assets.xcassets; sourceTree = "<group>"; };
-		E36FF0AF24D7BD650014B443 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "gulp/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		E36FF0B024D7BD790014B443 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E38A879624EDF8D4001A66C0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../vrain/Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E38A879824EF112D001A66C0 /* GulpLogo.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = GulpLogo.pdf; sourceTree = "<group>"; };
+		E38A879B24EF1E65001A66C0 /* GulpLogo12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GulpLogo12.png; path = ../../GulpLogo12.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -354,6 +354,7 @@
 		64754A982432DDFA0088D0F5 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				E38A879624EDF8D4001A66C0 /* GoogleService-Info.plist */,
 			);
 			name = assets;
 			path = ../../../../.Trash/assets;
@@ -436,17 +437,16 @@
 				644B0604247F9AB7003DE98A /* Services */,
 				64EF271E2459495200BD68C5 /* gulp.entitlements */,
 				6458A6E62459249B00F415AA /* gulpRelease.entitlements */,
-				64754AA124342CE90088D0F5 /* penis .pdf */,
-				64BDB85724A938D700C7C318 /* GulpLogo.pdf */,
+				64754AA124342CE90088D0F5 /* mainLogo.pdf */,
+				E38A879B24EF1E65001A66C0 /* GulpLogo12.png */,
+				E38A879824EF112D001A66C0 /* GulpLogo.pdf */,
 				64320CA424342D7800ED486D /* logo.png */,
 				64754A9A2432DDFA0088D0F5 /* splash.png */,
-				64BDB85524A91F4300C7C318 /* Main logo.svg */,
 				64754A992432DDFA0088D0F5 /* icon.png */,
 				E335229D24D7B5D000E0827D /* Assets.xcassets */,
 				64DDE6B3242D876D0068223D /* assets */,
 				64754A982432DDFA0088D0F5 /* assets */,
 				64DDE6B8242D876D0068223D /* Info.plist */,
-				E36FF0AF24D7BD650014B443 /* GoogleService-Info.plist */,
 			);
 			path = gulp;
 			sourceTree = "<group>";
@@ -547,14 +547,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				64646A8224B62A0F00A4691B /* LoginFlowCustomer.storyboard in Resources */,
-				64754AA224342CEA0088D0F5 /* penis .pdf in Resources */,
-				64BDB85824A938D800C7C318 /* GulpLogo.pdf in Resources */,
+				E38A879A24EF1D18001A66C0 /* Main.storyboard in Resources */,
+				64754AA224342CEA0088D0F5 /* mainLogo.pdf in Resources */,
 				E335229E24D7B5D000E0827D /* Assets.xcassets in Resources */,
 				64DDE6B7242D876D0068223D /* LaunchScreen.storyboard in Resources */,
-				64BDB85624A91F4400C7C318 /* Main logo.svg in Resources */,
 				64754A9B2432DDFA0088D0F5 /* icon.png in Resources */,
 				64DDE6B4242D876D0068223D /* assets in Resources */,
-				64DDE6B2242D876C0068223D /* Main.storyboard in Resources */,
+				E38A879C24EF1E65001A66C0 /* GulpLogo12.png in Resources */,
+				E38A879724EDF8D4001A66C0 /* GoogleService-Info.plist in Resources */,
 				64754A9C2432DDFA0088D0F5 /* splash.png in Resources */,
 				64320CA524342D7800ED486D /* logo.png in Resources */,
 			);
@@ -921,8 +921,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.orderGulp.gulpMerchant;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = gulp;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -941,8 +942,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = merchant.com.ordergulp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.orderGulp.gulpMerchant;
+				PRODUCT_NAME = gulp;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

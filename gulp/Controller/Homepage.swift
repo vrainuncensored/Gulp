@@ -101,6 +101,7 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
                if(segue.identifier == "MenuSegue"){
                        let displayVC = segue.destination as! MenuPage
                        displayVC.truckIdForQuery = truckIdForQuery
+                        
                 displayVC.truckName = truckToShowMenu
                }
            }

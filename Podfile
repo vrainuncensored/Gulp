@@ -15,6 +15,9 @@ pod 'SwiftPhoneNumberFormatter'
 pod 'Stripe'
 pod 'Firebase/Functions'
 pod 'Firebase/DynamicLinks'
+pod 'FacebookCore'
+pod 'FacebookLogin'
+pod 'FacebookShare'
 end
 
 target 'gulp' do
