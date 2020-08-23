@@ -6,6 +6,7 @@ app.use(express.json());
 const { resolve } = require("path");
 const notify = require('./notify');
 exports.notify = notify.test;
+exports.notifyCustomer = notify.orderCreated
 // const location = require('./location');
 // exports.location = location.updateLocation
 //exports.closeLocation = location.closeLocation
