@@ -23,7 +23,8 @@ class MenuPage: UIViewController {
         //viewWillLayoutSubviews()
         //let user = Auth.auth().currentUser
         //let currentUser = auth.currentUser
-        
+        print( userservice.user.stripeId)
+        print("\(userservice.user.stripeId)")
         if Auth.auth().currentUser != nil {
           print("working")
             userservice.getUser()
@@ -32,15 +33,16 @@ class MenuPage: UIViewController {
         } else {
           print("not working")
         }
-        
-        let user = Auth.auth().currentUser
-        if let user = user {
-        // The user's ID, unique to the Firebase project.
-        // Do NOT use this value to authenticate with your backend server,
-        // if you have one. Use getTokenWithCompletion:completion: instead.
-            let name = user.email
-            print(name)
-        }
+//        
+//        let user = Auth.auth().currentUser
+//        if let user = user {
+//        // The user's ID, unique to the Firebase project.
+//        // Do NOT use this value to authenticate with your backend server,
+//        // if you have one. Use getTokenWithCompletion:completion: instead.
+//            let name = user.email
+//            print(user.uid)
+//            print(name)
+//        }
         
 //        print(user?.email)
         cloudFunctions.notifyCustomer( phoneNumber: "\(userservice.user.phoneNumber)" )
