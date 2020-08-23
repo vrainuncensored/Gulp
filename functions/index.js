@@ -4,9 +4,15 @@ const express = require('express');
 const app = express();
 app.use(express.json());
 const { resolve } = require("path");
-// const notify = require('./notify');
-// exports.notify = notify.notify;
+const notify = require('./notify');
+exports.notify = notify.test;
+// const location = require('./location');
+// exports.location = location.updateLocation
+//exports.closeLocation = location.closeLocation
+//serviceAccount = require('./serviceAccount.json');
 
+// const adminConfig = JSON.parse(process.env.FIREBASE_CONFIG);
+// adminConfig.credential = admin.credential.cert(serviceAccount);
 admin.initializeApp();
 
 // // Create and Deploy Your First Cloud Functions
@@ -74,7 +80,7 @@ exports.merchantOnboarding = functions.https.onRequest(app);
    const customer = await stripe.customers.create({ email: email })
    return admin.firestore().collection('users').doc(data.id).update({ stripeId: customer.id})
 
-});
+  });
 
 exports.createStripeMerchant = functions.firestore.document('merchant/{userId}').onCreate(async (snap, context) => {
  const data = snap.data();
@@ -118,6 +124,7 @@ exports.makeCharge = functions.https.onCall( async (data, context) => {
           });
   });
 
+
 //  exports.helloWorld = functions.https.onRequest((request, response) => {
 //   response.send("Hello from Firebase!");
 //   console.log("suck my fat fucking cock");
@@ -131,7 +138,6 @@ exports.makeCharge = functions.https.onCall( async (data, context) => {
 //   const clientSecret = customer.client_secret
 //   return { clientSecret: clientSecret };
 // });
-
 
 exports.createEphemeralKey = functions.https.onCall(async(data, context) => {
 
@@ -154,7 +160,26 @@ exports.createEphemeralKey = functions.https.onCall(async(data, context) => {
     throw new functions.https.HttpsError('internal', 'Unable to create ephemeral key.')
   })
 });
+const firestore = admin.firestore();
 
+exports.updateLocation = functions.firestore.document('merchant/{userId}').onUpdate(async(snap, context) => {
+
+  const latitude = snap.latitude;
+  const longitude = snap.longitude;
+  const uid = context.auth.uid;
+
+  if (uid === null) {
+      console.log('Illegal access attempt due to unathenticated user');
+      throw new functions.https.HttpsError('permission-denied', 'Illegal access attempt.')
+  }
+  //the notation new Firestore.GeoPoint is a constructor that creates a new GeoPoint. This has to be done on the server level. You cannot send a geopoint from swift to back end, only a primitive data payment_method_types
+  let updatdeCoordinates = {
+  google: new Firestore.GeoPoint(latitude, longitude)
+};
+let docRef = firestore.collection('merchant').document(uid)
+
+  return docRef.update({ locationCoordinates: updatdeCoordinates })
+});
 // function updateMerchatOrders(truckId) => {
 //
 // }
