@@ -39,12 +39,12 @@ class userCartVC: UIViewController {
         let label = UILabel()
         label.text = "Confirm Checkout"
         
-       
+
         setupPaymentInfo()
         setupTableView()
         paymentMethodBtn.addTarget(self, action: #selector(stripeAction), for: .touchUpInside)
         
-        
+        print(shoppingCart.listOfNames)
        
         placeOrderBtn.addTarget(self, action: #selector(stripeCheckout), for: .touchUpInside)
         placeOrderBtn.layer.borderWidth = 2
@@ -162,6 +162,9 @@ extension userCartVC : STPPaymentContextDelegate {
             //this is the code that has been executed for after a successful charge has been made
             shoppingCart.clearCart()
             cloudFunctions.notifyCustomer(phoneNumber: userservice.user.phoneNumber)
+            cloudFunctions.notifyTruck(phoneNumber: truckservice.truck.phoneNumber)
+            let orderticket = Order(customerId: userservice.user.id, merchantId: truckservice.truck.id, items: ["testing"], timestamp: Timestamp.init(), total: shoppingCart.totalCost)
+            cloudFunctions.orderCreated(orderTicket: orderticket)
             completion(.success, nil)
         }
     }

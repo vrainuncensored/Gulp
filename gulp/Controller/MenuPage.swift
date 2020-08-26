@@ -21,19 +21,8 @@ class MenuPage: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //viewWillLayoutSubviews()
-        //let user = Auth.auth().currentUser
-        //let currentUser = auth.currentUser
-        print( userservice.user.stripeId)
-        print("\(userservice.user.stripeId)")
-        if Auth.auth().currentUser != nil {
-          print("working")
-            userservice.getUser()
-            print(userservice.user.phoneNumber)
-            print("\(userservice.user.name)")
-        } else {
-          print("not working")
-        }
-//        
+        truckservice.getTruck(UUID: truckIdForQuery!)
+        //
 //        let user = Auth.auth().currentUser
 //        if let user = user {
 //        // The user's ID, unique to the Firebase project.
@@ -45,7 +34,7 @@ class MenuPage: UIViewController {
 //        }
         
 //        print(user?.email)
-        cloudFunctions.notifyCustomer( phoneNumber: "\(userservice.user.phoneNumber)" )
+        //cloudFunctions.notifyCustomer( phoneNumber: "\(userservice.user.phoneNumber)" )
         
         let width = UIScreen.main.bounds.size.width
         let height = UIScreen.main.bounds.size.height
@@ -61,7 +50,7 @@ class MenuPage: UIViewController {
         tableView.separatorStyle = .none
         tableView.register(MenuItems.self, forCellReuseIdentifier: "Test")
         fbCall(tableView: tableView)
-        
+
         self.navigationItem.title = "\(truckName!)'s menu"
                let userLogo = "cart.badge.plus"
                let buttonConfig = UIImage.SymbolConfiguration(pointSize: UIFont.systemFontSize, weight: .medium, scale: .large)

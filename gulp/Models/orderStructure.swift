@@ -7,35 +7,48 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
-//struct Order {
-//    var name : String
-//    var timestamp : Timestamp
-//    var price: Double
-//    
-//    init(
-//         price: Double = ,
-//         itemCategory: String = "",
-//         name: String = "") {
-//        
-//        self.itemCategory = itemCategory
-//        self.name = name
-//        self.price = price
-//    }
-//    //the initializer for taking firebase results into useable data
-//    init(data: [String: Any]) {
-//        price = data["price"] as? String ?? ""
-//        itemCategory = data["itemCategory"] as? String ?? ""
-//        name = data["name"] as? String ?? ""
-//
-//    }
-//    //this is the code needed to take input and send to the database
-//    static func modelToData(menuItem: MenuItem) -> [String: Any] {
-//        let data: [String: Any] = [
-//            "price": menuItem.price,
-//            "itemCategory": menuItem.itemCategory,
-//            "name": menuItem.name,
-//        ]
-//        return data
-//    }
-//}
+struct Order {
+    var customerId : String
+    var merchantId : String
+    var items : [String]
+    var timestamp : Timestamp
+    var total: Int
+
+    init(
+        customerId: String = "",
+         merchantId: String = "",
+         items : [String] = [""],
+         timestamp : Timestamp,
+         total: Int = 0
+         ) {
+
+        self.customerId = customerId
+        self.merchantId = merchantId
+        self.items = items
+        self.timestamp = timestamp
+        self.total = total
+
+    }
+    //the initializer for taking firebase results into useable data
+    init(data: [String: Any]) {
+        customerId = data["customerId"] as? String ?? ""
+        merchantId = data["merchantId"] as? String ?? ""
+        items = data["items"] as? [String] ?? [""]
+        timestamp = data["timestamp"] as? Timestamp ??  Timestamp()
+        total = data["total"] as? Int ?? 0
+
+    }
+    //this is the code needed to take input and send to the database
+    static func modelToData(order: Order) -> [String: Any] {
+        let data: [String: Any] = [
+            "customerId": order.customerId,
+            "merchantId" : order.merchantId,
+            "items" : order.items,
+            "timestamp" : order.timestamp,
+            "total" : order.total
+        ]
+        return data
+    }
+}

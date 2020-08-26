@@ -38,4 +38,36 @@ final class _FirebaseFunctions{
             print("success")
         }
     }
+    func notifyTruck(phoneNumber: String) {
+           let data : [String : String] = [
+               "phoneNumber" : phoneNumber,
+           ]
+           Functions.functions().httpsCallable("updateMerchantOfOrder").call(data) {(result, error) in
+               if let error = error {
+                   debugPrint(error.localizedDescription)
+                   //self.simpleAlert(title: "Error", msg: "Unable to make charge.")
+                   return
+               }
+               //this is the code that has been executed for after a successful charge has been made
+               print("success")
+           }
+       }
+    func orderCreated(orderTicket : Order ) {
+        let data = Order.modelToData(order: orderTicket)
+        let customerTicket = Firestore.firestore().collection("users").document(orderTicket.customerId).collection("orders").document(orderTicket.customerId)
+        customerTicket.setData(data){ err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+            }
+        }
+        let merchantTicket = Firestore.firestore().collection("merchant").document(orderTicket.merchantId).collection("orders").document(orderTicket.customerId)
+        merchantTicket.setData(data){ err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+            }
+        }
+        
+    }
 }

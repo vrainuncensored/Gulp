@@ -16,6 +16,7 @@ final class _ShoppingCart {
     private let flatFeeCents = 30
     private let salesTaxRate = 0.0725
     var shippingFees = 0
+    private(set) var listOfNames: [String] = []
 }
 
 extension _ShoppingCart {
@@ -25,12 +26,22 @@ extension _ShoppingCart {
 //            }
 //        }
 //    }
+    
+    var itemsOrdered : [String] {
+        for item in items {
+            let name = item.item.name
+            self.listOfNames.append(name)
+        }
+         return listOfNames
+    }
+    
     var subtotal: Int {
         var amount = 0
         for item in items {
             let pricePennies = Int(item.subTotal * 100)
             amount += pricePennies
         }
+        
         return amount
     }
     
@@ -66,7 +77,7 @@ extension _ShoppingCart {
         let itemTest = items.filter { $0.item == item }
         
         if itemTest.first != nil {
-            itemTest.first!.quantity += 1
+            itemTest.first!.quantity += 10
         } else {
             items.append(CartItem(item: item))
         }

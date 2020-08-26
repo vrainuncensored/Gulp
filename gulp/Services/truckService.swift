@@ -14,63 +14,43 @@ let truckservice = _TruckService()
 
 final class _TruckService{
     
-    var user = User()
-    var cart = [MenuItem]()
+    var truck = Truck()
     let auth = Auth.auth()
     let db = Firestore.firestore()
-    var userListner : ListenerRegistration? = nil
-    var cartListner : ListenerRegistration? = nil
+
     
-    var isGuest : Bool {
-        guard let isGuest = auth.currentUser else {
-            return true
+    
+    func getTruck(UUID: String) {
+        
+        let truckRef = db.collection("merchant").document(UUID)
+        truckRef.getDocument { (query , err) in
+            if let error = err {
+                print(error.localizedDescription)
+                return
+            }
+            guard let data = query?.data() else {return}
+            self.truck = Truck.init(data: data)
         }
-        return false
     }
     
-    func getUser() {
-        guard let currentUser = auth.currentUser else {return}
+    
         
-        let userRef = db.collection("users").document(currentUser.uid)
-        userListner = userRef.addSnapshotListener({ (snap, err) in
-            if let error = err {
-                print(error.localizedDescription)
-                return
-            }
-            guard let data = snap?.data() else {return}
-            self.user = User.init(data: data)
-        })
-        
-        let cartRef = userRef.collection("Cart")
-        cartListner = cartRef.addSnapshotListener({ (snap, err) in
-            if let error = err {
-                print(error.localizedDescription)
-                return
-            }
-        snap?.documents.forEach({ (document) in
-            let cartSelection = MenuItem.init(data: document.data())
-            self.cart.append(cartSelection)
-
-            })
-
-        })
-        
-    }
+    
     
     func updateCart(price: Double, item: String ) {
-        let cartRef = db.collection("users").document(user.id).collection("Cart")
-        var cartPriceTotal = 0.0
-        var carPriceTotal = cartPriceTotal + price
+//        let cartRef = db.collection("users").document(user.id).collection("Cart")
+//        var cartPriceTotal = 0.0
+//        var carPriceTotal = cartPriceTotal + price
         //let selectedItems : [String] =
     }
-    func logoutUser(){
-        userListner?.remove()
-        userListner = nil
-        cartListner?.remove()
-        cartListner = nil
-        user = User()
-        cart.removeAll()
-        
-    }
+//    func logoutUser(){
+//        userListner?.remove()
+//        userListner = nil
+//        cartListner?.remove()
+//        cartListner = nil
+//        user = User()
+//        cart.removeAll()
+//
+//    }
     
 }
