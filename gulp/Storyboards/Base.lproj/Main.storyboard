@@ -152,14 +152,55 @@
                     <view key="view" contentMode="scaleToFill" id="BYF-gA-Dlw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="m0M-d8-dQu">
+                                <rect key="frame" x="0.0" y="56" width="414" height="421"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="421" id="2TI-HD-dyk"/>
+                                </constraints>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W3k-qd-rAC">
+                                <rect key="frame" x="20" y="748" width="374" height="40"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="20"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Iku-3T-Yp2">
+                                <rect key="frame" x="20" y="497" width="374" height="100"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Fpe-th-iV5" firstAttribute="trailing" secondItem="Iku-3T-Yp2" secondAttribute="trailing" constant="20" id="7Zj-9h-0Mp"/>
+                            <constraint firstItem="W3k-qd-rAC" firstAttribute="leading" secondItem="Fpe-th-iV5" secondAttribute="leading" constant="20" id="CCx-Rp-pcz"/>
+                            <constraint firstItem="Iku-3T-Yp2" firstAttribute="top" secondItem="m0M-d8-dQu" secondAttribute="bottom" constant="20" id="L12-of-Ibg"/>
+                            <constraint firstItem="m0M-d8-dQu" firstAttribute="centerX" secondItem="Iku-3T-Yp2" secondAttribute="centerX" id="MOK-LN-0nL"/>
+                            <constraint firstItem="W3k-qd-rAC" firstAttribute="top" secondItem="Iku-3T-Yp2" secondAttribute="bottom" constant="151" id="Txg-Kt-Vm9"/>
+                            <constraint firstItem="Iku-3T-Yp2" firstAttribute="leading" secondItem="Fpe-th-iV5" secondAttribute="leading" constant="20" id="YMC-Ij-6Vi"/>
+                            <constraint firstItem="m0M-d8-dQu" firstAttribute="top" secondItem="Fpe-th-iV5" secondAttribute="top" id="fQi-ec-f1m"/>
+                            <constraint firstItem="m0M-d8-dQu" firstAttribute="leading" secondItem="Fpe-th-iV5" secondAttribute="leading" id="gre-cD-ncN"/>
+                            <constraint firstItem="Fpe-th-iV5" firstAttribute="trailing" secondItem="W3k-qd-rAC" secondAttribute="trailing" constant="20" id="qzf-2w-0lB"/>
+                            <constraint firstItem="Fpe-th-iV5" firstAttribute="bottom" secondItem="W3k-qd-rAC" secondAttribute="bottom" constant="20" id="xcW-rz-iY7"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Fpe-th-iV5"/>
                     </view>
                     <navigationItem key="navigationItem" id="Gww-bv-a3M"/>
+                    <connections>
+                        <outlet property="checkOutButton" destination="W3k-qd-rAC" id="YG3-6e-oeb"/>
+                        <outlet property="customerRequests" destination="Iku-3T-Yp2" id="rmB-VD-DFn"/>
+                        <outlet property="itemOptions" destination="m0M-d8-dQu" id="ZV5-fm-m9O"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kfs-bR-bvO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1668" y="881"/>
+            <point key="canvasLocation" x="1666.6666666666667" y="880.58035714285711"/>
         </scene>
         <!--userCartVC-->
         <scene sceneID="dYF-oW-cFI">
@@ -365,7 +406,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="nVb-VU-tpb"/>
+        <segue reference="wce-uX-9u0"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="logo copy.png" width="1280.1600341796875" height="1024.3199462890625"/>

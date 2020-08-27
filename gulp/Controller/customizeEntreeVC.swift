@@ -9,14 +9,27 @@
 import UIKit
 import Firebase
 
-class customizeEntreeVC: UIViewController {
+class customizeEntreeVC: UIViewController, UITextViewDelegate {
     var entreeItemSelected: String?
     var truckForFBQuery: String?
     var proteinOption = [MenuItem]()
     var addOnOptions = [MenuItem]()
     var allAddOnOptions = [[Any]]()
-    var customerRequests = UITextField()
-    let checkOutButton = UIButton()
+    //var customerRequests = UITextField()
+    //let checkOutButton = UIButton()
+    
+    //TableView Outlets
+    @IBOutlet weak var itemOptions: UITableView!
+    
+    //UITextField Outlets
+    
+    @IBOutlet weak var customerRequests: UITextView!
+    // @IBOutlet weak var customerRequests: UITextField!
+    //Button Outlets
+    
+    @IBOutlet weak var checkOutButton: UIButton!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,23 +41,26 @@ class customizeEntreeVC: UIViewController {
         
         customerRequests.layer.cornerRadius = 5
         customerRequests.layer.borderWidth = 2
-        customerRequests.layer.borderColor = UIColor.systemBlue.cgColor
+        customerRequests.layer.borderColor = CG_Colors.lightPurple
 
         
         checkOutButton.setTitle("Login in", for: .normal)
-           checkOutButton.showsTouchWhenHighlighted = true
-           checkOutButton.layer.cornerRadius = 5
-           checkOutButton.layer.borderWidth = 1
-           checkOutButton.layer.borderColor = UIColor.systemPink.cgColor
+        checkOutButton.showsTouchWhenHighlighted = true
+        checkOutButton.layer.cornerRadius = 5
+        checkOutButton.layer.borderWidth = 1
+        checkOutButton.layer.borderColor = CG_Colors.darkPurple
+        checkOutButton.layer.backgroundColor = CG_Colors.darkPurple
         
         
-        let customizeView = CGRect(x: 0, y:  height/3,  width: width, height: height/3)
-        let tableView = UITableView(frame: customizeView, style: .grouped)
-        view.addSubview(tableView)
-        view.addSubview(customerRequests)
-        view.addSubview(checkOutButton)
+//        let customizeView = CGRect(x: 0, y:  height/3,  width: width, height: height/3)
+//        view.addSubview(tableView)
+//
+      
         
-        customerRequests.placeholder = "Please add any notes for the chef"
+        customerRequests.autocapitalizationType = UITextAutocapitalizationType.none
+        customerRequests.borderStyle = UITextField.BorderStyle.none
+        customerRequests.attributedPlaceholder = NSAttributedString(string:"Please add any notes for the chef", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        customerRequests.adjustsFontSizeToFitWidth = true
 //        entreeLabel.text = "\(entreeItemSelected!)"
 //        self.view.addSubview(entreeLabel)
 //        entreeLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -56,28 +72,28 @@ class customizeEntreeVC: UIViewController {
        
         
         
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo:view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
+//        tableView.translatesAutoresizingMaskIntoConstraints = false
+//        tableView.topAnchor.constraint(equalTo:view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
         //tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         //tableView.bottomAnchor.constraint(equalTo: customerRequests.topAnchor, constant: 10).isActive = true
-        tableView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, constant: 0).isActive = true
-        tableView.heightAnchor.constraint(equalToConstant: height/3).isActive = true
-        
-        customerRequests.translatesAutoresizingMaskIntoConstraints = false
-        customerRequests.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 10).isActive = true
-        customerRequests.bottomAnchor.constraint(equalTo: checkOutButton.topAnchor, constant: 300).isActive = true
-        //customerRequests.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        customerRequests.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 100).isActive = true
-        customerRequests.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 100).isActive = true
-        
-        checkOutButton.translatesAutoresizingMaskIntoConstraints = false
-        //checkOutButton.topAnchor.constraint(equalTo: customerRequests.bottomAnchor, constant: 300).isActive = true
-        checkOutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 10).isActive = true
-        checkOutButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        checkOutButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: 10).isActive = true
-        checkOutButton.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10).isActive = true
-
-       checkOutButton.heightAnchor.constraint(equalToConstant: height/6).isActive = true
+//        tableView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, constant: 0).isActive = true
+//        tableView.heightAnchor.constraint(equalToConstant: height/3).isActive = true
+//
+//        customerRequests.translatesAutoresizingMaskIntoConstraints = false
+//        customerRequests.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 10).isActive = true
+//        customerRequests.bottomAnchor.constraint(equalTo: checkOutButton.topAnchor, constant: 300).isActive = true
+//        //customerRequests.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+//        customerRequests.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 100).isActive = true
+//        customerRequests.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 100).isActive = true
+////
+//        checkOutButton.translatesAutoresizingMaskIntoConstraints = false
+//        //checkOutButton.topAnchor.constraint(equalTo: customerRequests.bottomAnchor, constant: 300).isActive = true
+//        checkOutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 10).isActive = true
+//        checkOutButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+//        checkOutButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: 10).isActive = true
+//        checkOutButton.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10).isActive = true
+//
+//       checkOutButton.heightAnchor.constraint(equalToConstant: height/6).isActive = true
 //        checkOutButton.widthAnchor.constraint(equalToConstant: 300).isActive = true
 //
         
@@ -85,13 +101,13 @@ class customizeEntreeVC: UIViewController {
         
         
         customerRequests.delegate = self
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.allowsMultipleSelection = true
-        tableView.allowsMultipleSelectionDuringEditing = true
-        tableView.rowHeight = 75
-        tableView.register(MenuItems.self, forCellReuseIdentifier: "Test")
-        fbCall(tableView: tableView)
+        itemOptions.dataSource = self
+        itemOptions.delegate = self
+        itemOptions.allowsMultipleSelection = true
+        itemOptions.allowsMultipleSelectionDuringEditing = true
+        itemOptions.rowHeight = 75
+        itemOptions.register(MenuItems.self, forCellReuseIdentifier: "Test")
+        fbCall(tableView: itemOptions)
         //userservice.updateCart
         
         // Do any additional setup after loading the view.
@@ -156,6 +172,9 @@ class customizeEntreeVC: UIViewController {
 }
 
 extension customizeEntreeVC: UITableViewDataSource, UITableViewDelegate {
+     func numberOfSections(in tableView: UITableView) -> Int {
+           return 2
+       }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Test") as! MenuItems
         if (indexPath.section == 0){
@@ -180,9 +199,7 @@ extension customizeEntreeVC: UITableViewDataSource, UITableViewDelegate {
             print(cell.itemLabel.text ?? "hello")
         }
     }
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
+   
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if (section == 0){
             return "Choice of Protein"
