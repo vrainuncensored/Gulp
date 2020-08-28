@@ -15,7 +15,7 @@ class CartItemCheckout: UITableViewCell {
     var itemLabel = UILabel()
     var priceLabel = UILabel()
     var deleteButton = UIButton()
-    weak var delegate: CartItemCheckoutCellDelegate?
+    weak var delegate : CartItemCheckoutCellDelegate?
     private var productItem : CartItem!
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -23,9 +23,6 @@ class CartItemCheckout: UITableViewCell {
         addSubview(itemLabel)
         addSubview(priceLabel)
         addSubview(deleteButton)
-        
-      
-        
         
         configurePriceLabel()
         configureTitleLabel()
@@ -39,14 +36,14 @@ class CartItemCheckout: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func set(item: CartItem ) {
+    func set(item: CartItem , delegate: CartItemCheckoutCellDelegate) {
         itemLabel.text = item.item.name
         priceLabel.text = String(item.subTotal)
         self.productItem = item
-        
+        self.delegate = delegate
     }
 
-    func deleteItemClicked(_ sender: Any){
+    @objc func deleteItemClicked(_ sender: Any){
         delegate?.deleteItem(item: productItem)
     }
 
@@ -90,6 +87,7 @@ class CartItemCheckout: UITableViewCell {
            deleteButton.leadingAnchor.constraint(equalTo: priceLabel.trailingAnchor, constant: 30).isActive = true
            //deleteButton.heightAnchor.constraint(equalToConstant: 25).isActive = true
            deleteButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -40).isActive = true
+        deleteButton.addTarget(self, action: #selector(deleteItemClicked), for: .touchUpInside)
        }
 }
 
