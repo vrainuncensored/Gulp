@@ -129,7 +129,7 @@
             <objects>
                 <viewController wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" id="zHI-4S-anM" customClass="MenuPage" customModule="gulp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xd7-ef-brL">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="Mqm-3L-DWe"/>
@@ -150,25 +150,25 @@
             <objects>
                 <viewController title="customizeEntreeVC" modalPresentationStyle="fullScreen" id="9OK-Wq-Efe" customClass="customizeEntreeVC" customModule="gulp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BYF-gA-Dlw">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="m0M-d8-dQu">
-                                <rect key="frame" x="0.0" y="56" width="414" height="421"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="421"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="421" id="2TI-HD-dyk"/>
                                 </constraints>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W3k-qd-rAC">
-                                <rect key="frame" x="20" y="748" width="374" height="40"/>
+                                <rect key="frame" x="20" y="802" width="374" height="40"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="20"/>
                                 <state key="normal" title="Button">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Iku-3T-Yp2">
-                                <rect key="frame" x="20" y="497" width="374" height="100"/>
+                                <rect key="frame" x="20" y="485" width="374" height="166"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -196,6 +196,7 @@
                         <outlet property="checkOutButton" destination="W3k-qd-rAC" id="YG3-6e-oeb"/>
                         <outlet property="customerRequests" destination="Iku-3T-Yp2" id="rmB-VD-DFn"/>
                         <outlet property="itemOptions" destination="m0M-d8-dQu" id="ZV5-fm-m9O"/>
+                        <segue destination="zHI-4S-anM" kind="show" identifier="segueToMenuPage" id="HPk-4e-Xfb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kfs-bR-bvO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -218,7 +219,7 @@
                                 </state>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GBp-qW-7F4">
-                                <rect key="frame" x="20" y="76" width="374" height="417.5"/>
+                                <rect key="frame" x="20" y="20" width="374" height="473.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="J2N-Nb-d7D">
@@ -407,6 +408,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="wce-uX-9u0"/>
+        <segue reference="HPk-4e-Xfb"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="logo copy.png" width="1280.1600341796875" height="1024.3199462890625"/>

@@ -17,6 +17,7 @@ final class _ShoppingCart {
     private let salesTaxRate = 0.0725
     var shippingFees = 0
     private(set) var listOfNames: [String] = []
+    var additionalRequests: String?
 }
 
 extension _ShoppingCart {

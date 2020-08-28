@@ -42,6 +42,7 @@ class customizeEntreeVC: UIViewController, UITextViewDelegate {
         customerRequests.layer.cornerRadius = 5
         customerRequests.layer.borderWidth = 2
         customerRequests.layer.borderColor = CG_Colors.lightPurple
+        checkOutButton.addTarget(self, action: #selector(updateCustomize), for: .touchUpInside)
 
         
         checkOutButton.setTitle("Add To Cart", for: .normal)
@@ -58,42 +59,14 @@ class customizeEntreeVC: UIViewController, UITextViewDelegate {
       
         
         customerRequests.autocapitalizationType = UITextAutocapitalizationType.none
-        customerRequests.attributedText=NSAttributedString(string:"Please add any notes for the chef", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        customerRequests.attributedPlaceholder = NSAttributedString(string:"Please add any notes for the chef", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
         
-//        entreeLabel.text = "\(entreeItemSelected!)"
-//        self.view.addSubview(entreeLabel)
-//        entreeLabel.translatesAutoresizingMaskIntoConstraints = false
-//        entreeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-//        entreeLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25).isActive = true
-//        entreeLabel.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: 0).isActive = true
+//     
 //
         self.navigationItem.title = "\(self.entreeItemSelected!)"
        
         
         
-//        tableView.translatesAutoresizingMaskIntoConstraints = false
-//        tableView.topAnchor.constraint(equalTo:view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
-        //tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        //tableView.bottomAnchor.constraint(equalTo: customerRequests.topAnchor, constant: 10).isActive = true
-//        tableView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, constant: 0).isActive = true
-//        tableView.heightAnchor.constraint(equalToConstant: height/3).isActive = true
-//
-//        customerRequests.translatesAutoresizingMaskIntoConstraints = false
-//        customerRequests.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 10).isActive = true
-//        customerRequests.bottomAnchor.constraint(equalTo: checkOutButton.topAnchor, constant: 300).isActive = true
-//        //customerRequests.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-//        customerRequests.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 100).isActive = true
-//        customerRequests.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 100).isActive = true
-////
-//        checkOutButton.translatesAutoresizingMaskIntoConstraints = false
-//        //checkOutButton.topAnchor.constraint(equalTo: customerRequests.bottomAnchor, constant: 300).isActive = true
-//        checkOutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 10).isActive = true
-//        checkOutButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-//        checkOutButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: 10).isActive = true
-//        checkOutButton.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10).isActive = true
-//
-//       checkOutButton.heightAnchor.constraint(equalToConstant: height/6).isActive = true
-//        checkOutButton.widthAnchor.constraint(equalToConstant: 300).isActive = true
 //
         
         
@@ -134,6 +107,12 @@ class customizeEntreeVC: UIViewController, UITextViewDelegate {
     @objc func segueToUserCartPage(){
                   self.performSegue(withIdentifier: "userCartSegue", sender: self)
        }
+    @objc func updateCustomize(){
+        shoppingCart.additionalRequests = self.customerRequests.text ?? ""
+        self.simpleAlert(title: "Customization Completed" , msg: "We have your changes to the entree")
+
+    }
+    
     func fbCall (tableView: UITableView) {
         let docRef = Firestore.firestore().collection("merchant").document("\(self.truckForFBQuery!)").collection("menuAddOns")
         docRef.getDocuments() { (querySnapshot, err) in
@@ -197,6 +176,16 @@ extension customizeEntreeVC: UITableViewDataSource, UITableViewDelegate {
         if cell.itemLabel.text != "" {
             print(cell.itemLabel.text ?? "hello")
         }
+        if indexPath.section == 0 {
+                   let choiceOfProteinSelected = proteinOption[indexPath.row]
+                   shoppingCart.add(item: choiceOfProteinSelected)
+                   print(shoppingCart.items)
+               }
+        if indexPath.section == 1 {
+                   let addOnSelected = addOnOptions[indexPath.row]
+                   shoppingCart.add(item: addOnSelected)
+                   print(shoppingCart.items)
+               }
     }
    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
