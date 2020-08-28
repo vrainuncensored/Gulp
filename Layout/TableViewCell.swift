@@ -7,18 +7,25 @@
 //
 
 import UIKit
-
+protocol CartItemCheckoutCellDelegate : class {
+    func deleteItem(item: CartItem)
+}
 class CartItemCheckout: UITableViewCell {
     
     var itemLabel = UILabel()
     var priceLabel = UILabel()
     var deleteButton = UIButton()
+    weak var delegate: CartItemCheckoutCellDelegate?
+    private var productItem : CartItem!
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubview(itemLabel)
         addSubview(priceLabel)
         addSubview(deleteButton)
+        
+      
+        
         
         configurePriceLabel()
         configureTitleLabel()
@@ -35,8 +42,14 @@ class CartItemCheckout: UITableViewCell {
     func set(item: CartItem ) {
         itemLabel.text = item.item.name
         priceLabel.text = String(item.subTotal)
+        self.productItem = item
         
     }
+
+    func deleteItemClicked(_ sender: Any){
+        delegate?.deleteItem(item: productItem)
+    }
+
     func configureTitleLabel(){
         itemLabel.numberOfLines = 0
         itemLabel.adjustsFontSizeToFitWidth = true

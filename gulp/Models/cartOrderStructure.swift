@@ -77,7 +77,7 @@ extension _ShoppingCart {
         let itemTest = items.filter { $0.item == item }
         
         if itemTest.first != nil {
-            itemTest.first!.quantity += 10
+            itemTest.first!.quantity += Int(item.price)
         } else {
             items.append(CartItem(item: item))
         }

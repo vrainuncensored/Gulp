@@ -194,7 +194,16 @@ extension userCartVC : STPPaymentContextDelegate {
 
 
 }
-extension userCartVC: UITableViewDelegate, UITableViewDataSource {
+extension userCartVC: CartItemCheckoutCellDelegate {
+    func deleteItem(item: CartItem) {
+        //shoppingCart.remove(item: item.item)
+        print("touch detected")
+        //tableView.reloadData()
+    }
+    
+    
+}
+extension userCartVC:  UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return( shoppingCart.items.count)
     }
@@ -207,9 +216,8 @@ extension userCartVC: UITableViewDelegate, UITableViewDataSource {
         cell.layer.borderColor = CG_Colors.lightPurple
         cell.layer.cornerRadius = 30.0
         //cell.deleteButton.actions(forTarget: shoppingCart.remove(item: associatedMenuItem), forControlEvent: .touchUpInside)
-        
+        cell.delegate = self
         return cell
-        
         
     }
 //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

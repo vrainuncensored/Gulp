@@ -44,7 +44,7 @@ class customizeEntreeVC: UIViewController, UITextViewDelegate {
         customerRequests.layer.borderColor = CG_Colors.lightPurple
 
         
-        checkOutButton.setTitle("Login in", for: .normal)
+        checkOutButton.setTitle("Add To Cart", for: .normal)
         checkOutButton.showsTouchWhenHighlighted = true
         checkOutButton.layer.cornerRadius = 5
         checkOutButton.layer.borderWidth = 1
@@ -58,9 +58,8 @@ class customizeEntreeVC: UIViewController, UITextViewDelegate {
       
         
         customerRequests.autocapitalizationType = UITextAutocapitalizationType.none
-        customerRequests.borderStyle = UITextField.BorderStyle.none
-        customerRequests.attributedPlaceholder = NSAttributedString(string:"Please add any notes for the chef", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
-        customerRequests.adjustsFontSizeToFitWidth = true
+        customerRequests.attributedText=NSAttributedString(string:"Please add any notes for the chef", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        
 //        entreeLabel.text = "\(entreeItemSelected!)"
 //        self.view.addSubview(entreeLabel)
 //        entreeLabel.translatesAutoresizingMaskIntoConstraints = false
