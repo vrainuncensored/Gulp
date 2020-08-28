@@ -197,9 +197,9 @@ extension userCartVC : STPPaymentContextDelegate {
 extension userCartVC: CartItemCheckoutCellDelegate {
     func deleteItem(item: CartItem) {
         shoppingCart.remove(item: item.item)
-        print("touch detected")
         tableView.reloadData()
-        print(item.item.name)
+        print(shoppingCart.subtotal)
+        setupPaymentInfo() 
     }
     
     
