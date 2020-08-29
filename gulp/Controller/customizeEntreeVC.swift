@@ -21,9 +21,10 @@ class customizeEntreeVC: UIViewController, UITextViewDelegate {
     //TableView Outlets
     @IBOutlet weak var itemOptions: UITableView!
     
+    @IBOutlet weak var customerRequests: UITextField!
     //UITextField Outlets
     
-    @IBOutlet weak var customerRequests: UITextView!
+    //@IBOutlet weak var customerRequests: UITextView!
     // @IBOutlet weak var customerRequests: UITextField!
     //Button Outlets
     

@@ -167,25 +167,21 @@
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Iku-3T-Yp2">
-                                <rect key="frame" x="20" y="485" width="374" height="166"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5tr-al-WaF">
+                                <rect key="frame" x="20" y="485" width="374" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="Fpe-th-iV5" firstAttribute="trailing" secondItem="Iku-3T-Yp2" secondAttribute="trailing" constant="20" id="7Zj-9h-0Mp"/>
+                            <constraint firstItem="5tr-al-WaF" firstAttribute="leading" secondItem="Fpe-th-iV5" secondAttribute="leading" constant="20" id="3Vy-hB-7rD"/>
+                            <constraint firstItem="m0M-d8-dQu" firstAttribute="centerX" secondItem="5tr-al-WaF" secondAttribute="centerX" id="4tX-uG-1Eb"/>
                             <constraint firstItem="W3k-qd-rAC" firstAttribute="leading" secondItem="Fpe-th-iV5" secondAttribute="leading" constant="20" id="CCx-Rp-pcz"/>
-                            <constraint firstItem="Iku-3T-Yp2" firstAttribute="top" secondItem="m0M-d8-dQu" secondAttribute="bottom" constant="20" id="L12-of-Ibg"/>
-                            <constraint firstItem="m0M-d8-dQu" firstAttribute="centerX" secondItem="Iku-3T-Yp2" secondAttribute="centerX" id="MOK-LN-0nL"/>
-                            <constraint firstItem="W3k-qd-rAC" firstAttribute="top" secondItem="Iku-3T-Yp2" secondAttribute="bottom" constant="151" id="Txg-Kt-Vm9"/>
-                            <constraint firstItem="Iku-3T-Yp2" firstAttribute="leading" secondItem="Fpe-th-iV5" secondAttribute="leading" constant="20" id="YMC-Ij-6Vi"/>
+                            <constraint firstItem="5tr-al-WaF" firstAttribute="top" secondItem="m0M-d8-dQu" secondAttribute="bottom" constant="20" id="fAZ-qD-eYO"/>
                             <constraint firstItem="m0M-d8-dQu" firstAttribute="top" secondItem="Fpe-th-iV5" secondAttribute="top" id="fQi-ec-f1m"/>
                             <constraint firstItem="m0M-d8-dQu" firstAttribute="leading" secondItem="Fpe-th-iV5" secondAttribute="leading" id="gre-cD-ncN"/>
+                            <constraint firstItem="Fpe-th-iV5" firstAttribute="trailing" secondItem="5tr-al-WaF" secondAttribute="trailing" constant="20" id="oIK-ku-d2Y"/>
                             <constraint firstItem="Fpe-th-iV5" firstAttribute="trailing" secondItem="W3k-qd-rAC" secondAttribute="trailing" constant="20" id="qzf-2w-0lB"/>
                             <constraint firstItem="Fpe-th-iV5" firstAttribute="bottom" secondItem="W3k-qd-rAC" secondAttribute="bottom" constant="20" id="xcW-rz-iY7"/>
                         </constraints>
@@ -194,7 +190,7 @@
                     <navigationItem key="navigationItem" id="Gww-bv-a3M"/>
                     <connections>
                         <outlet property="checkOutButton" destination="W3k-qd-rAC" id="YG3-6e-oeb"/>
-                        <outlet property="customerRequests" destination="Iku-3T-Yp2" id="rmB-VD-DFn"/>
+                        <outlet property="customerRequests" destination="5tr-al-WaF" id="bcy-eC-rHe"/>
                         <outlet property="itemOptions" destination="m0M-d8-dQu" id="ZV5-fm-m9O"/>
                         <segue destination="zHI-4S-anM" kind="show" identifier="segueToMenuPage" id="HPk-4e-Xfb"/>
                     </connections>
