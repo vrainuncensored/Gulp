@@ -98,35 +98,35 @@ class orders: UIViewController, CLLocationManagerDelegate {
         
 }
     
-      func fbCallOrders (tableView: UITableView) {
-            let user = Auth.auth().currentUser
-            if let user = user {
-                let uid = user.uid
-                let email = user.email
-                if Auth.auth().currentUser != nil {
-                    print( uid)
-                    print ( email)
-                    let docRef = Firestore.firestore().collection("merchant").document(uid).collection("orders")
-                    docRef.getDocuments() { (querySnapshot, err) in
-                        if let err = err {
-                            print("Error getting documents: \(err)")
-                        } else {
-                            for document in querySnapshot!.documents {
-                                //print("\(document.data())")
-                                let data = document.data()
-                                let orderfromFB = Order.init(data: data)
-                                self.orders.append(orderfromFB)
-                                
-    
-                                    tableView.reloadData()
-
-    //
-                                
-                               
-                            }
+    func fbCallOrders (tableView: UITableView) {
+        let user = Auth.auth().currentUser
+        if let user = user {
+            let uid = user.uid
+            let email = user.email
+            if Auth.auth().currentUser != nil {
+                print( uid)
+                print ( email)
+                let docRef = Firestore.firestore().collection("merchant").document(uid).collection("orders")
+                docRef.getDocuments() { (querySnapshot, err) in
+                    if let err = err {
+                        print("Error getting documents: \(err)")
+                    } else {
+                        for document in querySnapshot!.documents {
+                            //print("\(document.data())")
+                            let data = document.data()
+                            let orderfromFB = Order.init(data: data)
+                            self.orders.append(orderfromFB)
+                            
+                            
+                            tableView.reloadData()
+                            
+                            //
+                            
+                            
                         }
                     }
                 }
+            }
         }
     }
     @objc func addItem(sender: UIButton!) {
