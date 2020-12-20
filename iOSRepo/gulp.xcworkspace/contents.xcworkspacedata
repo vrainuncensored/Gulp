@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:LoginFlowCustomer.storyboard">
+   </FileRef>
+   <FileRef
+      location = "group:gulpMerchant/menuItems.swift">
+   </FileRef>
+   <FileRef
+      location = "group:confirmationPage.swift">
+   </FileRef>
+   <FileRef
+      location = "group:gulp/HomeBackground.swift">
+   </FileRef>
+   <FileRef
+      location = "group:gulp/loginPage.swift">
+   </FileRef>
+   <FileRef
+      location = "group:gulp/MenuItems.swift">
+   </FileRef>
+   <FileRef
+      location = "group:Login.storyboard">
+   </FileRef>
+   <FileRef
+      location = "group:Login.storyboard">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/vkahuja2/Desktop/gulp/gulp/Login.storyboard">
+   </FileRef>
+   <Group
+      location = "group:gulp/../New Group"
+      name = "Shared">
+      <FileRef
+         location = "group:New Group/Login.storyboard">
+      </FileRef>
+      <FileRef
+         location = "group:/Users/vkahuja2/Desktop/gulp/gulp/gulp/Storyboards/Login.storyboard">
+      </FileRef>
+   </Group>
+   <FileRef
+      location = "group:gulp.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
+</Workspace>

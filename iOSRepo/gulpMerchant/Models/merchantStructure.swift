@@ -1,0 +1,59 @@
+//
+//  merchantStructure.swift
+//  gulpMerchant
+//
+//  Created by Vrain Ahuja on 5/3/20.
+//  Copyright © 2020 Gulp. All rights reserved.
+//
+
+import Foundation
+import CoreLocation
+import Firebase
+
+
+
+struct Merchant {
+    var email : String
+    var id: String
+    var stripeId: String
+    var name: String
+    var locationCoordinates: GeoPoint?
+    var phoneNumber: String
+
+    init(email: String = "",
+         id: String = "",
+         stripeId: String = "",
+         name: String = "",
+         locationCoordinates:GeoPoint = GeoPoint(latitude: 0.0 ,longitude: 0.0),
+         phoneNumber: String = "") {
+        
+        self.email = email
+        self.id = id
+        self.stripeId = stripeId
+        self.name = name
+        self.locationCoordinates = locationCoordinates
+        self.phoneNumber = phoneNumber
+    }
+    //the initializer for taking firebase results into useable data
+    init(data: [String: Any]) {
+        id = data["id"] as? String ?? ""
+        email = data["email"] as? String ?? ""
+        stripeId = data["stripeId"] as? String ?? ""
+        name = data["name"] as? String ?? ""
+        locationCoordinates = data["locationCoordinates"] as? GeoPoint ?? GeoPoint(latitude: 0.0, longitude: 0.0)
+        phoneNumber = data["phoneNumber"] as? String ?? ""
+
+    }
+    //this is the code needed to take input and send to the database
+    static func modelToData(merchant: Merchant) -> [String: Any] {
+        let data: [String: Any] = [
+            "email": merchant.email,
+            "id": merchant.id,
+            "stripeId": merchant.stripeId,
+            "name": merchant.name,
+            "locationCoordinates": merchant.locationCoordinates ?? GeoPoint(latitude: 0.0, longitude: 0.0),
+            "phoneNumber": merchant.phoneNumber
+        ]
+        return data
+    }
+}
