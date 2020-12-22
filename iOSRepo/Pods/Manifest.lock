@@ -333,6 +333,7 @@ DEPENDENCIES:
   - FacebookCore
   - FacebookLogin
   - FacebookShare
+  - FBSDKLoginKit
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/DynamicLinks
@@ -418,6 +419,6 @@ SPEC CHECKSUMS:
   Stripe: 30ba9a2ac7297e93de561fed695222ef980ee521
   SwiftPhoneNumberFormatter: 0cc91f4daa06dd606a9defb21048a75c36a771a2
 
-PODFILE CHECKSUM: 529f00267a57a9588fbab3c294eb1d40e8feee2a
+PODFILE CHECKSUM: a32013efda122bf554600df2cb7103c9d05e1827
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.0

@@ -18,6 +18,7 @@ pod 'Firebase/DynamicLinks'
 pod 'FacebookCore'
 pod 'FacebookLogin'
 pod 'FacebookShare'
+pod 'FBSDKLoginKit'
 end
 
 target 'gulp' do

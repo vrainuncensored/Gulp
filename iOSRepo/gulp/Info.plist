@@ -56,6 +56,19 @@
     <string>992911884414253</string>
     <key>FacebookDisplayName</key>
     <string>gulp</string>
+    <key>CFBundleURLTypes</key>
+    <array>
+      <dict>
+      <key>CFBundleURLSchemes</key>
+      <array>
+        <string>fb992911884414253</string>
+      </array>
+      </dict>
+    </array>
+    <key>FacebookAppID</key>
+    <string>992911884414253</string>
+    <key>FacebookDisplayName</key>
+    <string>gulp</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

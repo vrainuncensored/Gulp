@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -88,12 +88,12 @@
                         <outlet property="signupButton" destination="BDH-hz-WyL" id="6xv-fK-taY"/>
                         <outlet property="skipButton" destination="Qk6-u3-BeH" id="czF-UO-eC6"/>
                         <outlet property="slogan" destination="mbt-rC-LeP" id="nXb-mZ-Ppi"/>
-                        <segue destination="PYE-2P-sNR" kind="show" identifier="HomeSegue" id="EpO-je-Me4"/>
+                        <segue destination="PYE-2P-sNR" kind="show" identifier="HomeSegue" id="aTZ-7Z-pY8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-894.20289855072474" y="72.991071428571431"/>
+            <point key="canvasLocation" x="-2310" y="73"/>
         </scene>
         <!--Home Page-->
         <scene sceneID="eiA-oG-jPz">
@@ -108,10 +108,11 @@
             </objects>
             <point key="canvasLocation" x="904" y="48"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Item-->
         <scene sceneID="Xm5-Ji-R77">
             <objects>
                 <navigationController storyboardIdentifier="mainFlow" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" id="PYE-2P-sNR" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="HDf-rR-JyS"/>
                     <navigationItem key="navigationItem" id="DK0-G5-F1m"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bua-JX-wRL">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
