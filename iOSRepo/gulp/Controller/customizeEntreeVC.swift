@@ -21,60 +21,24 @@ class customizeEntreeVC: UIViewController, UITextViewDelegate {
     //TableView Outlets
     @IBOutlet weak var itemOptions: UITableView!
     
-    @IBOutlet weak var customerRequests: UITextField!
     //UITextField Outlets
-    
-    //@IBOutlet weak var customerRequests: UITextView!
-    // @IBOutlet weak var customerRequests: UITextField!
+    @IBOutlet weak var customerRequests: UITextField!
+ 
     //Button Outlets
-    
     @IBOutlet weak var checkOutButton: UIButton!
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.addBackground()
-        let width = UIScreen.main.bounds.size.width
-        let height = UIScreen.main.bounds.size.height
-        //let test = CGRect(x: width/2, y: height * (1/8), width: width/10, height: height/8)
-       // entreeLabel.frame = test
-        
-        customerRequests.layer.cornerRadius = 5
-        customerRequests.layer.borderWidth = 2
-        customerRequests.layer.borderColor = CG_Colors.lightPurple
-        checkOutButton.addTarget(self, action: #selector(updateCustomize), for: .touchUpInside)
-
-        
-        checkOutButton.setTitle("Add To Cart", for: .normal)
-        checkOutButton.showsTouchWhenHighlighted = true
-        checkOutButton.layer.cornerRadius = 5
-        checkOutButton.layer.borderWidth = 1
-        checkOutButton.layer.borderColor = CG_Colors.red
-        checkOutButton.layer.backgroundColor = CG_Colors.red
-        checkOutButton.setTitleColor(.white, for: .normal)
-        
-        
-//        let customizeView = CGRect(x: 0, y:  height/3,  width: width, height: height/3)
-//        view.addSubview(tableView)
+//        self.view.addBackground()
+//        let width = UIScreen.main.bounds.size.width
+//        let height = UIScreen.main.bounds.size.height
 //
-      
+        settupCheckOutButton()
+        settupCustomerRequestTextField()
         
-        customerRequests.autocapitalizationType = UITextAutocapitalizationType.none
-        customerRequests.attributedPlaceholder = NSAttributedString(string:"Please add any notes for the chef", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
-        
-//     
-//
         self.navigationItem.title = "\(self.entreeItemSelected!)"
        
         
-        
-//
-        
-        
-        
-        
-        customerRequests.delegate = self
         itemOptions.dataSource = self
         itemOptions.delegate = self
         itemOptions.allowsMultipleSelection = true
@@ -82,11 +46,25 @@ class customizeEntreeVC: UIViewController, UITextViewDelegate {
         itemOptions.rowHeight = 75
         itemOptions.register(MenuItems.self, forCellReuseIdentifier: "Test")
         fbCall(tableView: itemOptions)
-        //userservice.updateCart
-        
-        // Do any additional setup after loading the view.
     }
-    
+    func settupCheckOutButton() {
+        checkOutButton.addTarget(self, action: #selector(updateCustomize), for: .touchUpInside)
+        checkOutButton.setTitle("Add To Cart", for: .normal)
+        checkOutButton.showsTouchWhenHighlighted = true
+        checkOutButton.layer.cornerRadius = 5
+        checkOutButton.layer.borderWidth = 1
+        checkOutButton.layer.borderColor = CG_Colors.red
+        checkOutButton.layer.backgroundColor = CG_Colors.red
+        checkOutButton.setTitleColor(.white, for: .normal)
+    }
+    func settupCustomerRequestTextField() {
+        customerRequests.layer.cornerRadius = 5
+        customerRequests.layer.borderWidth = 2
+        customerRequests.layer.borderColor = CG_Colors.lightPurple
+        customerRequests.autocapitalizationType = UITextAutocapitalizationType.none
+        customerRequests.attributedPlaceholder = NSAttributedString(string:"Please add any notes for the chef", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        customerRequests.delegate = self
+    }
 
     /*
     // MARK: - Navigation

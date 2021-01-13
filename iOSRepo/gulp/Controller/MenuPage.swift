@@ -251,7 +251,7 @@ extension MenuPage: UITableViewDataSource, UITableViewDelegate {
         if indexPath.section == 0 {
             let entreeSelected = entreeItems[indexPath.row]
             self.entreeSelected = entreeSelected.name
-            
+           shoppingCart.add(item: entreeSelected)
             self.segueToEntreeCustomizePage()
         }
         if indexPath.section == 1 {
