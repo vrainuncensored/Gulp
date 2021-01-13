@@ -50,8 +50,9 @@ class customizeEntreeVC: UIViewController, UITextViewDelegate {
         checkOutButton.showsTouchWhenHighlighted = true
         checkOutButton.layer.cornerRadius = 5
         checkOutButton.layer.borderWidth = 1
-        checkOutButton.layer.borderColor = CG_Colors.darkPurple
-        checkOutButton.layer.backgroundColor = CG_Colors.darkPurple
+        checkOutButton.layer.borderColor = CG_Colors.red
+        checkOutButton.layer.backgroundColor = CG_Colors.red
+        checkOutButton.setTitleColor(.white, for: .normal)
         
         
 //        let customizeView = CGRect(x: 0, y:  height/3,  width: width, height: height/3)
@@ -111,6 +112,7 @@ class customizeEntreeVC: UIViewController, UITextViewDelegate {
     @objc func updateCustomize(){
         shoppingCart.additionalRequests = self.customerRequests.text ?? ""
         self.simpleAlert(title: "Customization Completed" , msg: "We have your changes to the entree")
+        print(shoppingCart.items)
 
     }
     

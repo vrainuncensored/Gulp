@@ -66,7 +66,7 @@ extension _ShoppingCart {
         if subtotal == 0 {
             return 0
         }
-        return subtotal + processingFees + tax
+        return subtotal + tax
     }
     
     

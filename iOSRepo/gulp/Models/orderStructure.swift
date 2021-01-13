@@ -16,14 +16,16 @@ struct Order {
     var timestamp : Timestamp
     var total: Int
     var additionalRequests:String?
+    var orderNumber:String
 
     init(
         customerId: String = "",
-         merchantId: String = "",
-         items : [String] = [""],
-         timestamp : Timestamp,
-         total: Int = 0,
-         additionalRequests: String
+        merchantId: String = "",
+        items : [String] = [""],
+        timestamp : Timestamp,
+        total: Int = 0,
+        additionalRequests: String,
+        orderNumber:String
          ) {
 
         self.customerId = customerId
@@ -32,6 +34,7 @@ struct Order {
         self.timestamp = timestamp
         self.total = total
         self.additionalRequests = additionalRequests
+        self.orderNumber = orderNumber
 
     }
     //the initializer for taking firebase results into useable data
@@ -42,6 +45,7 @@ struct Order {
         timestamp = data["timestamp"] as? Timestamp ??  Timestamp()
         total = data["total"] as? Int ?? 0
         additionalRequests = data["additionalRequests"] as? String ?? ""
+        orderNumber = data["orderNumber"] as? String ?? ""
 
     }
     //this is the code needed to take input and send to the database
@@ -52,7 +56,8 @@ struct Order {
             "items" : order.items,
             "timestamp" : order.timestamp,
             "total" : order.total,
-            "additionalRequests" : order.additionalRequests
+            "additionalRequests" : order.additionalRequests,
+            "orderNumber" : order.orderNumber
         ]
         return data
     }

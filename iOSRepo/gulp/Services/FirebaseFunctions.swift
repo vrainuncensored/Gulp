@@ -66,14 +66,14 @@ final class _FirebaseFunctions{
        }
     func orderCreated(orderTicket : Order ) {
         let data = Order.modelToData(order: orderTicket)
-        let customerTicket = Firestore.firestore().collection("users").document(orderTicket.customerId).collection("orders").document(orderTicket.customerId)
+        let customerTicket = Firestore.firestore().collection("users").document(orderTicket.customerId).collection("orders").document(orderTicket.orderNumber)
         customerTicket.setData(data){ err in
             if let err = err {
                 print("Error writing document: \(err)")
             } else {
             }
         }
-        let merchantTicket = Firestore.firestore().collection("merchant").document(orderTicket.merchantId).collection("orders").document(orderTicket.customerId)
+        let merchantTicket = Firestore.firestore().collection("merchant").document(orderTicket.merchantId).collection("orders").document(orderTicket.orderNumber)
         merchantTicket.setData(data){ err in
             if let err = err {
                 print("Error writing document: \(err)")

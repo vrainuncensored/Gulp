@@ -50,7 +50,7 @@ class ViewController: UIViewController {
 
         mainLogo.image = test
         signupButton.layer.borderWidth = 2
-        signupButton.layer.borderColor = CG_Colors.darkPurple
+        signupButton.layer.borderColor = CG_Colors.red
         signupButton.setTitle("Sign Up", for: .normal)
         
         signinButton.addTarget(self, action: #selector(loginAction), for: .touchUpInside)
@@ -58,7 +58,7 @@ class ViewController: UIViewController {
         skipButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         
         signinButton.layer.borderWidth = 2
-        signinButton.layer.borderColor = CG_Colors.darkPurple
+        signinButton.layer.borderColor = CG_Colors.red
         signinButton.setTitle("Sign In", for: .normal)
     
     }
