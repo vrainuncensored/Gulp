@@ -42,6 +42,12 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
         map.showsUserLocation = true
         map.delegate = self
         
+        let user = Auth.auth().currentUser
+        if let user = user {
+          let uid = user.uid
+          print(user)
+          print(uid)
+        }
        userservice.getUser()
        settupLogoInNavBar()
 

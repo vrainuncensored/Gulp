@@ -27,7 +27,11 @@ class signupPage: UIViewController, LoginButtonDelegate {
             if let error = error{
                 print("error")
             }
-            print(authResult)
+            let user = Auth.auth().currentUser
+            if let user = user {
+              let uid = user.uid
+                self.makeGraphCall(authValue: uid)
+            }
 //            self.performSegue(withIdentifier: "HomeSegue", sender: self)
         }
     }
@@ -167,6 +171,33 @@ class signupPage: UIViewController, LoginButtonDelegate {
         facebookButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
         facebookButton.topAnchor.constraint(equalTo: orLabel.bottomAnchor, constant: 15).isActive = true
         view.addSubview(facebookButton)
+    }
+    func makeGraphCall(authValue: String) {
+        guard let accessToken = FBSDKLoginKit.AccessToken.current else { return }
+        let graphRequest = FBSDKLoginKit.GraphRequest(graphPath: "me",
+                                                      parameters: ["fields": "email, name"],
+                                                      tokenString: accessToken.tokenString,
+                                                      version: nil,
+                                                      httpMethod: .get)
+        graphRequest.start { (connection, result, error) -> Void in
+            if error == nil {
+                if let result = result as? [String:String],
+                       let email: String = result["email"],
+                       let name: String = result["name"]{
+                        print(email)
+                        print(name)
+                    let dbUser = User.init(email: email, id: authValue, stripeId: "", name: name, phoneNumber: "")
+                    self.createFireStoreUser(user: dbUser)
+                    print(authValue)
+                    
+                }
+
+            }
+            else {
+                print("error \(error)")
+            }
+        }
+        
     }
 //    func settupAppleLoginButton() {
 //        let appleLoginButton = ASAuthorizationAppleIDButton()
