@@ -43,6 +43,7 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
         map.delegate = self
         
        userservice.getUser()
+       settupLogoInNavBar()
 
         
 
@@ -108,8 +109,19 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
            }
     
     func seguetoTruckMenu(){
-           self.performSegue(withIdentifier: "MenuSegue", sender: self)
-}
+        self.performSegue(withIdentifier: "MenuSegue", sender: self)
+    }
+    func settupLogoInNavBar() {
+        let logoContainer = UIView(frame: CGRect(x: 0, y: 0, width: 270, height: 40))
+        
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 270, height: 40))
+        imageView.contentMode = .scaleAspectFit
+        let logo = UIImage(named: "gulplogo.png")
+        imageView.image = logo
+        logoContainer.addSubview(imageView)
+        self.navigationItem.titleView = logoContainer
+    }
+    
     func fbCall (tableView : UITableView) {
         let docRef = Firestore.firestore().collection("merchant")
         docRef.getDocuments() { (querySnapshot, err) in

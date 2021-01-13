@@ -11,25 +11,25 @@ import FirebaseAuth
 import Firebase
 
 
-class ViewController: UIViewController, LoginButtonDelegate {
-    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
-        if let error = error {
-            print(error.localizedDescription)
-            return
-          }
-        let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
-        Auth.auth().signIn(with: credential) { (authResult, error) in
-            if let error = error{
-                print("error")
-            }
-            print(authResult)
-            self.performSegue(withIdentifier: "HomeSegue", sender: self)
-        }
-    }
-    
-    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
-         
-    }
+class ViewController: UIViewController {
+//    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
+//        if let error = error {
+//            print(error.localizedDescription)
+//            return
+//          }
+//        let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
+//        Auth.auth().signIn(with: credential) { (authResult, error) in
+//            if let error = error{
+//                print("error")
+//            }
+//            print(authResult)
+//            self.performSegue(withIdentifier: "HomeSegue", sender: self)
+//        }
+//    }
+//
+//    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
+//
+//    }
     
 /*
  This method will be invoked after iOS app's view is loaded.
@@ -43,13 +43,7 @@ class ViewController: UIViewController, LoginButtonDelegate {
     override func viewDidLoad() {
     super.viewDidLoad()
         
-        let loginButton = FBLoginButton()
-                loginButton.center = view.center
-                view.addSubview(loginButton)
-        loginButton.delegate = self
-        loginButton.permissions = ["public_profile", "email"]
-        
-        let test = UIImage(named: "GulpLogo12")
+        let test = UIImage(named: "gulplogo")
         slogan.textColor  = UI_Colors.darkPurple
         slogan.font = UIFont(name: "AvenirNext-Bold" , size: 40.0)
         slogan.textColor = UIColor.black

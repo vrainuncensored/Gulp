@@ -19,6 +19,7 @@ pod 'FacebookCore'
 pod 'FacebookLogin'
 pod 'FacebookShare'
 pod 'FBSDKLoginKit'
+pod 'GoogleSignIn'
 end
 
 target 'gulp' do

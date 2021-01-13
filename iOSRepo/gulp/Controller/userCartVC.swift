@@ -30,6 +30,12 @@ class userCartVC: UIViewController {
     var paymentContext: STPPaymentContext!
     override func viewDidLoad() {
         super.viewDidLoad()
+        let userTest = Auth.auth().currentUser
+        print(userTest?.email)
+        print(userTest?.displayName)
+        print(userTest?.phoneNumber)
+        let email = userTest?.email
+        print(email)
         setupStripeConfig()
         self.navigationItem.title = "Checkout"
         let width = UIScreen.main.bounds.size.width
@@ -48,8 +54,9 @@ class userCartVC: UIViewController {
        
         placeOrderBtn.addTarget(self, action: #selector(stripeCheckout), for: .touchUpInside)
         placeOrderBtn.layer.borderWidth = 2
-        placeOrderBtn.layer.borderColor = CG_Colors.darkPurple
-        placeOrderBtn.backgroundColor = UI_Colors.darkPurple
+        placeOrderBtn.layer.borderColor = CG_Colors.red
+        placeOrderBtn.backgroundColor = UI_Colors.red
+        placeOrderBtn.setTitleColor(.white, for: .normal)
         
         
         

@@ -13,6 +13,18 @@ let cloudFunctions = _FirebaseFunctions()
 
 final class _FirebaseFunctions{
 
+    func createDBUser() {
+        Functions.functions().httpsCallable("createDBUser").call{(result, error) in
+            if let error = error {
+                debugPrint(error.localizedDescription)
+                //self.simpleAlert(title: "Error", msg: "Unable to make charge.")
+                return
+            }
+            //this is the code that has been executed for after a successful charge has been made
+            print("success")
+        }
+    }
+    
     func notify() {
         Functions.functions().httpsCallable("notify").call{(result, error) in
             if let error = error {

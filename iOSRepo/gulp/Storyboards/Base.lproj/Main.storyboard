@@ -50,9 +50,8 @@
                                     <constraint firstItem="YCP-jQ-lxF" firstAttribute="leading" secondItem="0N4-DF-1sf" secondAttribute="leading" constant="30" id="sCA-51-yS1"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="bottomLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbt-rC-LeP">
-                                <rect key="frame" x="79" y="406" width="273" height="141"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="bottomLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbt-rC-LeP">
+                                <rect key="frame" x="20" y="390.5" width="374" height="115"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Foodtrucks, Instantly        ">
                                         <attributes>
@@ -63,7 +62,7 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo copy.png" translatesAutoresizingMaskIntoConstraints="NO" id="lJA-Gz-cMc">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gulplogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="lJA-Gz-cMc">
                                 <rect key="frame" x="87" y="184" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="tBq-M5-6Ta"/>
@@ -74,11 +73,16 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="mbt-rC-LeP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3GU-pA-w8f"/>
                             <constraint firstItem="lJA-Gz-cMc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3ey-hd-bHs"/>
+                            <constraint firstItem="mbt-rC-LeP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="GSc-ms-7xH"/>
+                            <constraint firstItem="mbt-rC-LeP" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="LKg-qI-L8n"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0N4-DF-1sf" secondAttribute="trailing" constant="20" id="NV2-lK-3At"/>
                             <constraint firstItem="0N4-DF-1sf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="U6q-dE-F19"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="0N4-DF-1sf" secondAttribute="bottom" constant="20" id="WFW-RM-QXd"/>
                             <constraint firstItem="lJA-Gz-cMc" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-200" id="cSa-Ck-adO"/>
+                            <constraint firstItem="mbt-rC-LeP" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="hqh-yJ-R8m"/>
+                            <constraint firstAttribute="trailing" secondItem="mbt-rC-LeP" secondAttribute="trailing" constant="20" id="opO-cR-Lfc"/>
                             <constraint firstItem="0N4-DF-1sf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qbG-2a-3Hc"/>
                         </constraints>
                     </view>
@@ -93,7 +97,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2310" y="73"/>
+            <point key="canvasLocation" x="-2310.144927536232" y="72.991071428571431"/>
         </scene>
         <!--Home Page-->
         <scene sceneID="eiA-oG-jPz">
@@ -108,16 +112,16 @@
             </objects>
             <point key="canvasLocation" x="904" y="48"/>
         </scene>
-        <!--Item-->
+        <!--gulplogo-->
         <scene sceneID="Xm5-Ji-R77">
             <objects>
                 <navigationController storyboardIdentifier="mainFlow" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" id="PYE-2P-sNR" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="HDf-rR-JyS"/>
-                    <navigationItem key="navigationItem" id="DK0-G5-F1m"/>
+                    <navigationItem key="navigationItem" title="gulplogo" id="DK0-G5-F1m"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bua-JX-wRL">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.98039215686274506" green="0.82352941176470584" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.97120064500000003" green="0.87984639409999998" blue="0.92240995169999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="8mQ-qD-gGJ" kind="relationship" relationship="rootViewController" id="6iS-Zc-xgs"/>
@@ -132,7 +136,7 @@
             <objects>
                 <viewController wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" id="zHI-4S-anM" customClass="MenuPage" customModule="gulp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xd7-ef-brL">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="Mqm-3L-DWe"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -153,25 +157,25 @@
             <objects>
                 <viewController title="customizeEntreeVC" modalPresentationStyle="fullScreen" id="9OK-Wq-Efe" customClass="customizeEntreeVC" customModule="gulp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BYF-gA-Dlw">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="m0M-d8-dQu">
-                                <rect key="frame" x="0.0" y="44" width="414" height="421"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="421"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="421" id="2TI-HD-dyk"/>
                                 </constraints>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W3k-qd-rAC">
-                                <rect key="frame" x="20" y="802" width="374" height="40"/>
+                                <rect key="frame" x="20" y="748" width="374" height="40"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="20"/>
                                 <state key="normal" title="Button">
                                     <color key="titleColor" systemColor="darkTextColor"/>
                                 </state>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5tr-al-WaF">
-                                <rect key="frame" x="20" y="485" width="374" height="34"/>
+                                <rect key="frame" x="20" y="497" width="374" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -218,7 +222,7 @@
                                 </state>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GBp-qW-7F4">
-                                <rect key="frame" x="20" y="20" width="374" height="473.5"/>
+                                <rect key="frame" x="20" y="76" width="374" height="417.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="J2N-Nb-d7D">
@@ -240,7 +244,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Gm-1p-h10">
+                                            <button opaque="NO" contentMode="right" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Gm-1p-h10">
                                                 <rect key="frame" x="165" y="0.0" width="169" height="30"/>
                                                 <state key="normal" title="Select Method"/>
                                             </button>
@@ -407,10 +411,10 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="nVb-VU-tpb"/>
-        <segue reference="HPk-4e-Xfb"/>
+        <segue reference="pPS-g7-CgS"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="logo copy.png" width="1280.1600341796875" height="1024.3199462890625"/>
+        <image name="gulplogo.png" width="792" height="612"/>
         <systemColor name="darkTextColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

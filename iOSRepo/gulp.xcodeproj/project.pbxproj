@@ -12,15 +12,11 @@
 		642BD27124BED2340081178B /* testViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BD27024BED2340081178B /* testViewController.swift */; };
 		642BD27324BF65F90081178B /* ordersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BD27224BF65F90081178B /* ordersTableViewCell.swift */; };
 		642BD27524BF66C30081178B /* orderStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BD27424BF66C30081178B /* orderStructure.swift */; };
-		64320CA524342D7800ED486D /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 64320CA424342D7800ED486D /* logo.png */; };
 		64320CA72434654D00ED486D /* Homepage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64320CA62434654D00ED486D /* Homepage.swift */; };
-		64320CAB243817FD00ED486D /* stackTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64320CAA243817FD00ED486D /* stackTest.swift */; };
 		64320CAE243939AC00ED486D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64320CAD243939AC00ED486D /* CoreLocation.framework */; };
 		64320CB02439B3DB00ED486D /* MenuPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64320CAF2439B3DB00ED486D /* MenuPage.swift */; };
-		64320CB2243E0FBA00ED486D /* UIView+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64320CB1243E0FBA00ED486D /* UIView+EXT.swift */; };
 		64320CB4243E130800ED486D /* MenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64320CB3243E130800ED486D /* MenuItems.swift */; };
 		64320CB6243E1A4600ED486D /* itemStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64320CB5243E1A4600ED486D /* itemStructure.swift */; };
-		64320CB8243EBACB00ED486D /* PaymentPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64320CB7243EBACB00ED486D /* PaymentPage.swift */; };
 		64320CBA2442AB6900ED486D /* checkoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64320CB92442AB6800ED486D /* checkoutButton.swift */; };
 		64320CC6244805D700ED486D /* loginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64320CC5244805D700ED486D /* loginPage.swift */; };
 		64320CC82448068E00ED486D /* signupPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64320CC72448068E00ED486D /* signupPage.swift */; };
@@ -43,8 +39,6 @@
 		64754A9B2432DDFA0088D0F5 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 64754A992432DDFA0088D0F5 /* icon.png */; };
 		64754A9C2432DDFA0088D0F5 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 64754A9A2432DDFA0088D0F5 /* splash.png */; };
 		64754A9E2432F7E00088D0F5 /* HomeBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64754A9D2432F7E00088D0F5 /* HomeBackground.swift */; };
-		64754AA024342C9C0088D0F5 /* mainLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64754A9F24342C9C0088D0F5 /* mainLogo.swift */; };
-		64754AA224342CEA0088D0F5 /* mainLogo.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 64754AA124342CE90088D0F5 /* mainLogo.pdf */; };
 		6485276B249551ED00E89866 /* mapsStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6485276A249551ED00E89866 /* mapsStructure.swift */; };
 		648527722496D70B00E89866 /* cartItemStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648527712496D70B00E89866 /* cartItemStructure.swift */; };
 		648527742496DA6800E89866 /* cartOrderStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648527732496DA6800E89866 /* cartOrderStructure.swift */; };
@@ -78,7 +72,9 @@
 		64EF27202459495200BD68C5 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EF271F2459495200BD68C5 /* PassKit.framework */; };
 		7B5A36920485832D72E86419 /* Pods_gulpMerchant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B4A07C4173718B8938FA70 /* Pods_gulpMerchant.framework */; };
 		8B62436A25913503007A6682 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B62436925913503007A6682 /* GoogleService-Info.plist */; };
-		E36FF0B124D7BD790014B443 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E36FF0B024D7BD790014B443 /* GoogleService-Info.plist */; };
+		8B8A53BB25A68E4900BBA89B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B8A53BA25A68E4900BBA89B /* GoogleService-Info.plist */; };
+		8B8A53BF25A8DAD100BBA89B /* gulplogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B8A53BE25A8DAD100BBA89B /* gulplogo.png */; };
+		8BAC24A025A52AFE008C43B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BAC249F25A52AFE008C43B3 /* Assets.xcassets */; };
 		E38A879A24EF1D18001A66C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64DDE6B0242D876C0068223D /* Main.storyboard */; };
 		E38A879E24F2AFC9001A66C0 /* FirebaseFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38A879D24F2AFC9001A66C0 /* FirebaseFunctions.swift */; };
 		E38A87A024F30A2A001A66C0 /* truckService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38A879F24F30A2A001A66C0 /* truckService.swift */; };
@@ -91,15 +87,11 @@
 		642BD27024BED2340081178B /* testViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testViewController.swift; sourceTree = "<group>"; };
 		642BD27224BF65F90081178B /* ordersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ordersTableViewCell.swift; sourceTree = "<group>"; };
 		642BD27424BF66C30081178B /* orderStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = orderStructure.swift; sourceTree = "<group>"; };
-		64320CA424342D7800ED486D /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		64320CA62434654D00ED486D /* Homepage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Homepage.swift; sourceTree = "<group>"; };
-		64320CAA243817FD00ED486D /* stackTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stackTest.swift; sourceTree = "<group>"; };
 		64320CAD243939AC00ED486D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		64320CAF2439B3DB00ED486D /* MenuPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPage.swift; sourceTree = "<group>"; };
-		64320CB1243E0FBA00ED486D /* UIView+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+EXT.swift"; sourceTree = "<group>"; };
 		64320CB3243E130800ED486D /* MenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItems.swift; sourceTree = "<group>"; };
 		64320CB5243E1A4600ED486D /* itemStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = itemStructure.swift; sourceTree = "<group>"; };
-		64320CB7243EBACB00ED486D /* PaymentPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentPage.swift; sourceTree = "<group>"; };
 		64320CB92442AB6800ED486D /* checkoutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkoutButton.swift; sourceTree = "<group>"; };
 		64320CC5244805D700ED486D /* loginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginPage.swift; sourceTree = "<group>"; };
 		64320CC72448068E00ED486D /* signupPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signupPage.swift; sourceTree = "<group>"; };
@@ -114,7 +106,6 @@
 		644B060B24831843003DE98A /*  cartItemStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " cartItemStructure.swift"; sourceTree = "<group>"; };
 		644B061124846095003DE98A /* updateLocation .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "updateLocation .swift"; sourceTree = "<group>"; };
 		644B06132484A15B003DE98A /* orderStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = orderStructure.swift; sourceTree = "<group>"; };
-		6450618924BBD403002B7C09 /* HomeBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeBackground.swift; path = ../gulp/HomeBackground.swift; sourceTree = "<group>"; };
 		6450618A24BBD4D2002B7C09 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		6458A6E62459249B00F415AA /* gulpRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = gulpRelease.entitlements; sourceTree = "<group>"; };
 		6458B5B9248F4BAA00B132B5 /* userServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userServices.swift; sourceTree = "<group>"; };
@@ -124,8 +115,6 @@
 		64754A992432DDFA0088D0F5 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		64754A9A2432DDFA0088D0F5 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		64754A9D2432F7E00088D0F5 /* HomeBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeBackground.swift; path = ../HomeBackground.swift; sourceTree = "<group>"; };
-		64754A9F24342C9C0088D0F5 /* mainLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainLogo.swift; sourceTree = "<group>"; };
-		64754AA124342CE90088D0F5 /* mainLogo.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = mainLogo.pdf; sourceTree = "<group>"; };
 		6485276A249551ED00E89866 /* mapsStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapsStructure.swift; sourceTree = "<group>"; };
 		648527712496D70B00E89866 /* cartItemStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cartItemStructure.swift; sourceTree = "<group>"; };
 		648527732496DA6800E89866 /* cartOrderStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cartOrderStructure.swift; sourceTree = "<group>"; };
@@ -166,10 +155,11 @@
 		86C698ECD505BFA746DB3BC1 /* Pods_gulp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_gulp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87B4A07C4173718B8938FA70 /* Pods_gulpMerchant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_gulpMerchant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B62436925913503007A6682 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8B8A53BA25A68E4900BBA89B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8B8A53BE25A8DAD100BBA89B /* gulplogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gulplogo.png; path = ../../../../../Desktop/gulplogo.png; sourceTree = "<group>"; };
+		8BAC249F25A52AFE008C43B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../../Desktop/test/test/Assets.xcassets; sourceTree = "<group>"; };
 		A9A68096033DD4EC8EBBAC28 /* Pods-gulpMerchant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gulpMerchant.debug.xcconfig"; path = "Target Support Files/Pods-gulpMerchant/Pods-gulpMerchant.debug.xcconfig"; sourceTree = "<group>"; };
 		C3D30B1C79573C3F4367EF55 /* Pods-gulp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gulp.debug.xcconfig"; path = "Target Support Files/Pods-gulp/Pods-gulp.debug.xcconfig"; sourceTree = "<group>"; };
-		E36FF0B024D7BD790014B443 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		E38A879824EF112D001A66C0 /* GulpLogo.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = GulpLogo.pdf; sourceTree = "<group>"; };
 		E38A879D24F2AFC9001A66C0 /* FirebaseFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFunctions.swift; sourceTree = "<group>"; };
 		E38A879F24F30A2A001A66C0 /* truckService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = truckService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -237,7 +227,6 @@
 				64320CA62434654D00ED486D /* Homepage.swift */,
 				64320CC72448068E00ED486D /* signupPage.swift */,
 				64320CC5244805D700ED486D /* loginPage.swift */,
-				64320CB7243EBACB00ED486D /* PaymentPage.swift */,
 				644B05FC247AE80F003DE98A /* userCartVC.swift */,
 				64DDE6AE242D876C0068223D /* ViewController.swift */,
 				644B05FE247AEA25003DE98A /* customizeEntreeVC.swift */,
@@ -273,13 +262,10 @@
 		644B060D24845A53003DE98A /* Layout */ = {
 			isa = PBXGroup;
 			children = (
-				64320CB1243E0FBA00ED486D /* UIView+EXT.swift */,
 				64320CB3243E130800ED486D /* MenuItems.swift */,
 				644B05FA247AC7A0003DE98A /* navigation bar.swift */,
 				64754A9D2432F7E00088D0F5 /* HomeBackground.swift */,
 				64320CB92442AB6800ED486D /* checkoutButton.swift */,
-				64754A9F24342C9C0088D0F5 /* mainLogo.swift */,
-				64320CAA243817FD00ED486D /* stackTest.swift */,
 				644765C6244DD317004FCDEA /* TruckItems.swift */,
 				64BDB85024A2F51900C7C318 /* checkoutToStripe.swift */,
 				64DB3F9524A9425900D08211 /* Button.swift */,
@@ -331,27 +317,12 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		6450618C24BD683A002B7C09 /* sharedConstants */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = sharedConstants;
-			sourceTree = "<group>";
-		};
 		6458B5B8248F4B8D00B132B5 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				6458B5B9248F4BAA00B132B5 /* userServices.swift */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		64754A982432DDFA0088D0F5 /* assets */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = assets;
-			path = ../../../../.Trash/assets;
 			sourceTree = "<group>";
 		};
 		6485276C24955A4200E89866 /* Layout */ = {
@@ -376,8 +347,7 @@
 			isa = PBXGroup;
 			children = (
 				64593BE524C4CCCD009F5B39 /* gulpMerchant.entitlements */,
-				E36FF0B024D7BD790014B443 /* GoogleService-Info.plist */,
-				6450618924BBD403002B7C09 /* HomeBackground.swift */,
+				8B8A53BA25A68E4900BBA89B /* GoogleService-Info.plist */,
 				6485276C24955A4200E89866 /* Layout */,
 				6458B5B8248F4B8D00B132B5 /* Services */,
 				644B061024845B1B003DE98A /* Models */,
@@ -400,7 +370,6 @@
 		64DDE69E242D876C0068223D = {
 			isa = PBXGroup;
 			children = (
-				6450618C24BD683A002B7C09 /* sharedConstants */,
 				64DDE6A9242D876C0068223D /* gulp */,
 				64B72791245C8FFA0082BBD6 /* gulpMerchant */,
 				64DDE6A8242D876C0068223D /* Products */,
@@ -431,13 +400,11 @@
 				644B0604247F9AB7003DE98A /* Services */,
 				64EF271E2459495200BD68C5 /* gulp.entitlements */,
 				6458A6E62459249B00F415AA /* gulpRelease.entitlements */,
-				64754AA124342CE90088D0F5 /* mainLogo.pdf */,
-				E38A879824EF112D001A66C0 /* GulpLogo.pdf */,
-				64320CA424342D7800ED486D /* logo.png */,
+				8B8A53BE25A8DAD100BBA89B /* gulplogo.png */,
 				64754A9A2432DDFA0088D0F5 /* splash.png */,
 				64754A992432DDFA0088D0F5 /* icon.png */,
+				8BAC249F25A52AFE008C43B3 /* Assets.xcassets */,
 				64DDE6B3242D876D0068223D /* assets */,
-				64754A982432DDFA0088D0F5 /* assets */,
 				64DDE6B8242D876D0068223D /* Info.plist */,
 			);
 			path = gulp;
@@ -455,6 +422,7 @@
 				64B7278D245C8FFA0082BBD6 /* Frameworks */,
 				64B7278E245C8FFA0082BBD6 /* Resources */,
 				0598FE3A514B577444E10B5F /* [CP] Embed Pods Frameworks */,
+				750C15759AEC9A5525A2B387 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -474,6 +442,7 @@
 				64DDE6A4242D876C0068223D /* Frameworks */,
 				64DDE6A5242D876C0068223D /* Resources */,
 				11CB3072513C374175174A6F /* [CP] Embed Pods Frameworks */,
+				FE9B05B133204FB0F4038D41 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -528,7 +497,7 @@
 			files = (
 				64B7279F245C8FFF0082BBD6 /* LaunchScreen.storyboard in Resources */,
 				642BD26D24BED1230081178B /* LoginFlow.storyboard in Resources */,
-				E36FF0B124D7BD790014B443 /* GoogleService-Info.plist in Resources */,
+				8B8A53BB25A68E4900BBA89B /* GoogleService-Info.plist in Resources */,
 				64D6E8FD24738CA000A3B852 /* Main.storyboard in Resources */,
 				64B7279C245C8FFF0082BBD6 /* Assets.xcassets in Resources */,
 			);
@@ -538,15 +507,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B8A53BF25A8DAD100BBA89B /* gulplogo.png in Resources */,
 				64646A8224B62A0F00A4691B /* LoginFlowCustomer.storyboard in Resources */,
 				E38A879A24EF1D18001A66C0 /* Main.storyboard in Resources */,
 				8B62436A25913503007A6682 /* GoogleService-Info.plist in Resources */,
-				64754AA224342CEA0088D0F5 /* mainLogo.pdf in Resources */,
+				8BAC24A025A52AFE008C43B3 /* Assets.xcassets in Resources */,
 				64DDE6B7242D876D0068223D /* LaunchScreen.storyboard in Resources */,
 				64754A9B2432DDFA0088D0F5 /* icon.png in Resources */,
 				64DDE6B4242D876D0068223D /* assets in Resources */,
 				64754A9C2432DDFA0088D0F5 /* splash.png in Resources */,
-				64320CA524342D7800ED486D /* logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -585,6 +554,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-gulp/Pods-gulp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		750C15759AEC9A5525A2B387 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-gulpMerchant/Pods-gulpMerchant-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-gulpMerchant/Pods-gulpMerchant-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-gulpMerchant/Pods-gulpMerchant-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A733C6476A3DBBF0E70E6AD2 /* [CP] Check Pods Manifest.lock */ = {
@@ -631,6 +617,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		FE9B05B133204FB0F4038D41 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-gulp/Pods-gulp-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-gulp/Pods-gulp-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-gulp/Pods-gulp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -669,7 +672,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				644765CF24529AE7004FCDEA /* userStructure.swift in Sources */,
-				64320CAB243817FD00ED486D /* stackTest.swift in Sources */,
 				64BDB85424A3FC7B00C7C318 /* StripeApi.swift in Sources */,
 				64DB3F9624A9425900D08211 /* Button.swift in Sources */,
 				64754A9E2432F7E00088D0F5 /* HomeBackground.swift in Sources */,
@@ -677,11 +679,9 @@
 				649A3DB024B56D64007F6367 /* TableViewCell.swift in Sources */,
 				648527762496E1C400E89866 /* Constants .swift in Sources */,
 				644B05FD247AE80F003DE98A /* userCartVC.swift in Sources */,
-				64320CB8243EBACB00ED486D /* PaymentPage.swift in Sources */,
 				64BDB85124A2F51900C7C318 /* checkoutToStripe.swift in Sources */,
 				64DDE6AB242D876C0068223D /* AppDelegate.swift in Sources */,
 				644B0606247F9ADB003DE98A /* UserService.swift in Sources */,
-				64320CB2243E0FBA00ED486D /* UIView+EXT.swift in Sources */,
 				644765C7244DD317004FCDEA /* TruckItems.swift in Sources */,
 				648527742496DA6800E89866 /* cartOrderStructure.swift in Sources */,
 				644B05FB247AC7A0003DE98A /* navigation bar.swift in Sources */,
@@ -700,7 +700,6 @@
 				E38A879E24F2AFC9001A66C0 /* FirebaseFunctions.swift in Sources */,
 				644B06142484A15B003DE98A /* orderStructure.swift in Sources */,
 				64320CC6244805D700ED486D /* loginPage.swift in Sources */,
-				64754AA024342C9C0088D0F5 /* mainLogo.swift in Sources */,
 				E38A87A024F30A2A001A66C0 /* truckService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -15,7 +15,7 @@ class CheckoutButton: UIViewController {
 override func viewDidLoad() {
     super.viewDidLoad()
     self.view.addBackground()
-    self.view.addLogo()
+    //self.view.addLogo()
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
     let button = UIButton(frame: CGRect(x: 0, y: height * (7/8), width: width, height: height/8))
