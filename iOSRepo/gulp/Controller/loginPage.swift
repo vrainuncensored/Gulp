@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import Firebase
+import FBSDKLoginKit
 
 class LoginPage: UIViewController {
     //Text Outlet
@@ -20,11 +21,15 @@ class LoginPage: UIViewController {
     @IBOutlet weak var signUp: UIButton!
     @IBOutlet weak var signIn: UIButton!
     
+    //Label Outlet
+    @IBOutlet weak var orLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //setup for the buttons
         setupSignInButton()
         setupSignUpButton()
+        settupFacebookButton()
         //setup for the TextFields
         setupUserEmailTextField()
         setupUserPasswordField()
@@ -39,9 +44,10 @@ class LoginPage: UIViewController {
         signIn.showsTouchWhenHighlighted = true
         signIn.layer.cornerRadius = 5
         signIn.layer.borderWidth = 1
-        signIn.layer.borderColor = CG_Colors.darkPurple
-        signIn.backgroundColor = UI_Colors.darkPurple
+        signIn.layer.borderColor = CG_Colors.red
+        signIn.backgroundColor = UI_Colors.red
         signIn.addTarget(self, action: #selector(signinOption), for: .touchUpInside)
+        signIn.setTitleColor(.white, for: .normal)
     }
     func setupSignUpButton() {
         signUp.setTitle("Don't have an account? Create one.", for: .normal)
@@ -74,6 +80,17 @@ class LoginPage: UIViewController {
         }
         
     }
+    func settupFacebookButton() {
+        let facebookButton =  FBLoginButton()
+        facebookButton.delegate = self
+        facebookButton.permissions = ["public_profile", "email"]
+        view.addSubview(facebookButton)
+        facebookButton.translatesAutoresizingMaskIntoConstraints = false
+        facebookButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
+        facebookButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
+        facebookButton.topAnchor.constraint(equalTo: orLabel.bottomAnchor, constant: 15).isActive = true
+        view.addSubview(facebookButton)
+    }
     @objc func forgotPasswordOption(sender: UIButton!) {
         Auth.auth().sendPasswordReset(withEmail: userEmail.text!) { error in
             self.simpleAlert(title: "Password Reset" , msg: "We have a password reset link to your email! Please take a look")
@@ -95,4 +112,24 @@ class LoginPage: UIViewController {
 
 extension LoginPage: UITextFieldDelegate {
     
+}
+
+extension LoginPage: LoginButtonDelegate {
+    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
+        if let error = error {
+            print(error.localizedDescription)
+            return
+          }
+        let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
+        Auth.auth().signIn(with: credential) { (authResult, error) in
+            if let error = error{
+                print("error")
+            }
+            
+//            self.performSegue(withIdentifier: "HomeSegue", sender: self)
+        }
+    }
+    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
+         
+    }
 }
