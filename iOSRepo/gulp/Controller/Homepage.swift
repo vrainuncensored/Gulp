@@ -120,7 +120,7 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
     func settupLogoInNavBar() {
         let logoContainer = UIView(frame: CGRect(x: 0, y: 0, width: 270, height: 40))
         
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 270, height: 40))
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 270, height: 30))
         imageView.contentMode = .scaleAspectFit
         let logo = UIImage(named: "gulplogo.png")
         imageView.image = logo

@@ -29,7 +29,7 @@ class LoginPage: UIViewController {
         //setup for the buttons
         setupSignInButton()
         setupSignUpButton()
-        settupFacebookButton()
+        //settupFacebookButton()
         //setup for the TextFields
         setupUserEmailTextField()
         setupUserPasswordField()
