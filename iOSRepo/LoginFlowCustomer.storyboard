@@ -336,12 +336,6 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pym-Ph-nN0">
-                                <rect key="frame" x="201" y="633" width="12.5" height="16.5"/>
-                                <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="12"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8zR-vg-jaI">
                                 <rect key="frame" x="30" y="580" width="354" height="43"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="22"/>
@@ -356,7 +350,6 @@
                             <constraint firstItem="8zR-vg-jaI" firstAttribute="top" secondItem="rys-h2-sFK" secondAttribute="bottom" constant="20" id="5CV-dW-NQ5"/>
                             <constraint firstItem="8zR-vg-jaI" firstAttribute="leading" secondItem="e6S-sE-auD" secondAttribute="leading" constant="30" id="8Zp-N8-ofP"/>
                             <constraint firstItem="5U1-NZ-jwG" firstAttribute="top" secondItem="e6S-sE-auD" secondAttribute="top" constant="40" id="9DA-7A-oEm"/>
-                            <constraint firstItem="pym-Ph-nN0" firstAttribute="centerX" secondItem="5Jc-5A-7G3" secondAttribute="centerX" id="9nK-7N-8di"/>
                             <constraint firstItem="q86-cw-S8E" firstAttribute="leading" secondItem="e6S-sE-auD" secondAttribute="leading" constant="20" id="GWt-SQ-L9M"/>
                             <constraint firstItem="rys-h2-sFK" firstAttribute="top" secondItem="q86-cw-S8E" secondAttribute="bottom" constant="10" id="GeR-tJ-7Tl"/>
                             <constraint firstItem="e6S-sE-auD" firstAttribute="trailing" secondItem="rWi-Xn-tBy" secondAttribute="trailing" constant="30" id="GlA-wN-Psj"/>
@@ -365,7 +358,6 @@
                             <constraint firstItem="e6S-sE-auD" firstAttribute="trailing" secondItem="8zR-vg-jaI" secondAttribute="trailing" constant="30" id="WYr-Wo-lKS"/>
                             <constraint firstItem="e6S-sE-auD" firstAttribute="trailing" secondItem="q86-cw-S8E" secondAttribute="trailing" constant="20" id="a1p-DW-RqU"/>
                             <constraint firstItem="rWi-Xn-tBy" firstAttribute="leading" secondItem="e6S-sE-auD" secondAttribute="leading" constant="30" id="bdA-dq-ODs"/>
-                            <constraint firstItem="pym-Ph-nN0" firstAttribute="top" secondItem="8zR-vg-jaI" secondAttribute="bottom" constant="10" id="j6p-yA-oMv"/>
                             <constraint firstItem="e6S-sE-auD" firstAttribute="trailing" secondItem="rys-h2-sFK" secondAttribute="trailing" constant="30" id="jD9-g7-Igm"/>
                             <constraint firstItem="8zR-vg-jaI" firstAttribute="top" secondItem="rys-h2-sFK" secondAttribute="bottom" constant="20" id="jPL-E1-LBt"/>
                             <constraint firstItem="rys-h2-sFK" firstAttribute="leading" secondItem="e6S-sE-auD" secondAttribute="leading" constant="30" id="k25-UE-IGl"/>
@@ -374,8 +366,8 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qAZ-vb-yz3"/>
+                    <size key="freeformSize" width="414" height="896"/>
                     <connections>
-                        <outlet property="orLabel" destination="pym-Ph-nN0" id="6eI-Ny-vZ2"/>
                         <outlet property="phoneDisclamer" destination="rys-h2-sFK" id="7Y4-Aj-Rpr"/>
                         <outlet property="signinButton" destination="rWi-Xn-tBy" id="zYc-yR-q6T"/>
                         <outlet property="signupButton" destination="8zR-vg-jaI" id="8bM-A0-rZY"/>

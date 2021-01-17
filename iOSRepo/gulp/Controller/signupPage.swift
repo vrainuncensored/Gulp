@@ -44,6 +44,7 @@ class signupPage: UIViewController, LoginButtonDelegate {
     @IBOutlet weak var userPassword: UITextField!
     @IBOutlet weak var userPasswordConfirmation: UITextField!
     @IBOutlet weak var userPhoneNumber: UITextField!
+    var activeTextField : UITextField!
     
     //Button Outlets
     @IBOutlet weak var signupButton: UIButton!
@@ -53,7 +54,6 @@ class signupPage: UIViewController, LoginButtonDelegate {
     
     //Label Outlets
     @IBOutlet weak var phoneDisclamer: UILabel!
-    @IBOutlet weak var orLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,7 +80,14 @@ class signupPage: UIViewController, LoginButtonDelegate {
         userPassword.delegate = self
         userPasswordConfirmation.delegate = self
         userName.delegate = self
+        userPhoneNumber.delegate = self
         
+        //establishing tags
+        userName.tag = 0
+        userEmail.tag = 1
+        userPassword.tag = 2
+        userPasswordConfirmation.tag = 3
+        userPhoneNumber.tag = 4
     }
     func setupUserNameField() {
         userName.attributedPlaceholder = NSAttributedString(string:"Your full name" , attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
@@ -170,7 +177,7 @@ class signupPage: UIViewController, LoginButtonDelegate {
         facebookButton.translatesAutoresizingMaskIntoConstraints = false
         facebookButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
         facebookButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
-        facebookButton.topAnchor.constraint(equalTo: orLabel.bottomAnchor, constant: 15).isActive = true
+        //facebookButton.topAnchor.constraint(equalTo: orLabel.bottomAnchor, constant: 15).isActive = true
     }
     func settupSignInWithAppleButton() {
         appleButton.translatesAutoresizingMaskIntoConstraints = false
@@ -319,6 +326,18 @@ extension signupPage: UITextFieldDelegate {
         }
         return (true)
     }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+         // Try to find next responder
+         if let nextField = self.view.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
+         } else {
+            // Not found, so remove keyboard.
+            textField.resignFirstResponder()
+            return false
+         }
+         // Do not add a line break
+         return false
+      }
 }
 
 //extension signupPage: ASAuthorizationControllerDelegate {
