@@ -61,6 +61,8 @@ class ViewController: UIViewController {
         signinButton.layer.borderColor = CG_Colors.red
         signinButton.setTitle("Sign In", for: .normal)
     
+        self.view.backgroundColor = UI_Colors.white
+
     }
 
     @objc func buttonAction(sender: UIButton!) {

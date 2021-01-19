@@ -36,6 +36,8 @@ class LoginPage: UIViewController {
         //establishing delegates
         userEmail.delegate = self
         userPassword.delegate = self
+        
+        self.view.backgroundColor = UI_Colors.white
         }
     
     

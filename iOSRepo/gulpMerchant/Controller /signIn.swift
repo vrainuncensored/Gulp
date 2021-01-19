@@ -52,9 +52,10 @@ class LoginPage: UIViewController {
         signIn.showsTouchWhenHighlighted = true
         signIn.layer.cornerRadius = 5
         signIn.layer.borderWidth = 1
-        signIn.layer.borderColor = CG_Colors.darkPurple
-        signIn.backgroundColor = UI_Colors.darkPurple
+        signIn.layer.borderColor = CG_Colors.red
+        signIn.backgroundColor = UI_Colors.red
         signIn.addTarget(self, action: #selector(signinOption), for: .touchUpInside)
+        signIn.setTitleColor(.white, for: .normal)
     }
     func setupSignUpButton() {
         signUp.setTitle("Don't have an account? Create one.", for: .normal)

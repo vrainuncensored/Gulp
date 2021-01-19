@@ -43,20 +43,22 @@ class ManageLocation: UIViewController, CLLocationManagerDelegate {
     func setupUpdateButton() {
         updateLocationButton.layer.cornerRadius = 5
         updateLocationButton.layer.borderWidth = 1
-        updateLocationButton.layer.borderColor = CG_Colors.darkPurple
-        updateLocationButton.backgroundColor = UI_Colors.darkPurple
+        updateLocationButton.layer.borderColor = CG_Colors.red
+        updateLocationButton.backgroundColor = UI_Colors.red
         updateLocationButton.setTitle("Update Location", for: .normal)
         updateLocationButton.showsTouchWhenHighlighted = true
         updateLocationButton.addTarget(self, action: #selector(updateUser), for: .touchUpInside)
+        updateLocationButton.setTitleColor(.white, for: .normal)
     }
     func setupClosedButton() {
            closedButton.layer.cornerRadius = 5
            closedButton.layer.borderWidth = 1
-           closedButton.layer.borderColor = CG_Colors.darkPurple
-           closedButton.backgroundColor = UI_Colors.darkPurple
+           closedButton.layer.borderColor = CG_Colors.red
+           closedButton.backgroundColor = UI_Colors.red
            closedButton.setTitle("Closed", for: .normal)
            closedButton.showsTouchWhenHighlighted = true
            closedButton.addTarget(self, action: #selector(closeUser), for: .touchUpInside)
+           closedButton.setTitleColor(.white, for: .normal)
        }
     @objc func updateUser() {
         self.longitude = locationManager.location!.coordinate.longitude

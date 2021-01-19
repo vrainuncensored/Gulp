@@ -88,6 +88,9 @@ class signupPage: UIViewController, LoginButtonDelegate {
         userPassword.tag = 2
         userPasswordConfirmation.tag = 3
         userPhoneNumber.tag = 4
+        
+        self.view.backgroundColor = UI_Colors.white
+
     }
     func setupUserNameField() {
         userName.attributedPlaceholder = NSAttributedString(string:"Your full name" , attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])

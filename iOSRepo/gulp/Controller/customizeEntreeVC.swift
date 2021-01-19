@@ -37,7 +37,7 @@ class customizeEntreeVC: UIViewController, UITextViewDelegate {
         settupCustomerRequestTextField()
         
         self.navigationItem.title = "\(self.entreeItemSelected!)"
-       
+        self.view.backgroundColor = UI_Colors.white
         
         itemOptions.dataSource = self
         itemOptions.delegate = self
@@ -45,6 +45,7 @@ class customizeEntreeVC: UIViewController, UITextViewDelegate {
         itemOptions.allowsMultipleSelectionDuringEditing = true
         itemOptions.rowHeight = 75
         itemOptions.register(MenuItems.self, forCellReuseIdentifier: "Test")
+        itemOptions.backgroundColor = UI_Colors.white
         fbCall(tableView: itemOptions)
     }
     func settupCheckOutButton() {
@@ -61,6 +62,7 @@ class customizeEntreeVC: UIViewController, UITextViewDelegate {
         customerRequests.layer.cornerRadius = 5
         customerRequests.layer.borderWidth = 2
         customerRequests.layer.borderColor = CG_Colors.lightPurple
+        customerRequests.backgroundColor = UI_Colors.white
         customerRequests.autocapitalizationType = UITextAutocapitalizationType.none
         customerRequests.attributedPlaceholder = NSAttributedString(string:"Please add any notes for the chef", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
         customerRequests.delegate = self

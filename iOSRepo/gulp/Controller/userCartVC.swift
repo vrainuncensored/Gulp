@@ -44,7 +44,8 @@ class userCartVC: UIViewController {
         //print(array[0].item.name)
         let label = UILabel()
         label.text = "Confirm Checkout"
-        
+        self.view.backgroundColor = UI_Colors.white
+
 
         setupPaymentInfo()
         setupTableView()
@@ -57,7 +58,6 @@ class userCartVC: UIViewController {
         placeOrderBtn.layer.borderColor = CG_Colors.red
         placeOrderBtn.backgroundColor = UI_Colors.red
         placeOrderBtn.setTitleColor(.white, for: .normal)
-        
         
         
        
@@ -97,6 +97,7 @@ class userCartVC: UIViewController {
         tableView.register(CartItemCheckout.self, forCellReuseIdentifier: "Test")
         tableView.separatorStyle = .none
         tableView.rowHeight = 100
+        tableView.backgroundColor = UI_Colors.white
     }
 //    func createOrder() {
 //        let docRef = Firestore.firestore().collection("merchant").document(truckIdForQuery!)
@@ -223,8 +224,9 @@ extension userCartVC:  UITableViewDelegate, UITableViewDataSource {
         let item = shoppingCart.items[indexPath.row]
         cell.set(item: item, delegate: self)
         cell.layer.borderWidth = 1.5
-        cell.layer.borderColor = CG_Colors.lightPurple
+        cell.layer.borderColor = CG_Colors.red
         cell.layer.cornerRadius = 30.0
+        cell.backgroundColor = UI_Colors.white
         //cell.deleteButton.actions(forTarget: shoppingCart.remove(item: associatedMenuItem), forControlEvent: .touchUpInside)
         return cell
         

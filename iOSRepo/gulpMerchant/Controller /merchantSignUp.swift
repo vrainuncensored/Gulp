@@ -15,33 +15,17 @@ import SafariServices
 class merchantSignupPage: UIViewController {
    //Text Outlets
     @IBOutlet weak var userName: UITextField!
-    
     @IBOutlet weak var userEmail: UITextField!
-    
     @IBOutlet weak var userPassword: UITextField!
-    
-    
     @IBOutlet weak var userPasswordConfirmation: UITextField!
-    
     @IBOutlet weak var userPhoneNumber: UITextField!
-    
-    
-    
     //Button Outlets
-   
-    
     @IBOutlet weak var addBankAccount: UIButton!
-    
     @IBOutlet weak var signinButton: UIButton!
-    
     //Label Outlets
-    
     @IBOutlet weak var phoneDisclamer: UILabel!
     
-    
-    
-    
-            let db = Firestore.firestore()
+   let db = Firestore.firestore()
 
    let state: String = generateRandomNumber()// generate a unique value for this
    let clientID: String = "ca_HDc2f2N9XftwO50jLFIp0uDsSx1CZqOS"// the client ID found in your platform settings
@@ -84,7 +68,7 @@ class merchantSignupPage: UIViewController {
         
     }
     func setupUserNameField() {
-        userName.attributedPlaceholder = NSAttributedString(string:"Your full name" , attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        userName.attributedPlaceholder = NSAttributedString(string:"Trucks Name" , attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
         userName.borderStyle = UITextField.BorderStyle.none
     }
     func setupUserEmailField() {
@@ -116,11 +100,12 @@ class merchantSignupPage: UIViewController {
     func setupAddBankButton() {
         addBankAccount.layer.cornerRadius = 5
         addBankAccount.layer.borderWidth = 1
-        addBankAccount.layer.borderColor = CG_Colors.darkPurple
-        addBankAccount.backgroundColor = UI_Colors.darkPurple
+        addBankAccount.layer.borderColor = CG_Colors.red
+        addBankAccount.backgroundColor = UI_Colors.red
         addBankAccount.setTitle("Sign Up", for: .normal)
         addBankAccount.showsTouchWhenHighlighted = true
         addBankAccount.addTarget(self, action: #selector(signUp), for: .touchUpInside)
+        addBankAccount.setTitleColor(.white, for: .normal)
     }
     func setupSignInButton() {
         signinButton.addTarget(self, action: #selector(signInAction), for: .touchUpInside)
@@ -164,8 +149,7 @@ class merchantSignupPage: UIViewController {
     @objc func signInAction(sender: UIButton!) {
         self.performSegue(withIdentifier: "segueToSignIn", sender: self)
     }
-    @objc
-      func didSelectConnectWithStripe() {
+    @objc func didSelectConnectWithStripe() {
           // set the redirect_uri to a deep link back into your app to automatically
           // detect when the user has completed the onboarding flow
           let redirect = "https://www.example.com/connect-onboard-redirect"

@@ -22,7 +22,10 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
         let span: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.025, longitudeDelta: 0.025)
         let region: MKCoordinateRegion = MKCoordinateRegion(center: locValue, span: span)
         map.setRegion(region, animated: false)
+        map.isZoomEnabled = true
+        map.isScrollEnabled = true
         }
+
     var trucksList = [Truck]()
     struct Cells {
            static let truckNames = "truckName"
@@ -72,6 +75,7 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
     tableView.delegate = self
     tableView.rowHeight = 100
     tableView.separatorColor = UIColor.white
+    tableView.backgroundColor = UI_Colors.white
     tableView.register(TruckItems.self, forCellReuseIdentifier: Cells.truckNames)
     fbCall(tableView : tableView)
         
@@ -118,14 +122,16 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
         self.performSegue(withIdentifier: "MenuSegue", sender: self)
     }
     func settupLogoInNavBar() {
-        let logoContainer = UIView(frame: CGRect(x: 0, y: 0, width: 270, height: 40))
-        
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 270, height: 30))
-        imageView.contentMode = .scaleAspectFit
-        let logo = UIImage(named: "gulplogo.png")
-        imageView.image = logo
-        logoContainer.addSubview(imageView)
-        self.navigationItem.titleView = logoContainer
+//        let logoContainer = UIView(frame: CGRect(x: 0, y: 0, width: 270, height: 40))
+//        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 270, height: 30))
+//        imageView.contentMode = .scaleAspectFit
+//        let logo = UIImage(named: "gulplogo.png")
+//        imageView.image = logo
+//        logoContainer.addSubview(imageView)
+//        self.navigationItem.titleView = logoContainer
+        self.navigationItem.title = "Gulp - Foodtrucks, Instantly"
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
     
     func fbCall (tableView : UITableView) {
@@ -135,7 +141,7 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
                 print("Error getting documents: \(err)")
             } else {
                 for document in querySnapshot!.documents {
-                   let data = document.data()
+                    let data = document.data()
                     let test = Truck(data: data)
                     let longitude = test.locationCoordinates.longitude
                     let latitude = test.locationCoordinates.latitude
@@ -149,16 +155,12 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
                     self.coordinateArray.append(CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
                     self.trucksList.append(test)
                     tableView.reloadData()
-               
                 }
-//                let coordinateTest = MKPointAnnotation()
-//                //coordinateTest.coordinate = self.coordinateArray[8]
-//                coordinateTest.coordinate = CLLocationCoordinate2D(latitude: 37.5630, longitude: -122.3255)
-//                coordinateTest.title = "Test Truck"
-//                self.map.addAnnotation(coordinateTest)
-
-                
-                
+                //                let coordinateTest = MKPointAnnotation()
+                //                //coordinateTest.coordinate = self.coordinateArray[8]
+                //                coordinateTest.coordinate = CLLocationCoordinate2D(latitude: 37.5630, longitude: -122.3255)
+                //                coordinateTest.title = "Test Truck"
+                //                self.map.addAnnotation(coordinateTest)
             }
         }
     }
@@ -175,8 +177,9 @@ func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> 
 func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: Cells.truckNames) as! TruckItems
     cell.layer.borderWidth = 1.5
-    cell.layer.borderColor = CG_Colors.lightPurple
+    cell.layer.borderColor = CG_Colors.red
     cell.layer.cornerRadius = 30.0
+    cell.backgroundColor = UI_Colors.white
     //this line below is what creates the arrow in each tableview cell
     cell.accessoryType = .disclosureIndicator
     let truck = trucksList[indexPath.row]
