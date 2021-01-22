@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3uC-Re-986">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3uC-Re-986">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,7 +16,7 @@
                     <tabBarItem key="tabBarItem" title="Item" id="RNl-A2-SJv"/>
                     <navigationItem key="navigationItem" id="CLo-JC-fXI"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="o7z-v8-hEl">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.98039215690000003" green="0.82352941180000006" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
@@ -113,7 +113,7 @@
             <objects>
                 <viewController storyboardIdentifier="Menu" id="PZP-jj-d4e" customClass="menuItems" customModule="gulpMerchant" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ogH-0L-fRo">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="KKI-xm-EqQ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -132,11 +132,11 @@
             <objects>
                 <viewController id="6gb-Vk-syz" customClass="addingMenuItem" customModule="gulpMerchant" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eLb-Ij-UbM">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2KJ-jS-zbT">
-                                <rect key="frame" x="20" y="612" width="374" height="32.5"/>
+                                <rect key="frame" x="20" y="580" width="374" height="32.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wes-gG-rqp">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="32.5"/>
@@ -157,20 +157,20 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Menu Item!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jaa-X5-osR">
-                                <rect key="frame" x="20" y="128" width="374" height="44"/>
+                                <rect key="frame" x="20" y="96" width="374" height="44"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="32"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3sz-LV-e2N">
-                                <rect key="frame" x="20" y="730" width="374" height="43"/>
+                                <rect key="frame" x="20" y="725" width="374" height="43"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="22"/>
                                 <state key="normal" title="Button">
                                     <color key="titleColor" systemColor="darkTextColor"/>
                                 </state>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="pbL-TH-hAx">
-                                <rect key="frame" x="20" y="468" width="374" height="124"/>
+                                <rect key="frame" x="20" y="436" width="374" height="124"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="5S6-IK-fD3">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="58"/>
@@ -215,7 +215,7 @@
                                 </subviews>
                             </stackView>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Sr-E4-1Mp">
-                                <rect key="frame" x="20" y="232" width="374" height="216"/>
+                                <rect key="frame" x="20" y="200" width="374" height="216"/>
                             </pickerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Hd4-dU-6Y6"/>
@@ -261,27 +261,27 @@
             <objects>
                 <viewController title="EntreeCustomize" id="muc-XN-DLO" customClass="EntreeCustomizeOptionsVC" customModule="gulpMerchant" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="D0D-A7-AdJ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customize your Item!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xC2-7Z-b1K">
-                                <rect key="frame" x="20" y="128" width="374" height="44"/>
+                                <rect key="frame" x="20" y="96" width="374" height="44"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="32"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6p-3G-o7I">
-                                <rect key="frame" x="20" y="730" width="374" height="43"/>
+                                <rect key="frame" x="20" y="725" width="374" height="43"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="22"/>
                                 <state key="normal" title="Button">
                                     <color key="titleColor" systemColor="darkTextColor"/>
                                 </state>
                             </button>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9JA-0c-odR">
-                                <rect key="frame" x="20" y="232" width="374" height="216"/>
+                                <rect key="frame" x="20" y="200" width="374" height="216"/>
                             </pickerView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Y4y-jr-fHE">
-                                <rect key="frame" x="20" y="458" width="374" height="124"/>
+                                <rect key="frame" x="20" y="426" width="374" height="124"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="fF8-Jo-y68">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="58"/>
@@ -386,10 +386,56 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 1" id="zf2-A5-Lyv"/>
                     <navigationItem key="navigationItem" id="qV0-8i-sk5"/>
+                    <connections>
+                        <segue destination="xt4-Gg-Zdy" kind="popoverPresentation" identifier="toConfirmationPage" popoverAnchorView="CLP-0F-GRN" id="rHj-lI-lYL">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aQh-Kr-uDQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="523" y="-544"/>
+        </scene>
+        <!--Order Confirmation-->
+        <scene sceneID="ciH-IN-MND">
+            <objects>
+                <viewController id="xt4-Gg-Zdy" customClass="OrderConfirmation" customModule="gulpMerchant" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Xwb-jz-pQX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tBl-zO-kbw">
+                                <rect key="frame" x="20" y="708" width="374" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="ub8-NY-DZZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="20"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ef-Xm-5wE">
+                                <rect key="frame" x="56" y="91" width="244" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="DzV-1C-exZ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="tBl-zO-kbw" firstAttribute="leading" secondItem="DzV-1C-exZ" secondAttribute="leading" constant="20" id="UGU-Ob-jho"/>
+                            <constraint firstItem="DzV-1C-exZ" firstAttribute="trailing" secondItem="tBl-zO-kbw" secondAttribute="trailing" constant="20" id="nkj-1p-vQx"/>
+                            <constraint firstItem="DzV-1C-exZ" firstAttribute="bottom" secondItem="tBl-zO-kbw" secondAttribute="bottom" constant="50" id="wUl-wa-wbX"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="confirmationButton" destination="tBl-zO-kbw" id="5Su-L8-79R"/>
+                        <outlet property="orderNumberLabel" destination="5ef-Xm-5wE" id="eRK-uW-rUC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J24-oV-FxP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1492.753623188406" y="-544.41964285714278"/>
         </scene>
         <!--MainFlow-->
         <scene sceneID="YWt-ei-GMF">
@@ -412,18 +458,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="p3s-2G-aW5"/>
+        <segue reference="1rG-gO-G8H"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <systemColor name="darkTextColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="darkTextColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="darkTextColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="darkTextColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

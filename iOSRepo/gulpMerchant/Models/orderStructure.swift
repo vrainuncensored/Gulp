@@ -7,35 +7,57 @@
 //
 
 import Foundation
-
+import FirebaseFirestore
 
 struct Order {
-    var orderNumber: String
-    var customerName: String
-    var orderedItems: String
-    
+    var customerId : String
+    var merchantId : String
+    var items : [String]
+    var timestamp : Timestamp
+    var total: Int
+    var additionalRequests:String?
+    var orderNumber:String
+
     init(
-         orderNumber: String = "",
-         customerName: String = "",
-         orderedItems: String = "") {
-        
-        self.customerName = customerName
-        self.orderedItems = orderedItems
+        customerId: String = "",
+        merchantId: String = "",
+        items : [String] = [""],
+        timestamp : Timestamp,
+        total: Int = 0,
+        additionalRequests: String,
+        orderNumber:String
+         ) {
+
+        self.customerId = customerId
+        self.merchantId = merchantId
+        self.items = items
+        self.timestamp = timestamp
+        self.total = total
+        self.additionalRequests = additionalRequests
         self.orderNumber = orderNumber
+
     }
     //the initializer for taking firebase results into useable data
     init(data: [String: Any]) {
+        customerId = data["customerId"] as? String ?? ""
+        merchantId = data["merchantId"] as? String ?? ""
+        items = data["items"] as? [String] ?? [""]
+        timestamp = data["timestamp"] as? Timestamp ??  Timestamp()
+        total = data["total"] as? Int ?? 0
+        additionalRequests = data["additionalRequests"] as? String ?? ""
         orderNumber = data["orderNumber"] as? String ?? ""
-        customerName = data["customerName"] as? String ?? ""
-        orderedItems = data["orderedItems"] as? String ?? ""
 
     }
     //this is the code needed to take input and send to the database
     static func modelToData(order: Order) -> [String: Any] {
         let data: [String: Any] = [
-            "orderNumber": order.orderNumber,
-            "customerName": order.customerName,
-            "orderedItems": order.orderedItems,
+            "customerId": order.customerId,
+            "merchantId" : order.merchantId,
+            "items" : order.items,
+            "timestamp" : order.timestamp,
+            "total" : order.total,
+            "additionalRequests" : order.additionalRequests,
+            "orderNumber" : order.orderNumber
         ]
         return data
     }

@@ -72,6 +72,8 @@
 		64EF27202459495200BD68C5 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EF271F2459495200BD68C5 /* PassKit.framework */; };
 		7B5A36920485832D72E86419 /* Pods_gulpMerchant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B4A07C4173718B8938FA70 /* Pods_gulpMerchant.framework */; };
 		8B42E8BD25B6241200035784 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B42E8BC25B6241200035784 /* GoogleService-Info.plist */; };
+		8B42E90F25BA384A00035784 /* OrderConfirmation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B42E90E25BA384A00035784 /* OrderConfirmation.swift */; };
+		8B42E91325BA3C1100035784 /* FirebaseFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B42E91225BA3C1100035784 /* FirebaseFunctions.swift */; };
 		8B62436A25913503007A6682 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B62436925913503007A6682 /* GoogleService-Info.plist */; };
 		8B8A53BF25A8DAD100BBA89B /* gulplogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B8A53BE25A8DAD100BBA89B /* gulplogo.png */; };
 		8BAC24A025A52AFE008C43B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BAC249F25A52AFE008C43B3 /* Assets.xcassets */; };
@@ -155,6 +157,8 @@
 		86C698ECD505BFA746DB3BC1 /* Pods_gulp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_gulp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87B4A07C4173718B8938FA70 /* Pods_gulpMerchant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_gulpMerchant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B42E8BC25B6241200035784 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8B42E90E25BA384A00035784 /* OrderConfirmation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmation.swift; sourceTree = "<group>"; };
+		8B42E91225BA3C1100035784 /* FirebaseFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFunctions.swift; sourceTree = "<group>"; };
 		8B62436925913503007A6682 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8B8A53BE25A8DAD100BBA89B /* gulplogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gulplogo.png; path = ../../../../../Desktop/gulplogo.png; sourceTree = "<group>"; };
 		8BAC249F25A52AFE008C43B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../../Desktop/test/test/Assets.xcassets; sourceTree = "<group>"; };
@@ -303,6 +307,7 @@
 				64D6E8F32461010C00A3B852 /* merchantSignUp.swift */,
 				642BD27024BED2340081178B /* testViewController.swift */,
 				64593BE324BFCF51009F5B39 /* ConnectOnboardViewController.swift */,
+				8B42E90E25BA384A00035784 /* OrderConfirmation.swift */,
 			);
 			path = "Controller ";
 			sourceTree = "<group>";
@@ -321,6 +326,7 @@
 			isa = PBXGroup;
 			children = (
 				6458B5B9248F4BAA00B132B5 /* userServices.swift */,
+				8B42E91225BA3C1100035784 /* FirebaseFunctions.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -646,8 +652,10 @@
 				64B72797245C8FFA0082BBD6 /* ViewController.swift in Sources */,
 				64D6E8EA245F2FB400A3B852 /* menuItemStructure.swift in Sources */,
 				64D6E8EE245F7A7100A3B852 /* navigationBar.swift in Sources */,
+				8B42E91325BA3C1100035784 /* FirebaseFunctions.swift in Sources */,
 				64D6E8E6245F284A00A3B852 /* signIn.swift in Sources */,
 				64D6E8F42461010C00A3B852 /* merchantSignUp.swift in Sources */,
+				8B42E90F25BA384A00035784 /* OrderConfirmation.swift in Sources */,
 				6450618D24BD6853002B7C09 /* Constants .swift in Sources */,
 				64D6E8D6245DDDE500A3B852 /* CustomTabBar.swift in Sources */,
 				642BD27324BF65F90081178B /* ordersTableViewCell.swift in Sources */,
@@ -755,7 +763,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.80;
+				MARKETING_VERSION = 1.90;
 				PRODUCT_BUNDLE_IDENTIFIER = com.orderGulp.gulpCustomer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -777,7 +785,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.80;
+				MARKETING_VERSION = 1.90;
 				PRODUCT_BUNDLE_IDENTIFIER = com.orderGulp.gulpCustomer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -906,14 +914,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = gulp/gulp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = GHNLH4RLUZ;
 				INFOPLIST_FILE = gulp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.0;
+				MARKETING_VERSION = 5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.orderGulp.gulpMerchant;
 				PRODUCT_NAME = gulp;
 				SWIFT_VERSION = 5.0;
@@ -928,14 +936,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = gulp/gulpRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = GHNLH4RLUZ;
 				INFOPLIST_FILE = gulp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.0;
+				MARKETING_VERSION = 5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.orderGulp.gulpMerchant;
 				PRODUCT_NAME = gulp;
 				SWIFT_VERSION = 5.0;

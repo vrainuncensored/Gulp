@@ -19,7 +19,7 @@ class ordersTableViewCell: UITableViewCell {
                addSubview(orderNumber)
                addSubview(customerName)
                addSubview(orderdItems)
-               
+
                configurePriceLabel()
                configureTitleLabel()
                setItemConstraints()
@@ -32,7 +32,7 @@ class ordersTableViewCell: UITableViewCell {
            
            func set(item: Order) {
             orderNumber.text = item.orderNumber
-            customerName.text = item.customerName
+            customerName.text = item.customerId
                
            }
            func configureTitleLabel(){

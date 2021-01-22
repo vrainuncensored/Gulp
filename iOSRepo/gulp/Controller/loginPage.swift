@@ -77,8 +77,12 @@ class LoginPage: UIViewController {
     @objc func signinOption(sender: UIButton!) {
         Auth.auth().signIn(withEmail: userEmail.text!, password: userPassword.text!) { [weak self] authResult, error in
             guard let strongSelf = self else { return }
-            self?.segueToHome()
-            
+            //print(strongSelf)
+            if let authResult = authResult{
+             self?.segueToHome()
+            } else {
+                self?.simpleAlert(title: "Incorrect Login", msg: "The login informantion that you entered in incorrect. Please try again")
+            }
         }
         
     }

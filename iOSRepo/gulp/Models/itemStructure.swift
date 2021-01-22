@@ -14,18 +14,17 @@ struct MenuItem {
     var name: String
     
     init(
-        price: Double = 0.0 ,
+        price: Double = 0.00 ,
          itemCategory: String = "",
          name: String = "" )
         {
-        
         self.itemCategory = itemCategory
         self.name = name
         self.price = price
     }
     //the initializer for taking firebase results into useable data
     init(data: [String: Any]) {
-        price = data["price"] as? Double ?? 0.0
+        price = data["price"] as? Double ?? 0.00
         itemCategory = data["itemCategory"] as? String ?? ""
         name = data["name"] as? String ?? ""
 

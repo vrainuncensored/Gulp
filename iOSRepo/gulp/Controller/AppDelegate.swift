@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             didFinishLaunchingWithOptions: launchOptions
         )
         FirebaseApp.configure()
-        Stripe.setDefaultPublishableKey("pk_test_LdIj43U3AT5gKjMChrv0cdFV00GsaCO40A")
+        Stripe.setDefaultPublishableKey("pk_live_uvtek6XT6Z0VbISBoLqmmeCQ00EF2SVsjU")
         return true
     }
 
