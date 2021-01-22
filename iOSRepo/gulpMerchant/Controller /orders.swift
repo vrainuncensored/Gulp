@@ -20,6 +20,9 @@ class orders: UIViewController, CLLocationManagerDelegate {
     var latitude = 0.0
     
     var listOfOrders = [Order]()
+    
+    var orderSpecifics : Order = Order(data: ["any": "any"])
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager.delegate = self;
@@ -58,7 +61,7 @@ class orders: UIViewController, CLLocationManagerDelegate {
         tableView.delegate = self
         tableView.rowHeight = 100
         tableView.allowsMultipleSelectionDuringEditing = false
-        tableView.allowsSelection = false
+        tableView.allowsSelection = true
         tableView.allowsMultipleSelection = false
         tableView.backgroundColor = UIColor.white
         tableView.separatorStyle = .none
@@ -132,6 +135,16 @@ class orders: UIViewController, CLLocationManagerDelegate {
       }
     @objc func segueTo(sender: UIButton!) {
         self.performSegue(withIdentifier: "toConfirmationPage", sender: self)    }
+    func segueToOrderConfirmation () {
+        self.performSegue(withIdentifier: "toConfirmationPage", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+               if(segue.identifier == "toConfirmationPage"){
+                       let displayVC = segue.destination as! OrderConfirmation
+                       displayVC.orderInformation = orderSpecifics
+               }
+           }
 }
 
 extension orders: UITableViewDelegate, UITableViewDataSource{
@@ -140,7 +153,7 @@ extension orders: UITableViewDelegate, UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
-            return("Incoming Orders")
+            return("Incoming Orders 🤑")
         }
         return ""
     }
@@ -162,10 +175,22 @@ extension orders: UITableViewDelegate, UITableViewDataSource{
     
     
 }
-    func tableView(_ tableView: UITableView, didSelectRowAt: IndexPath){
-         
-        
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let specificOrder = listOfOrders[indexPath.row]
+        self.orderSpecifics = specificOrder
+        segueToOrderConfirmation()
     }
+//    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+//        let specificOrder = listOfOrders[indexPath.row]
+//        self.orderSpecifics = specificOrder
+//        segueToOrderConfirmation()
+//
+//        tableView.deselectRow(at: indexPath, animated: true)
+//          let specificOrder = listOfOrders[indexPath.row]
+//        self.orderSpecifics = specificOrder
+//          segueToOrderConfirmation()
+    
+    
 //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        let cell = tableView.dequeueReusableCell(withIdentifier: Cells.truckNames) as! TruckItems
 //        cell.menuButton.tag = indexPath.row

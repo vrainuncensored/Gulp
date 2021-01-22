@@ -25,49 +25,30 @@ class EntreeCustomizeOptionsVC: UIViewController {
     let categoryOptions = ["Protein Options", "Add ons"]
     let pickerView = UIPickerView()
     let customizeButton = UILabel()
-    let itemName = UITextField()
-    let itemPrice = UITextField()
+    
     var truckIdforFB = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         let width = UIScreen.main.bounds.size.width
-             let height = UIScreen.main.bounds.size.height
-//                    customizeButton.frame = CGRect(x: 300, y: 100, width: 106, height: 53)
-//                    self.view.addSubview(customizeButton)
-//        customizeButton.text = "choose category"
-//        self.view.addSubview(pickerView)
+        let height = UIScreen.main.bounds.size.height
+        //
         categorySelection.dataSource = self
         categorySelection.delegate = self
-//        itemName.textColor = UIColor.red
-//               itemName.frame = CGRect(x:  0, y:250, width: width * 5/6, height: height * 1/10)
-//               itemName.autocapitalizationType = UITextAutocapitalizationType.none
-//               itemName.placeholder = "Menu Item Name"
-//               itemName.layer.cornerRadius = 5
-//               itemName.layer.borderWidth = 1
-//               self.view.addSubview(itemName)
-   setupAddOnName()
-   setupAddOnNamePrice()
+        //
+        setupAddOnName()
+        setupAddOnNamePrice()
         setupDoneCustomizingButton()
-               
-               itemName.delegate = self
-               itemPrice.delegate = self
-               
-               itemName.tag = 1
-               itemPrice.tag = 2
-               
-               itemPrice.keyboardType = UIKeyboardType.decimalPad
-               self.addDoneButtonOnKeyboard()
         
-//        let button = UIButton()
-//         button.setTitle("Return", for: UIControl.State())
-//         button.setTitleColor(UIColor.black, for: UIControl.State())
-//         button.frame = CGRect(x: 0, y: 400, width: 106, height: 53)
-//         button.adjustsImageWhenHighlighted = false
-//         self.view.addSubview(button)
-//         button.addTarget(self, action: Selector(("createMenuItem")), for: UIControl.Event.touchUpInside)
-
+        addOnName.delegate = self
+        addOnPrice.delegate = self
         
-       
+        addOnName.tag = 1
+        addOnPrice.tag = 2
+        
+        addOnPrice.keyboardType = UIKeyboardType.decimalPad
+        self.addDoneButtonOnKeyboard()
+        
+//
         // Do any additional setup after loading the view.
     }
     func addDoneButtonOnKeyboard()
@@ -85,7 +66,7 @@ class EntreeCustomizeOptionsVC: UIViewController {
       doneToolbar.items = items
       doneToolbar.sizeToFit()
       
-      self.itemPrice.inputAccessoryView = doneToolbar
+      self.addOnPrice.inputAccessoryView = doneToolbar
       
     }
     func agreeToTerms() {
@@ -132,20 +113,24 @@ class EntreeCustomizeOptionsVC: UIViewController {
         addOn.backgroundColor = UI_Colors.darkPurple
         addOn.setTitle("Customization Complete", for: .normal)
         addOn.showsTouchWhenHighlighted = true
+        addOn.addTarget(self, action: #selector(createMenuItem), for: .touchUpInside)
     }
     
     @objc func createMenuItem () {
-          if customizeButton.text == "" || itemPrice.text == "" || itemName.text == ""  {
+          if customizeButton.text! == "" || addOnPrice.text! == "" || addOnName.text! == ""  {
+            print(customizeButton.text)
+            print(addOnPrice.text)
+            print(addOnName.text)
                agreeToTerms()
                   }
           else{
-             let dbItem = MenuItem.init(price: itemPrice.text!, itemCategory: customizeButton.text!, name: itemName.text!)
+             let dbItem = MenuItem.init(price: addOnPrice.text!, itemCategory: customizeButton.text!, name: addOnName.text!)
              self.createFireStoreItem(item: dbItem)
           }
       }
     
     func itemAdded() {
-      self.performSegue(withIdentifier: "segueToMenuItems", sender: self)
+      self.performSegue(withIdentifier: "segueToMenu", sender: self)
     }
     func createFireStoreItem (item : MenuItem) {
         let newItemRef = Firestore.firestore().collection("merchant").document(self.truckIdforFB).collection("menuAddOns").document(item.name)

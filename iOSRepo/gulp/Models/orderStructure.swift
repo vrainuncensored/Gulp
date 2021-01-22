@@ -10,13 +10,14 @@ import Foundation
 import FirebaseFirestore
 
 struct Order {
-    var customerId : String
+    var customerName : String
     var merchantId : String
     var items : [String]
     var timestamp : Timestamp
     var total: Int
     var additionalRequests:String?
     var orderNumber:String
+
 
     init(
         customerId: String = "",
@@ -28,7 +29,7 @@ struct Order {
         orderNumber:String
          ) {
 
-        self.customerId = customerId
+        self.customerName = customerId
         self.merchantId = merchantId
         self.items = items
         self.timestamp = timestamp
@@ -39,7 +40,7 @@ struct Order {
     }
     //the initializer for taking firebase results into useable data
     init(data: [String: Any]) {
-        customerId = data["customerId"] as? String ?? ""
+        customerName = data["customerId"] as? String ?? ""
         merchantId = data["merchantId"] as? String ?? ""
         items = data["items"] as? [String] ?? [""]
         timestamp = data["timestamp"] as? Timestamp ??  Timestamp()
@@ -51,7 +52,7 @@ struct Order {
     //this is the code needed to take input and send to the database
     static func modelToData(order: Order) -> [String: Any] {
         let data: [String: Any] = [
-            "customerId": order.customerId,
+            "customerId": order.customerName,
             "merchantId" : order.merchantId,
             "items" : order.items,
             "timestamp" : order.timestamp,

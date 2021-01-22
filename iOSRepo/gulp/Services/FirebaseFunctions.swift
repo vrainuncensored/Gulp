@@ -66,7 +66,7 @@ final class _FirebaseFunctions{
        }
     func orderCreated(orderTicket : Order ) {
         let data = Order.modelToData(order: orderTicket)
-        let customerTicket = Firestore.firestore().collection("users").document(orderTicket.customerId).collection("orders").document(orderTicket.orderNumber)
+        let customerTicket = Firestore.firestore().collection("users").document(userservice.user.id).collection("orders").document(orderTicket.orderNumber)
         customerTicket.setData(data){ err in
             if let err = err {
                 print("Error writing document: \(err)")

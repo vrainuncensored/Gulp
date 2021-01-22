@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Foundation
+import Firebase
 
 class OrderConfirmation: UIViewController {
     //Button Outlets
@@ -14,20 +16,39 @@ class OrderConfirmation: UIViewController {
     
     //Label Outlets
     @IBOutlet weak var orderNumberLabel: UILabel!
+    @IBOutlet weak var itemsOrderedLabel: UILabel!
+    @IBOutlet weak var additionalCommentsLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var timestampLabel: UILabel!
     
+    //Views Outlets
+    
+    
+    
+    //Order
+    var orderInformation: Order?
+    
+    var items = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupConfirmationButton()
-        setupOrderNumberLabel()
+        //setupOrderNumberLabel()
+        settupLabels()
         // Do any additional setup after loading the view.
+        var time : Timestamp = orderInformation!.timestamp
+       // print(time.seconds)
+        var test = secondsToHoursMinutesSeconds(seconds: time.seconds)
+        print(test)
+        gettingItems()
+
     }
     @objc func notify() {
         cloudFunctions.orderAcceptedNotification()
     }
-    func setupOrderNumberLabel() {
-        orderNumberLabel.text = "Order Number  " + String(565)
-    }
+//    func setupOrderNumberLabel() {
+//        orderNumberLabel.text = "Order Number  " + String(565)
+//    }
     func setupConfirmationButton() {
         confirmationButton.setTitle("Confirm Order", for: .normal)
         confirmationButton.showsTouchWhenHighlighted = true
@@ -38,8 +59,61 @@ class OrderConfirmation: UIViewController {
         confirmationButton.addTarget(self, action: #selector(notify), for: .touchUpInside)
         confirmationButton.setTitleColor(.white, for: .normal)
     }
-    
+    func settupLabels() {
+        orderNumberLabel.text = "Order Number:  " +  orderInformation!.orderNumber
+//        itemsOrderedLabel.text = orderInformation?.items
+        additionalCommentsLabel.text =  "Special Instructions: " + orderInformation!.additionalRequests!
+        
+        nameLabel.text = "Customer Name: " + orderInformation!.customerId
+//        timestampLabel.text = orderInformation?.timestamp.
+//
+    }
+    func gettingItems() {
+        var itemsText = ""
+        for item in orderInformation!.items{
+            itemsText = itemsText + item
+        }
+        itemsOrderedLabel.text = "Items ordered: " + itemsText
+        
+    }
+    func convertTimestamp(serverTimestamp: Double) -> String {
+            let x = serverTimestamp / 1000
+            let date = NSDate(timeIntervalSince1970: x)
+            let formatter = DateFormatter()
+            formatter.dateStyle = .long
+            formatter.timeStyle = .medium
 
+            return formatter.string(from: date as Date)
+        }
+    func getReadableDate(timeStamp: TimeInterval) -> String? {
+        let date = Date(timeIntervalSince1970: timeStamp)
+        let dateFormatter = DateFormatter()
+        
+        if Calendar.current.isDateInTomorrow(date) {
+            return "Tomorrow"
+        } else if Calendar.current.isDateInYesterday(date) {
+            return "Yesterday"
+        } else if dateFallsInCurrentWeek(date: date) {
+            if Calendar.current.isDateInToday(date) {
+                dateFormatter.dateFormat = "h:mm a"
+                return dateFormatter.string(from: date)
+            } else {
+                dateFormatter.dateFormat = "EEEE"
+                return dateFormatter.string(from: date)
+            }
+        } else {
+            dateFormatter.dateFormat = "MMM d, yyyy"
+            return dateFormatter.string(from: date)
+        }
+    }
+    func dateFallsInCurrentWeek(date: Date) -> Bool {
+        let currentWeek = Calendar.current.component(Calendar.Component.weekOfYear, from: Date())
+        let datesWeek = Calendar.current.component(Calendar.Component.weekOfYear, from: date)
+        return (currentWeek == datesWeek)
+    }
+    func secondsToHoursMinutesSeconds (seconds : Int64) -> (Int, Int, Int) {
+      return (Int (seconds / 3600), Int (seconds % 3600) / 60, Int ((seconds % 3600) % 60))
+    }
     /*
     // MARK: - Navigation
 

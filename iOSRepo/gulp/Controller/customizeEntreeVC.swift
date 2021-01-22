@@ -106,7 +106,7 @@ class customizeEntreeVC: UIViewController, UITextViewDelegate {
                     //print("\(document.data())")
                     let data = document.data()
                     let test = MenuItem.init(data: data)
-                    if test.itemCategory == "Protein" {
+                    if test.itemCategory == "Protein Options" {
                         let proteinData: MenuItem = test
                         self.proteinOption.append(proteinData)
                         self.allAddOnOptions.append(self.proteinOption)
@@ -117,7 +117,7 @@ class customizeEntreeVC: UIViewController, UITextViewDelegate {
                         //                                self.tableView.reloadRows(at: [indexPath], with: .right)
                         
                     }
-                    else if test.itemCategory == "Add ons" {
+                        if test.itemCategory == "Add ons" {
                         let addOnData: MenuItem = test
                         self.addOnOptions.append(addOnData)
                         self.allAddOnOptions.append(self.addOnOptions)
