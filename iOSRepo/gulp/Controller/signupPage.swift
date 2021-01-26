@@ -147,6 +147,8 @@ class signupPage: UIViewController, LoginButtonDelegate {
                             print("invalid email")
                         case .emailAlreadyInUse:
                             self.simpleAlert(title: "Incorrect Email", msg: "This email is already in use!")
+                        case .weakPassword:
+                            self.simpleAlert(title: "Weak Password", msg: "This password is not secure, please make it longer than 8 characters")
                         default:
                             print("Create User Error: \(error!)")
                         }

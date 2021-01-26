@@ -13,7 +13,7 @@ let cloudFunctions = _FirebaseFunctions()
 
 final class _FirebaseFunctions {
     
-    func orderAcceptedNotification() {
+    func  orderAcceptedNotification() {
         let data : [String : String] = [
             "phoneNumber" : "+17038191285",
             "truckName" : "Fernando's"

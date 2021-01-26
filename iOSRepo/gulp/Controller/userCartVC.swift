@@ -83,6 +83,7 @@ class userCartVC: UIViewController {
         
     }
     @objc func stripeCheckout() {
+        paymentContext.paymentAmount = shoppingCart.totalCost
         paymentContext.requestPayment()
         
     }
@@ -170,7 +171,7 @@ extension userCartVC : STPPaymentContextDelegate {
             //this is the code that has been executed for after a successful charge has been made
             let random = Int.random(in: 0...10000)
             let orderNumberValue = String(random)
-            let orderticket = Order(customerId: userservice.user.name, merchantId: truckservice.truck.id, items: shoppingCart.itemsOrdered, timestamp: Timestamp.init(), total: shoppingCart.totalCost, additionalRequests: shoppingCart.additionalRequests ?? "", orderNumber: orderNumberValue )
+            let orderticket = Order(customerId: userservice.user.name, merchantId: truckservice.truck.id, items: shoppingCart.itemsOrdered, timestamp: Timestamp.init(), total: shoppingCart.totalCost, additionalRequests: shoppingCart.additionalRequests ?? "", orderNumber: orderNumberValue, customerPhoneNumber: userservice.user.phoneNumber)
             cloudFunctions.orderCreated(orderTicket: orderticket)
             shoppingCart.clearCart()
             cloudFunctions.notifyCustomer(phoneNumber: userservice.user.phoneNumber)
@@ -242,6 +243,15 @@ extension userCartVC:  UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         print(indexPath.row)
         print("hello")
+    }
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle:UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
+        if editingStyle == .delete {
+            tableView.beginUpdates()
+            shoppingCart.remove(item: indexPath.row)
+        }
     }
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
            return false

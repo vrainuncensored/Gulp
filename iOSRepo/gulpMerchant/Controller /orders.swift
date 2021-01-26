@@ -68,7 +68,8 @@ class orders: UIViewController, CLLocationManagerDelegate {
         tableView.register(ordersTableViewCell.self, forCellReuseIdentifier: "Test")
         
         fbCallOrders(tableView: tableView)
-        
+        reloadInputViews()
+        tableView.reloadData()
         
         }
         

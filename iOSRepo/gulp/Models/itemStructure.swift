@@ -12,21 +12,25 @@ struct MenuItem {
     var price: Double
     var itemCategory: String
     var name: String
+    var description: String?
     
     init(
         price: Double = 0.00 ,
          itemCategory: String = "",
-         name: String = "" )
+         name: String = "",
+        description: String = ""   )
         {
         self.itemCategory = itemCategory
         self.name = name
         self.price = price
+        self.description = description
     }
     //the initializer for taking firebase results into useable data
     init(data: [String: Any]) {
         price = data["price"] as? Double ?? 0.00
         itemCategory = data["itemCategory"] as? String ?? ""
         name = data["name"] as? String ?? ""
+        description = data["description"] as? String ?? ""
 
     }
     //this is the code needed to take input and send to the database
@@ -35,6 +39,7 @@ struct MenuItem {
             "price": menuItem.price,
             "itemCategory": menuItem.itemCategory,
             "name": menuItem.name,
+            "description" : menuItem.description
         ]
         return data
     }

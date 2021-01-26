@@ -11,11 +11,8 @@ import Firebase
 import Stripe
 import FBSDKCoreKit
 
-
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -23,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application,
             didFinishLaunchingWithOptions: launchOptions
         )
+        STPPaymentConfiguration.shared().appleMerchantIdentifier = "merchant.com.ordergulp"
         FirebaseApp.configure()
         Stripe.setDefaultPublishableKey("pk_live_uvtek6XT6Z0VbISBoLqmmeCQ00EF2SVsjU")
         return true

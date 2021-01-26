@@ -62,7 +62,11 @@ class OrderConfirmation: UIViewController {
     func settupLabels() {
         orderNumberLabel.text = "Order Number:  " +  orderInformation!.orderNumber
 //        itemsOrderedLabel.text = orderInformation?.items
+        if ((orderInformation?.additionalRequests?.isEmpty) != nil){
+            additionalCommentsLabel.text =  "Special Instructions: None"
+        } else {
         additionalCommentsLabel.text =  "Special Instructions: " + orderInformation!.additionalRequests!
+        }
         
         nameLabel.text = "Customer Name: " + orderInformation!.customerId
 //        timestampLabel.text = orderInformation?.timestamp.
@@ -71,11 +75,11 @@ class OrderConfirmation: UIViewController {
     func gettingItems() {
         var itemsText = ""
         for item in orderInformation!.items{
-            itemsText = itemsText + item
+            itemsText = itemsText + item + ","
         }
         itemsOrderedLabel.text = "Items ordered: " + itemsText
-        
     }
+    
     func convertTimestamp(serverTimestamp: Double) -> String {
             let x = serverTimestamp / 1000
             let date = NSDate(timeIntervalSince1970: x)

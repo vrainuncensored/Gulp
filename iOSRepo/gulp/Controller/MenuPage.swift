@@ -43,14 +43,15 @@ class MenuPage: UIViewController {
         view.addSubview(tableView)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.rowHeight = 100
+        tableView.rowHeight = 150
         tableView.allowsMultipleSelectionDuringEditing = true
         tableView.allowsMultipleSelection = true
         tableView.backgroundColor = UIColor.white
         tableView.separatorStyle = .none
         tableView.separatorColor = UIColor.white
         tableView.backgroundColor = UI_Colors.white
-        tableView.register(MenuItems.self, forCellReuseIdentifier: "Test")
+        //tableView.register(MenuItems.self, forCellReuseIdentifier: "Test")
+        tableView.register(UINib(nibName: "MenuTableViewCell", bundle: nil), forCellReuseIdentifier: "MenuTableViewCell")
         fbCall(tableView: tableView)
 
         self.navigationItem.title = "\(truckName!)'s menu"
@@ -206,41 +207,45 @@ extension MenuPage: UITableViewDataSource, UITableViewDelegate {
     
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Test") as! MenuItems
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MenuTableViewCell") as! MenuTableViewCell
         if (indexPath.section == 0){
             let item = entreeItems[indexPath.row]
-            cell.set(item: item)
+            cell.configureCell(item: item)
+            //cell.set(item: item)
             cell.layer.borderWidth = 1.5
             cell.layer.borderColor = CG_Colors.red
             cell.layer.cornerRadius = 30.0
             cell.backgroundColor = UI_Colors.white
             //this line below is what creates the arrow in each tableview cell
-            cell.accessoryType = .disclosureIndicator
+            //cell.accessoryType = .disclosureIndicator
+            cell.selectionStyle = .none
             reloadInputViews()
 
             
         }
         if (indexPath.section == 1){
             let item = sidesItems[indexPath.row]
-            cell.set(item: item)
+            cell.configureCell(item: item)
             cell.layer.borderWidth = 1.5
             cell.layer.borderColor = CG_Colors.red
             cell.layer.cornerRadius = 30.0
             cell.backgroundColor = UI_Colors.white
             //this line below is what creates the arrow in each tableview cell
-            cell.accessoryType = .disclosureIndicator
+            cell.selectionStyle = .none
+            //cell.accessoryType = .disclosureIndicator
             reloadInputViews()
 
         }
         if (indexPath.section == 2){
             let item = drinksItems[indexPath.row]
-            cell.set(item: item)
+            cell.configureCell(item: item)
             cell.layer.borderWidth = 1.5
             cell.layer.borderColor = CG_Colors.red
             cell.layer.cornerRadius = 30.0
             cell.backgroundColor = UI_Colors.white
             //this line below is what creates the arrow in each tableview cell
-            cell.accessoryType = .disclosureIndicator
+            cell.selectionStyle = .none
+            //cell.accessoryType = .disclosureIndicator
             reloadInputViews()
 
         }
@@ -270,19 +275,19 @@ extension MenuPage: UITableViewDataSource, UITableViewDelegate {
             shoppingCart.add(item: drinkSelected)
             print(shoppingCart.items)
         }
-        let cell = tableView.cellForRow(at: indexPath) as! MenuItems
+        let cell = tableView.cellForRow(at: indexPath) as! MenuTableViewCell
         
-        if cell.itemLabel.text != "" {
-            print(cell.itemLabel.text ?? "hello")
+        if cell.itemName.text != "" {
+            print(cell.itemName.text ?? "hello")
         }
         //tableView.deselectRow(at: indexPath, animated: true)
     }
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-          let cell = tableView.cellForRow(at: indexPath) as! MenuItems
-              if cell.itemLabel.text != "" {
-                  print(cell.itemLabel.text ?? "hello")
-              }
-    }
+//    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+//          let cell = tableView.cellForRow(at: indexPath) as! MenuTableViewCell
+//              if cell.itemName.text != "" {
+//                  print(cell.itemName.text ?? "hello")
+//              }
+//    }
         
     }
 

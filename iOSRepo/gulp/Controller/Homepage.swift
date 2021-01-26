@@ -17,6 +17,7 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
  */
     let map = MKMapView()
     let locationManager = CLLocationManager()
+    let storage = Storage.storage()
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
         let span: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.025, longitudeDelta: 0.025)
@@ -24,7 +25,9 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
         map.setRegion(region, animated: false)
         map.isZoomEnabled = true
         map.isScrollEnabled = true
+        manager.stopUpdatingLocation()
         }
+   
 
     var trucksList = [Truck]()
     struct Cells {
@@ -44,6 +47,8 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
         map.frame = mapView
         map.showsUserLocation = true
         map.delegate = self
+        map.isZoomEnabled = true
+        map.isScrollEnabled = true
         
         let user = Auth.auth().currentUser
         if let user = user {
@@ -61,7 +66,8 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
     locationManager.delegate = self;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest
     locationManager.requestAlwaysAuthorization()
-    locationManager.startUpdatingLocation()
+    //
+        locationManager.startUpdatingLocation()
     
 
     
@@ -76,7 +82,8 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
     tableView.rowHeight = 100
     tableView.separatorColor = UIColor.white
     tableView.backgroundColor = UI_Colors.white
-    tableView.register(TruckItems.self, forCellReuseIdentifier: Cells.truckNames)
+//    tableView.register(TruckItems.self, forCellReuseIdentifier: Cells.truckNames)
+    tableView.register(UINib(nibName: "MainTruckCellTableViewCell", bundle: nil), forCellReuseIdentifier: "MainTruckCell")
     fbCall(tableView : tableView)
         
     
@@ -175,15 +182,16 @@ func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> 
 }
 
 func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: Cells.truckNames) as! TruckItems
+    let cell = tableView.dequeueReusableCell(withIdentifier: "MainTruckCell") as! MainTruckCellTableViewCell
     cell.layer.borderWidth = 1.5
     cell.layer.borderColor = CG_Colors.red
     cell.layer.cornerRadius = 30.0
     cell.backgroundColor = UI_Colors.white
     //this line below is what creates the arrow in each tableview cell
     cell.accessoryType = .disclosureIndicator
+    cell.selectionStyle = .none
     let truck = trucksList[indexPath.row]
-    cell.set(item: truck)
+    cell.configureCell(truck: truck)
     reloadInputViews()
     return cell
     }
