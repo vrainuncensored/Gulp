@@ -38,9 +38,20 @@ class CartItemCheckout: UITableViewCell {
     
     func set(item: CartItem , delegate: CartItemCheckoutCellDelegate) {
         itemLabel.text = item.item.name
-        priceLabel.text = String(item.subTotal)
+        //priceLabel.text = String(item.subTotal)
         self.productItem = item
         self.delegate = delegate
+//        let price = String(item.subTotal)
+//        if price.count == 3 {
+//        priceLabel.text = "$" + price + "0"
+//        }
+//        if price.count == 4 {
+//            priceLabel.text = "$" + price + "0"
+//        }
+//        else {
+//            priceLabel.text = "$" + price
+//        }
+        priceLabel.text = item.subTotal.penniesToFormattedCurrencyDouble()
     }
 
     @objc func deleteItemClicked(_ sender: Any){

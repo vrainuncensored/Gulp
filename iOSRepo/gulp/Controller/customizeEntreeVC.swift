@@ -16,9 +16,10 @@ class customizeEntreeVC: UIViewController, UITextViewDelegate {
     var addOnOptions = [MenuItem]()
     var allAddOnOptions = [[Any]]()
     
-    var quantityOfItems: Int = Int()
+    var quantityOfItems: Int = 1
     //var customerRequests = UITextField()
     //let checkOutButton = UIButton()
+    @IBOutlet weak var stepperOutlet: UIStepper!
     
     //Label Outlets
     @IBOutlet weak var quantityValueLabel: UILabel!
@@ -34,7 +35,9 @@ class customizeEntreeVC: UIViewController, UITextViewDelegate {
     @IBOutlet weak var checkOutButton: UIButton!
     
     @IBAction func quantityStepper(_ sender: UIStepper) {
-        
+//        if sender.value == 0 {
+//        self.quantityOfItems = 1
+//        }
         quantityValueLabel.text = String(sender.value)
         self.quantityOfItems = Int(sender.value)
     }
@@ -46,6 +49,9 @@ class customizeEntreeVC: UIViewController, UITextViewDelegate {
 //
         settupCheckOutButton()
         settupCustomerRequestTextField()
+        
+        stepperOutlet.minimumValue = 0
+
         
         self.navigationItem.title = "\(self.entreeItemSelected.name)"
         self.view.backgroundColor = UI_Colors.white

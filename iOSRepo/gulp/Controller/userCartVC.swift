@@ -225,7 +225,7 @@ extension userCartVC:  UITableViewDelegate, UITableViewDataSource {
         let item = shoppingCart.items[indexPath.row]
         cell.set(item: item, delegate: self)
         cell.layer.borderWidth = 1.5
-        cell.layer.borderColor = CG_Colors.red
+        cell.layer.borderColor = CG_Colors.lightPurple
         cell.layer.cornerRadius = 30.0
         cell.backgroundColor = UI_Colors.white
         //cell.deleteButton.actions(forTarget: shoppingCart.remove(item: associatedMenuItem), forControlEvent: .touchUpInside)

@@ -215,7 +215,7 @@ extension MenuPage: UITableViewDataSource, UITableViewDelegate {
             cell.configureCell(item: item)
             //cell.set(item: item)
             cell.layer.borderWidth = 1.5
-            cell.layer.borderColor = CG_Colors.red
+            cell.layer.borderColor = CG_Colors.lightPurple
             cell.layer.cornerRadius = 30.0
             cell.backgroundColor = UI_Colors.white
             //this line below is what creates the arrow in each tableview cell
@@ -229,7 +229,7 @@ extension MenuPage: UITableViewDataSource, UITableViewDelegate {
             let item = sidesItems[indexPath.row]
             cell.configureCell(item: item)
             cell.layer.borderWidth = 1.5
-            cell.layer.borderColor = CG_Colors.red
+            cell.layer.borderColor = CG_Colors.lightPurple
             cell.layer.cornerRadius = 30.0
             cell.backgroundColor = UI_Colors.white
             //this line below is what creates the arrow in each tableview cell
@@ -242,7 +242,7 @@ extension MenuPage: UITableViewDataSource, UITableViewDelegate {
             let item = drinksItems[indexPath.row]
             cell.configureCell(item: item)
             cell.layer.borderWidth = 1.5
-            cell.layer.borderColor = CG_Colors.red
+            cell.layer.borderColor = CG_Colors.lightPurple
             cell.layer.cornerRadius = 30.0
             cell.backgroundColor = UI_Colors.white
             //this line below is what creates the arrow in each tableview cell
