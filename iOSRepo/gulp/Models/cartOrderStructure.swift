@@ -74,13 +74,13 @@ extension _ShoppingCart {
         guard let index = items.firstIndex(where: { $0.item == item }) else { return}
         items.remove(at: index)
     }
-    func add(item: MenuItem) {
+    func add(item: MenuItem, quantity: Int) {
         let itemTest = items.filter { $0.item == item }
         
         if itemTest.first != nil {
-            itemTest.first!.quantity += Int(item.price)
+            itemTest.first!.quantity += 1
         } else {
-            items.append(CartItem(item: item))
+            items.append(CartItem(item: item, quantity: quantity))
         }
     }
     func clearCart() {

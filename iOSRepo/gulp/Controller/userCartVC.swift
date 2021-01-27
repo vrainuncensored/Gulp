@@ -250,7 +250,7 @@ extension userCartVC:  UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle:UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
         if editingStyle == .delete {
             tableView.beginUpdates()
-            shoppingCart.remove(item: indexPath.row)
+            //shoppingCart.remove(item: indexPath.row)
         }
     }
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {

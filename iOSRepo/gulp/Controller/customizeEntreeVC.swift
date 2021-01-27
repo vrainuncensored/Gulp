@@ -10,13 +10,19 @@ import UIKit
 import Firebase
 
 class customizeEntreeVC: UIViewController, UITextViewDelegate {
-    var entreeItemSelected: String?
+    var entreeItemSelected: MenuItem = MenuItem()
     var truckForFBQuery: String?
     var proteinOption = [MenuItem]()
     var addOnOptions = [MenuItem]()
     var allAddOnOptions = [[Any]]()
+    
+    var quantityOfItems: Int = Int()
     //var customerRequests = UITextField()
     //let checkOutButton = UIButton()
+    
+    //Label Outlets
+    @IBOutlet weak var quantityValueLabel: UILabel!
+    @IBOutlet weak var quantityLabel: UILabel!
     
     //TableView Outlets
     @IBOutlet weak var itemOptions: UITableView!
@@ -27,6 +33,11 @@ class customizeEntreeVC: UIViewController, UITextViewDelegate {
     //Button Outlets
     @IBOutlet weak var checkOutButton: UIButton!
     
+    @IBAction func quantityStepper(_ sender: UIStepper) {
+        
+        quantityValueLabel.text = String(sender.value)
+        self.quantityOfItems = Int(sender.value)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 //        self.view.addBackground()
@@ -36,7 +47,7 @@ class customizeEntreeVC: UIViewController, UITextViewDelegate {
         settupCheckOutButton()
         settupCustomerRequestTextField()
         
-        self.navigationItem.title = "\(self.entreeItemSelected!)"
+        self.navigationItem.title = "\(self.entreeItemSelected.name)"
         self.view.backgroundColor = UI_Colors.white
         
         itemOptions.dataSource = self
@@ -46,7 +57,10 @@ class customizeEntreeVC: UIViewController, UITextViewDelegate {
         itemOptions.rowHeight = 75
         itemOptions.register(MenuItems.self, forCellReuseIdentifier: "Test")
         itemOptions.backgroundColor = UI_Colors.white
+        
+        print(entreeItemSelected)
         fbCall(tableView: itemOptions)
+        
     }
     func settupCheckOutButton() {
         checkOutButton.addTarget(self, action: #selector(updateCustomize), for: .touchUpInside)
@@ -92,7 +106,14 @@ class customizeEntreeVC: UIViewController, UITextViewDelegate {
     @objc func updateCustomize(){
         shoppingCart.additionalRequests = self.customerRequests.text ?? ""
         self.simpleAlert(title: "Customization Completed" , msg: "We have your changes to the entree")
-        print(shoppingCart.items)
+        let item = CartItem(item: entreeItemSelected, quantity: quantityOfItems)
+        shoppingCart.add(item: entreeItemSelected, quantity: quantityOfItems)
+        for item in shoppingCart.items {
+            print (item.subTotal)
+            print (quantityOfItems)
+        }
+        
+        //print(shoppingCart.subtotal)
 
     }
     
@@ -134,22 +155,34 @@ class customizeEntreeVC: UIViewController, UITextViewDelegate {
 
 extension customizeEntreeVC: UITableViewDataSource, UITableViewDelegate {
      func numberOfSections(in tableView: UITableView) -> Int {
-           return 2
+//        if entreeItemSelected.options?.count == 0 {
+//            return 1
+//        } else {
+//            return 2
+//        }
+        return 2
        }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Test") as! MenuItems
         if (indexPath.section == 0){
-            let item = proteinOption[indexPath.row]
-            cell.set(item: item)
+            let item = entreeItemSelected.options![indexPath.row]
+            //let item = proteinOption[indexPath.row]
+            cell.configure(item: item)
+           // cell.set(item: item)
             reloadInputViews()
 
             
         }
         if (indexPath.section == 1){
-            let item = addOnOptions[indexPath.row]
-            cell.set(item: item)
+            if entreeItemSelected.options?.count == 0 {
+                return UITableViewCell()
+            } else {
+            let item = entreeItemSelected.toppings![indexPath.row]
+           // let item = addOnOptions[indexPath.row]
+            //cell.set(item: item)
+            cell.configure(item: item)
             reloadInputViews()
-
+            }
         }
         
         return cell
@@ -161,32 +194,32 @@ extension customizeEntreeVC: UITableViewDataSource, UITableViewDelegate {
         }
         if indexPath.section == 0 {
                    let choiceOfProteinSelected = proteinOption[indexPath.row]
-                   shoppingCart.add(item: choiceOfProteinSelected)
+            //shoppingCart.add(item: choiceOfProteinSelected)
                    print(shoppingCart.items)
                }
         if indexPath.section == 1 {
                    let addOnSelected = addOnOptions[indexPath.row]
-                   shoppingCart.add(item: addOnSelected)
+            //shoppingCart.add(item: addOnSelected)
                    print(shoppingCart.items)
                }
     }
    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if (section == 0){
-            return "Choice of Protein"
+            return "Options"
         }
         if (section == 1){
-            return "Add ons"
+            return "Toppings"
         }
         
         return ""
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (section == 0){
-            return proteinOption.count
+            return entreeItemSelected.options?.count ?? 0
         }
         if (section == 1){
-            return addOnOptions.count
+            return entreeItemSelected.toppings?.count ?? 0
         }
         
         return 0

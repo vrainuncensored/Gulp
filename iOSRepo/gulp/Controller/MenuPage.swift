@@ -10,7 +10,7 @@ class MenuPage: UIViewController {
     var sidesItems =  [MenuItem]()
     var drinksItems = [MenuItem]()
     var testArray = [[Any]]()
-    var entreeSelected = ""
+    var entreeSelected: MenuItem = MenuItem()
     struct Cells {
         static let menuItem = "MenuItems"
     }
@@ -120,6 +120,7 @@ class MenuPage: UIViewController {
                           displayVC.truckForFBQuery = self.truckIdForQuery!
                           displayVC.modalPresentationStyle = .fullScreen
                   }
+        
               }
     
     @objc func loginAction() {
@@ -134,6 +135,7 @@ class MenuPage: UIViewController {
     func segueToEntreeCustomizePage(){
                self.performSegue(withIdentifier: "segueToCustomizeEntreeVC", sender: self)
     }
+    
    
     @objc func addToCart () {
        if Auth.auth().currentUser != nil {
@@ -253,41 +255,37 @@ extension MenuPage: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //        let cell = tableView.dequeueReusableCell(withIdentifier: Cells.truckNames) as! TruckItems
-        //        cell.menuButton.tag = indexPath.row
-        //        cell.menuButton.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
-        //            reloadInputViews()
-        //          tableView.deselectRow(at: indexPath, animated: true)
+
         if indexPath.section == 0 {
             let entreeSelected = entreeItems[indexPath.row]
-            self.entreeSelected = entreeSelected.name
-           shoppingCart.add(item: entreeSelected)
+            self.entreeSelected = entreeSelected
+            //shoppingCart.add(item: entreeSelected)
+            print(entreeSelected.toppings)
+            print(entreeSelected.options)
             self.segueToEntreeCustomizePage()
         }
+        
         if indexPath.section == 1 {
             let sideSelected = sidesItems[indexPath.row]
-           shoppingCart.add(item: sideSelected)
+           shoppingCart.add(item: sideSelected, quantity: 1)
             print(sideSelected.price)
             print(shoppingCart.totalCost)
         }
+        
         if indexPath.section == 2 {
             let drinkSelected = drinksItems[indexPath.row]
-            shoppingCart.add(item: drinkSelected)
+            shoppingCart.add(item: drinkSelected, quantity: 1)
             print(shoppingCart.items)
         }
+        
         let cell = tableView.cellForRow(at: indexPath) as! MenuTableViewCell
         
         if cell.itemName.text != "" {
             print(cell.itemName.text ?? "hello")
         }
-        //tableView.deselectRow(at: indexPath, animated: true)
+        
     }
-//    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-//          let cell = tableView.cellForRow(at: indexPath) as! MenuTableViewCell
-//              if cell.itemName.text != "" {
-//                  print(cell.itemName.text ?? "hello")
-//              }
-//    }
+//
         
     }
 
@@ -297,10 +295,4 @@ extension MenuPage: UITableViewDataSource, UITableViewDelegate {
     }
         
         
-//            let truck = trucksList[indexPath.row]
-//            self.truckIdForQuery = truck.id
-//            self.truckToShowMenu = truck.name
-//            seguetoTruckMenu()
-//        }
-
 

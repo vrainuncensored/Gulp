@@ -128,6 +128,19 @@ class orders: UIViewController, CLLocationManagerDelegate {
                         }
                     }
                 }
+                docRef.addSnapshotListener { (snap, err) in
+                    if let err = err {
+                        print("Error getting documents: \(err)")
+                    } else {
+                        for document in snap!.documents {
+                            //print("\(document.data())")
+                            let data = document.data()
+                            let orderfromFB = Order.init(data: data)
+                            self.listOfOrders.append(orderfromFB)
+                            tableView.reloadData()
+                        }
+                    }
+                }
             }
         }
     }

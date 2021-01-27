@@ -39,6 +39,11 @@ class MenuItems: UITableViewCell {
         }
         
     }
+    
+    func configure(item: String) {
+    itemLabel.text = item
+    }
+    
     func configureTitleLabel(){
         itemLabel.numberOfLines = 0
         itemLabel.adjustsFontSizeToFitWidth = true

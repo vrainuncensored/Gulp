@@ -11,12 +11,13 @@ import Foundation
 class CartItem {
     
     var item : MenuItem
-    var quantity : Int = 1
+    var quantity : Int
     
     var subTotal : Double { get { return item.price * Double(quantity) }}
     
-    init(item: MenuItem){
+    init(item: MenuItem, quantity: Int){
         self.item = item
+        self.quantity = quantity
     }
 }
 

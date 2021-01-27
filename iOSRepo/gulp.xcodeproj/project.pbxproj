@@ -80,6 +80,8 @@
 		8BA2B14025BF884000F55E34 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2B13E25BF884000F55E34 /* MenuTableViewCell.swift */; };
 		8BA2B14125BF884000F55E34 /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA2B13F25BF884000F55E34 /* MenuTableViewCell.xib */; };
 		8BA2B14D25BFB22C00F55E34 /* gulplogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA2B14C25BFB22C00F55E34 /* gulplogo.png */; };
+		8BA2B15425C0EF1000F55E34 /* CustomizeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2B15225C0EF1000F55E34 /* CustomizeTableViewCell.swift */; };
+		8BA2B15525C0EF1000F55E34 /* CustomizeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA2B15325C0EF1000F55E34 /* CustomizeTableViewCell.xib */; };
 		8BAC24A025A52AFE008C43B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BAC249F25A52AFE008C43B3 /* Assets.xcassets */; };
 		E38A879A24EF1D18001A66C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64DDE6B0242D876C0068223D /* Main.storyboard */; };
 		E38A879E24F2AFC9001A66C0 /* FirebaseFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38A879D24F2AFC9001A66C0 /* FirebaseFunctions.swift */; };
@@ -169,6 +171,8 @@
 		8BA2B13E25BF884000F55E34 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		8BA2B13F25BF884000F55E34 /* MenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuTableViewCell.xib; sourceTree = "<group>"; };
 		8BA2B14C25BFB22C00F55E34 /* gulplogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gulplogo.png; path = ../../../../../.Trash/gulplogo.png; sourceTree = "<group>"; };
+		8BA2B15225C0EF1000F55E34 /* CustomizeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeTableViewCell.swift; sourceTree = "<group>"; };
+		8BA2B15325C0EF1000F55E34 /* CustomizeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomizeTableViewCell.xib; sourceTree = "<group>"; };
 		8BAC249F25A52AFE008C43B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../../Desktop/test/test/Assets.xcassets; sourceTree = "<group>"; };
 		A9A68096033DD4EC8EBBAC28 /* Pods-gulpMerchant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gulpMerchant.debug.xcconfig"; path = "Target Support Files/Pods-gulpMerchant/Pods-gulpMerchant.debug.xcconfig"; sourceTree = "<group>"; };
 		C3D30B1C79573C3F4367EF55 /* Pods-gulp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gulp.debug.xcconfig"; path = "Target Support Files/Pods-gulp/Pods-gulp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -284,6 +288,7 @@
 				649A3DAF24B56D64007F6367 /* TableViewCell.swift */,
 				8BA2B10725BF3D8F00F55E34 /* MainTruckCellTableViewCell.swift */,
 				8BA2B13E25BF884000F55E34 /* MenuTableViewCell.swift */,
+				8BA2B15225C0EF1000F55E34 /* CustomizeTableViewCell.swift */,
 			);
 			name = View;
 			path = ../View;
@@ -432,6 +437,7 @@
 			children = (
 				8BA2B10825BF3D8F00F55E34 /* MainTruckCellTableViewCell.xib */,
 				8BA2B13F25BF884000F55E34 /* MenuTableViewCell.xib */,
+				8BA2B15325C0EF1000F55E34 /* CustomizeTableViewCell.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -534,6 +540,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BA2B14D25BFB22C00F55E34 /* gulplogo.png in Resources */,
+				8BA2B15525C0EF1000F55E34 /* CustomizeTableViewCell.xib in Resources */,
 				8BA2B10A25BF3D8F00F55E34 /* MainTruckCellTableViewCell.xib in Resources */,
 				64646A8224B62A0F00A4691B /* LoginFlowCustomer.storyboard in Resources */,
 				E38A879A24EF1D18001A66C0 /* Main.storyboard in Resources */,
@@ -716,6 +723,7 @@
 				644B0606247F9ADB003DE98A /* UserService.swift in Sources */,
 				644765C7244DD317004FCDEA /* TruckItems.swift in Sources */,
 				648527742496DA6800E89866 /* cartOrderStructure.swift in Sources */,
+				8BA2B15425C0EF1000F55E34 /* CustomizeTableViewCell.swift in Sources */,
 				644B05FB247AC7A0003DE98A /* navigation bar.swift in Sources */,
 				648527722496D70B00E89866 /* cartItemStructure.swift in Sources */,
 				64320CB6243E1A4600ED486D /* itemStructure.swift in Sources */,
