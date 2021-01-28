@@ -8,37 +8,41 @@
 //
 import Foundation
 import UIKit
-//import Firebase
-//
-//let userservice = _UserService()
-//
-//final class _UserService{
-//    
-//    var user = Merchant()
-//    let auth = Auth.auth()
-//    let db = Firestore.firestore()
-//    var userListner : ListenerRegistration? = nil
-//    
-//    var isGuest : Bool {
-//        guard let isGuest = auth.currentUser else {
-//            return true
-//        }
-//        return false
-//    }
-//    
-//    func getUser() {
-//        guard let currentUser = auth.currentUser else {return}
-//        
-//        let userRef = db.collection("users").document(currentUser.uid)
-//        userListner = userRef.addSnapshotListener({ (snap, err) in
-//            if let error = err {
-//                print(error.localizedDescription)
-//                return
-//            }
-//            guard let data = snap?.data() else {return}
-//            //self.user = User.init(data: data)
-//        })
+import Firebase
+
+let userservice = _UserService()
+
+final class _UserService{
+    
+    var user = Merchant()
+    let auth = Auth.auth()
+    let db = Firestore.firestore()
+    var userListner : ListenerRegistration? = nil
+    
+    var isGuest : Bool {
+        guard let isGuest = auth.currentUser else {
+            return true
+        }
+        return false
+    }
+    
+    func getUser() {
+        guard let currentUser = auth.currentUser else {return}
+        
+        let userRef = db.collection("merchants").document(currentUser.uid)
+        userListner = userRef.addSnapshotListener({ (snap, err) in
+            if let error = err {
+                print(error.localizedDescription)
+                return
+            }
+            guard let data = snap?.data() else {return}
+            self.user = Merchant(data: data)
+        })
+    }
+    
+}
 func generateRandomNumber() -> String {
     let uuid = UUID().uuidString
     return(uuid)
 }
+    

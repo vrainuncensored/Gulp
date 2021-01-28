@@ -36,6 +36,9 @@ class ManageLocation: UIViewController, CLLocationManagerDelegate {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
+        truckLocation.showsUserLocation = true
+        truckLocation.isZoomEnabled = true
+        truckLocation.isScrollEnabled = true
         setupUpdateButton()
         setupClosedButton()
         // Do any additional setup after loading the view.

@@ -82,6 +82,7 @@
 		8BA2B14D25BFB22C00F55E34 /* gulplogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA2B14C25BFB22C00F55E34 /* gulplogo.png */; };
 		8BA2B15425C0EF1000F55E34 /* CustomizeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2B15225C0EF1000F55E34 /* CustomizeTableViewCell.swift */; };
 		8BA2B15525C0EF1000F55E34 /* CustomizeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA2B15325C0EF1000F55E34 /* CustomizeTableViewCell.xib */; };
+		8BA2B15B25C230B300F55E34 /* CompletedOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2B15A25C230B300F55E34 /* CompletedOrdersViewController.swift */; };
 		8BAC24A025A52AFE008C43B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BAC249F25A52AFE008C43B3 /* Assets.xcassets */; };
 		E38A879A24EF1D18001A66C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64DDE6B0242D876C0068223D /* Main.storyboard */; };
 		E38A879E24F2AFC9001A66C0 /* FirebaseFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38A879D24F2AFC9001A66C0 /* FirebaseFunctions.swift */; };
@@ -173,6 +174,7 @@
 		8BA2B14C25BFB22C00F55E34 /* gulplogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gulplogo.png; path = ../../../../../.Trash/gulplogo.png; sourceTree = "<group>"; };
 		8BA2B15225C0EF1000F55E34 /* CustomizeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeTableViewCell.swift; sourceTree = "<group>"; };
 		8BA2B15325C0EF1000F55E34 /* CustomizeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomizeTableViewCell.xib; sourceTree = "<group>"; };
+		8BA2B15A25C230B300F55E34 /* CompletedOrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedOrdersViewController.swift; sourceTree = "<group>"; };
 		8BAC249F25A52AFE008C43B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../../Desktop/test/test/Assets.xcassets; sourceTree = "<group>"; };
 		A9A68096033DD4EC8EBBAC28 /* Pods-gulpMerchant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gulpMerchant.debug.xcconfig"; path = "Target Support Files/Pods-gulpMerchant/Pods-gulpMerchant.debug.xcconfig"; sourceTree = "<group>"; };
 		C3D30B1C79573C3F4367EF55 /* Pods-gulp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gulp.debug.xcconfig"; path = "Target Support Files/Pods-gulp/Pods-gulp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -312,6 +314,8 @@
 				64B72794245C8FFA0082BBD6 /* SceneDelegate.swift */,
 				64D6E8DD245E383700A3B852 /* orderLabel.swift */,
 				64D6E8D3245DD8C800A3B852 /* orders.swift */,
+				8BA2B15A25C230B300F55E34 /* CompletedOrdersViewController.swift */,
+				8B42E90E25BA384A00035784 /* OrderConfirmation.swift */,
 				644B061124846095003DE98A /* updateLocation .swift */,
 				64D6E8EF246059E900A3B852 /* ManageLocation.swift */,
 				644B0600247B1673003DE98A /* EntreeCustomizeOptionsVC.swift */,
@@ -322,7 +326,6 @@
 				64D6E8F32461010C00A3B852 /* merchantSignUp.swift */,
 				642BD27024BED2340081178B /* testViewController.swift */,
 				64593BE324BFCF51009F5B39 /* ConnectOnboardViewController.swift */,
-				8B42E90E25BA384A00035784 /* OrderConfirmation.swift */,
 			);
 			path = "Controller ";
 			sourceTree = "<group>";
@@ -695,6 +698,7 @@
 				64D6E8F62463479D00A3B852 /* addingMenuItem.swift in Sources */,
 				644B0601247B1673003DE98A /* EntreeCustomizeOptionsVC.swift in Sources */,
 				64D6E8F0246059E900A3B852 /* ManageLocation.swift in Sources */,
+				8BA2B15B25C230B300F55E34 /* CompletedOrdersViewController.swift in Sources */,
 				64D6E8E2245F1A6300A3B852 /* merchantStructure.swift in Sources */,
 				642BD27524BF66C30081178B /* orderStructure.swift in Sources */,
 				64B72795245C8FFA0082BBD6 /* SceneDelegate.swift in Sources */,
@@ -789,13 +793,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = gulpMerchant/gulpMerchant.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = GHNLH4RLUZ;
 				INFOPLIST_FILE = gulpMerchant/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.95;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.orderGulp.gulpCustomer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -811,13 +816,14 @@
 				CODE_SIGN_ENTITLEMENTS = gulpMerchant/gulpMerchant.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				"CODE_SIGN_STYLE[sdk=iphoneos*]" = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = GHNLH4RLUZ;
 				INFOPLIST_FILE = gulpMerchant/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.95;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.orderGulp.gulpCustomer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

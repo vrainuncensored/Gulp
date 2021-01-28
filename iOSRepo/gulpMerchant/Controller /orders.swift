@@ -30,6 +30,7 @@ class orders: UIViewController, CLLocationManagerDelegate {
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
         
+        userservice.getUser()
         
         print(listOfOrders)
         
@@ -40,14 +41,15 @@ class orders: UIViewController, CLLocationManagerDelegate {
         
         self.navigationItem.title = "Orders"
         let userLogo = "person"
+        let archivesSFSymbol = "archivebox"
         let buttonConfig = UIImage.SymbolConfiguration(pointSize: UIFont.systemFontSize, weight: .medium, scale: .large)
-        let userImage = UIImage(systemName: userLogo, withConfiguration: buttonConfig)
+        let archiveImage = UIImage(systemName: archivesSFSymbol, withConfiguration: buttonConfig)
         
         
-        let userLogin = UIBarButtonItem(image: userImage, style: .plain, target: self, action: #selector(addItem))
-        let addAction = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(segueTo))
-        navigationItem.rightBarButtonItem = addAction
-        navigationItem.leftBarButtonItem = userLogin
+        let archiveButton = UIBarButtonItem(image: archiveImage, style: .plain, target: self, action: #selector(addItem))
+       // let addAction = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(segueTo))
+        navigationItem.rightBarButtonItem = archiveButton
+        //navigationItem.leftBarButtonItem = userLogin
         
         
         
@@ -68,6 +70,7 @@ class orders: UIViewController, CLLocationManagerDelegate {
         tableView.register(ordersTableViewCell.self, forCellReuseIdentifier: "Test")
         
         fbCallOrders(tableView: tableView)
+        settupListner (tableView : tableView)
         reloadInputViews()
         tableView.reloadData()
         
@@ -105,6 +108,7 @@ class orders: UIViewController, CLLocationManagerDelegate {
 
         
 }
+   
     
     func fbCallOrders (tableView: UITableView) {
         let user = Auth.auth().currentUser
@@ -144,8 +148,44 @@ class orders: UIViewController, CLLocationManagerDelegate {
             }
         }
     }
+    func settupListner (tableView : UITableView) {
+        let user = Auth.auth().currentUser
+        if let user = user {
+            let uid = user.uid
+            let email = user.email
+            if Auth.auth().currentUser != nil {
+
+                let docRef = Firestore.firestore().collection("merchant").document(uid).collection("orders")
+                docRef.addSnapshotListener { (snap, error) in
+                    if let error = error {
+                        print("Error getting documents: \(error)")
+                        return
+                    }
+                    
+                    snap?.documentChanges.forEach({ (change) in
+                        
+                        let data = change.document.data()
+                        let order = Order.init(data: data)
+                        
+                        if change.type == .removed {
+                            self.listOfOrders.remove(at: Int(change.oldIndex))
+                            tableView.deleteRows(at: [IndexPath(item: Int(change.oldIndex), section: 0)], with: .fade)
+                            tableView.reloadData()
+                            
+                        
+                        }
+                    })
+                
+                    
+                }
+                
+                
+            }
+            
+        }
+    }
     @objc func addItem(sender: UIButton!) {
-        self.performSegue(withIdentifier: "individalItemSegue", sender: self)
+        self.performSegue(withIdentifier: "segueToCompletedOrders", sender: self)
       }
     @objc func segueTo(sender: UIButton!) {
         self.performSegue(withIdentifier: "toConfirmationPage", sender: self)    }

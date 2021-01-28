@@ -28,5 +28,26 @@ final class _FirebaseFunctions {
             print("success")
         }
     }
+    func orderCompletedDatabase (orderTicket : Order) {
+        let data = Order.modelToData(order: orderTicket)
+        let merchantTicket = Firestore.firestore().collection("merchant").document("HKunSIdEcuWivHMbQLhGlM5Htrq2").collection("completedOrders").document(orderTicket.orderNumber)
+    merchantTicket.setData(data){ err in
+        if let err = err {
+            print("Error writing document: \(err)")
+        } else {
+        }
+    }
+    }
+    func removeCompletedOrder (orderTicket: Order) {
+        let data = Order.modelToData(order: orderTicket)
+        let merchantTicket = Firestore.firestore().collection("merchant").document("HKunSIdEcuWivHMbQLhGlM5Htrq2").collection("orders").document(orderTicket.orderNumber).delete() { err in
+            if let err = err {
+                print("Error removing document: \(err)")
+            } else {
+                print("Document successfully removed!")
+            }
+    }
     
+}
+
 }

@@ -43,8 +43,11 @@ class OrderConfirmation: UIViewController {
         gettingItems()
 
     }
-    @objc func notify() {
+    @objc func orderCompletedAction() {
+        cloudFunctions.orderCompletedDatabase(orderTicket: orderInformation!)
         cloudFunctions.orderAcceptedNotification()
+        cloudFunctions.removeCompletedOrder(orderTicket: orderInformation!)
+        //self.presentedViewController!.dismiss(animated: true, completion: nil)
     }
 //    func setupOrderNumberLabel() {
 //        orderNumberLabel.text = "Order Number  " + String(565)
@@ -56,7 +59,7 @@ class OrderConfirmation: UIViewController {
         confirmationButton.layer.borderWidth = 1
         confirmationButton.layer.borderColor = CG_Colors.red
         confirmationButton.backgroundColor = UI_Colors.red
-        confirmationButton.addTarget(self, action: #selector(notify), for: .touchUpInside)
+        confirmationButton.addTarget(self, action: #selector(orderCompletedAction), for: .touchUpInside)
         confirmationButton.setTitleColor(.white, for: .normal)
     }
     func settupLabels() {
