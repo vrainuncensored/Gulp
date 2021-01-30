@@ -473,13 +473,6 @@
                                     <constraint firstAttribute="trailing" secondItem="S89-6g-htH" secondAttribute="trailing" id="Boh-aL-9mI"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRH-mx-Mgg">
-                                <rect key="frame" x="60" y="482" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="1KU-mR-F5P">
                                 <rect key="frame" x="20" y="137.5" width="374" height="44"/>
                                 <subviews>
@@ -554,7 +547,6 @@
                         <outlet property="itemsOrderedLabel" destination="aMM-Qp-9Kp" id="3jJ-vx-wVv"/>
                         <outlet property="nameLabel" destination="4jY-Xo-k9v" id="cZr-Ry-pBp"/>
                         <outlet property="orderNumberLabel" destination="5ef-Xm-5wE" id="eRK-uW-rUC"/>
-                        <outlet property="timestampLabel" destination="VRH-mx-Mgg" id="EgY-xT-hs5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J24-oV-FxP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

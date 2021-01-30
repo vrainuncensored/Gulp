@@ -77,6 +77,10 @@ class LoginPage: UIViewController {
     @objc func signinOption(sender: UIButton!) {
         Auth.auth().signIn(withEmail: userEmail.text!, password: userPassword.text!) { [weak self] authResult, error in
             guard let strongSelf = self else { return }
+            userservice.getUser()
+            print(userservice.user.stripeId)
+            let user = Auth.auth().currentUser
+            print( user?.uid)
             //print(strongSelf)
             if let authResult = authResult{
              self?.segueToHome()

@@ -65,7 +65,7 @@ class OrderConfirmation: UIViewController {
     func settupLabels() {
         orderNumberLabel.text = "Order Number:  " +  orderInformation!.orderNumber
 //        itemsOrderedLabel.text = orderInformation?.items
-        if ((orderInformation?.additionalRequests?.isEmpty) != nil){
+        if ((orderInformation?.additionalRequests?.isEmpty) == nil){
             additionalCommentsLabel.text =  "Special Instructions: None"
         } else {
         additionalCommentsLabel.text =  "Special Instructions: " + orderInformation!.additionalRequests!
