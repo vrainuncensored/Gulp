@@ -80,7 +80,7 @@ class LoginPage: UIViewController {
             userservice.getUser()
             print(userservice.user.stripeId)
             let user = Auth.auth().currentUser
-            print( user?.uid)
+            //print( user?.uid)
             //print(strongSelf)
             if let authResult = authResult{
              self?.segueToHome()

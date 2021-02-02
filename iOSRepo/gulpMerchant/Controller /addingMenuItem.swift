@@ -38,7 +38,8 @@ class addingMenuItem: UIViewController {
         viewWillLayoutSubviews()
         itemCategory.dataSource = self
         itemCategory.delegate = self
-        
+        itemCategory.setValue(UIColor.black, forKeyPath: "textColor")
+
         
 
         
@@ -169,7 +170,8 @@ class addingMenuItem: UIViewController {
         itemName.layer.borderColor = CG_Colors.lightPurple
         itemName.textColor = UIColor.black
         itemName.autocapitalizationType = UITextAutocapitalizationType.none
-        itemName.placeholder = "Menu Item Name"
+        itemName.attributedPlaceholder = NSAttributedString(string: "Menu Item Name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        itemName.textColor = UI_Colors.black
     }
     func setupItemPriceField() {
            itemPrice.layer.cornerRadius = 5
@@ -177,7 +179,8 @@ class addingMenuItem: UIViewController {
            itemPrice.layer.borderColor = CG_Colors.lightPurple
            itemPrice.textColor = UIColor.black
            itemPrice.autocapitalizationType = UITextAutocapitalizationType.none
-           itemPrice.placeholder = "Item Price"
+        itemPrice.attributedPlaceholder = NSAttributedString(string: "Item Price", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        itemPrice.textColor = UI_Colors.black
        }
 //    func setupItemCategoryField() {
 //              itemCategory.layer.cornerRadius = 5

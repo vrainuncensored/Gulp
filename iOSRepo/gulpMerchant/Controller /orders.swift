@@ -68,6 +68,7 @@ class orders: UIViewController, CLLocationManagerDelegate {
         tableView.backgroundColor = UIColor.white
         tableView.separatorStyle = .none
         tableView.register(ordersTableViewCell.self, forCellReuseIdentifier: "Test")
+        view.backgroundColor = UI_Colors.white
         
         fbCallOrders(tableView: tableView)
         settupListner (tableView : tableView)
@@ -216,6 +217,7 @@ extension orders: UITableViewDelegate, UITableViewDataSource{
             cell.layer.borderWidth = 1.5
             cell.layer.borderColor = CG_Colors.lightPurple
             cell.layer.cornerRadius = 30.0
+            cell.backgroundColor = UI_Colors.white
         if listOfOrders.count == 0 {
             reloadInputViews()
             return cell

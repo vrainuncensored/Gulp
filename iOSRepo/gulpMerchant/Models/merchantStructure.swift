@@ -19,13 +19,15 @@ struct Merchant {
     var name: String
     var locationCoordinates: GeoPoint?
     var phoneNumber: String
+    var cuisine: String
 
     init(email: String = "",
          id: String = "",
          stripeId: String = "",
          name: String = "",
          locationCoordinates:GeoPoint = GeoPoint(latitude: 0.0 ,longitude: 0.0),
-         phoneNumber: String = "") {
+         phoneNumber: String = "",
+         cuisine: String) {
         
         self.email = email
         self.id = id
@@ -33,6 +35,7 @@ struct Merchant {
         self.name = name
         self.locationCoordinates = locationCoordinates
         self.phoneNumber = phoneNumber
+        self.cuisine = cuisine
     }
     //the initializer for taking firebase results into useable data
     init(data: [String: Any]) {
@@ -42,6 +45,7 @@ struct Merchant {
         name = data["name"] as? String ?? ""
         locationCoordinates = data["locationCoordinates"] as? GeoPoint ?? GeoPoint(latitude: 0.0, longitude: 0.0)
         phoneNumber = data["phoneNumber"] as? String ?? ""
+        cuisine = data["cuisine"] as? String ?? ""
 
     }
     //this is the code needed to take input and send to the database
@@ -52,7 +56,8 @@ struct Merchant {
             "stripeId": merchant.stripeId,
             "name": merchant.name,
             "locationCoordinates": merchant.locationCoordinates ?? GeoPoint(latitude: 0.0, longitude: 0.0),
-            "phoneNumber": merchant.phoneNumber
+            "phoneNumber": merchant.phoneNumber,
+            "cuisine": merchant.cuisine
         ]
         return data
     }

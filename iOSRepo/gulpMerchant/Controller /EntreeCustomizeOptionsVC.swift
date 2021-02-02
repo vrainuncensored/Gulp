@@ -48,6 +48,8 @@ class EntreeCustomizeOptionsVC: UIViewController {
         addOnPrice.keyboardType = UIKeyboardType.decimalPad
         self.addDoneButtonOnKeyboard()
         
+        categorySelection.setValue(UIColor.black, forKeyPath: "textColor")
+
 //
         // Do any additional setup after loading the view.
     }
@@ -89,19 +91,22 @@ class EntreeCustomizeOptionsVC: UIViewController {
     func setupAddOnName() {
         addOnName.textColor = UIColor.red
         addOnName.autocapitalizationType = UITextAutocapitalizationType.none
-        addOnName.placeholder = "Add On Name"
+        addOnName.attributedPlaceholder = NSAttributedString(string: "Add On Name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
         addOnName.layer.cornerRadius = 5
         addOnName.layer.borderWidth = 1
         addOnName.layer.borderColor = CG_Colors.lightPurple
+        addOnName.textColor = UI_Colors.black
     }
     func setupAddOnNamePrice() {
         //addOnPrice.textColor = UIColor.black
         addOnPrice.autocapitalizationType = UITextAutocapitalizationType.none
         addOnPrice.placeholder = "Menu Item Price"
+        addOnPrice.attributedPlaceholder = NSAttributedString(string: "Menu Item Price", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
         addOnPrice.layer.cornerRadius = 5
         addOnPrice.layer.borderWidth = 1
         addOnPrice.layer.borderColor = CG_Colors.lightPurple
         addOnPrice.text = "$0.00"
+        addOnPrice.textColor = UI_Colors.black
     }
     func setupCategoryName() {
     

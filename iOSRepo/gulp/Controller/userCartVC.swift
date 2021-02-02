@@ -95,7 +95,7 @@ class userCartVC: UIViewController {
     func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(CartItemCheckout.self, forCellReuseIdentifier: "Test")
+        tableView.register(UINib(nibName: "CheckoutTableViewCell", bundle: nil), forCellReuseIdentifier: "CheckoutTableViewCell")
         tableView.separatorStyle = .none
         tableView.rowHeight = 100
         tableView.backgroundColor = UI_Colors.white
@@ -221,9 +221,9 @@ extension userCartVC:  UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Test") as! CartItemCheckout
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CheckoutTableViewCell") as! CheckoutTableViewCell
         let item = shoppingCart.items[indexPath.row]
-        cell.set(item: item, delegate: self)
+        cell.configureCell(item: item)
         cell.layer.borderWidth = 1.5
         cell.layer.borderColor = CG_Colors.lightPurple
         cell.layer.cornerRadius = 30.0
@@ -250,13 +250,29 @@ extension userCartVC:  UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle:UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
         if editingStyle == .delete {
             tableView.beginUpdates()
-            //shoppingCart.remove(item: indexPath.row)
+            let item = shoppingCart.items[indexPath.row]
+            shoppingCart.remove(item: item.item)
+            setupPaymentInfo()
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.endUpdates()
         }
     }
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
            return false
     }
-      
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
     
+//    func tableView(tableView: UITableView!, commitEditingStyle editingStyle:   UITableViewCell.EditingStyle, forRowAtIndexPath indexPath: NSIndexPath!) {
+//        if (editingStyle == UITableViewCell.EditingStyle.delete) {
+//            tableView.beginUpdates()
+//            shoppingCart.items.remove(at: indexPath!.row)
+//            let Index = IndexPath(row: indexPath, section: 0)
+//            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .fade)
+//            tableView.endUpdates()
+//
+//        }
+//    }
 }
 

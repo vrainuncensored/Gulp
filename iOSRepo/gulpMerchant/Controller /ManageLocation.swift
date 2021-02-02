@@ -41,6 +41,8 @@ class ManageLocation: UIViewController, CLLocationManagerDelegate {
         truckLocation.isScrollEnabled = true
         setupUpdateButton()
         setupClosedButton()
+        
+        view.backgroundColor = UI_Colors.white
         // Do any additional setup after loading the view.
     }
     func setupUpdateButton() {

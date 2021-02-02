@@ -18,7 +18,7 @@ class MenuItems: UITableViewCell {
             super.init(style: style, reuseIdentifier: reuseIdentifier)
             addSubview(itemLabel)
             addSubview(priceLabel)
-            
+            //contentView.backgroundColor = UI_Colors.white
             configurePriceLabel()
             configureTitleLabel()
             setItemConstraints()
@@ -38,14 +38,14 @@ class MenuItems: UITableViewCell {
             itemLabel.numberOfLines = 0
             itemLabel.adjustsFontSizeToFitWidth = true
             itemLabel.font = UIFont(name: "AvenirNext-Bold" , size: 17.0)
-            itemLabel.textColor = UIColor.black
+            itemLabel.textColor = UI_Colors.black
 
         }
         func configurePriceLabel(){
             priceLabel.numberOfLines = 0
             priceLabel.adjustsFontSizeToFitWidth = true
             priceLabel.font = UIFont(name: "AvenirNext-Bold" , size: 17.0)
-            priceLabel.textColor = UIColor.black
+            priceLabel.textColor = UI_Colors.black
         }
         
         func setItemConstraints() {

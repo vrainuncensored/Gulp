@@ -20,7 +20,7 @@ class MainTruckCellTableViewCell: UITableViewCell {
     }
     func configureCell(truck: Truck) {
         truckName.text = truck.name
-        truckCuisine.text = truck.name
+        truckCuisine.text = truck.cuisine
         
     }
 

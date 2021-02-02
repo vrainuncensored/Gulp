@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZMB-4Q-fRX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gSm-vN-iJH">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -388,8 +388,106 @@
             </objects>
             <point key="canvasLocation" x="1089.8550724637682" y="126.5625"/>
         </scene>
+        <!--validateUserPage-->
+        <scene sceneID="Lh7-DR-dP7">
+            <objects>
+                <viewController title="validateUserPage" id="gSm-vN-iJH" customClass="ViewController" customModule="gulp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Kqy-7U-gCj">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="pP8-Ih-KAm">
+                                <rect key="frame" x="20" y="684" width="374" height="158"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fIh-AM-Pwq" customClass="RoundedButton" customModule="gulp" customModuleProvider="target">
+                                        <rect key="frame" x="30" y="0.0" width="314" height="36"/>
+                                        <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
+                                        <state key="normal" title="Sign Up">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="0gS-2V-wQ7" kind="popoverPresentation" popoverAnchorView="fIh-AM-Pwq" id="v5t-Jo-AOw">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                            </segue>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8I4-rH-K56" customClass="RoundedButton" customModule="gulp" customModuleProvider="target">
+                                        <rect key="frame" x="30" y="61" width="314" height="36"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
+                                        <state key="normal" title="Sign In">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="13Q-NS-BQy">
+                                        <rect key="frame" x="171" y="122" width="32" height="36"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                        <state key="normal" title="skip">
+                                            <color key="titleColor" red="0.89000000000000001" green="0.38573785830000001" blue="0.87284586450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="8I4-rH-K56" firstAttribute="leading" secondItem="pP8-Ih-KAm" secondAttribute="leading" constant="30" id="CF8-Rc-vag"/>
+                                    <constraint firstItem="fIh-AM-Pwq" firstAttribute="leading" secondItem="pP8-Ih-KAm" secondAttribute="leading" constant="30" id="I8a-cb-QzF"/>
+                                    <constraint firstAttribute="trailing" secondItem="8I4-rH-K56" secondAttribute="trailing" constant="30" id="UMG-Oc-X1Z"/>
+                                    <constraint firstAttribute="trailing" secondItem="fIh-AM-Pwq" secondAttribute="trailing" constant="30" id="aXY-PC-lNZ"/>
+                                </constraints>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="bottomLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="20O-pr-zdC">
+                                <rect key="frame" x="20" y="390.5" width="374" height="115"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Foodtrucks, Instantly        ">
+                                        <attributes>
+                                            <font key="NSFont" metaFont="system" size="48"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gulplogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="uOw-M2-F6x">
+                                <rect key="frame" x="87" y="184" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="Jah-NN-1pD"/>
+                                    <constraint firstAttribute="height" constant="128" id="hC6-xl-xhb"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="AvB-DB-ije"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="uOw-M2-F6x" firstAttribute="centerY" secondItem="Kqy-7U-gCj" secondAttribute="centerY" constant="-200" id="Ez7-AC-JHH"/>
+                            <constraint firstItem="20O-pr-zdC" firstAttribute="centerY" secondItem="Kqy-7U-gCj" secondAttribute="centerY" id="MM1-9b-cj7"/>
+                            <constraint firstItem="20O-pr-zdC" firstAttribute="leading" secondItem="Kqy-7U-gCj" secondAttribute="leading" constant="20" id="PB2-Tq-50b"/>
+                            <constraint firstItem="uOw-M2-F6x" firstAttribute="centerX" secondItem="Kqy-7U-gCj" secondAttribute="centerX" id="Y8L-9Q-oJI"/>
+                            <constraint firstAttribute="trailing" secondItem="20O-pr-zdC" secondAttribute="trailing" constant="20" id="alb-pi-jib"/>
+                            <constraint firstItem="20O-pr-zdC" firstAttribute="centerY" secondItem="Kqy-7U-gCj" secondAttribute="centerY" id="cux-Dc-mGq"/>
+                            <constraint firstItem="20O-pr-zdC" firstAttribute="centerX" secondItem="Kqy-7U-gCj" secondAttribute="centerX" id="etH-Wr-zdf"/>
+                            <constraint firstItem="pP8-Ih-KAm" firstAttribute="leading" secondItem="AvB-DB-ije" secondAttribute="leading" constant="20" id="oea-TT-NWZ"/>
+                            <constraint firstItem="AvB-DB-ije" firstAttribute="trailing" secondItem="pP8-Ih-KAm" secondAttribute="trailing" constant="20" id="piD-3e-0Ee"/>
+                            <constraint firstItem="AvB-DB-ije" firstAttribute="bottom" secondItem="pP8-Ih-KAm" secondAttribute="bottom" constant="20" id="vNd-Em-IUc"/>
+                            <constraint firstItem="pP8-Ih-KAm" firstAttribute="centerX" secondItem="Kqy-7U-gCj" secondAttribute="centerX" id="wAD-LR-cSS"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mainLogo" destination="uOw-M2-F6x" id="5Kt-Uq-bbw"/>
+                        <outlet property="signinButton" destination="8I4-rH-K56" id="Puh-bE-9xd"/>
+                        <outlet property="signupButton" destination="fIh-AM-Pwq" id="l11-hg-714"/>
+                        <outlet property="skipButton" destination="13Q-NS-BQy" id="HYY-C5-NAt"/>
+                        <outlet property="slogan" destination="20O-pr-zdC" id="Akk-IC-qFc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bFN-0d-OlH" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-594" y="126"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="yPP-kF-dnK"/>
+    </inferredMetricsTieBreakers>
     <resources>
+        <image name="gulplogo.png" width="792" height="612"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

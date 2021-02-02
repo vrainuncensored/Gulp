@@ -71,7 +71,7 @@ class signupPage: UIViewController, LoginButtonDelegate {
         setupSignUpButton()
         setupSignInButton()
         //settupFacebookButton()
-       // settupSignInWithAppleButton()
+        settupSignInWithAppleButton()
         
         
         
@@ -191,10 +191,10 @@ class signupPage: UIViewController, LoginButtonDelegate {
         appleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
         appleButton.topAnchor.constraint(equalTo: facebookButton.bottomAnchor, constant: 15).isActive = true
         appleButton.bottomAnchor.constraint(equalTo: signinButton.topAnchor, constant: 15).isActive = true
-        appleButton.addTarget(self, action: #selector(didTapAppleButton), for: .touchUpInside)
+        appleButton.addTarget(self, action: #selector(handleLogInWithAppleIDButtonPress), for: .touchUpInside)
 
     }
-    @objc func didTapAppleButton() {
+    @objc func handleLogInWithAppleIDButtonPress() {
         let provider = ASAuthorizationAppleIDProvider()
         let request = provider.createRequest()
         request.requestedScopes = [.fullName, .email]

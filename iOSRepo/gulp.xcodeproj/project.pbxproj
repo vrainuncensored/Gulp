@@ -71,6 +71,12 @@
 		64DDE6B7242D876D0068223D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64DDE6B5242D876D0068223D /* LaunchScreen.storyboard */; };
 		64EF27202459495200BD68C5 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EF271F2459495200BD68C5 /* PassKit.framework */; };
 		7B5A36920485832D72E86419 /* Pods_gulpMerchant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B4A07C4173718B8938FA70 /* Pods_gulpMerchant.framework */; };
+		8B3E733C25C8FE8200505845 /* gulplogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B3E733B25C8FE8200505845 /* gulplogo.png */; };
+		8B3E734225C9029500505845 /* HomePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3E734125C9029500505845 /* HomePageVC.swift */; };
+		8B3E734625C9C49900505845 /* HomeTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3E734525C9C49900505845 /* HomeTabController.swift */; };
+		8B3E734A25C9CCF100505845 /* AccountPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3E734925C9CCF100505845 /* AccountPage.swift */; };
+		8B3E734F25C9EDDE00505845 /* CheckoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3E734D25C9EDDE00505845 /* CheckoutTableViewCell.swift */; };
+		8B3E735025C9EDDE00505845 /* CheckoutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B3E734E25C9EDDE00505845 /* CheckoutTableViewCell.xib */; };
 		8B42E8BD25B6241200035784 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B42E8BC25B6241200035784 /* GoogleService-Info.plist */; };
 		8B42E90F25BA384A00035784 /* OrderConfirmation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B42E90E25BA384A00035784 /* OrderConfirmation.swift */; };
 		8B42E91325BA3C1100035784 /* FirebaseFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B42E91225BA3C1100035784 /* FirebaseFunctions.swift */; };
@@ -79,7 +85,6 @@
 		8BA2B10A25BF3D8F00F55E34 /* MainTruckCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA2B10825BF3D8F00F55E34 /* MainTruckCellTableViewCell.xib */; };
 		8BA2B14025BF884000F55E34 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2B13E25BF884000F55E34 /* MenuTableViewCell.swift */; };
 		8BA2B14125BF884000F55E34 /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA2B13F25BF884000F55E34 /* MenuTableViewCell.xib */; };
-		8BA2B14D25BFB22C00F55E34 /* gulplogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA2B14C25BFB22C00F55E34 /* gulplogo.png */; };
 		8BA2B15425C0EF1000F55E34 /* CustomizeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2B15225C0EF1000F55E34 /* CustomizeTableViewCell.swift */; };
 		8BA2B15525C0EF1000F55E34 /* CustomizeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA2B15325C0EF1000F55E34 /* CustomizeTableViewCell.xib */; };
 		8BA2B15B25C230B300F55E34 /* CompletedOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2B15A25C230B300F55E34 /* CompletedOrdersViewController.swift */; };
@@ -163,6 +168,12 @@
 		64EF271F2459495200BD68C5 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
 		86C698ECD505BFA746DB3BC1 /* Pods_gulp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_gulp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87B4A07C4173718B8938FA70 /* Pods_gulpMerchant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_gulpMerchant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B3E733B25C8FE8200505845 /* gulplogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gulplogo.png; path = ../../../../../Desktop/gulplogo.png; sourceTree = "<group>"; };
+		8B3E734125C9029500505845 /* HomePageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageVC.swift; sourceTree = "<group>"; };
+		8B3E734525C9C49900505845 /* HomeTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabController.swift; sourceTree = "<group>"; };
+		8B3E734925C9CCF100505845 /* AccountPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPage.swift; sourceTree = "<group>"; };
+		8B3E734D25C9EDDE00505845 /* CheckoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutTableViewCell.swift; sourceTree = "<group>"; };
+		8B3E734E25C9EDDE00505845 /* CheckoutTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheckoutTableViewCell.xib; sourceTree = "<group>"; };
 		8B42E8BC25B6241200035784 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8B42E90E25BA384A00035784 /* OrderConfirmation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmation.swift; sourceTree = "<group>"; };
 		8B42E91225BA3C1100035784 /* FirebaseFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFunctions.swift; sourceTree = "<group>"; };
@@ -171,7 +182,6 @@
 		8BA2B10825BF3D8F00F55E34 /* MainTruckCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTruckCellTableViewCell.xib; sourceTree = "<group>"; };
 		8BA2B13E25BF884000F55E34 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		8BA2B13F25BF884000F55E34 /* MenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuTableViewCell.xib; sourceTree = "<group>"; };
-		8BA2B14C25BFB22C00F55E34 /* gulplogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gulplogo.png; path = ../../../../../.Trash/gulplogo.png; sourceTree = "<group>"; };
 		8BA2B15225C0EF1000F55E34 /* CustomizeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeTableViewCell.swift; sourceTree = "<group>"; };
 		8BA2B15325C0EF1000F55E34 /* CustomizeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomizeTableViewCell.xib; sourceTree = "<group>"; };
 		8BA2B15A25C230B300F55E34 /* CompletedOrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedOrdersViewController.swift; sourceTree = "<group>"; };
@@ -248,6 +258,8 @@
 				644B05FC247AE80F003DE98A /* userCartVC.swift */,
 				64DDE6AE242D876C0068223D /* ViewController.swift */,
 				644B05FE247AEA25003DE98A /* customizeEntreeVC.swift */,
+				8B3E734125C9029500505845 /* HomePageVC.swift */,
+				8B3E734925C9CCF100505845 /* AccountPage.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -291,6 +303,8 @@
 				8BA2B10725BF3D8F00F55E34 /* MainTruckCellTableViewCell.swift */,
 				8BA2B13E25BF884000F55E34 /* MenuTableViewCell.swift */,
 				8BA2B15225C0EF1000F55E34 /* CustomizeTableViewCell.swift */,
+				8B3E734525C9C49900505845 /* HomeTabController.swift */,
+				8B3E734D25C9EDDE00505845 /* CheckoutTableViewCell.swift */,
 			);
 			name = View;
 			path = ../View;
@@ -425,7 +439,7 @@
 				644B0604247F9AB7003DE98A /* Services */,
 				64EF271E2459495200BD68C5 /* gulp.entitlements */,
 				6458A6E62459249B00F415AA /* gulpRelease.entitlements */,
-				8BA2B14C25BFB22C00F55E34 /* gulplogo.png */,
+				8B3E733B25C8FE8200505845 /* gulplogo.png */,
 				64754A9A2432DDFA0088D0F5 /* splash.png */,
 				64754A992432DDFA0088D0F5 /* icon.png */,
 				8BAC249F25A52AFE008C43B3 /* Assets.xcassets */,
@@ -441,6 +455,7 @@
 				8BA2B10825BF3D8F00F55E34 /* MainTruckCellTableViewCell.xib */,
 				8BA2B13F25BF884000F55E34 /* MenuTableViewCell.xib */,
 				8BA2B15325C0EF1000F55E34 /* CustomizeTableViewCell.xib */,
+				8B3E734E25C9EDDE00505845 /* CheckoutTableViewCell.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -542,13 +557,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BA2B14D25BFB22C00F55E34 /* gulplogo.png in Resources */,
 				8BA2B15525C0EF1000F55E34 /* CustomizeTableViewCell.xib in Resources */,
 				8BA2B10A25BF3D8F00F55E34 /* MainTruckCellTableViewCell.xib in Resources */,
 				64646A8224B62A0F00A4691B /* LoginFlowCustomer.storyboard in Resources */,
 				E38A879A24EF1D18001A66C0 /* Main.storyboard in Resources */,
 				8B62436A25913503007A6682 /* GoogleService-Info.plist in Resources */,
 				8BAC24A025A52AFE008C43B3 /* Assets.xcassets in Resources */,
+				8B3E733C25C8FE8200505845 /* gulplogo.png in Resources */,
+				8B3E735025C9EDDE00505845 /* CheckoutTableViewCell.xib in Resources */,
 				64DDE6B7242D876D0068223D /* LaunchScreen.storyboard in Resources */,
 				64754A9B2432DDFA0088D0F5 /* icon.png in Resources */,
 				8BA2B14125BF884000F55E34 /* MenuTableViewCell.xib in Resources */,
@@ -715,7 +731,9 @@
 				8BA2B10925BF3D8F00F55E34 /* MainTruckCellTableViewCell.swift in Sources */,
 				644765CF24529AE7004FCDEA /* userStructure.swift in Sources */,
 				64BDB85424A3FC7B00C7C318 /* StripeApi.swift in Sources */,
+				8B3E734F25C9EDDE00505845 /* CheckoutTableViewCell.swift in Sources */,
 				64DB3F9624A9425900D08211 /* Button.swift in Sources */,
+				8B3E734225C9029500505845 /* HomePageVC.swift in Sources */,
 				64754A9E2432F7E00088D0F5 /* HomeBackground.swift in Sources */,
 				64DDE6AF242D876C0068223D /* ViewController.swift in Sources */,
 				649A3DB024B56D64007F6367 /* TableViewCell.swift in Sources */,
@@ -725,6 +743,7 @@
 				8BA2B14025BF884000F55E34 /* MenuTableViewCell.swift in Sources */,
 				64DDE6AB242D876C0068223D /* AppDelegate.swift in Sources */,
 				644B0606247F9ADB003DE98A /* UserService.swift in Sources */,
+				8B3E734A25C9CCF100505845 /* AccountPage.swift in Sources */,
 				644765C7244DD317004FCDEA /* TruckItems.swift in Sources */,
 				648527742496DA6800E89866 /* cartOrderStructure.swift in Sources */,
 				8BA2B15425C0EF1000F55E34 /* CustomizeTableViewCell.swift in Sources */,
@@ -740,6 +759,7 @@
 				6485276B249551ED00E89866 /* mapsStructure.swift in Sources */,
 				644B05FF247AEA25003DE98A /* customizeEntreeVC.swift in Sources */,
 				644765C9244DD4D8004FCDEA /* truckStructure.swift in Sources */,
+				8B3E734625C9C49900505845 /* HomeTabController.swift in Sources */,
 				64320CBA2442AB6900ED486D /* checkoutButton.swift in Sources */,
 				E38A879E24F2AFC9001A66C0 /* FirebaseFunctions.swift in Sources */,
 				644B06142484A15B003DE98A /* orderStructure.swift in Sources */,

@@ -175,6 +175,7 @@ extension customizeEntreeVC: UITableViewDataSource, UITableViewDelegate {
             //let item = proteinOption[indexPath.row]
             cell.configure(item: item)
            // cell.set(item: item)
+            cell.backgroundColor = UI_Colors.white
             reloadInputViews()
 
             
@@ -187,6 +188,8 @@ extension customizeEntreeVC: UITableViewDataSource, UITableViewDelegate {
            // let item = addOnOptions[indexPath.row]
             //cell.set(item: item)
             cell.configure(item: item)
+            cell.backgroundColor = UI_Colors.white
+
             reloadInputViews()
             }
         }

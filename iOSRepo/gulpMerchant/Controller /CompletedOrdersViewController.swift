@@ -37,6 +37,7 @@ class CompletedOrdersViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.register(ordersTableViewCell.self, forCellReuseIdentifier: "Test")
         fbCallOrders(tableView: tableView)
+        view.backgroundColor = UI_Colors.white
         // Do any additional setup after loading the view.
     }
     func fbCallOrders (tableView: UITableView) {
@@ -105,6 +106,7 @@ extension CompletedOrdersViewController: UITableViewDelegate, UITableViewDataSou
             cell.layer.borderWidth = 1.5
             cell.layer.borderColor = CG_Colors.lightPurple
             cell.layer.cornerRadius = 30.0
+        cell.backgroundColor = UI_Colors.white
         if confirmedOrders.count == 0 {
             reloadInputViews()
             return cell

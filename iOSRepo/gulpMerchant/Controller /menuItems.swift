@@ -34,11 +34,11 @@ class menuItems: UIViewController {
         tableView.allowsMultipleSelectionDuringEditing = false
         tableView.allowsSelection = false
         tableView.allowsMultipleSelection = false
-        tableView.backgroundColor = UIColor.white
+        tableView.backgroundColor = UI_Colors.white
         tableView.separatorStyle = .none
         tableView.register(MenuItems.self, forCellReuseIdentifier: "Test")
         fbCall(tableView : tableView)
-
+        view.backgroundColor = UI_Colors.white
         
         
         self.navigationItem.title = "Full Menu"
@@ -162,6 +162,7 @@ extension menuItems: UITableViewDataSource, UITableViewDelegate {
             cell.layer.borderWidth = 1.5
             cell.layer.borderColor = CG_Colors.lightPurple
             cell.layer.cornerRadius = 30.0
+            cell.backgroundColor = UI_Colors.white
             let item = entreeItems[indexPath.row]
             cell.set(item: item)
             reloadInputViews()
@@ -172,6 +173,7 @@ extension menuItems: UITableViewDataSource, UITableViewDelegate {
             cell.layer.borderWidth = 1.5
             cell.layer.borderColor = CG_Colors.lightPurple
             cell.layer.cornerRadius = 30.0
+            cell.backgroundColor = UI_Colors.white
             let item = sidesItems[indexPath.row]
             cell.set(item: item)
             reloadInputViews()
@@ -181,6 +183,7 @@ extension menuItems: UITableViewDataSource, UITableViewDelegate {
             cell.layer.borderWidth = 1.5
             cell.layer.borderColor = CG_Colors.lightPurple
             cell.layer.cornerRadius = 30.0
+            cell.backgroundColor = UI_Colors.white
             let item = drinksItems[indexPath.row]
             cell.set(item: item)
             reloadInputViews()

@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -100,7 +99,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Customers Awaits!🤑" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="rhx-gN-YIZ">
                                 <rect key="frame" x="20" y="84" width="374" height="44"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="32"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Gf8-2Z-e1n">
@@ -136,7 +135,7 @@
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="m9B-AA-jPU"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Wr2-oR-OCv" firstAttribute="top" secondItem="rhx-gN-YIZ" secondAttribute="bottom" constant="60" id="3cr-8k-GzO"/>
                             <constraint firstItem="Wr2-oR-OCv" firstAttribute="leading" secondItem="m9B-AA-jPU" secondAttribute="leading" constant="20" id="5Kq-g9-JrS"/>
@@ -177,7 +176,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Customers Awaits!🤑" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="JtR-G9-63b">
                                 <rect key="frame" x="20" y="84" width="374" height="44"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="32"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="MOs-Yt-a79">
@@ -352,7 +351,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ieX-9s-vd9"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="JtR-G9-63b" firstAttribute="leading" secondItem="ieX-9s-vd9" secondAttribute="leading" constant="20" id="409-Aw-kTN"/>
                             <constraint firstItem="4xc-EJ-sDY" firstAttribute="leading" secondItem="ieX-9s-vd9" secondAttribute="leading" constant="20" id="9kC-iN-wbN"/>
@@ -386,9 +385,4 @@
     <inferredMetricsTieBreakers>
         <segue reference="QLl-Lu-Uk4"/>
     </inferredMetricsTieBreakers>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>
