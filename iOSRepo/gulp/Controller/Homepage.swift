@@ -79,8 +79,8 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
     view.addSubview(tableView)
     tableView.dataSource = self
     tableView.delegate = self
-    tableView.rowHeight = 100
-    tableView.separatorColor = UIColor.white
+    tableView.rowHeight = 250
+    //tableView.separatorColor = UI
     tableView.backgroundColor = UI_Colors.white
 //    tableView.register(TruckItems.self, forCellReuseIdentifier: Cells.truckNames)
     tableView.register(UINib(nibName: "MainTruckCellTableViewCell", bundle: nil), forCellReuseIdentifier: "MainTruckCell")
@@ -136,9 +136,13 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
 //        imageView.image = logo
 //        logoContainer.addSubview(imageView)
 //        self.navigationItem.titleView = logoContainer
-        self.navigationItem.title = "Gulp - Foodtrucks, Instantly"
-        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
-        navigationController?.navigationBar.titleTextAttributes = textAttributes
+//        self.navigationItem.title = "Gulp - Foodtrucks, Instantly"
+//        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
+//        navigationController?.navigationBar.titleTextAttributes = textAttributes
+//        navigationController?.hidesBarsOnTap = true
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+
+
     }
     
     func fbCall (tableView : UITableView) {
@@ -183,12 +187,12 @@ func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> 
 
 func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "MainTruckCell") as! MainTruckCellTableViewCell
-    cell.layer.borderWidth = 1.5
-    cell.layer.borderColor = CG_Colors.lightPurple
-    cell.layer.cornerRadius = 30.0
+//    cell.layer.borderWidth = 1.5
+//    cell.layer.borderColor = CG_Colors.lightPurple
+//    cell.layer.cornerRadius = 30.0
     cell.backgroundColor = UI_Colors.white
     //this line below is what creates the arrow in each tableview cell
-    cell.accessoryType = .disclosureIndicator
+    //cell.accessoryType = .disclosureIndicator
     cell.selectionStyle = .none
     let truck = trucksList[indexPath.row]
     cell.configureCell(truck: truck)

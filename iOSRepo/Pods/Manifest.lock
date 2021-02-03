@@ -335,6 +335,7 @@ PODS:
   - GTMSessionFetcher/Core (1.3.1)
   - GTMSessionFetcher/Full (1.3.1):
     - GTMSessionFetcher/Core (= 1.3.1)
+  - Kingfisher (6.1.0)
   - leveldb-library (1.22)
   - nanopb (0.3.9011):
     - nanopb/decode (= 0.3.9011)
@@ -358,10 +359,13 @@ DEPENDENCIES:
   - Firebase/Storage
   - FirebaseFirestoreSwift
   - GoogleSignIn
+  - Kingfisher (~> 6.0)
   - Stripe
   - SwiftPhoneNumberFormatter
 
 SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Kingfisher
   trunk:
     - abseil
     - AppAuth
@@ -436,12 +440,13 @@ SPEC CHECKSUMS:
   gRPC-Core: c9aef9a261a1247e881b18059b84d597293c9947
   GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
   GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
+  Kingfisher: f5d8d60a0ef3edd642fd781bae60918599901aff
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   Stripe: 30ba9a2ac7297e93de561fed695222ef980ee521
   SwiftPhoneNumberFormatter: 0cc91f4daa06dd606a9defb21048a75c36a771a2
 
-PODFILE CHECKSUM: 30b90f0578e5b9c244350dbe2517aed29a774707
+PODFILE CHECKSUM: e76482f0768508349119bb2c5383ca79b7ebd6e1
 
 COCOAPODS: 1.10.0

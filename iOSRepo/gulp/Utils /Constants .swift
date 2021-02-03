@@ -49,6 +49,9 @@ struct CG_Colors {
     static let white:CGColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     static let red:CGColor = #colorLiteral(red: 0.9373852015, green: 0.08471465856, blue: 0.05553941429, alpha: 1)
     static let black:CGColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+    static let purple:CGColor = #colorLiteral(red: 0.5221467614, green: 0.02739732899, blue: 0.8998202682, alpha: 1)
+    static let blueTest:CGColor = #colorLiteral(red: 0.5107015371, green: 0.5777968764, blue: 0.9307124019, alpha: 1)
+
 }
 struct UI_Colors {
     static let darkPurple: UIColor = #colorLiteral(red: 0.8437388539, green: 0.4879803061, blue: 0.6659752727, alpha: 1)
@@ -58,6 +61,7 @@ struct UI_Colors {
     static let red:UIColor = #colorLiteral(red: 0.9373852015, green: 0.08471465856, blue: 0.05553941429, alpha: 1)
     static let black:UIColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
     static let white:UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    static let purple:UIColor = #colorLiteral(red: 0.5221467614, green: 0.02739732899, blue: 0.8998202682, alpha: 1)
 }
 
 extension Int {
