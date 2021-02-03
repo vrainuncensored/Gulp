@@ -16,7 +16,6 @@ class MainTruckCellTableViewCell: UITableViewCell {
     
     @IBOutlet weak var truckName: UILabel!
     @IBOutlet weak var truckCuisine: UILabel!
-    let url = URL(string: "https://firebasestorage.googleapis.com/v0/b/ordergulp.appspot.com/o/Fernando%E2%80%99s%20Cropped.jpg?alt=media&token=1cafce4c-827c-4c87-bb84-2443b6af25eb")
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -24,7 +23,16 @@ class MainTruckCellTableViewCell: UITableViewCell {
     func configureCell(truck: Truck) {
         truckName.text = truck.name
         truckCuisine.text = truck.cuisine
-        productImage.kf.setImage(with: url)
+//
+        if truck.companyLogoURL == nil {
+            let link = URL(string: "https://firebasestorage.googleapis.com/v0/b/ordergulp.appspot.com/o/gulplogo.png?alt=media&token=b3f2fb56-46e2-4a17-93b9-f617c97b4f99")
+            productImage.kf.setImage(with: link)
+        } else {
+            let url = URL(string: truck.companyLogoURL!)
+           productImage.kf.setImage(with: url)
+            print("It's working")
+        }
+        
 //        productImage.layer.borderWidth = 1.5
 //        productImage.layer.borderColor = CG_Colors.lightPurple
 //        productImage.layer.cornerRadius = 30.0
