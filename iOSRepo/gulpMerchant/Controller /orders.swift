@@ -155,7 +155,7 @@ class orders: UIViewController, CLLocationManagerDelegate {
             let uid = user.uid
             let email = user.email
             if Auth.auth().currentUser != nil {
-
+                
                 let docRef = Firestore.firestore().collection("merchant").document(uid).collection("orders")
                 docRef.addSnapshotListener { (snap, error) in
                     if let error = error {
@@ -173,10 +173,10 @@ class orders: UIViewController, CLLocationManagerDelegate {
                             tableView.deleteRows(at: [IndexPath(item: Int(change.oldIndex), section: 0)], with: .fade)
                             tableView.reloadData()
                             
-                        
+                            
                         }
                     })
-                
+                    
                     
                 }
                 

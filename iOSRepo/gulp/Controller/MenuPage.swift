@@ -50,6 +50,7 @@ class MenuPage: UIViewController {
         tableView.separatorStyle = .none
         tableView.separatorColor = UIColor.white
         tableView.backgroundColor = UI_Colors.white
+        
         //tableView.register(MenuItems.self, forCellReuseIdentifier: "Test")
         tableView.register(UINib(nibName: "MenuTableViewCell", bundle: nil), forCellReuseIdentifier: "MenuTableViewCell")
         fbCall(tableView: tableView)
@@ -64,7 +65,7 @@ class MenuPage: UIViewController {
                let addAction = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(test1))
                //navigationItem.rightBarButtonItem = addAction
                navigationItem.rightBarButtonItem = addToCartNavButton
-        
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         
         
         

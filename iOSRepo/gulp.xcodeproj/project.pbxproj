@@ -80,6 +80,9 @@
 		8B42E8BD25B6241200035784 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B42E8BC25B6241200035784 /* GoogleService-Info.plist */; };
 		8B42E90F25BA384A00035784 /* OrderConfirmation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B42E90E25BA384A00035784 /* OrderConfirmation.swift */; };
 		8B42E91325BA3C1100035784 /* FirebaseFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B42E91225BA3C1100035784 /* FirebaseFunctions.swift */; };
+		8B594D6525CB45CF00F859E0 /* PastOrdersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B594D6425CB45CF00F859E0 /* PastOrdersVC.swift */; };
+		8B594D6A25CB4FB800F859E0 /* PastOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B594D6825CB4FB800F859E0 /* PastOrderTableViewCell.swift */; };
+		8B594D6B25CB4FB800F859E0 /* PastOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B594D6925CB4FB800F859E0 /* PastOrderTableViewCell.xib */; };
 		8B62436A25913503007A6682 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B62436925913503007A6682 /* GoogleService-Info.plist */; };
 		8BA2B10925BF3D8F00F55E34 /* MainTruckCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2B10725BF3D8F00F55E34 /* MainTruckCellTableViewCell.swift */; };
 		8BA2B10A25BF3D8F00F55E34 /* MainTruckCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA2B10825BF3D8F00F55E34 /* MainTruckCellTableViewCell.xib */; };
@@ -177,6 +180,9 @@
 		8B42E8BC25B6241200035784 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8B42E90E25BA384A00035784 /* OrderConfirmation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmation.swift; sourceTree = "<group>"; };
 		8B42E91225BA3C1100035784 /* FirebaseFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFunctions.swift; sourceTree = "<group>"; };
+		8B594D6425CB45CF00F859E0 /* PastOrdersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastOrdersVC.swift; sourceTree = "<group>"; };
+		8B594D6825CB4FB800F859E0 /* PastOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastOrderTableViewCell.swift; sourceTree = "<group>"; };
+		8B594D6925CB4FB800F859E0 /* PastOrderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PastOrderTableViewCell.xib; sourceTree = "<group>"; };
 		8B62436925913503007A6682 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8BA2B10725BF3D8F00F55E34 /* MainTruckCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTruckCellTableViewCell.swift; sourceTree = "<group>"; };
 		8BA2B10825BF3D8F00F55E34 /* MainTruckCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTruckCellTableViewCell.xib; sourceTree = "<group>"; };
@@ -260,6 +266,7 @@
 				644B05FE247AEA25003DE98A /* customizeEntreeVC.swift */,
 				8B3E734125C9029500505845 /* HomePageVC.swift */,
 				8B3E734925C9CCF100505845 /* AccountPage.swift */,
+				8B594D6425CB45CF00F859E0 /* PastOrdersVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -305,6 +312,7 @@
 				8BA2B15225C0EF1000F55E34 /* CustomizeTableViewCell.swift */,
 				8B3E734525C9C49900505845 /* HomeTabController.swift */,
 				8B3E734D25C9EDDE00505845 /* CheckoutTableViewCell.swift */,
+				8B594D6825CB4FB800F859E0 /* PastOrderTableViewCell.swift */,
 			);
 			name = View;
 			path = ../View;
@@ -456,6 +464,7 @@
 				8BA2B13F25BF884000F55E34 /* MenuTableViewCell.xib */,
 				8BA2B15325C0EF1000F55E34 /* CustomizeTableViewCell.xib */,
 				8B3E734E25C9EDDE00505845 /* CheckoutTableViewCell.xib */,
+				8B594D6925CB4FB800F859E0 /* PastOrderTableViewCell.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -565,6 +574,7 @@
 				8BAC24A025A52AFE008C43B3 /* Assets.xcassets in Resources */,
 				8B3E733C25C8FE8200505845 /* gulplogo.png in Resources */,
 				8B3E735025C9EDDE00505845 /* CheckoutTableViewCell.xib in Resources */,
+				8B594D6B25CB4FB800F859E0 /* PastOrderTableViewCell.xib in Resources */,
 				64DDE6B7242D876D0068223D /* LaunchScreen.storyboard in Resources */,
 				64754A9B2432DDFA0088D0F5 /* icon.png in Resources */,
 				8BA2B14125BF884000F55E34 /* MenuTableViewCell.xib in Resources */,
@@ -739,6 +749,7 @@
 				649A3DB024B56D64007F6367 /* TableViewCell.swift in Sources */,
 				648527762496E1C400E89866 /* Constants .swift in Sources */,
 				644B05FD247AE80F003DE98A /* userCartVC.swift in Sources */,
+				8B594D6525CB45CF00F859E0 /* PastOrdersVC.swift in Sources */,
 				64BDB85124A2F51900C7C318 /* checkoutToStripe.swift in Sources */,
 				8BA2B14025BF884000F55E34 /* MenuTableViewCell.swift in Sources */,
 				64DDE6AB242D876C0068223D /* AppDelegate.swift in Sources */,
@@ -754,6 +765,7 @@
 				644B060C24831843003DE98A /*  cartItemStructure.swift in Sources */,
 				64320CB02439B3DB00ED486D /* MenuPage.swift in Sources */,
 				64320CC82448068E00ED486D /* signupPage.swift in Sources */,
+				8B594D6A25CB4FB800F859E0 /* PastOrderTableViewCell.swift in Sources */,
 				64320CB4243E130800ED486D /* MenuItems.swift in Sources */,
 				64DDE6AD242D876C0068223D /* SceneDelegate.swift in Sources */,
 				6485276B249551ED00E89866 /* mapsStructure.swift in Sources */,

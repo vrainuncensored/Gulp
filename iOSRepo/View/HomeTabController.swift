@@ -16,7 +16,7 @@ class HomeTabController: UITabBarController {
         super.viewDidLoad()
         settupOrdersIcon()
         settupShopIcon()
-        settupAccountIcon()
+        //settupAccountIcon()
      
         // Do any additional setup after loading the view.
     }

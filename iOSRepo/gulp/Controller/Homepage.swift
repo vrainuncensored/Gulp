@@ -85,7 +85,7 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
 //    tableView.register(TruckItems.self, forCellReuseIdentifier: Cells.truckNames)
     tableView.register(UINib(nibName: "MainTruckCellTableViewCell", bundle: nil), forCellReuseIdentifier: "MainTruckCell")
     fbCall(tableView : tableView)
-        
+    settupListner()
     
 //    let coordinateTest = MKPointAnnotation()
 //    coordinateTest.coordinate = coordinateArray[7]
@@ -167,17 +167,35 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
                     self.trucksList.append(test)
                     tableView.reloadData()
                 }
-                //                let coordinateTest = MKPointAnnotation()
-                //                //coordinateTest.coordinate = self.coordinateArray[8]
-                //                coordinateTest.coordinate = CLLocationCoordinate2D(latitude: 37.5630, longitude: -122.3255)
-                //                coordinateTest.title = "Test Truck"
-                //                self.map.addAnnotation(coordinateTest)
             }
         }
     }
-    
-    
+    func settupListner() {
+        let docRef = Firestore.firestore().collection("merchant")
+        docRef.addSnapshotListener { (snap, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+                return
+            }
+            snap?.documentChanges.forEach({ (change) in
+                let data = change.document.data()
+                let test = Truck(data: data)
+                let longitude = test.locationCoordinates.longitude
+                let latitude = test.locationCoordinates.latitude
+                let coordinateTest = MKPointAnnotation()
+                let mapCoordinates = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                let mapData = MapData(truckName: test.name, truckCoordinates: mapCoordinates)
+                if change.type == .modified {
+                    self.coordinateArray[Int(change.oldIndex)] = mapCoordinates
+                    coordinateTest.coordinate = mapData.truckCoordinates
+                    coordinateTest.title = mapData.truckName
+                    self.map.addAnnotation(coordinateTest)
+                }
+            })
+        }
+    }
 }
+
 
 extension HomePage: UITableViewDataSource, UITableViewDelegate {
 
