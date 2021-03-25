@@ -7,6 +7,11 @@ const { resolve } = require("path");
 const notify = require('./notify');
 exports.notify = notify.test;
 exports.notifyCustomer = notify.orderCreated
+exports.orderAccepted = notify.orderAccepted
+admin.initializeApp();
+const firestore = admin.firestore();
+const stripe = require("stripe")(functions.config().stripe.key);
+
 // const location = require('./location');
 // exports.location = location.updateLocation
 //exports.closeLocation = location.closeLocation
@@ -14,13 +19,12 @@ exports.notifyCustomer = notify.orderCreated
 
 // const adminConfig = JSON.parse(process.env.FIREBASE_CONFIG);
 // adminConfig.credential = admin.credential.cert(serviceAccount);
-admin.initializeApp();
-
+//exports.stripe = require('./payments');
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
 //functions.config().stripe.seceret_test_key
-const stripe = require("stripe")("sk_test_rKhIPOAfQ7A9el8L570woVpR00q861QZVx");
+//const stripe = require("stripe")("sk_test_rKhIPOAfQ7A9el8L570woVpR00q861QZVx");
 
 app.get("/", (req, res) => {
   // Display landing page.
@@ -75,7 +79,7 @@ app.listen(4242, () => console.log(`Node server listening on port ${4242}!`));
 
 exports.merchantOnboarding = functions.https.onRequest(app);
 
-  exports.createStripeCustomer = functions.firestore.document('users/{userId}').onCreate(async (snap, context) => {
+exports.createStripeCustomer = functions.firestore.document('users/{userId}').onCreate(async (snap, context) => {
    const data = snap.data();
    const email = data.email;
    const customer = await stripe.customers.create({ email: email })
@@ -86,34 +90,57 @@ exports.merchantOnboarding = functions.https.onRequest(app);
 exports.createStripeMerchant = functions.firestore.document('merchant/{userId}').onCreate(async (snap, context) => {
  const data = snap.data();
  const email = data.email;
- const customer = await stripe.accounts.create({ email: email ,country : 'US', type: 'custom', requested_capabilities: [
-      'card_payments',
-      'transfers',
-    ] })
+ const customer = await stripe.accounts.create({ email: email ,country : 'US', type: 'express' })
  return admin.firestore().collection('merchant').doc(data.id).update({ stripeId: customer.id})
 });
 
 
+exports.createAccountsLink = functions.https.onCall( async ( data, context) => {
+  const account = data.stripeId;
+
+const accountLink = await stripe.accountLinks.create({
+  account: account,
+  refresh_url: 'https://gulpmerchant.page.link/stripeconnect',
+  return_url: 'https://gulpmerchant.page.link/stripeconnect',
+  type: 'account_onboarding',
+});
+return accountLink.url
+})
+
+exports.updatePayoutDate = functions.https.onCall( async ( data, context ) => {
+const stripeID = data.stripeId;
+const day = data.day
+
+  const account = await stripe.accounts.update(
+    'acct_1IXrdzQfQzdPjHUl',
+    {settings: {payouts: { schedule : {interval : 'weekly' , weekly_anchor: day}}}}
+  );
+return account
+})
 
 
 
 exports.makeCharge = functions.https.onCall( async (data, context) => {
   const customerId = data.customerId
+  const stripeId  = data.stripeId
+  const customerEmail = data.customerEmail
   const totalAmount = data.total
   const idempotency = data.idempotency
   const paymentMethodId = data.payment_method_id
-//this code chunk below checks for authorized user.
-  // if (uid === null) {
-  //     console.log('Illegal access attempt due to unathenticated user');
-  //     throw new functions.https.HttpsError('permission-denied', 'Illegal access attempt.')
-  // }
+  const application_fee_amount = data.application_fee_amount
+
   return stripe.paymentIntents.create({
           payment_method: paymentMethodId,
           customer: customerId,
           amount: totalAmount,
+          receipt_email: customerEmail,
           currency: 'usd',
           confirm: true,
-          payment_method_types: ['card']
+          payment_method_types: ['card'],
+          application_fee_amount: application_fee_amount,
+          transfer_data: {
+            destination: stripeId
+          }
       }, {
               idempotency_key: idempotency
           }).then(intent => {
@@ -126,19 +153,7 @@ exports.makeCharge = functions.https.onCall( async (data, context) => {
   });
 
 
-//  exports.helloWorld = functions.https.onRequest((request, response) => {
-//   response.send("Hello from Firebase!");
-//   console.log("suck my fat fucking cock");
-// });
-// exports.createStripeIntent = functions.https.onCall( async (data, context) => {
-//   const amount = data.price
-//   const customer = await stripe.paymentIntents.create({
-//   amount: amount,
-//   currency: 'usd',
-//   });
-//   const clientSecret = customer.client_secret
-//   return { clientSecret: clientSecret };
-// });
+
 
 exports.createEphemeralKey = functions.https.onCall(async(data, context) => {
 
@@ -161,7 +176,6 @@ exports.createEphemeralKey = functions.https.onCall(async(data, context) => {
     throw new functions.https.HttpsError('internal', 'Unable to create ephemeral key.')
   })
 });
-const firestore = admin.firestore();
 
 exports.updateLocation = functions.firestore.document('merchant/{userId}').onUpdate(async(snap, context) => {
 
@@ -181,16 +195,3 @@ let docRef = firestore.collection('merchant').document(uid)
 
   return docRef.update({ locationCoordinates: updatdeCoordinates })
 });
-// function updateMerchatOrders(truckId) => {
-//
-// }
-
-// exports.createStripeIntent = functions.https.onCall(async (data, context) => {
-//
-//   return stripe.paymentIntents.create({
-//     amount: 1099,
-//     currency: 'usd',
-//   }).then( _ => {
-//     return { clientSecret: paymentIntent.client_secret }
-//   })
-// });
