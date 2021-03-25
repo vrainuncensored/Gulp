@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         )
         STPPaymentConfiguration.shared().appleMerchantIdentifier = "merchant.com.ordergulp"
         FirebaseApp.configure()
-        Stripe.setDefaultPublishableKey("pk_live_uvtek6XT6Z0VbISBoLqmmeCQ00EF2SVsjU")
+        Stripe.setDefaultPublishableKey("pk_test_LdIj43U3AT5gKjMChrv0cdFV00GsaCO40A")
         return true
     }
 

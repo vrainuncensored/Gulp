@@ -71,7 +71,7 @@ class signupPage: UIViewController, LoginButtonDelegate {
         setupSignUpButton()
         setupSignInButton()
         //settupFacebookButton()
-        settupSignInWithAppleButton()
+        //settupSignInWithAppleButton()
         
         
         

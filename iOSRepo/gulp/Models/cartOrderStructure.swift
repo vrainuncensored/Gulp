@@ -14,6 +14,7 @@ final class _ShoppingCart {
     private(set) var items: [CartItem] = []
     private let stripeCreditCardCut = 0.029
     private let flatFeeCents = 30
+    private let customerFee = 50
     private let salesTaxRate = 0.0725
     var shippingFees = 0
     private(set) var listOfNames: [String] = []
@@ -52,17 +53,24 @@ extension _ShoppingCart {
         }
         
         let sub = Double(subtotal)
-        let feesAndSub = Int(sub * stripeCreditCardCut) + flatFeeCents
+        let feesAndSub = Int(sub * stripeCreditCardCut) + flatFeeCents + customerFee
         return feesAndSub
     }
     var tax : Int {
         let sub = Double(subtotal)
         let salesTax = Int(sub * salesTaxRate)
-        return salesTax
+        let taxAndConvience = salesTax + customerFee
+        return taxAndConvience
     }
     
     
     var totalCost : Int {
+        if subtotal == 0 {
+            return 0
+        }
+        return subtotal + tax
+    }
+    var applicationCost : Int {
         if subtotal == 0 {
             return 0
         }

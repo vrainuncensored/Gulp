@@ -163,7 +163,7 @@
                         <outlet property="signUp" destination="c2o-KR-irX" id="vA4-VD-cCL"/>
                         <outlet property="userEmail" destination="XgG-95-RJ9" id="M1M-pb-bvK"/>
                         <outlet property="userPassword" destination="GsX-sv-Iwp" id="yis-yj-AAM"/>
-                        <segue destination="0gS-2V-wQ7" kind="show" identifier="toSignup" id="yPP-kF-dnK"/>
+                        <segue destination="0gS-2V-wQ7" kind="show" identifier="toSignup" id="ZTe-A6-hhr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="66A-gI-wdN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -484,7 +484,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="yPP-kF-dnK"/>
+        <segue reference="ZTe-A6-hhr"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="gulplogo.png" width="792" height="612"/>

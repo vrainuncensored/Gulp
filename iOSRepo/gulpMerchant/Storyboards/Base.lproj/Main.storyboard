@@ -47,6 +47,44 @@
             <point key="canvasLocation" x="-430" y="1040"/>
         </scene>
         <!--Item-->
+        <scene sceneID="b2i-b3-UCZ">
+            <objects>
+                <viewController id="jiX-pW-x1t" customClass="StripeConnect" customModule="gulpMerchant" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7pd-ZE-TiX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X9F-Mo-2LR">
+                                <rect key="frame" x="92" y="365" width="199" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L8W-DO-0Hz">
+                                <rect key="frame" x="176" y="519" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vva-Of-ZdR">
+                                <rect key="frame" x="146" y="643" width="106" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Payout Interval "/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="16E-4P-sZ7"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="Q3i-ga-HZN"/>
+                    <connections>
+                        <outlet property="payoutInterval" destination="vva-Of-ZdR" id="gX1-Y0-kWT"/>
+                        <outlet property="refreshSetting" destination="L8W-DO-0Hz" id="fYd-ah-cky"/>
+                        <outlet property="stripeButton" destination="X9F-Mo-2LR" id="uX3-D3-z3j"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aEs-T2-KEA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1842.0289855072465" y="992.41071428571422"/>
+        </scene>
+        <!--Item-->
         <scene sceneID="mPN-ZR-bcP">
             <objects>
                 <viewController id="cvr-vU-eg9" customClass="ManageLocation" customModule="gulpMerchant" customModuleProvider="target" sceneMemberID="viewController">
@@ -577,6 +615,7 @@
                         <segue destination="1pn-W1-Hu2" kind="relationship" relationship="viewControllers" id="Q4m-My-1wL"/>
                         <segue destination="U0Q-XB-7RG" kind="relationship" relationship="viewControllers" id="p3s-2G-aW5"/>
                         <segue destination="ybf-E4-Ot7" kind="relationship" relationship="viewControllers" id="Wp0-NT-eIz"/>
+                        <segue destination="jiX-pW-x1t" kind="relationship" relationship="viewControllers" id="Mnd-NK-A3b"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n74-sd-14j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

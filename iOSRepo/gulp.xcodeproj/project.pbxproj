@@ -32,7 +32,6 @@
 		644B061224846095003DE98A /* updateLocation .swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B061124846095003DE98A /* updateLocation .swift */; };
 		644B06142484A15B003DE98A /* orderStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B06132484A15B003DE98A /* orderStructure.swift */; };
 		6450618B24BBD4D2002B7C09 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6450618A24BBD4D2002B7C09 /* TableViewCell.swift */; };
-		6450618D24BD6853002B7C09 /* Constants .swift in Sources */ = {isa = PBXBuildFile; fileRef = 648527752496E1C400E89866 /* Constants .swift */; };
 		6458B5BA248F4BAA00B132B5 /* userServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6458B5B9248F4BAA00B132B5 /* userServices.swift */; };
 		64593BE424BFCF51009F5B39 /* ConnectOnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64593BE324BFCF51009F5B39 /* ConnectOnboardViewController.swift */; };
 		64646A8224B62A0F00A4691B /* LoginFlowCustomer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64646A8124B62A0F00A4691B /* LoginFlowCustomer.storyboard */; };
@@ -71,13 +70,14 @@
 		64DDE6B7242D876D0068223D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64DDE6B5242D876D0068223D /* LaunchScreen.storyboard */; };
 		64EF27202459495200BD68C5 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EF271F2459495200BD68C5 /* PassKit.framework */; };
 		7B5A36920485832D72E86419 /* Pods_gulpMerchant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B4A07C4173718B8938FA70 /* Pods_gulpMerchant.framework */; };
+		8B39268D26083F8B000BF3B2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B62436925913503007A6682 /* GoogleService-Info.plist */; };
+		8B39269326085436000BF3B2 /* StripeConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B39269226085436000BF3B2 /* StripeConnect.swift */; };
 		8B3E733C25C8FE8200505845 /* gulplogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B3E733B25C8FE8200505845 /* gulplogo.png */; };
 		8B3E734225C9029500505845 /* HomePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3E734125C9029500505845 /* HomePageVC.swift */; };
 		8B3E734625C9C49900505845 /* HomeTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3E734525C9C49900505845 /* HomeTabController.swift */; };
 		8B3E734A25C9CCF100505845 /* AccountPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3E734925C9CCF100505845 /* AccountPage.swift */; };
 		8B3E734F25C9EDDE00505845 /* CheckoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3E734D25C9EDDE00505845 /* CheckoutTableViewCell.swift */; };
 		8B3E735025C9EDDE00505845 /* CheckoutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B3E734E25C9EDDE00505845 /* CheckoutTableViewCell.xib */; };
-		8B42E8BD25B6241200035784 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B42E8BC25B6241200035784 /* GoogleService-Info.plist */; };
 		8B42E90F25BA384A00035784 /* OrderConfirmation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B42E90E25BA384A00035784 /* OrderConfirmation.swift */; };
 		8B42E91325BA3C1100035784 /* FirebaseFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B42E91225BA3C1100035784 /* FirebaseFunctions.swift */; };
 		8B594D6525CB45CF00F859E0 /* PastOrdersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B594D6425CB45CF00F859E0 /* PastOrdersVC.swift */; };
@@ -92,6 +92,8 @@
 		8BA2B15525C0EF1000F55E34 /* CustomizeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA2B15325C0EF1000F55E34 /* CustomizeTableViewCell.xib */; };
 		8BA2B15B25C230B300F55E34 /* CompletedOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2B15A25C230B300F55E34 /* CompletedOrdersViewController.swift */; };
 		8BAC24A025A52AFE008C43B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BAC249F25A52AFE008C43B3 /* Assets.xcassets */; };
+		8BC430352607092700B54E5D /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC430342607092700B54E5D /* utils.swift */; };
+		8BC4303A26070EDA00B54E5D /* Constants .swift in Sources */ = {isa = PBXBuildFile; fileRef = 648527752496E1C400E89866 /* Constants .swift */; };
 		E38A879A24EF1D18001A66C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64DDE6B0242D876C0068223D /* Main.storyboard */; };
 		E38A879E24F2AFC9001A66C0 /* FirebaseFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38A879D24F2AFC9001A66C0 /* FirebaseFunctions.swift */; };
 		E38A87A024F30A2A001A66C0 /* truckService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38A879F24F30A2A001A66C0 /* truckService.swift */; };
@@ -171,13 +173,13 @@
 		64EF271F2459495200BD68C5 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
 		86C698ECD505BFA746DB3BC1 /* Pods_gulp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_gulp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87B4A07C4173718B8938FA70 /* Pods_gulpMerchant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_gulpMerchant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B39269226085436000BF3B2 /* StripeConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeConnect.swift; sourceTree = "<group>"; };
 		8B3E733B25C8FE8200505845 /* gulplogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gulplogo.png; path = ../../../../../Desktop/gulplogo.png; sourceTree = "<group>"; };
 		8B3E734125C9029500505845 /* HomePageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageVC.swift; sourceTree = "<group>"; };
 		8B3E734525C9C49900505845 /* HomeTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabController.swift; sourceTree = "<group>"; };
 		8B3E734925C9CCF100505845 /* AccountPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPage.swift; sourceTree = "<group>"; };
 		8B3E734D25C9EDDE00505845 /* CheckoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutTableViewCell.swift; sourceTree = "<group>"; };
 		8B3E734E25C9EDDE00505845 /* CheckoutTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheckoutTableViewCell.xib; sourceTree = "<group>"; };
-		8B42E8BC25B6241200035784 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8B42E90E25BA384A00035784 /* OrderConfirmation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmation.swift; sourceTree = "<group>"; };
 		8B42E91225BA3C1100035784 /* FirebaseFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFunctions.swift; sourceTree = "<group>"; };
 		8B594D6425CB45CF00F859E0 /* PastOrdersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastOrdersVC.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 		8BA2B15325C0EF1000F55E34 /* CustomizeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomizeTableViewCell.xib; sourceTree = "<group>"; };
 		8BA2B15A25C230B300F55E34 /* CompletedOrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedOrdersViewController.swift; sourceTree = "<group>"; };
 		8BAC249F25A52AFE008C43B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../../Desktop/test/test/Assets.xcassets; sourceTree = "<group>"; };
+		8BC430342607092700B54E5D /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
 		A9A68096033DD4EC8EBBAC28 /* Pods-gulpMerchant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gulpMerchant.debug.xcconfig"; path = "Target Support Files/Pods-gulpMerchant/Pods-gulpMerchant.debug.xcconfig"; sourceTree = "<group>"; };
 		C3D30B1C79573C3F4367EF55 /* Pods-gulp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gulp.debug.xcconfig"; path = "Target Support Files/Pods-gulp/Pods-gulp.debug.xcconfig"; sourceTree = "<group>"; };
 		E38A879D24F2AFC9001A66C0 /* FirebaseFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFunctions.swift; sourceTree = "<group>"; };
@@ -348,6 +351,7 @@
 				64D6E8F32461010C00A3B852 /* merchantSignUp.swift */,
 				642BD27024BED2340081178B /* testViewController.swift */,
 				64593BE324BFCF51009F5B39 /* ConnectOnboardViewController.swift */,
+				8B39269226085436000BF3B2 /* StripeConnect.swift */,
 			);
 			path = "Controller ";
 			sourceTree = "<group>";
@@ -377,6 +381,7 @@
 				64D6E8D5245DDDE500A3B852 /* CustomTabBar.swift */,
 				6450618A24BBD4D2002B7C09 /* TableViewCell.swift */,
 				642BD27224BF65F90081178B /* ordersTableViewCell.swift */,
+				8BC430342607092700B54E5D /* utils.swift */,
 			);
 			path = Layout;
 			sourceTree = "<group>";
@@ -393,7 +398,6 @@
 			isa = PBXGroup;
 			children = (
 				64593BE524C4CCCD009F5B39 /* gulpMerchant.entitlements */,
-				8B42E8BC25B6241200035784 /* GoogleService-Info.plist */,
 				6485276C24955A4200E89866 /* Layout */,
 				6458B5B8248F4B8D00B132B5 /* Services */,
 				644B061024845B1B003DE98A /* Models */,
@@ -416,6 +420,7 @@
 		64DDE69E242D876C0068223D = {
 			isa = PBXGroup;
 			children = (
+				8B62436925913503007A6682 /* GoogleService-Info.plist */,
 				64DDE6A9242D876C0068223D /* gulp */,
 				64B72791245C8FFA0082BBD6 /* gulpMerchant */,
 				64DDE6A8242D876C0068223D /* Products */,
@@ -436,7 +441,6 @@
 		64DDE6A9242D876C0068223D /* gulp */ = {
 			isa = PBXGroup;
 			children = (
-				8B62436925913503007A6682 /* GoogleService-Info.plist */,
 				64BDB85224A3FC5D00C7C318 /* Stripe */,
 				648527702496C1FF00E89866 /* Utils  */,
 				8BA2B10D25BF3D9F00F55E34 /* Xibs */,
@@ -554,9 +558,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B39268D26083F8B000BF3B2 /* GoogleService-Info.plist in Resources */,
 				64B7279F245C8FFF0082BBD6 /* LaunchScreen.storyboard in Resources */,
 				642BD26D24BED1230081178B /* LoginFlow.storyboard in Resources */,
-				8B42E8BD25B6241200035784 /* GoogleService-Info.plist in Resources */,
 				64D6E8FD24738CA000A3B852 /* Main.storyboard in Resources */,
 				64B7279C245C8FFF0082BBD6 /* Assets.xcassets in Resources */,
 			);
@@ -712,9 +716,9 @@
 				64D6E8EE245F7A7100A3B852 /* navigationBar.swift in Sources */,
 				8B42E91325BA3C1100035784 /* FirebaseFunctions.swift in Sources */,
 				64D6E8E6245F284A00A3B852 /* signIn.swift in Sources */,
+				8B39269326085436000BF3B2 /* StripeConnect.swift in Sources */,
 				64D6E8F42461010C00A3B852 /* merchantSignUp.swift in Sources */,
 				8B42E90F25BA384A00035784 /* OrderConfirmation.swift in Sources */,
-				6450618D24BD6853002B7C09 /* Constants .swift in Sources */,
 				64D6E8D6245DDDE500A3B852 /* CustomTabBar.swift in Sources */,
 				642BD27324BF65F90081178B /* ordersTableViewCell.swift in Sources */,
 				64B72793245C8FFA0082BBD6 /* AppDelegate.swift in Sources */,
@@ -722,7 +726,9 @@
 				6450618B24BBD4D2002B7C09 /* TableViewCell.swift in Sources */,
 				6458B5BA248F4BAA00B132B5 /* userServices.swift in Sources */,
 				64D6E8F62463479D00A3B852 /* addingMenuItem.swift in Sources */,
+				8BC4303A26070EDA00B54E5D /* Constants .swift in Sources */,
 				644B0601247B1673003DE98A /* EntreeCustomizeOptionsVC.swift in Sources */,
+				8BC430352607092700B54E5D /* utils.swift in Sources */,
 				64D6E8F0246059E900A3B852 /* ManageLocation.swift in Sources */,
 				8BA2B15B25C230B300F55E34 /* CompletedOrdersViewController.swift in Sources */,
 				64D6E8E2245F1A6300A3B852 /* merchantStructure.swift in Sources */,

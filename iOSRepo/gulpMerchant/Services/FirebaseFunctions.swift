@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import UIKit
 
 let cloudFunctions = _FirebaseFunctions()
 
@@ -49,5 +50,29 @@ final class _FirebaseFunctions {
     }
     
 }
-
+    func stripeAccountLinks (user: Merchant) -> String {
+        var urlresult = ""
+        let stripeId = user.stripeId
+        let data : [String : String ]  = [
+            "stripeId" : stripeId
+        ]
+        Functions.functions().httpsCallable("createAccountsLink").call(data){(result, error) in
+            if let error = error {
+                debugPrint(error.localizedDescription)
+                //self.simpleAlert(title: "Error", msg: "Unable to make charge.")
+                return
+            }
+            //this is the code that has been executed for after a successful charge has been made
+            print("success")
+           // if let result = source["results"] as? [String]
+            urlresult = result!.data as! String
+            print(urlresult)
+            
+            
+//            let json = try? JSONSerialization.data(withJSONObject: data, options: []) as? [String : Any]
+//            let id = json["url"] as? String
+//            let accountURL = URL(string: id)
+    }
+        return (urlresult)
+}
 }

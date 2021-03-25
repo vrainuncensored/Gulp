@@ -52,3 +52,5 @@ extension ConnectOnboardViewController: SFSafariViewControllerDelegate {
         // occurred. Sync with your backend to confirm the correct state
     }
 }
+
+

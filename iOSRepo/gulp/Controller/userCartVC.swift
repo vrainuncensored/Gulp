@@ -127,7 +127,7 @@ extension userCartVC : STPPaymentContextDelegate {
     func paymentContext(_ paymentContext: STPPaymentContext, didFailToLoadWithError error: Error) {
         //activityIndicator.stopAnimating()
 
-            let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Error", message: "exactproblem", preferredStyle: .alert)
 
             let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
                 self.navigationController?.popViewController(animated: true)
@@ -158,7 +158,10 @@ extension userCartVC : STPPaymentContextDelegate {
             "total" : shoppingCart.totalCost,
             "customerId" : userservice.user.stripeId,
             "payment_method_id" : paymentResult.paymentMethod.stripeId,
-            "idempotency" : idempotency
+            "idempotency" : idempotency,
+            "stripeId" : "acct_1IXrdzQfQzdPjHUl",
+            "customerEmail" : "vrain@hey.com",
+            "application_fee_amount" : shoppingCart.processingFees
         ]
 
         Functions.functions().httpsCallable("makeCharge").call(data) { (result, error) in
@@ -188,7 +191,8 @@ extension userCartVC : STPPaymentContextDelegate {
         case .error:
             title = "Error"
             //without the ??, this is a optional string value( string?), so that it must be unwrapped by doing a "nill coalissing", which is adding to question marks. This is a saftey guard in the case that the optional is in fact empty. It will give the value of empty just in case
-            message = error?.localizedDescription ?? ""
+            //message = error?.localizedDescription ?? ""
+            message = "this isn't fucking working" ?? ""
         case .success:
             title = "Success!"
             message = "Thank you for your purchase!"

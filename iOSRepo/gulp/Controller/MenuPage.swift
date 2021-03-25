@@ -35,7 +35,10 @@ class MenuPage: UIViewController {
         
 //        print(user?.email)
         //cloudFunctions.notifyCustomer( phoneNumber: "\(userservice.user.phoneNumber)" )
-        
+        let user = Auth.auth().currentUser
+        print(user)
+        print(userservice.isGuest)
+        print(userservice.user.email)
         let width = UIScreen.main.bounds.size.width
         let height = UIScreen.main.bounds.size.height
         let tableFrame = CGRect(x: 0, y: 0, width: width, height: height)
