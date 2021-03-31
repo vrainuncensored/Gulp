@@ -15,7 +15,7 @@ let userservice = _UserService()
 
 final class _UserService{
     
-    var user = Merchant(email: "", id: "", stripeId: "acct_1IXrdzQfQzdPjHUl", name: "", locationCoordinates: GeoPoint(latitude: 0.0, longitude: 0.0), phoneNumber: "", cuisine: "")
+    var user = Merchant(email: "", id: "", stripeId: "acct_1IXrdzQfQzdPjHUl", name: "", locationCoordinates: GeoPoint(latitude: 0.0, longitude: 0.0), phoneNumber: "", cuisine: "", acceptingOrders: false)
     let auth = Auth.auth()
     let db = Firestore.firestore()
     var userListner : ListenerRegistration? = nil
@@ -46,7 +46,7 @@ final class _UserService{
         }
     }
     func signOutUser() {
-        self.user = Merchant(email: "", id: "", stripeId: "Hello", name: "user signed out", locationCoordinates: GeoPoint(latitude: 0.0, longitude: 0.0), phoneNumber: "", cuisine: "")
+        self.user = Merchant(email: "", id: "", stripeId: "Hello", name: "user signed out", locationCoordinates: GeoPoint(latitude: 0.0, longitude: 0.0), phoneNumber: "", cuisine: "", acceptingOrders: false)
     }
     
 }

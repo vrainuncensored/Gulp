@@ -87,30 +87,6 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
     fbCall(tableView : tableView)
     settupListner()
     
-//    let coordinateTest = MKPointAnnotation()
-//    coordinateTest.coordinate = coordinateArray[7]
-//    map.addAnnotation(coordinateTest)
-//
-        
-   
-
-    
-    
-    
-    
-//
-//    for truck in trucks {
-//       let truckButton = UIButton(frame: CGRect(x : 0, y: 0, width : 250, height: 10))
-//        truckButton.setTitleColor(.black, for: .normal)
-//        truckButton.backgroundColor = .clear
-//        truckButton.layer.cornerRadius = 7
-//        truckButton.layer.borderWidth = 3
-//        truckButton.layer.borderColor = UIColor.purple.cgColor
-//        //truckButton.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
-//    }
-    
-
-    
     self.view.addSubview(map)
    
     

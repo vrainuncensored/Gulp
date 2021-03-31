@@ -11,34 +11,41 @@ import UIKit
 class CustomTabBar: UITabBarController {
     
     var customTabItem = UITabBarItem()
-    let defaultOrdersIcon = "tray.and.arrow.down"
-    let defaulutMenuIcon = "table.badge.more"
-    let defaultLocationIcon = "location.circle"
-    let orderLabel = "Orders"
-    let menuLabel = "Menu Items"
-    let tabConfig = UIImage.SymbolConfiguration(pointSize: UIFont.systemFontSize, weight: .medium, scale: .large)
     
     override func viewDidLoad() {
-    let orders = UIImage(systemName: defaultOrdersIcon , withConfiguration: tabConfig )
-    let menu = UIImage(systemName: defaulutMenuIcon, withConfiguration: tabConfig)
-    let location = UIImage(systemName: defaultLocationIcon, withConfiguration: tabConfig)
-
-        customTabItem = self.tabBar.items![0]
-        customTabItem.title = orderLabel
-        customTabItem.image = orders
-    
-        
-        customTabItem = self.tabBar.items![1]
-        customTabItem.image = menu
-        customTabItem.title = menuLabel
-        
-        customTabItem = self.tabBar.items![2]
-        customTabItem.image = location
-        customTabItem.title = "Location"
-
-
+    //Settup Tab Bar Styling
+    settupTabStyling()
+    //Settup Individual Tab Bar Items
+    settupOrderTabItem()
+    settupLocationTabItem()
+    settupAccountTabItem()
+ 
         // Do any additional setup after loading the view.
     }
+    func settupTabStyling() {
+        UITabBar.appearance().tintColor = UI_Colors.red
+        UITabBar.appearance().barTintColor = UI_Colors.white
+        UITabBarItem.appearance().setTitleTextAttributes(tabFontAttributes as [NSAttributedString.Key : Any], for: .normal)
+    }
+    func settupOrderTabItem() {
+        let orders = UIImage(systemName: tabIcons.ordersIcon , withConfiguration: tabConfig )
+        customTabItem = self.tabBar.items![0]
+        customTabItem.title = tabLabels.orderLabel
+        customTabItem.image = orders
+    }
+    func settupLocationTabItem() {
+        let location = UIImage(systemName: tabIcons.locationIcon , withConfiguration: tabConfig )
+        customTabItem = self.tabBar.items![1]
+        customTabItem.title = tabLabels.locationLabel
+        customTabItem.image = location
+    }
+    func settupAccountTabItem() {
+        let account = UIImage(systemName: tabIcons.accountIcon , withConfiguration: tabConfig )
+        customTabItem = self.tabBar.items![2]
+        customTabItem.title = tabLabels.accountLabel
+        customTabItem.image = account
+    }
+
     
 
     /*

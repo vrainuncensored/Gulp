@@ -17,21 +17,32 @@ class ManageLocation: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var truckLocation: MKMapView!
     
     //button outlets
-    
     @IBOutlet weak var updateLocationButton: UIButton!
     @IBOutlet weak var closedButton: UIButton!
     
+    //view outlets
+    @IBOutlet weak var backgroundView: UIView!
+    
+    //label outlets
+    @IBOutlet weak var welcomeLabel: UILabel!
     
     let locationManager = CLLocationManager()
      func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
      let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+     let span: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.025, longitudeDelta: 0.025)
+     let region: MKCoordinateRegion = MKCoordinateRegion(center: locValue, span: span)
+     truckLocation.setRegion(region, animated: false)
+     truckLocation.isZoomEnabled = true
+     truckLocation.isScrollEnabled = true
+     manager.stopUpdatingLocation()
      }
      var longitude = 0.0
      var latitude = 0.0
     
     override func viewDidLoad() {
-        self.navigationItem.title = "Manage Your Location"
+        //self.navigationItem.title = "Manage Your Location"
         super.viewDidLoad()
+        simpleAlert(title: userservice.user.id, msg: userservice.user.name)
         locationManager.delegate = self;
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
@@ -41,8 +52,11 @@ class ManageLocation: UIViewController, CLLocationManagerDelegate {
         truckLocation.isScrollEnabled = true
         setupUpdateButton()
         setupClosedButton()
-        
+        settupBackgroundView()
+        setupWelcomeLabel()
         view.backgroundColor = UI_Colors.white
+        
+        
         // Do any additional setup after loading the view.
     }
     func setupUpdateButton() {
@@ -50,10 +64,16 @@ class ManageLocation: UIViewController, CLLocationManagerDelegate {
         updateLocationButton.layer.borderWidth = 1
         updateLocationButton.layer.borderColor = CG_Colors.red
         updateLocationButton.backgroundColor = UI_Colors.red
-        updateLocationButton.setTitle("Update Location", for: .normal)
+        updateLocationButton.setTitle("Update", for: .normal)
         updateLocationButton.showsTouchWhenHighlighted = true
         updateLocationButton.addTarget(self, action: #selector(updateUser), for: .touchUpInside)
         updateLocationButton.setTitleColor(.white, for: .normal)
+    }
+    func settupBackgroundView() {
+        backgroundView.layer.cornerRadius = 30
+        backgroundView.alpha=0.85
+//        backgroundView.layer.borderWidth = 1
+//        backgroundView.layer.borderColor = CG_Colors.red
     }
     func setupClosedButton() {
            closedButton.layer.cornerRadius = 5
@@ -65,6 +85,16 @@ class ManageLocation: UIViewController, CLLocationManagerDelegate {
            closedButton.addTarget(self, action: #selector(closeUser), for: .touchUpInside)
            closedButton.setTitleColor(.white, for: .normal)
        }
+    func setupWelcomeLabel() {
+        welcomeLabel.text = "Hey, " + userservice.user.name + "!"
+    }
+    func tryinOutTestView() {
+        let testFrame = CGRect(x: 0, y: 100, width: 100, height: 100)
+        var testView : UIView = UIView(frame: testFrame)
+        testView.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0)
+        testView.alpha=0.5
+        self.view.addSubview(testView)
+    }
     @objc func updateUser() {
         self.longitude = locationManager.location!.coordinate.longitude
         self.latitude = locationManager.location!.coordinate.latitude

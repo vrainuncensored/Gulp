@@ -39,9 +39,9 @@ class orders: UIViewController, CLLocationManagerDelegate {
         //fbCall(latitude: latitude, longitude: longitude)
     
         
-        self.navigationItem.title = "Orders"
+        self.navigationItem.title = "Incoming Orders"
         let userLogo = "person"
-        let archivesSFSymbol = "archivebox"
+        let archivesSFSymbol = "scroll"
         let buttonConfig = UIImage.SymbolConfiguration(pointSize: UIFont.systemFontSize, weight: .medium, scale: .large)
         let archiveImage = UIImage(systemName: archivesSFSymbol, withConfiguration: buttonConfig)
         
@@ -206,12 +206,7 @@ extension orders: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listOfOrders.count
     }
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
-            return("Incoming Orders 🤑")
-        }
-        return ""
-    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Test") as! ordersTableViewCell
             cell.layer.borderWidth = 1.5

@@ -133,7 +133,7 @@ class merchantSignupPage: UIViewController {
                     let name = self.userName.text
                     let phoneNumber = self.convertPhoneNumber(userPhoneNumber: self.userPhoneNumber)
                     let defaultLocation = GeoPoint(latitude: 0.0, longitude: 0.0)
-                    let dbUser = Merchant.init(email: email!, id: authUser, stripeId: "", name: name!, locationCoordinates: defaultLocation , phoneNumber: phoneNumber, cuisine: "surprise me")
+                    let dbUser = Merchant.init(email: email!, id: authUser, stripeId: "", name: name!, locationCoordinates: defaultLocation , phoneNumber: phoneNumber, cuisine: "surprise me", acceptingOrders: false)
                     self.createFireStoreUser(merchant: dbUser)
                     self.segueToOrders()
                 }

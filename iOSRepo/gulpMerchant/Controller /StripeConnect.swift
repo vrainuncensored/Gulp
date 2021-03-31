@@ -19,7 +19,7 @@ class StripeConnect: UIViewController {
     @IBOutlet weak var refreshSetting: UIButton!
     @IBOutlet weak var payoutInterval: UIButton!
     
-    var user = Merchant(email: "", id: "", stripeId: "acct_1IXrdzQfQzdPjHUl", name: "", locationCoordinates: GeoPoint(latitude: 0.0, longitude: 0.0), phoneNumber: "", cuisine: "")
+    var user = Merchant(email: "", id: "", stripeId: "acct_1IXrdzQfQzdPjHUl", name: "", locationCoordinates: GeoPoint(latitude: 0.0, longitude: 0.0), phoneNumber: "", cuisine: "", acceptingOrders: false)
     override func viewDidLoad() {
         super.viewDidLoad()
         userservice.getUser()
@@ -30,6 +30,16 @@ class StripeConnect: UIViewController {
         refreshSetting.addTarget(self, action: #selector(resetUserInfo), for: .touchUpInside)
 
         payoutInterval.addTarget(self, action: #selector(setPayoutValue), for: .touchUpInside)        // Do any additional setup after loading the view.
+        self.navigationItem.title = "Profile"
+        let userLogo = "person"
+        let archivesSFSymbol = "scroll"
+        let buttonConfig = UIImage.SymbolConfiguration(pointSize: UIFont.systemFontSize, weight: .medium, scale: .large)
+        let archiveImage = UIImage(systemName: archivesSFSymbol, withConfiguration: buttonConfig)
+        
+        let button = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(resetUserInfo))
+        let archiveButton = UIBarButtonItem(image: archiveImage, style: .plain, target: self, action: #selector(resetUserInfo))
+       // let addAction = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(segueTo))
+        navigationItem.rightBarButtonItem = button
     }
     @objc func resetUserInfo() {
 //            print("print fucking something")

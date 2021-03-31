@@ -35,3 +35,45 @@ import UIKit
 //    static let blueTest:UIColor = #colorLiteral(red: 0.5107015371, green: 0.5777968764, blue: 0.9307124019, alpha: 1)
 //
 //}
+extension UIViewController {
+
+    //alerts
+//    func simpleAlert(title: String, msg: String) {
+//        let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+//        present(alert, animated: true, completion: nil)
+//    }
+    
+    //segues
+    func segueToSignInMerchant() {
+      let loginFlow = UIStoryboard(name: "LoginFlow", bundle: nil)
+      let controller = loginFlow.instantiateViewController(identifier: "loginPage")
+      present(controller, animated: true, completion: nil)
+    }
+    func segueToHomePageMerchant() {
+        let loginFlow = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = loginFlow.instantiateViewController(withIdentifier: "entry") as! UITabBarController
+        UIApplication.shared.windows.first?.rootViewController = viewController
+        UIApplication.shared.windows.first?.makeKeyAndVisible()
+    }
+//func segueToMainFlow() {
+//      let loginFlow = UIStoryboard(name: "Main", bundle: nil)
+//      let controller = loginFlow.instantiateViewController(identifier: "entry")
+//      present(controller, animated: true, completion: nil)
+//    }
+}
+
+let tabConfig = UIImage.SymbolConfiguration(pointSize: UIFont.systemFontSize, weight: .medium, scale: .large)
+let tabFontAttributes = [NSAttributedString.Key.font: UIFont(name: "Avenir Next", size: 12)]
+struct tabIcons {
+    static let ordersIcon = "tray.and.arrow.down"
+    static let menuIcon = "table.badge.more"
+    static let locationIcon = "location.circle.fill"
+    static let accountIcon = "person"
+}
+struct tabLabels{
+    static let orderLabel = "Orders"
+    static let menuLabel = "Menu Items"
+    static let locationLabel = "Location"
+    static let accountLabel = "Account"
+}

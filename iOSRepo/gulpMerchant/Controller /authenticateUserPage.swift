@@ -7,14 +7,22 @@
 //
 
 import UIKit
+import Firebase
 
 class authenticateUserPage: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        if  userservice.isGuest == true {
+            segueToSignInMerchant()
+            print("is guest")
+        } else if userservice.isGuest == false{
+        print("is not a guest")
+        userservice.getUser()
+        segueToHomePageMerchant()
     }
+    
     
 
     /*
@@ -27,4 +35,5 @@ class authenticateUserPage: UIViewController {
     }
     */
 
+}
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MF0-sN-Y6S">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -430,11 +430,40 @@
             </objects>
             <point key="canvasLocation" x="3051" y="82"/>
         </scene>
+        <!--bufferPage-->
+        <scene sceneID="sLX-ME-18G">
+            <objects>
+                <viewController storyboardIdentifier="bufferPage" title="bufferPage" id="MF0-sN-Y6S" customClass="authenticateUserPage" customModule="gulpMerchant" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Huh-xZ-7Bf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gulplogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="WGA-1A-pHN">
+                                <rect key="frame" x="107" y="373" width="200" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="A9X-ha-LZa"/>
+                                    <constraint firstAttribute="height" constant="150" id="DFh-y1-skC"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="DC3-os-Eze"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="WGA-1A-pHN" firstAttribute="centerX" secondItem="Huh-xZ-7Bf" secondAttribute="centerX" id="rFO-HN-art"/>
+                            <constraint firstItem="WGA-1A-pHN" firstAttribute="centerY" secondItem="Huh-xZ-7Bf" secondAttribute="centerY" id="v2V-yC-4UQ"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zXP-3Z-Een" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-148" y="82"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="QLl-Lu-Uk4"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="gulplogo.png" width="792" height="612"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
