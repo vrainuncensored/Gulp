@@ -2,12 +2,11 @@ const functions = require('firebase-functions');
 const accountSid = functions.config().twilio.accountsid;
 const authToken = functions.config().twilio.authtoken;
 const client = require('twilio')(accountSid, authToken);
-var twilio = require('twilio');
 
 
 
 
-exports.test = functions.https.onCall( async (request, response) => {
+exports.welcomeMessage = functions.https.onCall( async (request, response) => {
   return client.messages.create({
     body: 'Welcome to Gulp! You can now order from your favorite food trucks',
     to: '+17038191285',  // Text this number
