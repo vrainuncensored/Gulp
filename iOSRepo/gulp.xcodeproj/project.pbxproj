@@ -84,12 +84,16 @@
 		8B594D6A25CB4FB800F859E0 /* PastOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B594D6825CB4FB800F859E0 /* PastOrderTableViewCell.swift */; };
 		8B594D6B25CB4FB800F859E0 /* PastOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B594D6925CB4FB800F859E0 /* PastOrderTableViewCell.xib */; };
 		8B62436A25913503007A6682 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B62436925913503007A6682 /* GoogleService-Info.plist */; };
+		8B8E00002617CA7300C83364 /* OrderBreakdownTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B8EFFFD2617CA7300C83364 /* OrderBreakdownTableViewCell.xib */; };
+		8B8E00012617CA7300C83364 /* OrderBreakdownTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B8EFFFD2617CA7300C83364 /* OrderBreakdownTableViewCell.xib */; };
 		8B8EFFE92613D96B00C83364 /* OrdersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8EFFE72613D96B00C83364 /* OrdersTableViewCell.swift */; };
 		8B8EFFEA2613D96C00C83364 /* OrdersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B8EFFE82613D96B00C83364 /* OrdersTableViewCell.xib */; };
 		8B8EFFF02614F20600C83364 /* authenticateUserPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8EFFEF2614F20600C83364 /* authenticateUserPage.swift */; };
 		8B8EFFF32614F41300C83364 /* gulplogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B3E733B25C8FE8200505845 /* gulplogo.png */; };
 		8B8EFFF826178AAB00C83364 /* Righteous-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B8EFFF726178AAB00C83364 /* Righteous-Regular.ttf */; };
 		8B8EFFF926178AAB00C83364 /* Righteous-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B8EFFF726178AAB00C83364 /* Righteous-Regular.ttf */; };
+		8B8EFFFE2617CA7300C83364 /* OrderBreakdownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8EFFFC2617CA7300C83364 /* OrderBreakdownTableViewCell.swift */; };
+		8B8EFFFF2617CA7300C83364 /* OrderBreakdownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8EFFFC2617CA7300C83364 /* OrderBreakdownTableViewCell.swift */; };
 		8BA2B10925BF3D8F00F55E34 /* MainTruckCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2B10725BF3D8F00F55E34 /* MainTruckCellTableViewCell.swift */; };
 		8BA2B10A25BF3D8F00F55E34 /* MainTruckCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA2B10825BF3D8F00F55E34 /* MainTruckCellTableViewCell.xib */; };
 		8BA2B14025BF884000F55E34 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2B13E25BF884000F55E34 /* MenuTableViewCell.swift */; };
@@ -196,6 +200,8 @@
 		8B8EFFE82613D96B00C83364 /* OrdersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrdersTableViewCell.xib; sourceTree = "<group>"; };
 		8B8EFFEF2614F20600C83364 /* authenticateUserPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = authenticateUserPage.swift; sourceTree = "<group>"; };
 		8B8EFFF726178AAB00C83364 /* Righteous-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Righteous-Regular.ttf"; path = "../../../../../../Downloads/Righteous/Righteous-Regular.ttf"; sourceTree = "<group>"; };
+		8B8EFFFC2617CA7300C83364 /* OrderBreakdownTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBreakdownTableViewCell.swift; sourceTree = "<group>"; };
+		8B8EFFFD2617CA7300C83364 /* OrderBreakdownTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderBreakdownTableViewCell.xib; sourceTree = "<group>"; };
 		8BA2B10725BF3D8F00F55E34 /* MainTruckCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTruckCellTableViewCell.swift; sourceTree = "<group>"; };
 		8BA2B10825BF3D8F00F55E34 /* MainTruckCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTruckCellTableViewCell.xib; sourceTree = "<group>"; };
 		8BA2B13E25BF884000F55E34 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
@@ -479,6 +485,8 @@
 			children = (
 				8B8EFFE72613D96B00C83364 /* OrdersTableViewCell.swift */,
 				8B8EFFE82613D96B00C83364 /* OrdersTableViewCell.xib */,
+				8B8EFFFC2617CA7300C83364 /* OrderBreakdownTableViewCell.swift */,
+				8B8EFFFD2617CA7300C83364 /* OrderBreakdownTableViewCell.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -590,6 +598,7 @@
 			files = (
 				8B8EFFF32614F41300C83364 /* gulplogo.png in Resources */,
 				8B39268D26083F8B000BF3B2 /* GoogleService-Info.plist in Resources */,
+				8B8E00012617CA7300C83364 /* OrderBreakdownTableViewCell.xib in Resources */,
 				8B8EFFF926178AAB00C83364 /* Righteous-Regular.ttf in Resources */,
 				64B7279F245C8FFF0082BBD6 /* LaunchScreen.storyboard in Resources */,
 				8B8EFFEA2613D96C00C83364 /* OrdersTableViewCell.xib in Resources */,
@@ -615,6 +624,7 @@
 				8B594D6B25CB4FB800F859E0 /* PastOrderTableViewCell.xib in Resources */,
 				64DDE6B7242D876D0068223D /* LaunchScreen.storyboard in Resources */,
 				64754A9B2432DDFA0088D0F5 /* icon.png in Resources */,
+				8B8E00002617CA7300C83364 /* OrderBreakdownTableViewCell.xib in Resources */,
 				8BA2B14125BF884000F55E34 /* MenuTableViewCell.xib in Resources */,
 				64DDE6B4242D876D0068223D /* assets in Resources */,
 				64754A9C2432DDFA0088D0F5 /* splash.png in Resources */,
@@ -760,6 +770,7 @@
 				64D6E8D4245DD8C800A3B852 /* orders.swift in Sources */,
 				6450618B24BBD4D2002B7C09 /* TableViewCell.swift in Sources */,
 				6458B5BA248F4BAA00B132B5 /* userServices.swift in Sources */,
+				8B8EFFFF2617CA7300C83364 /* OrderBreakdownTableViewCell.swift in Sources */,
 				64D6E8F62463479D00A3B852 /* addingMenuItem.swift in Sources */,
 				8B8EFFE92613D96B00C83364 /* OrdersTableViewCell.swift in Sources */,
 				8BC4303A26070EDA00B54E5D /* Constants .swift in Sources */,
@@ -780,6 +791,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B8EFFFE2617CA7300C83364 /* OrderBreakdownTableViewCell.swift in Sources */,
 				8BA2B10925BF3D8F00F55E34 /* MainTruckCellTableViewCell.swift in Sources */,
 				644765CF24529AE7004FCDEA /* userStructure.swift in Sources */,
 				64BDB85424A3FC7B00C7C318 /* StripeApi.swift in Sources */,

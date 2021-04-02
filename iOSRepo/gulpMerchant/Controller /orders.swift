@@ -13,7 +13,7 @@ import FirebaseAuth
 
 class orders: UIViewController, CLLocationManagerDelegate {
     
-    var spacingConstant : CGFloat = 1
+    var spacingConstant : CGFloat = 0.25
     var listOfOrders = [Order]()
     
     var orderSpecifics : Order = Order(data: ["any": "any"])

@@ -13,7 +13,7 @@ import Firebase
 class OrderConfirmation: UIViewController {
     //Button Outlets
     @IBOutlet weak var confirmationButton: UIButton!
-    
+    @IBOutlet weak var rejectButton: UIButton!
     //Label Outlets
     @IBOutlet weak var orderNumberLabel: UILabel!
     @IBOutlet weak var itemsOrderedLabel: UILabel!
@@ -22,8 +22,8 @@ class OrderConfirmation: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
     //Views Outlets
     
-    
-    
+    //Table Outlets
+    @IBOutlet weak var orderTableView: UITableView!
     //Order
     var orderInformation: Order?
     
@@ -36,15 +36,10 @@ class OrderConfirmation: UIViewController {
         //setupOrderNumberLabel()
         settupLabels()
         // Do any additional setup after loading the view.
-        var time : Timestamp = orderInformation!.timestamp
-       // print(time.seconds)
-        //self.navigationItem.title = "Order: " + orderInformation!.orderNumber
-        self.navigationItem.title = "some title"
-
-//        let timeOfOrder = UIBarButtonItem(title: orderInformation!.status, style: .plain, target: self, action: #selector(doNothing))
-//        navigationItem.rightBarButtonItem = timeOfOrder
         gettingItems()
-
+        orderTableView.dataSource = self
+        orderTableView.delegate = self
+        orderTableView.register(UINib(nibName: "OrderBreakdownTableViewCell", bundle: nil), forCellReuseIdentifier: "OrderBreakdownTableViewCell")
     }
     @objc func orderCompletedAction() {
         cloudFunctions.orderCompletedDatabase(orderTicket: orderInformation!)
@@ -52,9 +47,7 @@ class OrderConfirmation: UIViewController {
         cloudFunctions.removeCompletedOrder(orderTicket: orderInformation!)
         //self.presentedViewController!.dismiss(animated: true, completion: nil)
     }
-//    func setupOrderNumberLabel() {
-//        orderNumberLabel.text = "Order Number  " + String(565)
-//    }
+
     func setupConfirmationButton() {
         confirmationButton.setTitle("Accept", for: .normal)
         confirmationButton.showsTouchWhenHighlighted = true
@@ -65,27 +58,27 @@ class OrderConfirmation: UIViewController {
         confirmationButton.addTarget(self, action: #selector(orderCompletedAction), for: .touchUpInside)
         confirmationButton.setTitleColor(.white, for: .normal)
     }
-//    func setupRejectButton() {
-//        rejectButton.setTitle("Reject", for: .normal)
-//        rejectButton.showsTouchWhenHighlighted = true
-//        rejectButton.layer.cornerRadius = 5
-//        rejectButton.layer.borderWidth = 1
-//        rejectButton.layer.borderColor = CG_Colors.darkPurple
-//        rejectButton.backgroundColor = UI_Colors.darkPurple
-//        rejectButton.addTarget(self, action: #selector(orderCompletedAction), for: .touchUpInside)
-//        rejectButton.setTitleColor(.white, for: .normal)
-//    }
+    func setupRejectButton() {
+        rejectButton.setTitle("Reject", for: .normal)
+        rejectButton.showsTouchWhenHighlighted = true
+        rejectButton.layer.cornerRadius = 5
+        rejectButton.layer.borderWidth = 1
+        rejectButton.layer.borderColor = CG_Colors.darkPurple
+        rejectButton.backgroundColor = UI_Colors.darkPurple
+        rejectButton.addTarget(self, action: #selector(orderCompletedAction), for: .touchUpInside)
+        rejectButton.setTitleColor(.white, for: .normal)
+    }
     func settupLabels() {
-        orderNumberLabel.text = "Order:  " +  orderInformation!.orderNumber
+        orderNumberLabel.text = "Order: " +  orderInformation!.orderNumber
 //        itemsOrderedLabel.text = orderInformation?.items
-        if ((orderInformation?.additionalRequests?.isEmpty) == nil){
-            additionalCommentsLabel.text =  "Special Instructions: None"
-        } else {
-        additionalCommentsLabel.text =  "Special Instructions: " + orderInformation!.additionalRequests!
-        }
-        
-        nameLabel.text = "Customer Name: " + orderInformation!.customerId
-//        timestampLabel.text = orderInformation?.timestamp.
+//        if ((orderInformation?.additionalRequests?.isEmpty) == nil){
+//            additionalCommentsLabel.text =  "Special Instructions: None"
+//        } else {
+//        additionalCommentsLabel.text =  "Special Instructions: " + orderInformation!.additionalRequests!
+//        }
+        let timeText = getTimeStamp(order: orderInformation!)
+//        nameLabel.text = "Customer Name: " + orderInformation!.customerId
+        timeLabel.text = "Time: " + timeText
 //
     }
     func gettingItems() {
@@ -93,50 +86,12 @@ class OrderConfirmation: UIViewController {
         for item in orderInformation!.items{
             itemsText = itemsText + item + ","
         }
-        itemsOrderedLabel.text = "Items ordered: " + itemsText
+       // itemsOrderedLabel.text = "Items ordered: " + itemsText
     }
     @objc func doNothing() {
         print("yay")
     }
-    
-    func convertTimestamp(serverTimestamp: Double) -> String {
-            let x = serverTimestamp / 1000
-            let date = NSDate(timeIntervalSince1970: x)
-            let formatter = DateFormatter()
-            formatter.dateStyle = .long
-            formatter.timeStyle = .medium
 
-            return formatter.string(from: date as Date)
-        }
-    func getReadableDate(timeStamp: TimeInterval) -> String? {
-        let date = Date(timeIntervalSince1970: timeStamp)
-        let dateFormatter = DateFormatter()
-        
-        if Calendar.current.isDateInTomorrow(date) {
-            return "Tomorrow"
-        } else if Calendar.current.isDateInYesterday(date) {
-            return "Yesterday"
-        } else if dateFallsInCurrentWeek(date: date) {
-            if Calendar.current.isDateInToday(date) {
-                dateFormatter.dateFormat = "h:mm a"
-                return dateFormatter.string(from: date)
-            } else {
-                dateFormatter.dateFormat = "EEEE"
-                return dateFormatter.string(from: date)
-            }
-        } else {
-            dateFormatter.dateFormat = "MMM d, yyyy"
-            return dateFormatter.string(from: date)
-        }
-    }
-    func dateFallsInCurrentWeek(date: Date) -> Bool {
-        let currentWeek = Calendar.current.component(Calendar.Component.weekOfYear, from: Date())
-        let datesWeek = Calendar.current.component(Calendar.Component.weekOfYear, from: date)
-        return (currentWeek == datesWeek)
-    }
-    func secondsToHoursMinutesSeconds (seconds : Int64) -> (Int, Int, Int) {
-      return (Int (seconds / 3600), Int (seconds % 3600) / 60, Int ((seconds % 3600) % 60))
-    }
     /*
     // MARK: - Navigation
 
@@ -147,4 +102,34 @@ class OrderConfirmation: UIViewController {
     }
     */
 
+}
+
+extension OrderConfirmation: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return orderInformation?.items.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "OrderBreakdownTableViewCell") as! OrderBreakdownTableViewCell
+        cell.configureCell(order: orderInformation!)
+        reloadInputViews()
+        return cell
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+                    headerView.backgroundColor = UIColor.white
+
+                    let headerLabel = UILabel(frame: CGRect(x: 0, y: 0, width:
+                        tableView.bounds.size.width, height: tableView.bounds.size.height))
+        headerLabel.font = UIFont(name: fonts.righteous, size: 24)
+                    headerLabel.textColor = UIColor.black
+        let nameOfCustomer = "Items for " + orderInformation!.customerId + ":"
+                    headerLabel.text = nameOfCustomer
+                    headerLabel.sizeToFit()
+                    headerView.addSubview(headerLabel)
+
+                    return headerView
+    }
+    
+    
 }

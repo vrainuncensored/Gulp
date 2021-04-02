@@ -82,3 +82,10 @@ struct tabLabels{
 struct fonts {
     static let righteous = "Righteous-Regular"
 }
+func getTimeStamp(order: Order) -> String {
+    let timeFromServer = order.timestamp.dateValue()
+    let formatter = DateFormatter()
+    formatter.dateFormat = "h:mm a"
+    let formattedDateInString = formatter.string(from: timeFromServer)
+    return formattedDateInString
+}
