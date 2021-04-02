@@ -25,6 +25,7 @@ class CompletedOrdersViewController: UIViewController {
         let height = UIScreen.main.bounds.size.height
         let tableFrame = CGRect(x: 0, y: 0, width: width, height: height)
         let tableView = UITableView(frame: tableFrame, style: .grouped)
+        self.navigationItem.title = "some title"
         tableView.frame = tableFrame
         view.addSubview(tableView)
         tableView.dataSource = self
@@ -40,6 +41,7 @@ class CompletedOrdersViewController: UIViewController {
         view.backgroundColor = UI_Colors.white
         // Do any additional setup after loading the view.
     }
+  
     func fbCallOrders (tableView: UITableView) {
         let user = Auth.auth().currentUser
         if let user = user {

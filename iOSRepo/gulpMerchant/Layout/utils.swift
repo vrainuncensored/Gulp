@@ -66,7 +66,7 @@ extension UIViewController {
 }
 
 let tabConfig = UIImage.SymbolConfiguration(pointSize: UIFont.systemFontSize, weight: .medium, scale: .large)
-let tabFontAttributes = [NSAttributedString.Key.font: UIFont(name: "Avenir Next", size: 12)]
+let tabFontAttributes = [NSAttributedString.Key.font: UIFont(name: fonts.righteous, size: 12)]
 struct tabIcons {
     static let ordersIcon = "tray.and.arrow.down"
     static let menuIcon = "table.badge.more"
@@ -78,4 +78,7 @@ struct tabLabels{
     static let menuLabel = "Menu Items"
     static let locationLabel = "Location"
     static let accountLabel = "Account"
+}
+struct fonts {
+    static let righteous = "Righteous-Regular"
 }

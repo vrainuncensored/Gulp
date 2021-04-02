@@ -22,6 +22,9 @@ class orders: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
         
         self.navigationItem.title = "Incoming Orders"
+//        self.navigationController?.navigationBar.titleTextAttributes = tabFontAttributes as [NSAttributedString.Key : Any]
+//        let attributes = [NSAttributedString.Key.font: UIFont(name: fonts.righteous, size: 17)!]
+//        UINavigationBar.appearance().titleTextAttributes = attributes
         let archivesSFSymbol = "scroll"
         let buttonConfig = UIImage.SymbolConfiguration(pointSize: UIFont.systemFontSize, weight: .medium, scale: .large)
         let archiveImage = UIImage(systemName: archivesSFSymbol, withConfiguration: buttonConfig)
@@ -144,15 +147,15 @@ extension orders: UITableViewDelegate, UITableViewDataSource{
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "OrdersTableViewCell") as! OrdersTableViewCell
-        cell.layer.borderWidth = 1
-        cell.layer.borderColor = CG_Colors.white
+//        cell.layer.borderWidth = 1
+//        cell.layer.borderColor = CG_Colors.white
         cell.layer.cornerRadius = 4
         cell.backgroundColor = UI_Colors.white
         cell.layer.masksToBounds = false
-        //cell.layer.shadowOffset = CGSizeMake(0, 0)
-        cell.layer.shadowColor = UIColor.black.cgColor
-        cell.layer.shadowOpacity = 0.75
-        cell.layer.shadowRadius = 1
+        cell.layer.shadowOffset = CGSize(width: 5, height: 0)
+        cell.layer.shadowColor = UIColor.darkGray.cgColor
+        cell.layer.shadowOpacity = 0.5
+        cell.layer.shadowRadius = 4.0
         if listOfOrders.count == 0 {
             reloadInputViews()
             return cell

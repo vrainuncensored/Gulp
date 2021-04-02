@@ -19,8 +19,7 @@ class OrderConfirmation: UIViewController {
     @IBOutlet weak var itemsOrderedLabel: UILabel!
     @IBOutlet weak var additionalCommentsLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var timestampLabel: UILabel!
-    
+    @IBOutlet weak var timeLabel: UILabel!
     //Views Outlets
     
     
@@ -77,7 +76,7 @@ class OrderConfirmation: UIViewController {
 //        rejectButton.setTitleColor(.white, for: .normal)
 //    }
     func settupLabels() {
-        orderNumberLabel.text = "Order Number:  " +  orderInformation!.orderNumber
+        orderNumberLabel.text = "Order:  " +  orderInformation!.orderNumber
 //        itemsOrderedLabel.text = orderInformation?.items
         if ((orderInformation?.additionalRequests?.isEmpty) == nil){
             additionalCommentsLabel.text =  "Special Instructions: None"
