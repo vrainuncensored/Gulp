@@ -46,7 +46,7 @@ final class _UserService{
         }
     }
     func signOutUser() {
-        self.user = Merchant(email: "", id: "", stripeId: "Hello", name: "user signed out", locationCoordinates: GeoPoint(latitude: 0.0, longitude: 0.0), phoneNumber: "", cuisine: "", acceptingOrders: false)
+        self.user = Merchant(email: "", id: "", stripeId: "", name: "user signed out", locationCoordinates: GeoPoint(latitude: 0.0, longitude: 0.0), phoneNumber: "", cuisine: "", acceptingOrders: false)
     }
     
 }

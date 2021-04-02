@@ -33,13 +33,17 @@ class OrderConfirmation: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupConfirmationButton()
+        //setupRejectButton()
         //setupOrderNumberLabel()
         settupLabels()
         // Do any additional setup after loading the view.
         var time : Timestamp = orderInformation!.timestamp
        // print(time.seconds)
-        var test = secondsToHoursMinutesSeconds(seconds: time.seconds)
-        print(test)
+        //self.navigationItem.title = "Order: " + orderInformation!.orderNumber
+        self.navigationItem.title = "some title"
+
+//        let timeOfOrder = UIBarButtonItem(title: orderInformation!.status, style: .plain, target: self, action: #selector(doNothing))
+//        navigationItem.rightBarButtonItem = timeOfOrder
         gettingItems()
 
     }
@@ -53,7 +57,7 @@ class OrderConfirmation: UIViewController {
 //        orderNumberLabel.text = "Order Number  " + String(565)
 //    }
     func setupConfirmationButton() {
-        confirmationButton.setTitle("Confirm Order", for: .normal)
+        confirmationButton.setTitle("Accept", for: .normal)
         confirmationButton.showsTouchWhenHighlighted = true
         confirmationButton.layer.cornerRadius = 5
         confirmationButton.layer.borderWidth = 1
@@ -62,6 +66,16 @@ class OrderConfirmation: UIViewController {
         confirmationButton.addTarget(self, action: #selector(orderCompletedAction), for: .touchUpInside)
         confirmationButton.setTitleColor(.white, for: .normal)
     }
+//    func setupRejectButton() {
+//        rejectButton.setTitle("Reject", for: .normal)
+//        rejectButton.showsTouchWhenHighlighted = true
+//        rejectButton.layer.cornerRadius = 5
+//        rejectButton.layer.borderWidth = 1
+//        rejectButton.layer.borderColor = CG_Colors.darkPurple
+//        rejectButton.backgroundColor = UI_Colors.darkPurple
+//        rejectButton.addTarget(self, action: #selector(orderCompletedAction), for: .touchUpInside)
+//        rejectButton.setTitleColor(.white, for: .normal)
+//    }
     func settupLabels() {
         orderNumberLabel.text = "Order Number:  " +  orderInformation!.orderNumber
 //        itemsOrderedLabel.text = orderInformation?.items
@@ -81,6 +95,9 @@ class OrderConfirmation: UIViewController {
             itemsText = itemsText + item + ","
         }
         itemsOrderedLabel.text = "Items ordered: " + itemsText
+    }
+    @objc func doNothing() {
+        print("yay")
     }
     
     func convertTimestamp(serverTimestamp: Double) -> String {

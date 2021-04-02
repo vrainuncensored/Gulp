@@ -48,7 +48,8 @@ extension UIViewController {
     func segueToSignInMerchant() {
       let loginFlow = UIStoryboard(name: "LoginFlow", bundle: nil)
       let controller = loginFlow.instantiateViewController(identifier: "loginPage")
-      present(controller, animated: true, completion: nil)
+        UIApplication.shared.windows.first?.rootViewController = controller
+        UIApplication.shared.windows.first?.makeKeyAndVisible()
     }
     func segueToHomePageMerchant() {
         let loginFlow = UIStoryboard(name: "Main", bundle: nil)
@@ -56,6 +57,7 @@ extension UIViewController {
         UIApplication.shared.windows.first?.rootViewController = viewController
         UIApplication.shared.windows.first?.makeKeyAndVisible()
     }
+    
 //func segueToMainFlow() {
 //      let loginFlow = UIStoryboard(name: "Main", bundle: nil)
 //      let controller = loginFlow.instantiateViewController(identifier: "entry")

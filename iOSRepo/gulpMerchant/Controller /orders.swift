@@ -12,35 +12,16 @@ import Firebase
 import FirebaseAuth
 
 class orders: UIViewController, CLLocationManagerDelegate {
-    let locationManager = CLLocationManager()
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-    }
-    var longitude = 0.0
-    var latitude = 0.0
     
+    var spacingConstant : CGFloat = 1
     var listOfOrders = [Order]()
     
     var orderSpecifics : Order = Order(data: ["any": "any"])
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationManager.delegate = self;
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
-        
-        userservice.getUser()
-        
-        print(listOfOrders)
-        
-        //self.longitude = locationManager.location!.coordinate.longitude
-        //self.latitude = locationManager.location!.coordinate.latitude
-        //fbCall(latitude: latitude, longitude: longitude)
-    
         
         self.navigationItem.title = "Incoming Orders"
-        let userLogo = "person"
         let archivesSFSymbol = "scroll"
         let buttonConfig = UIImage.SymbolConfiguration(pointSize: UIFont.systemFontSize, weight: .medium, scale: .large)
         let archiveImage = UIImage(systemName: archivesSFSymbol, withConfiguration: buttonConfig)
@@ -55,20 +36,22 @@ class orders: UIViewController, CLLocationManagerDelegate {
         
         let width = UIScreen.main.bounds.size.width
         let height = UIScreen.main.bounds.size.height
-        let tableFrame = CGRect(x: 0, y: 0, width: width, height: height)
+        let tableFrame = CGRect(x: (width - (width - 10)), y: 0, width: width - 20, height: height)
         let tableView = UITableView(frame: tableFrame, style: .grouped)
         tableView.frame = tableFrame
         view.addSubview(tableView)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.rowHeight = 100
+        tableView.rowHeight = 150
         tableView.allowsMultipleSelectionDuringEditing = false
         tableView.allowsSelection = true
         tableView.allowsMultipleSelection = false
         tableView.backgroundColor = UIColor.white
         tableView.separatorStyle = .none
-        tableView.register(ordersTableViewCell.self, forCellReuseIdentifier: "Test")
+        tableView.register(UINib(nibName: "OrdersTableViewCell", bundle: nil), forCellReuseIdentifier: "OrdersTableViewCell")
         view.backgroundColor = UI_Colors.white
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+
         
         fbCallOrders(tableView: tableView)
         settupListner (tableView : tableView)
@@ -77,72 +60,25 @@ class orders: UIViewController, CLLocationManagerDelegate {
         
         }
         
-    func fbCall (latitude: Double, longitude:Double) {
-           let user = Auth.auth().currentUser
-           if let user = user {
-               let uid = user.uid
-               if Auth.auth().currentUser != nil {
-                   let docRef = Firestore.firestore().collection("merchant").document(uid)
-                docRef.updateData([
-                    "locationCoordinates": GeoPoint(latitude: latitude, longitude: longitude)
-                ]) { err in
-                    if let err = err {
-                        print("Error updating document: \(err)")
-                    } else {
-                        print("Document successfully updated")
-                    }
-                }
-        
-        // Do any additional setup after loading the view.
-    }
-        }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-        
-}
+   
    
     
     func fbCallOrders (tableView: UITableView) {
         let user = Auth.auth().currentUser
         if let user = user {
             let uid = user.uid
-            let email = user.email
             if Auth.auth().currentUser != nil {
-                print( uid)
-                print ( email)
                 let docRef = Firestore.firestore().collection("merchant").document(uid).collection("orders")
                 docRef.getDocuments() { (querySnapshot, err) in
                     if let err = err {
                         print("Error getting documents: \(err)")
                     } else {
                         for document in querySnapshot!.documents {
-                            //print("\(document.data())")
                             let data = document.data()
                             let orderfromFB = Order.init(data: data)
                             self.listOfOrders.append(orderfromFB)
                             tableView.reloadData()
-                        }
-                    }
-                }
-                docRef.addSnapshotListener { (snap, err) in
-                    if let err = err {
-                        print("Error getting documents: \(err)")
-                    } else {
-                        for document in snap!.documents {
-                            //print("\(document.data())")
-                            let data = document.data()
-                            let orderfromFB = Order.init(data: data)
-                            self.listOfOrders.append(orderfromFB)
-                            tableView.reloadData()
+
                         }
                     }
                 }
@@ -153,7 +89,6 @@ class orders: UIViewController, CLLocationManagerDelegate {
         let user = Auth.auth().currentUser
         if let user = user {
             let uid = user.uid
-            let email = user.email
             if Auth.auth().currentUser != nil {
                 
                 let docRef = Firestore.firestore().collection("merchant").document(uid).collection("orders")
@@ -172,17 +107,14 @@ class orders: UIViewController, CLLocationManagerDelegate {
                             self.listOfOrders.remove(at: Int(change.oldIndex))
                             tableView.deleteRows(at: [IndexPath(item: Int(change.oldIndex), section: 0)], with: .fade)
                             tableView.reloadData()
-                            
-                            
+                        }
+                        if change.type == .added {
+                            self.listOfOrders.append(order)
+                            tableView.reloadData()
                         }
                     })
-                    
-                    
                 }
-                
-                
             }
-            
         }
     }
     @objc func addItem(sender: UIButton!) {
@@ -204,32 +136,48 @@ class orders: UIViewController, CLLocationManagerDelegate {
 
 extension orders: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    func numberOfSections(in tableView: UITableView) -> Int {
         return listOfOrders.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Test") as! ordersTableViewCell
-            cell.layer.borderWidth = 1.5
-            cell.layer.borderColor = CG_Colors.lightPurple
-            cell.layer.cornerRadius = 30.0
-            cell.backgroundColor = UI_Colors.white
+        let cell = tableView.dequeueReusableCell(withIdentifier: "OrdersTableViewCell") as! OrdersTableViewCell
+        cell.layer.borderWidth = 1
+        cell.layer.borderColor = CG_Colors.white
+        cell.layer.cornerRadius = 4
+        cell.backgroundColor = UI_Colors.white
+        cell.layer.masksToBounds = false
+        //cell.layer.shadowOffset = CGSizeMake(0, 0)
+        cell.layer.shadowColor = UIColor.black.cgColor
+        cell.layer.shadowOpacity = 0.75
+        cell.layer.shadowRadius = 1
         if listOfOrders.count == 0 {
             reloadInputViews()
             return cell
         } else {
-            let item = listOfOrders[indexPath.row]
-            cell.set(item: item)
+            let item = listOfOrders[indexPath.section]
+            cell.configureCell(order: item)
             reloadInputViews()
             return cell
-            
-    }
-    
-    
+        }
 }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+            return spacingConstant
+        }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let specificOrder = listOfOrders[indexPath.row]
+        let specificOrder = listOfOrders[indexPath.section]
         self.orderSpecifics = specificOrder
         segueToOrderConfirmation()
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        // 1
+        let headerView = UIView()
+        // 2
+        headerView.backgroundColor = view.backgroundColor
+        // 3
+        return headerView
     }
 //    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
 //        let specificOrder = listOfOrders[indexPath.row]

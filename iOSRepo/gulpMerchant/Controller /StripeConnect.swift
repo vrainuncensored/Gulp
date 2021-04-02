@@ -42,27 +42,14 @@ class StripeConnect: UIViewController {
         navigationItem.rightBarButtonItem = button
     }
     @objc func resetUserInfo() {
-//            print("print fucking something")
-//            let currentUser = Auth.auth().currentUser
-//            print (currentUser!.uid)
-//            if let currentUser = currentUser {
-//                let userRef = Firestore.firestore().collection("merchant").document(currentUser.uid)
-//            userRef.getDocument { (query , err) in
-//                        if let error = err {
-//                            print(error.localizedDescription)
-//                            print("the GetUser function is not working. This is the issue")
-//                            return
-//                        }
-//                        guard let data = query?.data() else {return}
-//                        self.user = Merchant.init(data: data)
-//                        print(self.user)
-//                    }
-//            } else {
-//                print("there is something wrong with getting the users's id")
-//            }
-        userservice.getUser()
-        print(userservice.user)
-        print(userservice.user.stripeId)
+//
+        do {
+          try Auth.auth().signOut()
+            userservice.signOutUser()
+            segueToSignInMerchant()
+        } catch let signOutError as NSError {
+          print ("Error signing out: %@", signOutError)
+        }
     }
     @objc
         func didSelectConnectWithStripe() {
