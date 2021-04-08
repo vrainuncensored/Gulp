@@ -19,6 +19,7 @@ struct Truck {
     var phoneNumber: String
     var cuisine: String
     var companyLogoURL: String?
+    var categories : [String]
     
     init(
          email: String = "",
@@ -28,7 +29,8 @@ struct Truck {
          locationCoordinates: GeoPoint = GeoPoint(latitude:0, longitude:0),
          phoneNumber: String = "",
         cuisine: String = "",
-        companyLogoURL: String = ""
+        companyLogoURL: String = "",
+        categories: [String] = [""]
         ) {
         
         self.email = email
@@ -39,6 +41,7 @@ struct Truck {
         self.phoneNumber = phoneNumber
         self.cuisine = cuisine
         self.companyLogoURL = companyLogoURL
+        self.categories = categories
     }
     //the initializer for taking firebase results into useable data
     init(data: [String: Any]) {
@@ -50,6 +53,7 @@ struct Truck {
         phoneNumber = data["phoneNumber"] as? String ?? ""
         cuisine = data["cuisine"] as? String ?? ""
         companyLogoURL = data["companyLogoURL"] as? String ?? ""
+        categories = data["categories"] as? [String] ?? [""]
     }
     //this is the code needed to take input and send to the database
     static func modelToData(truck: Truck) -> [String: Any] {
@@ -61,7 +65,8 @@ struct Truck {
             "locationCoordinates": truck.locationCoordinates,
             "phoneNumber": truck.phoneNumber,
             "cuisine" : truck.cuisine,
-            "companyLogoURL" : truck.companyLogoURL ?? nil
+            "companyLogoURL" : truck.companyLogoURL ?? nil,
+            "categories" : truck.categories
         ]
         return data
     }

@@ -15,6 +15,8 @@ struct MenuItem {
     var description: String?
     var toppings: [String]?
     var options: [String]?
+    var selectionChoice: Selection
+    
     
     init(
         price: Double = 0.00 ,
@@ -22,7 +24,8 @@ struct MenuItem {
         name: String = "",
         description: String = "",
         toppings: [String] = [""],
-        options: [String] = [""]
+        options: [String] = [""],
+        selectionChoice: Selection
         )
         {
         self.itemCategory = itemCategory
@@ -31,15 +34,17 @@ struct MenuItem {
         self.description = description
         self.toppings = toppings
         self.options = options
+        self.selectionChoice = selectionChoice
     }
     //the initializer for taking firebase results into useable data
-    init(data: [String: Any]) {
+    init(data: [String: Any], selection: Selection) {
         price = data["price"] as? Double ?? 0.00
         itemCategory = data["itemCategory"] as? String ?? ""
         name = data["name"] as? String ?? ""
         description = data["description"] as? String ?? ""
         toppings = data["Toppings"] as? [String] ?? [""]
         options = data["Options"] as? [String] ?? [""]
+        selectionChoice = selection
 
     }
     //this is the code needed to take input and send to the database

@@ -18,6 +18,7 @@ struct Order {
     var additionalRequests:String?
     var orderNumber:String
     var status: String
+    var toppings: [[String: String]]
 
     init(
         customerId: String = "",
@@ -27,7 +28,8 @@ struct Order {
         total: Int = 0,
         additionalRequests: String,
         orderNumber:String,
-        status:String
+        status:String,
+        toppings: [[String: String]]
          ) {
 
         self.customerId = customerId
@@ -38,6 +40,7 @@ struct Order {
         self.additionalRequests = additionalRequests
         self.orderNumber = orderNumber
         self.status = status
+        self.toppings = toppings
 
     }
     //the initializer for taking firebase results into useable data
@@ -50,7 +53,7 @@ struct Order {
         additionalRequests = data["additionalRequests"] as? String ?? ""
         orderNumber = data["orderNumber"] as? String ?? ""
         status = data["status"] as? String ?? "unaccepted"
-
+        toppings = data["toppings"] as? [[String : String]] ?? [["" : "" ]]
     }
     //this is the code needed to take input and send to the database
     static func modelToData(order: Order) -> [String: Any] {
@@ -62,7 +65,8 @@ struct Order {
             "total" : order.total,
             "additionalRequests" : order.additionalRequests,
             "orderNumber" : order.orderNumber,
-            "status" : order.status
+            "status" : order.status,
+            "toppings" : order.toppings
         ]
         return data
     }

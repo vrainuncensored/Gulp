@@ -48,7 +48,9 @@ final class _UserService{
                 return
             }
         snap?.documents.forEach({ (document) in
-            let cartSelection = MenuItem.init(data: document.data())
+            let data = document.data()
+            let sel = Selection(data: data)
+            let cartSelection = MenuItem.init(data: document.data(), selection: sel)
             self.cart.append(cartSelection)
 
             })

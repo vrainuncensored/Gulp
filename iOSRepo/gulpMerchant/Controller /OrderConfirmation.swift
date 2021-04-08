@@ -40,6 +40,9 @@ class OrderConfirmation: UIViewController {
         orderTableView.dataSource = self
         orderTableView.delegate = self
         orderTableView.register(UINib(nibName: "OrderBreakdownTableViewCell", bundle: nil), forCellReuseIdentifier: "OrderBreakdownTableViewCell")
+        if orderInformation!.status == "unaccepted" {
+        setupRejectButton()
+        }
     }
     @objc func orderCompletedAction() {
         cloudFunctions.orderCompletedDatabase(orderTicket: orderInformation!)
@@ -70,6 +73,8 @@ class OrderConfirmation: UIViewController {
     }
     func settupLabels() {
         orderNumberLabel.text = "Order: " +  orderInformation!.orderNumber
+        print(orderInformation!.toppings.count)
+        print(orderInformation!.toppings)
 //        itemsOrderedLabel.text = orderInformation?.items
 //        if ((orderInformation?.additionalRequests?.isEmpty) == nil){
 //            additionalCommentsLabel.text =  "Special Instructions: None"

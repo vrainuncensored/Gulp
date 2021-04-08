@@ -15,14 +15,30 @@ class PastOrdersVC: UIViewController {
 
     @IBOutlet weak var PastOrdersTableView: UITableView!
     @IBOutlet weak var SignOutButton: UIButton!
+    var sectionNames : [String: Any] = ["": ""]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         settupSignOutButton()
         settupTableView()
         settupNavigationBar()
-
+        testoutFBCall()
         // Do any additional setup after loading the view.
+    }
+    func testoutFBCall() {
+        let docRef = Firestore.firestore().collection("merchant").document("IlP2W8jWbLNOkBNPF61g3sjC4Kl1").collection("menu")
+        docRef.getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let data = document.data()
+                    self.sectionNames = data
+                    print(data.count)
+                    print(data.values)
+                }
+            }
+        }
     }
     func settupSignOutButton() {
         SignOutButton.addTarget(self, action: #selector(SignOutFunction), for: .touchUpInside)
@@ -72,7 +88,7 @@ class PastOrdersVC: UIViewController {
 }
 extension PastOrdersVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return sectionNames.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

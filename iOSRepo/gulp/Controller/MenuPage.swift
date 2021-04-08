@@ -9,8 +9,11 @@ class MenuPage: UIViewController {
     var entreeItems = [MenuItem]()
     var sidesItems =  [MenuItem]()
     var drinksItems = [MenuItem]()
+    var menuMap : Dictionary<String, [String]> = Dictionary()
+    var multiArray : [[String]] = [[String]]()
+    var anArray = [MenuItem]()
     var testArray = [[Any]]()
-    var entreeSelected: MenuItem = MenuItem()
+    var entreeSelected: MenuItem = MenuItem( selectionChoice: Selection(required: true, name: "", selectionNumber: "", options: ["selection": 6]))
     struct Cells {
         static let menuItem = "MenuItems"
     }
@@ -18,25 +21,14 @@ class MenuPage: UIViewController {
     var priceSelected: String!
     var truckIdForQuery: String?
     var truckName: String?
+    var categories : [String]?
+    var categorieNames: [String] = [""]
+
     override func viewDidLoad() {
         super.viewDidLoad()
         //viewWillLayoutSubviews()
         truckservice.getTruck(UUID: truckIdForQuery!)
-        //
-//        let user = Auth.auth().currentUser
-//        if let user = user {
-//        // The user's ID, unique to the Firebase project.
-//        // Do NOT use this value to authenticate with your backend server,
-//        // if you have one. Use getTokenWithCompletion:completion: instead.
-//            let name = user.email
-//            print(user.uid)
-//            print(name)
-//        }
         
-//        print(user?.email)
-        //cloudFunctions.notifyCustomer( phoneNumber: "\(userservice.user.phoneNumber)" )
-        let user = Auth.auth().currentUser
-        print(user)
         print(userservice.isGuest)
         print(userservice.user.email)
         let width = UIScreen.main.bounds.size.width
@@ -57,17 +49,16 @@ class MenuPage: UIViewController {
         //tableView.register(MenuItems.self, forCellReuseIdentifier: "Test")
         tableView.register(UINib(nibName: "MenuTableViewCell", bundle: nil), forCellReuseIdentifier: "MenuTableViewCell")
         fbCall(tableView: tableView)
-
+        
         self.navigationItem.title = "\(truckName!)'s menu"
-               let userLogo = "cart.badge.plus"
-               let buttonConfig = UIImage.SymbolConfiguration(pointSize: UIFont.systemFontSize, weight: .medium, scale: .large)
-               let userImage = UIImage(systemName: userLogo, withConfiguration: buttonConfig)
-            
-               
-               let addToCartNavButton = UIBarButtonItem(image: userImage, style: .plain, target: self, action: #selector(addToCart))
-               let addAction = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(test1))
-               //navigationItem.rightBarButtonItem = addAction
-               navigationItem.rightBarButtonItem = addToCartNavButton
+        let userLogo = "cart.badge.plus"
+        let buttonConfig = UIImage.SymbolConfiguration(pointSize: UIFont.systemFontSize, weight: .medium, scale: .large)
+        let userImage = UIImage(systemName: userLogo, withConfiguration: buttonConfig)
+        
+        
+        let addToCartNavButton = UIBarButtonItem(image: userImage, style: .plain, target: self, action: #selector(addToCart))
+        let addAction = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(test1))
+        navigationItem.rightBarButtonItem = addToCartNavButton
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         
         
@@ -81,19 +72,42 @@ class MenuPage: UIViewController {
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
-                for document in querySnapshot!.documents {
-                    //print("\(document.data())")
+                for document in querySnapshot!.documents{
                     let data = document.data()
-                    let test = MenuItem.init(data: data)
+                    let testValue = data["selection"]  as! Dictionary<String, Any>
+                    let sel = Selection(data: data)
+                    let test = MenuItem.init(data: data, selection: sel)
+                    self.anArray.append(test)
+                    let name = test.name
+                    let category = test.itemCategory
+//                    if let category = self.menuMap[category] {
+//                        self.menuMap[category]!.append(name)
+//                    } else {
+//                        self.menuMap[category] = self.menuMap[name]
+//                    }
+                    
+                    
+                    if self.menuMap.keys.contains(category) {
+                        self.menuMap[category]!.append(name)
+                    } else {
+                      // create new list
+                        self.menuMap[category] = [name]
+                    }
+                    
+                    print(self.menuMap)
+
+                    //print(self.anArray)
+                    tableView.reloadData()
+
+                    
                     if test.itemCategory == "entrees" {
                         let entreeData: MenuItem = test
                         self.entreeItems.append(entreeData)
                         self.testArray.append(self.entreeItems)
-                        //self.printInfo(self.entreeItems)
                         tableView.reloadData()
                         
-                        //                                let indexPath = IndexPath(row: 0 , section: 0)
-                        //                                self.tableView.reloadRows(at: [indexPath], with: .right)
+//                                                let indexPath = IndexPath(row: 0 , section: 0)
+//                                                    self.tableView.reloadRows(at: [indexPath], with: .right)
                         
                     }
                     else if test.itemCategory == "sides" {
@@ -108,7 +122,7 @@ class MenuPage: UIViewController {
                         let drinksData: MenuItem = test
                         self.drinksItems.append(drinksData)
                         self.testArray.append(self.drinksItems)
-                        print(self.drinksItems)
+                        //print(self.drinksItems)
                         tableView.reloadData()
                         
                     }
@@ -118,14 +132,14 @@ class MenuPage: UIViewController {
         //let test = MenuItem.init(data: [String: docRef])
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-                  if(segue.identifier == "segueToCustomizeEntreeVC"){
-                          let displayVC = segue.destination as! customizeEntreeVC
-                          displayVC.entreeItemSelected = entreeSelected
-                          displayVC.truckForFBQuery = self.truckIdForQuery!
-                          displayVC.modalPresentationStyle = .fullScreen
-                  }
+        if(segue.identifier == "segueToCustomizeEntreeVC"){
+            let displayVC = segue.destination as! customizeEntreeVC
+            displayVC.entreeItemSelected = entreeSelected
+            displayVC.truckForFBQuery = self.truckIdForQuery!
+            displayVC.modalPresentationStyle = .fullScreen
+        }
         
-              }
+    }
     
     @objc func loginAction() {
           let loginFlow = UIStoryboard(name: "LoginFlowCustomer", bundle: nil)
@@ -184,7 +198,7 @@ class MenuPage: UIViewController {
 }
 extension MenuPage: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
-    return 3
+        return 3
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
        if (section == 0){
@@ -196,9 +210,40 @@ extension MenuPage: UITableViewDataSource, UITableViewDelegate {
         if (section == 2 ){
             return "drinks"
         }
-        return ""
+        return categorieNames[section] as? String ?? "Hello"
+//        return categories![section]
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        for category in categories! {
+//            var value = 0
+//            var count = 0
+//            if section == value{
+//            for items in self.anArray {
+//                if items.itemCategory == category {
+//                    count = count + 1
+//                }
+//            }
+//                return count
+//            }
+//            value = value + 1
+//        }
+//
+//            if self.menuMap.keys.contains("drinks") {
+//                return self.menuMap["drinks"]!.count
+//            } else {
+//              // create new list
+//            print("empty")
+//            }
+    
+
+//        if categories?.isEmpty == false {
+//        let value = categories![section]
+//            print(value)
+//            print(categories)
+//     return self.menuMap[value]!.count
+//        }
+        
+        
         if (section == 0){
             return entreeItems.count
         }
@@ -214,6 +259,7 @@ extension MenuPage: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MenuTableViewCell") as! MenuTableViewCell
+        
         if (indexPath.section == 0){
             let item = entreeItems[indexPath.row]
             cell.configureCell(item: item)
@@ -243,7 +289,7 @@ extension MenuPage: UITableViewDataSource, UITableViewDelegate {
 
         }
         if (indexPath.section == 2){
-            let item = drinksItems[indexPath.row]
+            let item = anArray[indexPath.row]
             cell.configureCell(item: item)
             cell.layer.borderWidth = 1.5
             cell.layer.borderColor = CG_Colors.lightPurple
@@ -262,11 +308,13 @@ extension MenuPage: UITableViewDataSource, UITableViewDelegate {
 
         if indexPath.section == 0 {
             let entreeSelected = entreeItems[indexPath.row]
+            //print(entreeSelected.selectionChoice)
             self.entreeSelected = entreeSelected
             //shoppingCart.add(item: entreeSelected)
-            print(entreeSelected.toppings)
-            print(entreeSelected.options)
+//            print(entreeSelected.toppings)
+//            print(entreeSelected.options)
             self.segueToEntreeCustomizePage()
+            //print(entreeSelected)
         }
         
         if indexPath.section == 1 {
@@ -284,9 +332,9 @@ extension MenuPage: UITableViewDataSource, UITableViewDelegate {
         
         let cell = tableView.cellForRow(at: indexPath) as! MenuTableViewCell
         
-        if cell.itemName.text != "" {
-            print(cell.itemName.text ?? "hello")
-        }
+//        if cell.itemName.text != "" {
+//            print(cell.itemName.text ?? "hello")
+//        }
         
     }
 //

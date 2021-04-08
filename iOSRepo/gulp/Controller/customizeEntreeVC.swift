@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class customizeEntreeVC: UIViewController, UITextViewDelegate {
-    var entreeItemSelected: MenuItem = MenuItem()
+    var entreeItemSelected: MenuItem = MenuItem(selectionChoice: Selection(required: true, name: "", selectionNumber: "", options: ["selection": 6]))
     var truckForFBQuery: String?
     var proteinOption = [MenuItem]()
     var addOnOptions = [MenuItem]()
@@ -24,6 +24,8 @@ class customizeEntreeVC: UIViewController, UITextViewDelegate {
     //Label Outlets
     @IBOutlet weak var quantityValueLabel: UILabel!
     @IBOutlet weak var quantityLabel: UILabel!
+    @IBOutlet weak var itemLabel: UILabel!
+    @IBOutlet weak var itemDescription: UILabel!
     
     //TableView Outlets
     @IBOutlet weak var itemOptions: UITableView!
@@ -49,9 +51,9 @@ class customizeEntreeVC: UIViewController, UITextViewDelegate {
 //
         settupCheckOutButton()
         settupCustomerRequestTextField()
+        settupItemLabels()
         
         stepperOutlet.minimumValue = 0
-
         
         self.navigationItem.title = "\(self.entreeItemSelected.name)"
         self.view.backgroundColor = UI_Colors.white
@@ -64,8 +66,12 @@ class customizeEntreeVC: UIViewController, UITextViewDelegate {
         itemOptions.register(MenuItems.self, forCellReuseIdentifier: "Test")
         itemOptions.backgroundColor = UI_Colors.white
         
-        print(entreeItemSelected)
+        stepperOutlet.backgroundColor = UI_Colors.lightPurple
+        stepperOutlet.layer.cornerRadius = 10
+        //print(entreeItemSelected)
         fbCall(tableView: itemOptions)
+        
+        print (self.entreeItemSelected.selectionChoice.options)
         
     }
     func settupCheckOutButton() {
@@ -77,6 +83,10 @@ class customizeEntreeVC: UIViewController, UITextViewDelegate {
         checkOutButton.layer.borderColor = CG_Colors.red
         checkOutButton.layer.backgroundColor = CG_Colors.red
         checkOutButton.setTitleColor(.white, for: .normal)
+    }
+    func settupItemLabels() {
+        itemLabel.text = entreeItemSelected.name
+        itemDescription.text = entreeItemSelected.description
     }
     func settupCustomerRequestTextField() {
         customerRequests.layer.cornerRadius = 5
@@ -132,7 +142,12 @@ class customizeEntreeVC: UIViewController, UITextViewDelegate {
                 for document in querySnapshot!.documents {
                     //print("\(document.data())")
                     let data = document.data()
-                    let test = MenuItem.init(data: data)
+//                    let testValue = data["selection"]  as! Dictionary<String, Any>
+//                    let selectionTest = testValue["name "] as! String
+//                    let selectionBool = testValue["required"] as! Bool
+//                    let selectionNum = testValue["selectionNumber"] as! String
+                    let sel = Selection(data: data)
+                    let test = MenuItem.init(data: data, selection: sel)
                     if test.itemCategory == "Protein Options" {
                         let proteinData: MenuItem = test
                         self.proteinOption.append(proteinData)
@@ -166,13 +181,14 @@ extension customizeEntreeVC: UITableViewDataSource, UITableViewDelegate {
 //        } else {
 //            return 2
 //        }
-        return 2
+        return entreeItemSelected.options?.count ?? 0
        }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Test") as! MenuItems
         if (indexPath.section == 0){
             let item = entreeItemSelected.options![indexPath.row]
             //let item = proteinOption[indexPath.row]
+            print(item)
             cell.configure(item: item)
            // cell.set(item: item)
             cell.backgroundColor = UI_Colors.white
@@ -214,14 +230,15 @@ extension customizeEntreeVC: UITableViewDataSource, UITableViewDelegate {
     }
    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if (section == 0){
-            return "Options"
-        }
-        if (section == 1){
-            return "Toppings"
-        }
-        
-        return ""
+//        if (section == 0){
+//            return "Options"
+//        }
+//        if (section == 1){
+//            return "Toppings"
+//        }
+//
+        return entreeItemSelected.selectionChoice.name
+
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (section == 0){
@@ -235,6 +252,9 @@ extension customizeEntreeVC: UITableViewDataSource, UITableViewDelegate {
     }
      func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return true
+    }
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.0
     }
 }
 extension customizeEntreeVC: UITextFieldDelegate {

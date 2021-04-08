@@ -43,7 +43,7 @@ func segueToOrders() {
 
 struct CG_Colors {
     static let darkPurple: CGColor = #colorLiteral(red: 1, green: 0.2923217118, blue: 1, alpha: 1)
-    static let lightPurple: CGColor = #colorLiteral(red: 0.9710480571, green: 0.8799498677, blue: 0.9214171171, alpha: 1)
+    static let lightPurple: CGColor = #colorLiteral(red: 1, green: 0.6926438212, blue: 1, alpha: 1)
     static let blue: CGColor = #colorLiteral(red: 0.6544036865, green: 0.8693754673, blue: 0.9504790902, alpha: 1)
     static let gold: CGColor = #colorLiteral(red: 0.9457510114, green: 0.8288354874, blue: 0.29682073, alpha: 1)
     static let white:CGColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -55,7 +55,7 @@ struct CG_Colors {
 }
 struct UI_Colors {
     static let darkPurple: UIColor = #colorLiteral(red: 1, green: 0.2923217118, blue: 1, alpha: 1)
-    static let lightPurple: UIColor = #colorLiteral(red: 0.9710480571, green: 0.8799498677, blue: 0.9214171171, alpha: 1)
+    static let lightPurple: UIColor = #colorLiteral(red: 1, green: 0.6926438212, blue: 1, alpha: 1)
     static let blue: UIColor = #colorLiteral(red: 0.6544036865, green: 0.8693754673, blue: 0.9504790902, alpha: 1)
     static let gold: UIColor = #colorLiteral(red: 0.9457510114, green: 0.8288354874, blue: 0.29682073, alpha: 1)
     static let white:UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)

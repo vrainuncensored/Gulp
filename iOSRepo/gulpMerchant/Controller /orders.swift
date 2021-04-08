@@ -81,7 +81,6 @@ class orders: UIViewController, CLLocationManagerDelegate {
                             let orderfromFB = Order.init(data: data)
                             self.listOfOrders.append(orderfromFB)
                             tableView.reloadData()
-
                         }
                     }
                 }

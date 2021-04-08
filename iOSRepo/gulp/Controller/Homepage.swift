@@ -35,7 +35,7 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
        }
     var truckIdForQuery = ""
     var truckToShowMenu = ""
-    
+    var categories: [String] = [""]
     
     
     var coordinateArray = [CLLocationCoordinate2D]()
@@ -96,8 +96,8 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
                if(segue.identifier == "MenuSegue"){
                        let displayVC = segue.destination as! MenuPage
                        displayVC.truckIdForQuery = truckIdForQuery
-                        
-                displayVC.truckName = truckToShowMenu
+                       displayVC.truckName = truckToShowMenu
+                displayVC.categories = categories
                }
            }
     
@@ -203,6 +203,7 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
         let truck = trucksList[indexPath.row]
         self.truckIdForQuery = truck.id
         self.truckToShowMenu = truck.name
+        self.categories = truck.categories
         seguetoTruckMenu()
     }
 }
