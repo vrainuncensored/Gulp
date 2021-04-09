@@ -91,8 +91,8 @@
 		8B8EFFEA2613D96C00C83364 /* OrdersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B8EFFE82613D96B00C83364 /* OrdersTableViewCell.xib */; };
 		8B8EFFF02614F20600C83364 /* authenticateUserPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8EFFEF2614F20600C83364 /* authenticateUserPage.swift */; };
 		8B8EFFF32614F41300C83364 /* gulplogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B3E733B25C8FE8200505845 /* gulplogo.png */; };
-		8B8EFFF826178AAB00C83364 /* Righteous-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B8EFFF726178AAB00C83364 /* Righteous-Regular.ttf */; };
-		8B8EFFF926178AAB00C83364 /* Righteous-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B8EFFF726178AAB00C83364 /* Righteous-Regular.ttf */; };
+		8B8EFFF826178AAB00C83364 /* Righteous in Resources */ = {isa = PBXBuildFile; fileRef = 8B8EFFF726178AAB00C83364 /* Righteous */; };
+		8B8EFFF926178AAB00C83364 /* Righteous in Resources */ = {isa = PBXBuildFile; fileRef = 8B8EFFF726178AAB00C83364 /* Righteous */; };
 		8B8EFFFE2617CA7300C83364 /* OrderBreakdownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8EFFFC2617CA7300C83364 /* OrderBreakdownTableViewCell.swift */; };
 		8B8EFFFF2617CA7300C83364 /* OrderBreakdownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8EFFFC2617CA7300C83364 /* OrderBreakdownTableViewCell.swift */; };
 		8BA2B10925BF3D8F00F55E34 /* MainTruckCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2B10725BF3D8F00F55E34 /* MainTruckCellTableViewCell.swift */; };
@@ -184,7 +184,7 @@
 		86C698ECD505BFA746DB3BC1 /* Pods_gulp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_gulp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87B4A07C4173718B8938FA70 /* Pods_gulpMerchant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_gulpMerchant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B39269226085436000BF3B2 /* StripeConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeConnect.swift; sourceTree = "<group>"; };
-		8B3E733B25C8FE8200505845 /* gulplogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gulplogo.png; path = ../../../../../Desktop/gulplogo.png; sourceTree = "<group>"; };
+		8B3E733B25C8FE8200505845 /* gulplogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gulplogo.png; path = ../gulplogo.png; sourceTree = "<group>"; };
 		8B3E734125C9029500505845 /* HomePageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageVC.swift; sourceTree = "<group>"; };
 		8B3E734525C9C49900505845 /* HomeTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabController.swift; sourceTree = "<group>"; };
 		8B3E734925C9CCF100505845 /* AccountPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPage.swift; sourceTree = "<group>"; };
@@ -201,7 +201,7 @@
 		8B8EFFE72613D96B00C83364 /* OrdersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersTableViewCell.swift; sourceTree = "<group>"; };
 		8B8EFFE82613D96B00C83364 /* OrdersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrdersTableViewCell.xib; sourceTree = "<group>"; };
 		8B8EFFEF2614F20600C83364 /* authenticateUserPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = authenticateUserPage.swift; sourceTree = "<group>"; };
-		8B8EFFF726178AAB00C83364 /* Righteous-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Righteous-Regular.ttf"; path = "../../../../../../Downloads/Righteous/Righteous-Regular.ttf"; sourceTree = "<group>"; };
+		8B8EFFF726178AAB00C83364 /* Righteous */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Righteous; path = ../../Righteous; sourceTree = "<group>"; };
 		8B8EFFFC2617CA7300C83364 /* OrderBreakdownTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBreakdownTableViewCell.swift; sourceTree = "<group>"; };
 		8B8EFFFD2617CA7300C83364 /* OrderBreakdownTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderBreakdownTableViewCell.xib; sourceTree = "<group>"; };
 		8BA2B10725BF3D8F00F55E34 /* MainTruckCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTruckCellTableViewCell.swift; sourceTree = "<group>"; };
@@ -497,7 +497,7 @@
 		8B8EFFF626178A9A00C83364 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				8B8EFFF726178AAB00C83364 /* Righteous-Regular.ttf */,
+				8B8EFFF726178AAB00C83364 /* Righteous */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -602,7 +602,7 @@
 				8B8EFFF32614F41300C83364 /* gulplogo.png in Resources */,
 				8B39268D26083F8B000BF3B2 /* GoogleService-Info.plist in Resources */,
 				8B8E00012617CA7300C83364 /* OrderBreakdownTableViewCell.xib in Resources */,
-				8B8EFFF926178AAB00C83364 /* Righteous-Regular.ttf in Resources */,
+				8B8EFFF926178AAB00C83364 /* Righteous in Resources */,
 				64B7279F245C8FFF0082BBD6 /* LaunchScreen.storyboard in Resources */,
 				8B8EFFEA2613D96C00C83364 /* OrdersTableViewCell.xib in Resources */,
 				642BD26D24BED1230081178B /* LoginFlow.storyboard in Resources */,
@@ -622,7 +622,7 @@
 				8B62436A25913503007A6682 /* GoogleService-Info.plist in Resources */,
 				8BAC24A025A52AFE008C43B3 /* Assets.xcassets in Resources */,
 				8B3E733C25C8FE8200505845 /* gulplogo.png in Resources */,
-				8B8EFFF826178AAB00C83364 /* Righteous-Regular.ttf in Resources */,
+				8B8EFFF826178AAB00C83364 /* Righteous in Resources */,
 				8B3E735025C9EDDE00505845 /* CheckoutTableViewCell.xib in Resources */,
 				8B594D6B25CB4FB800F859E0 /* PastOrderTableViewCell.xib in Resources */,
 				64DDE6B7242D876D0068223D /* LaunchScreen.storyboard in Resources */,

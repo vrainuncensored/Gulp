@@ -28,9 +28,9 @@ class MenuItems: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func set(item: MenuItem) {
+    func set(item: SelectionOption) {
         itemLabel.text = item.name
-        let price = String(item.price)
+        let price = String(item.description ?? "")
         if price.count == 3 {
         priceLabel.text = "$" + price + "0"
         }

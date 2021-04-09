@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class customizeEntreeVC: UIViewController, UITextViewDelegate {
-    var entreeItemSelected: MenuItem = MenuItem(selectionChoice: Selection(required: true, name: "", selectionNumber: "", options: ["selection": 6]))
+    var entreeItemSelected: MenuItem = MenuItem(selectionChoice: Selection(required: true, name: "", selectionNumber: "", options: [SelectionOption()]))
     var truckForFBQuery: String?
     var proteinOption = [MenuItem]()
     var addOnOptions = [MenuItem]()
@@ -52,7 +52,7 @@ class customizeEntreeVC: UIViewController, UITextViewDelegate {
         settupCheckOutButton()
         settupCustomerRequestTextField()
         settupItemLabels()
-        
+        print(entreeItemSelected.selectionChoice.options)
         stepperOutlet.minimumValue = 0
         
         self.navigationItem.title = "\(self.entreeItemSelected.name)"
@@ -181,15 +181,16 @@ extension customizeEntreeVC: UITableViewDataSource, UITableViewDelegate {
 //        } else {
 //            return 2
 //        }
-        return entreeItemSelected.options?.count ?? 0
+        return entreeItemSelected.selectionChoice.options.count
        }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Test") as! MenuItems
+        
         if (indexPath.section == 0){
-            let item = entreeItemSelected.options![indexPath.row]
+            let item = entreeItemSelected.selectionChoice.options[indexPath.row]
             //let item = proteinOption[indexPath.row]
             print(item)
-            cell.configure(item: item)
+            cell.set(item: item)
            // cell.set(item: item)
             cell.backgroundColor = UI_Colors.white
             reloadInputViews()
@@ -242,7 +243,7 @@ extension customizeEntreeVC: UITableViewDataSource, UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (section == 0){
-            return entreeItemSelected.options?.count ?? 0
+            return entreeItemSelected.selectionChoice.options.count
         }
         if (section == 1){
             return entreeItemSelected.toppings?.count ?? 0

@@ -13,7 +13,7 @@ class MenuPage: UIViewController {
     var multiArray : [[String]] = [[String]]()
     var anArray = [MenuItem]()
     var testArray = [[Any]]()
-    var entreeSelected: MenuItem = MenuItem( selectionChoice: Selection(required: true, name: "", selectionNumber: "", options: ["selection": 6]))
+    var entreeSelected: MenuItem = MenuItem( selectionChoice: Selection(required: true, name: "", selectionNumber: "", options: [SelectionOption()]))
     struct Cells {
         static let menuItem = "MenuItems"
     }
@@ -75,26 +75,39 @@ class MenuPage: UIViewController {
                 for document in querySnapshot!.documents{
                     let data = document.data()
                     let testValue = data["selection"]  as! Dictionary<String, Any>
+                    let selections = testValue["selections"] as! [Dictionary<String, Any>]
+                    let sectionTest: () = print(selections[0])
+                    let value = type(of: sectionTest)
                     let sel = Selection(data: data)
-                    let test = MenuItem.init(data: data, selection: sel)
-                    self.anArray.append(test)
-                    let name = test.name
-                    let category = test.itemCategory
+                    var test = MenuItem.init(data: data, selection: sel)
+                    for item in selections {
+                        let name = item["name"] as! String
+                        let description = item["description"] as! String
+                        print(name)
+                        print(description)
+                        let specificItem = SelectionOption(price: 1.0, name: name, description: description)
+                        test.selectionChoice.options.append(specificItem)
+                        self.anArray.append(test)
+                        
+                    }
+                    //print(value)
+//                    let name = test.name
+//                    let category = test.itemCategory
 //                    if let category = self.menuMap[category] {
 //                        self.menuMap[category]!.append(name)
 //                    } else {
 //                        self.menuMap[category] = self.menuMap[name]
 //                    }
+                    //print(testValue)
                     
-                    
-                    if self.menuMap.keys.contains(category) {
-                        self.menuMap[category]!.append(name)
-                    } else {
-                      // create new list
-                        self.menuMap[category] = [name]
-                    }
-                    
-                    print(self.menuMap)
+//                    if self.menuMap.keys.contains(category) {
+//                        self.menuMap[category]!.append(name)
+//                    } else {
+//                      // create new list
+//                        self.menuMap[category] = [name]
+//                    }
+//
+                    //print(self.menuMap)
 
                     //print(self.anArray)
                     tableView.reloadData()

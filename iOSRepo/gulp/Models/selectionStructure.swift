@@ -12,13 +12,13 @@ struct Selection {
     var required: Bool
     var name: String
     var selectionNumber: String
-    var options: [String: Int]
+    var options: [SelectionOption]
 
     init(
         required: Bool = false,
         name: String = "",
         selectionNumber: String = "",
-        options: [String: Int]
+        options: [SelectionOption]
     ) {
 
         self.required = required
@@ -26,11 +26,11 @@ struct Selection {
         self.selectionNumber = selectionNumber
         self.options = options
     }
-    init(data: [String: Any]) {
+    init(data: [String: Any ]) {
          let testValue = data["selection"]  as! Dictionary<String, Any>
          name = testValue["name "] as! String
          required = testValue["required"] as! Bool
          selectionNumber = testValue["selectionNumber"] as! String
-         options = ["hello": 5]
+         options = [SelectionOption()]
     }
 }
