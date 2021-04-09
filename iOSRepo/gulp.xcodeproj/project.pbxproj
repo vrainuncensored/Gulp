@@ -84,6 +84,8 @@
 		8B594D6B25CB4FB800F859E0 /* PastOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B594D6925CB4FB800F859E0 /* PastOrderTableViewCell.xib */; };
 		8B62436A25913503007A6682 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B62436925913503007A6682 /* GoogleService-Info.plist */; };
 		8B8AC4A626201FFC00C704EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B8AC4A526201FFC00C704EF /* Assets.xcassets */; };
+		8B8AC4A9262029DE00C704EF /* Righteous-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B8E001026201E0E00C83364 /* Righteous-Regular.ttf */; };
+		8B8AC4AC262029DE00C704EF /* Righteous-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B8E001026201E0E00C83364 /* Righteous-Regular.ttf */; };
 		8B8E00002617CA7300C83364 /* OrderBreakdownTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B8EFFFD2617CA7300C83364 /* OrderBreakdownTableViewCell.xib */; };
 		8B8E00012617CA7300C83364 /* OrderBreakdownTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B8EFFFD2617CA7300C83364 /* OrderBreakdownTableViewCell.xib */; };
 		8B8E00052619789200C83364 /* selectionStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8E00042619789200C83364 /* selectionStructure.swift */; };
@@ -606,6 +608,7 @@
 			files = (
 				8B8EFFF32614F41300C83364 /* gulplogo.png in Resources */,
 				8B39268D26083F8B000BF3B2 /* GoogleService-Info.plist in Resources */,
+				8B8AC4AC262029DE00C704EF /* Righteous-Regular.ttf in Resources */,
 				8B8E00012617CA7300C83364 /* OrderBreakdownTableViewCell.xib in Resources */,
 				8B8EFFF926178AAB00C83364 /* Righteous in Resources */,
 				64B7279F245C8FFF0082BBD6 /* LaunchScreen.storyboard in Resources */,
@@ -624,6 +627,7 @@
 				8BA2B10A25BF3D8F00F55E34 /* MainTruckCellTableViewCell.xib in Resources */,
 				64646A8224B62A0F00A4691B /* LoginFlowCustomer.storyboard in Resources */,
 				E38A879A24EF1D18001A66C0 /* Main.storyboard in Resources */,
+				8B8AC4A9262029DE00C704EF /* Righteous-Regular.ttf in Resources */,
 				8B62436A25913503007A6682 /* GoogleService-Info.plist in Resources */,
 				8BAC24A025A52AFE008C43B3 /* 16.png in Resources */,
 				8B8AC4A626201FFC00C704EF /* Assets.xcassets in Resources */,

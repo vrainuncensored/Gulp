@@ -21,7 +21,7 @@ class OrderBreakdownTableViewCell: UITableViewCell {
     func configureCell(order: Order) {
         orderQuantity.text = String(order.items.count)
         xLabel.text = "X"
-    itemDescription.text = order.customerName
+        itemDescription.text = order.customerId
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

@@ -168,7 +168,7 @@ class signupPage: UIViewController, LoginButtonDelegate {
     }
     
     func createFireStoreUser (user: User) {
-        let newUserRef = Firestore.firestore().collection("merchant").document(user.id)
+        let newUserRef = Firestore.firestore().collection("users").document(user.id)
         let data = User.modelToData(user: user)
         newUserRef.setData(data)
     }
