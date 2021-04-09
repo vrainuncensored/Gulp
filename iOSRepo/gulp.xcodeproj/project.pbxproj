@@ -83,6 +83,7 @@
 		8B594D6A25CB4FB800F859E0 /* PastOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B594D6825CB4FB800F859E0 /* PastOrderTableViewCell.swift */; };
 		8B594D6B25CB4FB800F859E0 /* PastOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B594D6925CB4FB800F859E0 /* PastOrderTableViewCell.xib */; };
 		8B62436A25913503007A6682 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B62436925913503007A6682 /* GoogleService-Info.plist */; };
+		8B8AC4A626201FFC00C704EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B8AC4A526201FFC00C704EF /* Assets.xcassets */; };
 		8B8E00002617CA7300C83364 /* OrderBreakdownTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B8EFFFD2617CA7300C83364 /* OrderBreakdownTableViewCell.xib */; };
 		8B8E00012617CA7300C83364 /* OrderBreakdownTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B8EFFFD2617CA7300C83364 /* OrderBreakdownTableViewCell.xib */; };
 		8B8E00052619789200C83364 /* selectionStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8E00042619789200C83364 /* selectionStructure.swift */; };
@@ -102,7 +103,7 @@
 		8BA2B15425C0EF1000F55E34 /* CustomizeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2B15225C0EF1000F55E34 /* CustomizeTableViewCell.swift */; };
 		8BA2B15525C0EF1000F55E34 /* CustomizeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA2B15325C0EF1000F55E34 /* CustomizeTableViewCell.xib */; };
 		8BA2B15B25C230B300F55E34 /* CompletedOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2B15A25C230B300F55E34 /* CompletedOrdersViewController.swift */; };
-		8BAC24A025A52AFE008C43B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BAC249F25A52AFE008C43B3 /* Assets.xcassets */; };
+		8BAC24A025A52AFE008C43B3 /* 16.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BAC249F25A52AFE008C43B3 /* 16.png */; };
 		8BC430352607092700B54E5D /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC430342607092700B54E5D /* utils.swift */; };
 		8BC4303A26070EDA00B54E5D /* Constants .swift in Sources */ = {isa = PBXBuildFile; fileRef = 648527752496E1C400E89866 /* Constants .swift */; };
 		E38A879A24EF1D18001A66C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64DDE6B0242D876C0068223D /* Main.storyboard */; };
@@ -196,8 +197,10 @@
 		8B594D6825CB4FB800F859E0 /* PastOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastOrderTableViewCell.swift; sourceTree = "<group>"; };
 		8B594D6925CB4FB800F859E0 /* PastOrderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PastOrderTableViewCell.xib; sourceTree = "<group>"; };
 		8B62436925913503007A6682 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8B8AC4A526201FFC00C704EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8B8E00042619789200C83364 /* selectionStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = selectionStructure.swift; sourceTree = "<group>"; };
 		8B8E000C261ED78500C83364 /* optionStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = optionStructure.swift; sourceTree = "<group>"; };
+		8B8E001026201E0E00C83364 /* Righteous-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Righteous-Regular.ttf"; sourceTree = "<group>"; };
 		8B8EFFE72613D96B00C83364 /* OrdersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersTableViewCell.swift; sourceTree = "<group>"; };
 		8B8EFFE82613D96B00C83364 /* OrdersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrdersTableViewCell.xib; sourceTree = "<group>"; };
 		8B8EFFEF2614F20600C83364 /* authenticateUserPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = authenticateUserPage.swift; sourceTree = "<group>"; };
@@ -211,7 +214,7 @@
 		8BA2B15225C0EF1000F55E34 /* CustomizeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeTableViewCell.swift; sourceTree = "<group>"; };
 		8BA2B15325C0EF1000F55E34 /* CustomizeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomizeTableViewCell.xib; sourceTree = "<group>"; };
 		8BA2B15A25C230B300F55E34 /* CompletedOrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedOrdersViewController.swift; sourceTree = "<group>"; };
-		8BAC249F25A52AFE008C43B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../../Desktop/test/test/Assets.xcassets; sourceTree = "<group>"; };
+		8BAC249F25A52AFE008C43B3 /* 16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 16.png; path = ../AppIcon.appiconset/16.png; sourceTree = "<group>"; };
 		8BC430342607092700B54E5D /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
 		A9A68096033DD4EC8EBBAC28 /* Pods-gulpMerchant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gulpMerchant.debug.xcconfig"; path = "Target Support Files/Pods-gulpMerchant/Pods-gulpMerchant.debug.xcconfig"; sourceTree = "<group>"; };
 		C3D30B1C79573C3F4367EF55 /* Pods-gulp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gulp.debug.xcconfig"; path = "Target Support Files/Pods-gulp/Pods-gulp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -476,7 +479,8 @@
 				8B3E733B25C8FE8200505845 /* gulplogo.png */,
 				64754A9A2432DDFA0088D0F5 /* splash.png */,
 				64754A992432DDFA0088D0F5 /* icon.png */,
-				8BAC249F25A52AFE008C43B3 /* Assets.xcassets */,
+				8BAC249F25A52AFE008C43B3 /* 16.png */,
+				8B8AC4A526201FFC00C704EF /* Assets.xcassets */,
 				64DDE6B3242D876D0068223D /* assets */,
 				64DDE6B8242D876D0068223D /* Info.plist */,
 			);
@@ -497,6 +501,7 @@
 		8B8EFFF626178A9A00C83364 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				8B8E001026201E0E00C83364 /* Righteous-Regular.ttf */,
 				8B8EFFF726178AAB00C83364 /* Righteous */,
 			);
 			path = Fonts;
@@ -620,7 +625,8 @@
 				64646A8224B62A0F00A4691B /* LoginFlowCustomer.storyboard in Resources */,
 				E38A879A24EF1D18001A66C0 /* Main.storyboard in Resources */,
 				8B62436A25913503007A6682 /* GoogleService-Info.plist in Resources */,
-				8BAC24A025A52AFE008C43B3 /* Assets.xcassets in Resources */,
+				8BAC24A025A52AFE008C43B3 /* 16.png in Resources */,
+				8B8AC4A626201FFC00C704EF /* Assets.xcassets in Resources */,
 				8B3E733C25C8FE8200505845 /* gulplogo.png in Resources */,
 				8B8EFFF826178AAB00C83364 /* Righteous in Resources */,
 				8B3E735025C9EDDE00505845 /* CheckoutTableViewCell.xib in Resources */,
