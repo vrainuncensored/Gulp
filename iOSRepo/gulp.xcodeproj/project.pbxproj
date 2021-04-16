@@ -199,7 +199,7 @@
 		8B594D6825CB4FB800F859E0 /* PastOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastOrderTableViewCell.swift; sourceTree = "<group>"; };
 		8B594D6925CB4FB800F859E0 /* PastOrderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PastOrderTableViewCell.xib; sourceTree = "<group>"; };
 		8B62436925913503007A6682 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		8B8AC4A526201FFC00C704EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8B8AC4A526201FFC00C704EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
 		8B8E00042619789200C83364 /* selectionStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = selectionStructure.swift; sourceTree = "<group>"; };
 		8B8E000C261ED78500C83364 /* optionStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = optionStructure.swift; sourceTree = "<group>"; };
 		8B8E001026201E0E00C83364 /* Righteous-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Righteous-Regular.ttf"; sourceTree = "<group>"; };
@@ -281,11 +281,11 @@
 		644B06072480A2BA003DE98A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				64320CAF2439B3DB00ED486D /* MenuPage.swift */,
 				64DDE6AC242D876C0068223D /* SceneDelegate.swift */,
 				64DDE6AA242D876C0068223D /* AppDelegate.swift */,
 				64320CA62434654D00ED486D /* Homepage.swift */,
 				64320CC72448068E00ED486D /* signupPage.swift */,
+				64320CAF2439B3DB00ED486D /* MenuPage.swift */,
 				64320CC5244805D700ED486D /* loginPage.swift */,
 				644B05FC247AE80F003DE98A /* userCartVC.swift */,
 				64DDE6AE242D876C0068223D /* ViewController.swift */,

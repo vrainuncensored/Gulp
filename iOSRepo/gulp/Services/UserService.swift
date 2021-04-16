@@ -9,6 +9,7 @@
 import Foundation
 import FirebaseAuth
 import FirebaseFirestore
+import MapKit
 
 let userservice = _UserService()
 
@@ -20,7 +21,7 @@ final class _UserService{
     let db = Firestore.firestore()
     var userListner : ListenerRegistration? = nil
     var cartListner : ListenerRegistration? = nil
-    
+    var userCoordinates = CLLocationCoordinate2D()
     var isGuest : Bool {
         guard let isGuest = auth.currentUser else {
             return true
@@ -57,6 +58,9 @@ final class _UserService{
 
         })
         
+    }
+    func updateLocation(coordinates: CLLocationCoordinate2D) {
+        userCoordinates = coordinates
     }
     
     func updateCart(price: Double, item: String ) {

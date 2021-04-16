@@ -45,7 +45,7 @@ class MenuPage: UIViewController {
         tableView.separatorStyle = .none
         tableView.separatorColor = UIColor.white
         tableView.backgroundColor = UI_Colors.white
-        
+                
         //tableView.register(MenuItems.self, forCellReuseIdentifier: "Test")
         tableView.register(UINib(nibName: "MenuTableViewCell", bundle: nil), forCellReuseIdentifier: "MenuTableViewCell")
         fbCall(tableView: tableView)
@@ -332,14 +332,14 @@ extension MenuPage: UITableViewDataSource, UITableViewDelegate {
         
         if indexPath.section == 1 {
             let sideSelected = sidesItems[indexPath.row]
-           shoppingCart.add(item: sideSelected, quantity: 1)
+            //shoppingCart.add(item: sideSelected, quantity: 1)
             print(sideSelected.price)
             print(shoppingCart.totalCost)
         }
         
         if indexPath.section == 2 {
             let drinkSelected = drinksItems[indexPath.row]
-            shoppingCart.add(item: drinkSelected, quantity: 1)
+            //shoppingCart.add(item: drinkSelected, quantity: 1)
             print(shoppingCart.items)
         }
         

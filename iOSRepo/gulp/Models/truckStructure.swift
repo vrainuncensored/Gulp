@@ -21,6 +21,11 @@ struct Truck {
     var companyLogoURL: String?
     var categories : [String]
     
+    var disTance : Double {
+        get { return  haversine_mi(lat1: locationCoordinates.latitude, long1: locationCoordinates.longitude, lat2: userservice.userCoordinates.latitude, long2: userservice.userCoordinates.longitude)}
+        set { haversine_mi(lat1: locationCoordinates.latitude, long1: locationCoordinates.longitude, lat2: userservice.userCoordinates.latitude, long2: userservice.userCoordinates.longitude)}
+    }
+    
     init(
          email: String = "",
          id: String = "",
@@ -30,7 +35,8 @@ struct Truck {
          phoneNumber: String = "",
         cuisine: String = "",
         companyLogoURL: String = "",
-        categories: [String] = [""]
+        categories: [String] = [""],
+        disTance : Double = 0.0
         ) {
         
         self.email = email
@@ -42,6 +48,7 @@ struct Truck {
         self.cuisine = cuisine
         self.companyLogoURL = companyLogoURL
         self.categories = categories
+        self.disTance = disTance
     }
     //the initializer for taking firebase results into useable data
     init(data: [String: Any]) {
@@ -70,4 +77,15 @@ struct Truck {
         ]
         return data
     }
+    func haversine_mi (lat1: Double, long1: Double, lat2: Double, long2: Double) -> Double {
+        let d2r = 0.0174532925199433
+        let dlong : Double = (long2 - long1) * d2r;
+        let dlat: Double = (lat2 - lat1) * d2r;
+        let a : Double = pow(sin(dlat/2.0), 2) + cos(lat1*d2r) * cos(lat2*d2r) * pow(sin(dlong/2.0), 2);
+        let c: Double = 2 * atan2(sqrt(a), sqrt(1-a));
+        let d: Double = 3956 * c;
+
+        return d;
+    }
+    
 }

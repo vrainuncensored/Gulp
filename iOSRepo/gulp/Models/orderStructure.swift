@@ -8,11 +8,12 @@
 
 import Foundation
 import FirebaseFirestore
+import Firebase
 
 struct Order {
     var customerName : String
     var merchantId : String
-    var items : [String]
+    var items : [[String: Any]]
     var timestamp : Timestamp
     var total: Int
     var additionalRequests:String?
@@ -23,7 +24,7 @@ struct Order {
     init(
         customerId: String = "",
         merchantId: String = "",
-        items : [String] = [""],
+        items : [[String: Any]] = [["":""]],
         timestamp : Timestamp,
         total: Int = 0,
         additionalRequests: String,
@@ -45,7 +46,7 @@ struct Order {
     init(data: [String: Any]) {
         customerName = data["customerId"] as? String ?? ""
         merchantId = data["merchantId"] as? String ?? ""
-        items = data["items"] as? [String] ?? [""]
+        items = data["items"] as? [[String: Any]] ?? [["":""]]
         timestamp = data["timestamp"] as? Timestamp ??  Timestamp()
         total = data["total"] as? Int ?? 0
         additionalRequests = data["additionalRequests"] as? String ?? ""

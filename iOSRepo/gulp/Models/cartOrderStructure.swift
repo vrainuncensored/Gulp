@@ -17,7 +17,7 @@ final class _ShoppingCart {
     private let customerFee = 50
     private let salesTaxRate = 0.0725
     var shippingFees = 0
-    private(set) var listOfNames: [String] = []
+    private(set) var listOfNames: [[String: Any]] = []
     var additionalRequests: String?
 }
 
@@ -29,9 +29,9 @@ extension _ShoppingCart {
 //        }
 //    }
     
-    var itemsOrdered : [String] {
+    var itemsOrdered : [[String: Any]] {
         for item in items {
-            let name = item.item.name
+            let name = CartItem.modelToData(cartItem: item)
             self.listOfNames.append(name)
         }
          return listOfNames
@@ -40,7 +40,7 @@ extension _ShoppingCart {
     var subtotal: Int {
         var amount = 0
         for item in items {
-            let pricePennies = Int(item.subTotal * 100)
+            let pricePennies = Int(item.SubTot * 100)
             amount += pricePennies
         }
         
@@ -82,13 +82,13 @@ extension _ShoppingCart {
         guard let index = items.firstIndex(where: { $0.item == item }) else { return}
         items.remove(at: index)
     }
-    func add(item: MenuItem, quantity: Int) {
-        let itemTest = items.filter { $0.item == item }
+    func add(item: CartItem) {
+        let itemTest = items.filter { $0 == item }
         
         if itemTest.first != nil {
             itemTest.first!.quantity += 1
         } else {
-            items.append(CartItem(item: item, quantity: quantity))
+            items.append(item)
         }
     }
     func clearCart() {

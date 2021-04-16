@@ -40,7 +40,7 @@ final class _FirebaseFunctions{
         let data : [String : String] = [
             "phoneNumber" : phoneNumber,
         ]
-        Functions.functions().httpsCallable("notifyCustomer").call(data) {(result, error) in
+        Functions.functions().httpsCallable("notify-welcomeMessage").call(data) {(result, error) in
             if let error = error {
                 debugPrint(error.localizedDescription)
                 //self.simpleAlert(title: "Error", msg: "Unable to make charge.")
@@ -49,6 +49,26 @@ final class _FirebaseFunctions{
             //this is the code that has been executed for after a successful charge has been made
             print("success")
         }
+    }
+    func testingEphemeral() {
+        let data : [String : Any] = [
+            "apiVersion" : "1.9" ,
+            "customer_id" : "cus_JI6CR2r3ivVwFn"
+        ]
+        Functions.functions().httpsCallable("createEphemeralKey").call(data) { (result, error) in
+            
+            if let error = error {
+                debugPrint(error.localizedDescription)
+                print(error.localizedDescription.description)
+                print("EphemeralIssue")
+                return
+            }
+            
+            guard let key = result?.data as? [String: Any] else {
+                return
+            }
+            print(result)
+    }
     }
     func notifyTruck(phoneNumber: String) {
            let data : [String : String] = [
@@ -66,6 +86,7 @@ final class _FirebaseFunctions{
        }
     func orderCreated(orderTicket : Order ) {
         let data = Order.modelToData(order: orderTicket)
+        
         let customerTicket = Firestore.firestore().collection("users").document(userservice.user.id).collection("orders").document(orderTicket.orderNumber)
         customerTicket.setData(data){ err in
             if let err = err {

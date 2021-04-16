@@ -36,7 +36,10 @@ class userCartVC: UIViewController {
         print(userTest?.phoneNumber)
         let email = userTest?.email
         print(email)
+        //self.simpleAlert(title: userservice.user.stripeId, msg: "the stripe ID")
         setupStripeConfig()
+        
+        //cloudFunctions.notifyCustomer(phoneNumber: "+17038191285")
         self.navigationItem.title = "Checkout"
         let width = UIScreen.main.bounds.size.width
         let height = UIScreen.main.bounds.size.height
@@ -72,12 +75,21 @@ class userCartVC: UIViewController {
                config.requiredShippingAddressFields = .none
                //config.createCardSources = true
                
-               
-               let customerContext = STPCustomerContext(keyProvider: StripeApi)
-               paymentContext = STPPaymentContext(customerContext: customerContext, configuration: config, theme: .default())
-               paymentContext.delegate = self
-               paymentContext.hostViewController = self
-           }
+        let customerContext = STPCustomerContext(keyProvider: _StripeApi())
+        paymentContext = STPPaymentContext(customerContext: customerContext)
+        paymentContext.delegate = self
+        paymentContext.hostViewController = self
+        //paymentContext.paymentAmount = shoppingCart.totalCost
+//        let customerContext = STPCustomerContext(keyProvider: StripeApi)
+//        print(customerContext)
+//        if customerContext === nil {
+//            print("asyc problem")
+//        } else{
+//               paymentContext = STPPaymentContext(customerContext: customerContext, configuration: config, theme: .default())
+//               paymentContext.delegate = self
+//               paymentContext.hostViewController = self
+//        }
+    }
     @objc func stripeAction() {
         paymentContext.presentPaymentOptionsViewController()
         
@@ -127,7 +139,7 @@ extension userCartVC : STPPaymentContextDelegate {
     func paymentContext(_ paymentContext: STPPaymentContext, didFailToLoadWithError error: Error) {
         //activityIndicator.stopAnimating()
 
-            let alertController = UIAlertController(title: "Error", message: "exactproblem", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
 
             let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
                 self.navigationController?.popViewController(animated: true)
@@ -157,14 +169,14 @@ extension userCartVC : STPPaymentContextDelegate {
         let data : [String : Any] = [
             "total" : shoppingCart.totalCost,
             "customerId" : userservice.user.stripeId,
-            "payment_method_id" : paymentResult.paymentMethod.stripeId,
+            "payment_method_id" : paymentResult.paymentMethod?.stripeId,
             "idempotency" : idempotency,
             "stripeId" : "acct_1IXrdzQfQzdPjHUl",
             "customerEmail" : "vrain@hey.com",
             "application_fee_amount" : shoppingCart.processingFees
         ]
 
-        Functions.functions().httpsCallable("makeCharge").call(data) { (result, error) in
+        Functions.functions().httpsCallable("payments-makeCharge").call(data) { (result, error) in
             if let error = error {
                 debugPrint(error.localizedDescription)
                 self.simpleAlert(title: "Error", msg: "Unable to make charge.")
@@ -174,11 +186,13 @@ extension userCartVC : STPPaymentContextDelegate {
             //this is the code that has been executed for after a successful charge has been made
             let random = Int.random(in: 0...10000)
             let orderNumberValue = String(random)
+            //print(shoppingCart.itemsOrdered)
+            
             let orderticket = Order(customerId: userservice.user.name, merchantId: truckservice.truck.id, items: shoppingCart.itemsOrdered, timestamp: Timestamp.init(), total: shoppingCart.totalCost, additionalRequests: shoppingCart.additionalRequests ?? "", orderNumber: orderNumberValue, customerPhoneNumber: userservice.user.phoneNumber)
             cloudFunctions.orderCreated(orderTicket: orderticket)
             shoppingCart.clearCart()
-            cloudFunctions.notifyCustomer(phoneNumber: userservice.user.phoneNumber)
-            cloudFunctions.notifyTruck(phoneNumber: truckservice.truck.phoneNumber)
+//            cloudFunctions.notifyCustomer(phoneNumber: userservice.user.phoneNumber)
+//            cloudFunctions.notifyTruck(phoneNumber: truckservice.truck.phoneNumber)
             completion(.success, nil)
         }
     }

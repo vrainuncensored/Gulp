@@ -11,6 +11,8 @@ import Firebase
 
 class customizeEntreeVC: UIViewController, UITextViewDelegate {
     var entreeItemSelected: MenuItem = MenuItem(selectionChoice: Selection(required: true, name: "", selectionNumber: "", options: [SelectionOption()]))
+    var optionsSelected : [SelectionOption] = [SelectionOption()]
+    //var test : MenuItem = MenuItem( selectionChoice: Selection())
     var truckForFBQuery: String?
     var proteinOption = [MenuItem]()
     var addOnOptions = [MenuItem]()
@@ -48,12 +50,14 @@ class customizeEntreeVC: UIViewController, UITextViewDelegate {
 //        self.view.addBackground()
 //        let width = UIScreen.main.bounds.size.width
 //        let height = UIScreen.main.bounds.size.height
-//
+   
         settupCheckOutButton()
         settupCustomerRequestTextField()
         settupItemLabels()
-        print(entreeItemSelected.selectionChoice.options)
+        //print(entreeItemSelected.selectionChoice.options)
         stepperOutlet.minimumValue = 0
+        print(entreeItemSelected.selectionChoice.options.count)
+        print(entreeItemSelected.selectionChoice.options)
         
         self.navigationItem.title = "\(self.entreeItemSelected.name)"
         self.view.backgroundColor = UI_Colors.white
@@ -71,7 +75,7 @@ class customizeEntreeVC: UIViewController, UITextViewDelegate {
         //print(entreeItemSelected)
         fbCall(tableView: itemOptions)
         
-        print (self.entreeItemSelected.selectionChoice.options)
+        //print (self.entreeItemSelected.selectionChoice.options)
         
     }
     func settupCheckOutButton() {
@@ -122,8 +126,11 @@ class customizeEntreeVC: UIViewController, UITextViewDelegate {
     @objc func updateCustomize(){
         shoppingCart.additionalRequests = self.customerRequests.text ?? ""
         self.simpleAlert(title: "Customization Completed" , msg: "We have your changes to the entree")
-        let item = CartItem(item: entreeItemSelected, quantity: quantityOfItems)
-        shoppingCart.add(item: entreeItemSelected, quantity: quantityOfItems)
+        let item = CartItem(item: entreeItemSelected, quantity: quantityOfItems, additionalComments: customerRequests.text ?? "", options: optionsSelected)
+        print(item.additionalComments)
+        print(item.options)
+        print(item.SubTot)
+        shoppingCart.add(item: item)
         for item in shoppingCart.items {
             print (item.subTotal)
             print (quantityOfItems)
@@ -181,53 +188,70 @@ extension customizeEntreeVC: UITableViewDataSource, UITableViewDelegate {
 //        } else {
 //            return 2
 //        }
-        return entreeItemSelected.selectionChoice.options.count
+        return 1
        }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Test") as! MenuItems
-        
-        if (indexPath.section == 0){
-            let item = entreeItemSelected.selectionChoice.options[indexPath.row]
-            //let item = proteinOption[indexPath.row]
-            print(item)
-            cell.set(item: item)
-           // cell.set(item: item)
-            cell.backgroundColor = UI_Colors.white
-            reloadInputViews()
-
-            
-        }
-        if (indexPath.section == 1){
-            if entreeItemSelected.options?.count == 0 {
-                return UITableViewCell()
-            } else {
-            let item = entreeItemSelected.toppings![indexPath.row]
-           // let item = addOnOptions[indexPath.row]
-            //cell.set(item: item)
-            cell.configure(item: item)
-            cell.backgroundColor = UI_Colors.white
-
-            reloadInputViews()
-            }
-        }
+        let item = entreeItemSelected.selectionChoice.options[indexPath.row]
+        cell.set(item: item)
+        reloadInputViews()
+//        if (indexPath.section == 0){
+//            let item = entreeItemSelected.selectionChoice.options[indexPath.row]
+//            //let item = proteinOption[indexPath.row]
+//            print(item)
+//            cell.set(item: item)
+//           // cell.set(item: item)
+//            cell.backgroundColor = UI_Colors.white
+//            reloadInputViews()
+//
+//
+//        }
+//        if (indexPath.section == 1){
+//            if entreeItemSelected.options?.count == 0 {
+//                return UITableViewCell()
+//            } else {
+//            let item = entreeItemSelected.toppings![indexPath.row]
+//           // let item = addOnOptions[indexPath.row]
+//            //cell.set(item: item)
+//            cell.configure(item: item)
+//            cell.backgroundColor = UI_Colors.white
+//
+//            reloadInputViews()
+//            }
+//        }
         
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! MenuItems
-        if cell.itemLabel.text != "" {
-            print(cell.itemLabel.text ?? "hello")
-        }
-        if indexPath.section == 0 {
-                   let choiceOfProteinSelected = proteinOption[indexPath.row]
-            //shoppingCart.add(item: choiceOfProteinSelected)
-                   print(shoppingCart.items)
-               }
-        if indexPath.section == 1 {
-                   let addOnSelected = addOnOptions[indexPath.row]
-            //shoppingCart.add(item: addOnSelected)
-                   print(shoppingCart.items)
-               }
+        cell.accessoryType = .disclosureIndicator
+        
+        let item = entreeItemSelected.selectionChoice.options[indexPath.row]
+        print(item.name)
+        optionsSelected.append(item)
+//        if indexPath.section == 0 {
+//                   let choiceOfProteinSelected = proteinOption[indexPath.row]
+//            //shoppingCart.add(item: choiceOfProteinSelected)
+//                   print(shoppingCart.items)
+//               }
+//        if indexPath.section == 1 {
+//                   let addOnSelected = addOnOptions[indexPath.row]
+//            //shoppingCart.add(item: addOnSelected)
+//                   print(shoppingCart.items)
+//               }
+    }
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! MenuItems
+        cell.accessoryType = .disclosureIndicator
+        
+        let item = entreeItemSelected.selectionChoice.options[indexPath.row]
+        print(item.name)
+        //let index = optionsSelected.firstIndex{$0 === item}
+        //let indexOfA = optionsSelected.firstIndex(of: item) // 0
+        let index = optionsSelected.firstIndex(where: { (items) -> Bool in
+            items.name == item.name // test if this is the item you're looking for
+        })
+        optionsSelected.remove(at: index!)
     }
    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -242,14 +266,14 @@ extension customizeEntreeVC: UITableViewDataSource, UITableViewDelegate {
 
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (section == 0){
-            return entreeItemSelected.selectionChoice.options.count
-        }
-        if (section == 1){
-            return entreeItemSelected.toppings?.count ?? 0
-        }
-        
-        return 0
+//        if (section == 0){
+//            return entreeItemSelected.selectionChoice.options.count
+//        }
+//        if (section == 1){
+//            return entreeItemSelected.toppings?.count ?? 0
+//        }
+//
+        return entreeItemSelected.selectionChoice.options.count
     }
      func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return true

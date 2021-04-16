@@ -11,21 +11,28 @@
 #import <SafariServices/SafariServices.h>
 #import <Stripe/Stripe3DS2.h>
 
+#import "NSDictionary+Stripe.h"
 #import "NSError+Stripe.h"
 #import "STP3DS2AuthenticateResponse.h"
 #import "STPAnalyticsClient.h"
 #import "STPAPIClient+Private.h"
+#import "STPAPIRequest.h"
 #import "STPAuthenticationContext.h"
-#import "STPPaymentIntent.h"
+#import "STPLocalizationUtils.h"
+#import "STPPaymentIntent+Private.h"
 #import "STPPaymentIntentLastPaymentError.h"
 #import "STPPaymentIntentParams.h"
+#import "STPPaymentIntentParams+Utilities.h"
 #import "STPPaymentHandlerActionParams.h"
 #import "STPIntentAction+Private.h"
-#import "STPIntentActionRedirectToURL.h"
+#import "STPIntentActionRedirectToURL+Private.h"
 #import "STPIntentActionUseStripeSDK.h"
+#import "STPIntentActionAlipayHandleRedirect.h"
 #import "STPSetupIntent.h"
 #import "STPSetupIntentConfirmParams.h"
+#import "STPSetupIntentConfirmParams+Utilities.h"
 #import "STPSetupIntentLastSetupError.h"
+#import "STPPaymentMethod.h"
 #import "STPThreeDSCustomizationSettings.h"
 #import "STPThreeDSCustomization+Private.h"
 #import "STPURLCallbackHandler.h"
@@ -64,7 +71,10 @@ withAuthenticationContext:(id<STPAuthenticationContext>)authenticationContext
     if (self.isInProgress) {
         completion(STPPaymentHandlerActionStatusFailed, nil, [self _errorForCode:STPPaymentHandlerNoConcurrentActionsErrorCode userInfo:nil]);
         return;
-    }
+    } else if (![STPPaymentIntentParams isClientSecretValid:paymentParams.clientSecret]) {
+           completion(STPPaymentHandlerActionStatusFailed, nil, [self _errorForCode:STPPaymentHandlerInvalidClientSecret userInfo:nil]);
+           return;
+       }
     self.inProgress = YES;
     __weak __typeof(self) weakSelf = self;
     // wrappedCompletion ensures we perform some final logic before calling the completion block.
@@ -74,7 +84,11 @@ withAuthenticationContext:(id<STPAuthenticationContext>)authenticationContext
         strongSelf.inProgress = NO;
         // Ensure the .succeeded case returns a PaymentIntent in the expected state.
         if (status == STPPaymentHandlerActionStatusSucceeded) {
-            if (error == nil && paymentIntent != nil && (paymentIntent.status == STPPaymentIntentStatusSucceeded || paymentIntent.status == STPPaymentIntentStatusRequiresCapture)) {
+            BOOL successIntentState = paymentIntent.status == STPPaymentIntentStatusSucceeded ||
+            paymentIntent.status == STPPaymentIntentStatusRequiresCapture ||
+            (paymentIntent.status == STPPaymentIntentStatusProcessing && [[self class] _isProcessingIntentSuccessForType:paymentIntent.paymentMethod.type]);
+
+            if (error == nil && paymentIntent != nil && successIntentState) {
                 completion(STPPaymentHandlerActionStatusSucceeded, paymentIntent, nil);
             } else {
                 NSAssert(NO, @"Calling completion with invalid state");
@@ -104,6 +118,7 @@ withAuthenticationContext:(id<STPAuthenticationContext>)authenticationContext
         params.useStripeSDK = @YES;
     }
     [self.apiClient confirmPaymentIntentWithParams:params
+                                            expand:@[@"payment_method"]
                                         completion:confirmCompletionBlock];
 }
 
@@ -115,7 +130,11 @@ withAuthenticationContext:(id<STPAuthenticationContext>)authenticationContext
         NSAssert(NO, @"Should not handle multiple payments at once.");
         completion(STPPaymentHandlerActionStatusFailed, nil, [self _errorForCode:STPPaymentHandlerNoConcurrentActionsErrorCode userInfo:nil]);
         return;
+    } else if (![STPPaymentIntentParams isClientSecretValid:paymentIntentClientSecret]) {
+        completion(STPPaymentHandlerActionStatusFailed, nil, [self _errorForCode:STPPaymentHandlerInvalidClientSecret userInfo:nil]);
+        return;
     }
+
     self.inProgress = YES;
     __weak __typeof(self) weakSelf = self;
     // wrappedCompletion ensures we perform some final logic before calling the completion block.
@@ -154,7 +173,9 @@ withAuthenticationContext:(id<STPAuthenticationContext>)authenticationContext
         }
     };
     
-    [self.apiClient retrievePaymentIntentWithClientSecret:paymentIntentClientSecret completion:retrieveCompletionBlock];
+    [self.apiClient retrievePaymentIntentWithClientSecret:paymentIntentClientSecret
+                                                   expand:@[@"payment_method"]
+                                               completion:retrieveCompletionBlock];
 }
 
 - (void)confirmSetupIntent:(STPSetupIntentConfirmParams *)setupIntentConfirmParams
@@ -164,7 +185,11 @@ withAuthenticationContext:(id<STPAuthenticationContext>)authenticationContext
         NSAssert(NO, @"Should not handle multiple payments at once.");
         completion(STPPaymentHandlerActionStatusFailed, nil, [self _errorForCode:STPPaymentHandlerNoConcurrentActionsErrorCode userInfo:nil]);
         return;
-    }
+    } else if (![STPSetupIntentConfirmParams isClientSecretValid:setupIntentConfirmParams.clientSecret]) {
+           completion(STPPaymentHandlerActionStatusFailed, nil, [self _errorForCode:STPPaymentHandlerInvalidClientSecret userInfo:nil]);
+           return;
+       }
+
     self.inProgress = YES;
     __weak __typeof(self) weakSelf = self;
     // wrappedCompletion ensures we perform some final logic before calling the completion block.
@@ -224,7 +249,11 @@ withAuthenticationContext:(id<STPAuthenticationContext>)authenticationContext
         NSAssert(NO, @"Should not handle multiple payments at once.");
         completion(STPPaymentHandlerActionStatusFailed, nil, [self _errorForCode:STPPaymentHandlerNoConcurrentActionsErrorCode userInfo:nil]);
         return;
+    } else if (![STPSetupIntentConfirmParams isClientSecretValid:setupIntentClientSecret]) {
+        completion(STPPaymentHandlerActionStatusFailed, nil, [self _errorForCode:STPPaymentHandlerInvalidClientSecret userInfo:nil]);
+        return;
     }
+
     self.inProgress = YES;
     __weak __typeof(self) weakSelf = self;
     // wrappedCompletion ensures we perform some final logic before calling the completion block.
@@ -269,6 +298,34 @@ withAuthenticationContext:(id<STPAuthenticationContext>)authenticationContext
 
 
 #pragma mark - Private Helpers
+
+/**
+ Depending on the PaymentMethod Type, after handling next action and confirming,
+ we should either expect a success state on the PaymentIntent, or for certain asynchronous
+ PaymentMethods like SEPA Debit, processing is considered a completed PaymentIntent flow
+ because the funds can take up to 14 days to transfer from the customer's bank.
+ */
++ (BOOL)_isProcessingIntentSuccessForType:(STPPaymentMethodType)type {
+    switch (type) {
+        case STPPaymentMethodTypeSEPADebit:
+        case STPPaymentMethodTypeBacsDebit: // Bacs Debit takes 2-3 business days
+            // fall through
+        case STPPaymentMethodTypeAUBECSDebit:
+            return YES;
+        case STPPaymentMethodTypeAlipay:
+        case STPPaymentMethodTypeCard:
+        case STPPaymentMethodTypeiDEAL:
+        case STPPaymentMethodTypeFPX:
+        case STPPaymentMethodTypeCardPresent:
+        case STPPaymentMethodTypeGiropay:
+        case STPPaymentMethodTypeEPS:
+        case STPPaymentMethodTypePrzelewy24:
+        case STPPaymentMethodTypeBancontact:
+            // fall through
+        case STPPaymentMethodTypeUnknown:
+            return NO;
+    }
+}
 
 - (void)_handleNextActionForPayment:(STPPaymentIntent *)paymentIntent
           withAuthenticationContext:(id<STPAuthenticationContext>)authenticationContext
@@ -407,7 +464,11 @@ withAuthenticationContext:(id<STPAuthenticationContext>)authenticationContext
         case STPPaymentIntentStatusRequiresAction:
             return YES;
         case STPPaymentIntentStatusProcessing:
-            [action completeWithStatus:STPPaymentHandlerActionStatusFailed error:[self _errorForCode:STPPaymentHandlerIntentStatusErrorCode userInfo:nil]];
+            if ([[self class] _isProcessingIntentSuccessForType:paymentIntent.paymentMethod.type]) {
+                [action completeWithStatus:STPPaymentHandlerActionStatusSucceeded error:nil];
+            } else {
+                [action completeWithStatus:STPPaymentHandlerActionStatusFailed error:[self _errorForCode:STPPaymentHandlerIntentStatusErrorCode userInfo:nil]];
+            }
             break;
         case STPPaymentIntentStatusSucceeded:
             [action completeWithStatus:STPPaymentHandlerActionStatusSucceeded error:nil];
@@ -433,7 +494,15 @@ withAuthenticationContext:(id<STPAuthenticationContext>)authenticationContext
         case STPIntentActionTypeRedirectToURL: {
             NSURL *url = authenticationAction.redirectToURL.url;
             NSURL *returnURL = authenticationAction.redirectToURL.returnURL;
-            [self _handleRedirectToURL:url withReturnURL:returnURL];
+            [self _handleRedirectToURL:url fallbackURL:url returnURL:returnURL];
+            break;
+        }
+        case STPIntentActionTypeAlipayHandleRedirect: {
+            NSURL *nativeURL = authenticationAction.alipayHandleRedirect.nativeURL;
+            NSURL *url = authenticationAction.alipayHandleRedirect.url;
+            NSURL *returnURL = authenticationAction.alipayHandleRedirect.returnURL;
+            [self _handleRedirectToURL:nativeURL fallbackURL:url returnURL:returnURL];
+
             break;
         }
         case STPIntentActionTypeUseStripeSDK:
@@ -468,7 +537,7 @@ withAuthenticationContext:(id<STPAuthenticationContext>)authenticationContext
                                                                                           intentID:_currentAction.intentStripeID];
                     
                     [_currentAction.apiClient authenticate3DS2:authRequestParams
-                                              sourceIdentifier:authenticationAction.useStripeSDK.threeDS2SourceID
+                                              sourceIdentifier:authenticationAction.useStripeSDK.threeDSSourceID
                                                      returnURL:_currentAction.returnURLString
                                                     maxTimeout:_currentAction.threeDSCustomizationSettings.authenticationTimeout
                                                     completion:^(STP3DS2AuthenticateResponse * _Nullable authenticateResponse, NSError * _Nullable error) {
@@ -535,22 +604,61 @@ withAuthenticationContext:(id<STPAuthenticationContext>)authenticationContext
 }
 
 - (void)_retrieveAndCheckIntentForCurrentAction {
+    // Alipay requires us to hit an endpoint before retrieving the PI, to ensure the status is up to date.
+    void (^pingMarlinIfNecessary)(STPPaymentHandlerPaymentIntentActionParams *, STPVoidBlock) = ^void(STPPaymentHandlerPaymentIntentActionParams *currentAction, STPVoidBlock completionBlock) {
+        if (currentAction.paymentIntent.paymentMethod != nil && currentAction.paymentIntent.paymentMethod.type == STPPaymentMethodTypeAlipay) {
+            NSDictionary *mobileRedirect = [[currentAction nextAction].redirectToURL.allResponseFields stp_dictionaryForKey:@"mobile"];
+            // 1. Remove percent encoding
+            NSString *nativeURL = [[mobileRedirect stp_stringForKey:@"native_url"] stringByRemovingPercentEncoding];
+            
+            // 2. Find the return_url
+            NSString *prefix = @"return_url=";
+            NSRange alipayReturnURLRange = [nativeURL rangeOfString:@"return_url=[^&]*" options:NSRegularExpressionSearch];
+            NSURL *alipayReturnURL;
+            if (alipayReturnURLRange.location == NSNotFound) {
+                // If we can't find return_url, fail early
+                completionBlock();
+                return;
+            }
+            NSRange range = NSMakeRange(alipayReturnURLRange.location + prefix.length, alipayReturnURLRange.length - prefix.length);
+            NSString *rawAlipayReturnURL = [[nativeURL substringWithRange:range] stringByRemovingPercentEncoding];
+            alipayReturnURL = [NSURL URLWithString:rawAlipayReturnURL];
+            
+            // 3. Make a request to the return URL
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:alipayReturnURL];
+            NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * __unused body, NSURLResponse * __unused response, NSError * __unused error) {
+                completionBlock();
+            }];
+            [task resume];
+        } else {
+            completionBlock();
+        }
+    };
+    
     if ([_currentAction isKindOfClass:[STPPaymentHandlerPaymentIntentActionParams class]]) {
         STPPaymentHandlerPaymentIntentActionParams *currentAction = (STPPaymentHandlerPaymentIntentActionParams *)_currentAction;
-        [_currentAction.apiClient retrievePaymentIntentWithClientSecret:currentAction.paymentIntent.clientSecret
-                                                             completion:^(STPPaymentIntent * _Nullable paymentIntent, NSError * _Nullable error) {
-                                                                 if (error != nil) {
-                                                                     [currentAction completeWithStatus:STPPaymentHandlerActionStatusFailed error:error];
-                                                                 } else {
-                                                                     currentAction.paymentIntent = paymentIntent;
-                                                                     BOOL requiresAction = [self _handlePaymentIntentStatusForAction:currentAction];
-                                                                     if (requiresAction) {
-                                                                         // If the status is still RequiresAction, the user exited from the redirect before the
-                                                                         // payment intent was updated. Consider it a cancel
-                                                                         [currentAction completeWithStatus:STPPaymentHandlerActionStatusCanceled error:nil];
-                                                                     }
-                                                                 }
-                                                             }];
+        
+        pingMarlinIfNecessary(currentAction, ^{
+            [currentAction.apiClient retrievePaymentIntentWithClientSecret:currentAction.paymentIntent.clientSecret
+                                                                     expand:@[@"payment_method"]
+                                                                 completion:^(STPPaymentIntent * _Nullable paymentIntent, NSError * _Nullable error) {
+                if (error != nil) {
+                    [currentAction completeWithStatus:STPPaymentHandlerActionStatusFailed error:error];
+                } else {
+                    currentAction.paymentIntent = paymentIntent;
+                    BOOL requiresAction = [self _handlePaymentIntentStatusForAction:currentAction];
+                    if (requiresAction) {
+                        // If the status is still RequiresAction, the user exited from the redirect before the
+                        // payment intent was updated. Consider it a cancel
+                        [self _markChallengeCanceledWithCompletion:^(__unused BOOL success, __unused NSError * _Nullable cancelError) {
+                            // We don't forward cancelation errors
+                            [currentAction completeWithStatus:STPPaymentHandlerActionStatusCanceled error:nil];
+                        }];
+                        
+                    }
+                }
+            }];
+        });
     } else if ([_currentAction isKindOfClass:[STPPaymentHandlerSetupIntentActionParams class]]) {
         STPPaymentHandlerSetupIntentActionParams *currentAction = (STPPaymentHandlerSetupIntentActionParams *)_currentAction;
         [_currentAction.apiClient retrieveSetupIntentWithClientSecret:currentAction.setupIntent.clientSecret
@@ -563,7 +671,10 @@ withAuthenticationContext:(id<STPAuthenticationContext>)authenticationContext
                                                                    if (requiresAction) {
                                                                        // If the status is still RequiresAction, the user exited from the redirect before the
                                                                        // setup intent was updated. Consider it a cancel
-                                                                       [currentAction completeWithStatus:STPPaymentHandlerActionStatusCanceled error:nil];
+                                                                       [self _markChallengeCanceledWithCompletion:^(__unused BOOL success, __unused NSError * _Nullable cancelError) {
+                                                                           // We don't forward cancelation errors
+                                                                           [currentAction completeWithStatus:STPPaymentHandlerActionStatusCanceled error:nil];
+                                                                       }];
                                                                    }
                                                                }
                                                            }];
@@ -579,12 +690,23 @@ withAuthenticationContext:(id<STPAuthenticationContext>)authenticationContext
 }
 
 - (void)_handleRedirectToURL:(NSURL *)url withReturnURL:(nullable NSURL *)returnURL {
+    [self _handleRedirectToURL:url fallbackURL:url returnURL:returnURL];
+}
+
+/**
+ This method:
+ 1. Redirects to an app using url
+ 2. Open fallbackURL in a webview if 1) fails
+ */
+- (void)_handleRedirectToURL:(nullable NSURL *)url fallbackURL:(NSURL *)fallbackURL returnURL:(nullable NSURL *)returnURL {
     if (returnURL != nil) {
         [[STPURLCallbackHandler shared] registerListener:self forURL:returnURL];
     }
 
     [[STPAnalyticsClient sharedClient] logURLRedirectNextActionWithConfiguration:_currentAction.apiClient.configuration
                                                                         intentID:_currentAction.intentStripeID];
+    
+    // Open the link in SafariVC
     void (^presentSFViewControllerBlock)(void) = ^{
         id<STPAuthenticationContext> context = self->_currentAction.authenticationContext;
         UIViewController *presentingViewController = [context authenticationPresentingViewController];
@@ -596,7 +718,7 @@ withAuthenticationContext:(id<STPAuthenticationContext>)authenticationContext
                 return;
             }
 
-            SFSafariViewController *safariViewController = [[SFSafariViewController alloc] initWithURL:url];
+            SFSafariViewController *safariViewController = [[SFSafariViewController alloc] initWithURL:fallbackURL];
             if (@available(iOS 11, *)) {
                 safariViewController.dismissButtonStyle = SFSafariViewControllerDismissButtonStyleClose;
             }
@@ -613,24 +735,28 @@ withAuthenticationContext:(id<STPAuthenticationContext>)authenticationContext
             doChallenge();
         }
     };
-
-    if (@available(iOS 10, *)) {
-        [[UIApplication sharedApplication] openURL:url
-                                           options:@{UIApplicationOpenURLOptionUniversalLinksOnly: @(YES)}
-                                 completionHandler:^(BOOL success){
-                                     if (!success) {
-                                         // no app installed, launch safari view controller
-                                         presentSFViewControllerBlock();
-                                     } else {
-                                         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                                                  selector:@selector(_handleWillForegroundNotification)
-                                                                                      name:UIApplicationWillEnterForegroundNotification
-                                                                                    object:nil];
-                                     }
-                                 }];
-    } else {
-        presentSFViewControllerBlock();
+    
+    // Redirect to an app
+    // We don't want universal links to open up Safari, but we do want to allow custom URL schemes
+    NSDictionary *options = nil;
+    if ([url.scheme isEqualToString:@"http"] || [url.scheme isEqualToString:@"https"]) {
+        options = @{UIApplicationOpenURLOptionUniversalLinksOnly: @(YES)};
     }
+    
+    // We don't check canOpenURL before opening the URL because that requires users to pre-register the custom URL schemes
+    [[UIApplication sharedApplication] openURL:url
+                                       options:options
+                             completionHandler:^(BOOL success) {
+        if (!success) {
+            // no app installed, launch safari view controller
+            presentSFViewControllerBlock();
+        } else {
+            [[NSNotificationCenter defaultCenter] addObserver:self
+                                                     selector:@selector(_handleWillForegroundNotification)
+                                                         name:UIApplicationWillEnterForegroundNotification
+                                                       object:nil];
+        }
+    }];
 }
 
 /**
@@ -657,9 +783,9 @@ withAuthenticationContext:(id<STPAuthenticationContext>)authenticationContext
     
     // Is it the Apple Pay VC?
     if ([presentingViewController isKindOfClass:[PKPaymentAuthorizationViewController class]]) {
-        // We can't present over Apple Pay, user must implement prepareAuthenticationContextForPresentation: to dismiss it.
+        // Trying to present over the Apple Pay sheet silently fails. Authentication should never happen if you're paying with Apple Pay.
         canPresent = NO;
-        errorMessage = @"authenticationPresentingViewController is a PKPaymentAuthorizationViewController, which cannot be presented over. Dismiss it in `prepareAuthenticationContextForPresentation:`. You should probably return the UIViewController that presented the PKPaymentAuthorizationViewController in `authenticationPresentingViewController` instead.";
+        errorMessage = @"authenticationPresentingViewController is a PKPaymentAuthorizationViewController, which cannot be presented over.";
     }
     
     // Is it already presenting something?
@@ -787,8 +913,61 @@ withAuthenticationContext:(id<STPAuthenticationContext>)authenticationContext
                                                                                uiType:transaction.presentedChallengeUIType];
 }
 
+// This is only called after web-redirects because native 3DS2 cancels go directly
+// to the ACS
+- (void)_markChallengeCanceledWithCompletion:(STPBooleanSuccessBlock)completion {
+    NSString *threeDSSourceID = nil;
+    switch (_currentAction.nextAction.type) {
+        case STPIntentActionTypeRedirectToURL:
+            threeDSSourceID = _currentAction.nextAction.redirectToURL.threeDSSourceID;
+            break;
+
+        case STPIntentActionTypeUseStripeSDK:
+            threeDSSourceID = _currentAction.nextAction.useStripeSDK.threeDSSourceID;
+            break;
+        case STPIntentActionTypeAlipayHandleRedirect:
+        case STPIntentActionTypeUnknown:
+            break;
+    }
+
+    if (threeDSSourceID == nil) {
+        // If there's no threeDSSourceID, there's nothing for us to cancel
+        completion(YES, nil);
+        return;
+    }
+
+    if ([_currentAction isKindOfClass:[STPPaymentHandlerPaymentIntentActionParams class]]) {
+        STPPaymentHandlerPaymentIntentActionParams *currentAction = (STPPaymentHandlerPaymentIntentActionParams *)_currentAction;
+        [currentAction.apiClient cancel3DSAuthenticationForPaymentIntent:currentAction.paymentIntent.stripeId
+                                                              withSource:threeDSSourceID
+                                                              completion:^(STPPaymentIntent * _Nullable paymentIntent, NSError * _Nullable error) {
+            if (paymentIntent != nil) {
+                currentAction.paymentIntent = paymentIntent;
+            }
+            completion(paymentIntent != nil, error);
+        }];
+    } else if ([_currentAction isKindOfClass:[STPPaymentHandlerSetupIntentActionParams class]]) {
+        STPPaymentHandlerSetupIntentActionParams *currentAction = (STPPaymentHandlerSetupIntentActionParams *)self->_currentAction;
+        [currentAction.apiClient cancel3DSAuthenticationForSetupIntent:currentAction.setupIntent.stripeID
+                                                              withSource:threeDSSourceID
+                                                              completion:^(STPSetupIntent * _Nullable setupIntent, NSError * _Nullable error) {
+            if (setupIntent != nil) {
+                currentAction.setupIntent = setupIntent;
+            }
+            completion(setupIntent != nil, error);
+        }];
+        [currentAction.apiClient retrieveSetupIntentWithClientSecret:currentAction.setupIntent.clientSecret
+                                                          completion:^(STPSetupIntent * _Nullable setupIntent, NSError * _Nullable retrieveError) {
+            currentAction.setupIntent = setupIntent;
+            completion(setupIntent != nil, retrieveError);
+        }];
+    } else {
+        NSAssert(NO, @"currentAction is an unknown type or nil.");
+    }
+}
+
 - (void)_markChallengeCompletedWithCompletion:(STPBooleanSuccessBlock)completion {
-    NSString *threeDSSourceID = _currentAction.nextAction.useStripeSDK.threeDS2SourceID;
+    NSString *threeDSSourceID = _currentAction.nextAction.useStripeSDK.threeDSSourceID;
     if (threeDSSourceID == nil) {
         completion(NO, nil);
         return;
@@ -799,6 +978,7 @@ withAuthenticationContext:(id<STPAuthenticationContext>)authenticationContext
             if ([self->_currentAction isKindOfClass:[STPPaymentHandlerPaymentIntentActionParams class]]) {
                 STPPaymentHandlerPaymentIntentActionParams *currentAction = (STPPaymentHandlerPaymentIntentActionParams *)self->_currentAction;
                 [currentAction.apiClient retrievePaymentIntentWithClientSecret:currentAction.paymentIntent.clientSecret
+                                                                        expand:@[@"payment_method"]
                                                                     completion:^(STPPaymentIntent * _Nullable paymentIntent, NSError * _Nullable retrieveError) {
                                                                         currentAction.paymentIntent = paymentIntent;
                                                                         completion(paymentIntent != nil, retrieveError);
@@ -827,10 +1007,10 @@ withAuthenticationContext:(id<STPAuthenticationContext>)authenticationContext
     switch (errorCode) {
         // 3DS(2) flow expected user errors
         case STPPaymentHandlerNotAuthenticatedErrorCode:
-            userInfo[NSLocalizedDescriptionKey] = NSLocalizedString(@"We are unable to authenticate your payment method. Please choose a different payment method and try again.", @"Error when 3DS2 authentication failed (e.g. customer entered the wrong code)");
+            userInfo[NSLocalizedDescriptionKey] = STPLocalizedString(@"We are unable to authenticate your payment method. Please choose a different payment method and try again.", @"Error when 3DS2 authentication failed (e.g. customer entered the wrong code)");
             break;
         case STPPaymentHandlerTimedOutErrorCode:
-            userInfo[NSLocalizedDescriptionKey] = NSLocalizedString(@"Timed out authenticating your payment method -- try again", @"Error when 3DS2 authentication timed out.");
+            userInfo[NSLocalizedDescriptionKey] = STPLocalizedString(@"Timed out authenticating your payment method -- try again", @"Error when 3DS2 authentication timed out.");
             break;
 
         // PaymentIntent has an unexpected/unknown status
@@ -866,7 +1046,13 @@ withAuthenticationContext:(id<STPAuthenticationContext>)authenticationContext
         // Confirmation errors (eg card was declined)
         case STPPaymentHandlerPaymentErrorCode:
             userInfo[STPErrorMessageKey] = userInfo[STPErrorMessageKey] ?: @"There was an error confirming the Intent. Inspect the `paymentIntent.lastPaymentError` or `setupIntent.lastSetupError` property.";
-                userInfo[NSLocalizedDescriptionKey] = userInfo[NSLocalizedDescriptionKey] ?: [NSError stp_unexpectedErrorMessage];
+            userInfo[NSLocalizedDescriptionKey] = userInfo[NSLocalizedDescriptionKey] ?: [NSError stp_unexpectedErrorMessage];
+            break;
+
+            // Client secret format error
+        case STPPaymentHandlerInvalidClientSecret:
+            userInfo[STPErrorMessageKey] = userInfo[STPErrorMessageKey] ?: @"The provided Intent client secret does not match the expected client secret format. Make sure your server is returning the correct value and that is passed to `STPPaymentHandler`.";
+            userInfo[NSLocalizedDescriptionKey] = userInfo[NSLocalizedDescriptionKey] ?: [NSError stp_unexpectedErrorMessage];
             break;
     }
     return [NSError errorWithDomain:STPPaymentHandlerErrorDomain

@@ -9,6 +9,7 @@
 #import <libkern/OSAtomic.h>
 #import <objc/runtime.h>
 #import <objc/message.h>
+#import <os/lock.h>
 
 NS_INLINE void STPAspectLog(__unused NSString *format, ...) {
     // intentionally commented out as a no-op. Can be uncommented for additional debugging
@@ -175,10 +176,10 @@ static BOOL stp_aspect_remove(STPAspectIdentifier *aspect, NSError * __autorelea
 }
 
 static void stp_aspect_performLocked(dispatch_block_t block) {
-    static OSSpinLock aspect_lock = OS_SPINLOCK_INIT;
-    OSSpinLockLock(&aspect_lock);
+    static os_unfair_lock aspect_lock = OS_UNFAIR_LOCK_INIT;
+    os_unfair_lock_lock(&aspect_lock);
     block();
-    OSSpinLockUnlock(&aspect_lock);
+    os_unfair_lock_unlock(&aspect_lock);
 }
 
 static SEL stp_aspect_aliasForSelector(SEL selector) {
@@ -571,7 +572,7 @@ static void stp_aspect_destroyContainerForObject(id<NSObject> self, SEL selector
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - Selector Blacklist Checking
+#pragma mark - Selector Disallowed Checking
 
 static NSMutableDictionary *stp_aspect_getSwizzledClassesDict() {
     static NSMutableDictionary *swizzledClassesDict;
@@ -589,11 +590,11 @@ static BOOL stp_aspect_isSelectorAllowedAndTrack(NSObject *self, SEL selector, S
         disallowedSelectorList = [NSSet setWithObjects:@"retain", @"release", @"autorelease", @"forwardInvocation:", nil];
     });
 
-    // Check against the blacklist.
+    // Check against the disallowed list.
     NSString *selectorName = NSStringFromSelector(selector);
     if ([disallowedSelectorList containsObject:selectorName]) {
-        NSString *errorDescription = [NSString stringWithFormat:@"Selector %@ is blacklisted.", selectorName];
-        STPAspectError(STPAspectErrorSelectorBlacklisted, errorDescription, error);
+        NSString *errorDescription = [NSString stringWithFormat:@"Selector %@ is disallowed.", selectorName];
+        STPAspectError(STPAspectErrorSelectorDisallowed, errorDescription, error);
         return NO;
     }
 

@@ -18,15 +18,30 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
     let map = MKMapView()
     let locationManager = CLLocationManager()
     let storage = Storage.storage()
+    struct UserCoordinates {
+        var longitude : Double = 0.0
+        var latitude : Double = 0.0
+        
+        init(longitude : Double, latitude : Double) {
+            self.longitude = longitude
+            self.latitude = latitude
+        }
+    }
+    var distanceArray : [Double] = []
+    //var coordinatesForUser: UserCoordinates = UserCoordinates(longitude: 0.0, latitude: 0.0)
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
         let span: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.025, longitudeDelta: 0.025)
         let region: MKCoordinateRegion = MKCoordinateRegion(center: locValue, span: span)
+        print(locValue.longitude)
+        print(locValue.latitude)
+        //self.coordinatesForUser = UserCoordinates(longitude: locValue.longitude, latitude: locValue.latitude)
         map.setRegion(region, animated: false)
         map.isZoomEnabled = true
         map.isScrollEnabled = true
         manager.stopUpdatingLocation()
         }
+    
    
 
     var trucksList = [Truck]()
@@ -50,28 +65,18 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
         map.isZoomEnabled = true
         map.isScrollEnabled = true
         
-        let user = Auth.auth().currentUser
-        if let user = user {
-          let uid = user.uid
-          print(user)
-          print(uid)
-        }
-       userservice.getUser()
+
        settupLogoInNavBar()
 
-        
-
-    
-
+//
     locationManager.delegate = self;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest
     locationManager.requestAlwaysAuthorization()
-    //
-        locationManager.startUpdatingLocation()
-    
-
-    
-    
+    locationManager.startUpdatingLocation()
+        locationManager.location?.coordinate.longitude
+       
+    userservice.updateLocation(coordinates: locationManager.location!.coordinate)
+    print("the coordinates from the userservice are" , userservice.userCoordinates.latitude)
 
     
     let truckView = CGRect(x: 0, y: height/2,  width: width, height: height/2)
@@ -88,7 +93,7 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
     settupListner()
     
     self.view.addSubview(map)
-   
+    //print("the coordinates for the user are", coordinatesForUser)
     
    
     }
@@ -105,19 +110,7 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
         self.performSegue(withIdentifier: "MenuSegue", sender: self)
     }
     func settupLogoInNavBar() {
-//        let logoContainer = UIView(frame: CGRect(x: 0, y: 0, width: 270, height: 40))
-//        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 270, height: 30))
-//        imageView.contentMode = .scaleAspectFit
-//        let logo = UIImage(named: "gulplogo.png")
-//        imageView.image = logo
-//        logoContainer.addSubview(imageView)
-//        self.navigationItem.titleView = logoContainer
-//        self.navigationItem.title = "Gulp - Foodtrucks, Instantly"
-//        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
-//        navigationController?.navigationBar.titleTextAttributes = textAttributes
-//        navigationController?.hidesBarsOnTap = true
         self.navigationController?.setNavigationBarHidden(true, animated: true)
-
 
     }
     
@@ -130,19 +123,27 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
                 for document in querySnapshot!.documents {
                     let data = document.data()
                     let test = Truck(data: data)
+                    //Truck.calculateDistance(latitude: , longtitude: <#T##Double#>)
                     let longitude = test.locationCoordinates.longitude
                     let latitude = test.locationCoordinates.latitude
                     let coordinateTest = MKPointAnnotation()
                     let mapCoordinates = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
                     //loading the specific truck info into a Structure. Did this intentionally to later add hours of operation if needed
+//                   
+                    print("The trucks ", test.name , "distance is", test.disTance)
+                    
+                    
                     let mapData = MapData(truckName: test.name, truckCoordinates: mapCoordinates)
                     coordinateTest.coordinate = mapData.truckCoordinates
                     coordinateTest.title = mapData.truckName
                     self.map.addAnnotation(coordinateTest)
                     self.coordinateArray.append(CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
                     self.trucksList.append(test)
+                    self.trucksList = self.trucksList.sorted(by: { $0.disTance < $1.disTance })
+                    //print(sortedArray)
                     tableView.reloadData()
                 }
+                print(self.trucksList)
             }
         }
     }
@@ -188,6 +189,7 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
     //this line below is what creates the arrow in each tableview cell
     //cell.accessoryType = .disclosureIndicator
     cell.selectionStyle = .none
+    self.trucksList.sorted(by: { $0.disTance < $1.disTance })
     let truck = trucksList[indexPath.row]
     cell.configureCell(truck: truck)
     reloadInputViews()
