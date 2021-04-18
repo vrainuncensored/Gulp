@@ -65,6 +65,7 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
         map.isZoomEnabled = true
         map.isScrollEnabled = true
         
+        self.navigationController?.isNavigationBarHidden = true
 
        settupLogoInNavBar()
 
@@ -84,7 +85,7 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
     view.addSubview(tableView)
     tableView.dataSource = self
     tableView.delegate = self
-    tableView.rowHeight = 250
+    tableView.rowHeight = 140
     //tableView.separatorColor = UI
     tableView.backgroundColor = UI_Colors.white
 //    tableView.register(TruckItems.self, forCellReuseIdentifier: Cells.truckNames)

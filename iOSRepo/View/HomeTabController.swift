@@ -17,16 +17,16 @@ class HomeTabController: UITabBarController {
         settupOrdersIcon()
         settupShopIcon()
         //settupAccountIcon()
-     
+        settupTabStyling()
         // Do any additional setup after loading the view.
     }
     func settupShopIcon() {
-        let defaultShopIcon = "bag"
-        let shopLabel = "Shop"
-        let shop = UIImage(systemName: defaultShopIcon , withConfiguration: tabConfig )
+        let defaultDiscoverIcon = "binoculars"
+        let discoverLabel = "Discover"
+        let discover = UIImage(systemName: defaultDiscoverIcon , withConfiguration: tabConfig )
         customTabItem = self.tabBar.items![0]
-        customTabItem.title = shopLabel
-        customTabItem.image = shop
+        customTabItem.title = discoverLabel
+        customTabItem.image = discover
     }
     func settupOrdersIcon() {
         let defaultOrdersIcon = "scroll"
@@ -43,6 +43,13 @@ class HomeTabController: UITabBarController {
         customTabItem = self.tabBar.items![2]
         customTabItem.title = accountLabel
         customTabItem.image = account
+    }
+    func settupTabStyling() {
+        UITabBar.appearance().tintColor = UI_Colors.red
+        UITabBar.appearance().barTintColor = UI_Colors.white
+        let righteous = "Righteous-Regular"
+        let tabFontAttributes = [NSAttributedString.Key.font: UIFont(name: righteous, size: 12)]
+        UITabBarItem.appearance().setTitleTextAttributes(tabFontAttributes as [NSAttributedString.Key : Any], for: .normal)
     }
     
 
