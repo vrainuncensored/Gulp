@@ -40,6 +40,8 @@ class LoginPage: UIViewController {
         //establishing delegates
         userEmail.delegate = self
         userPassword.delegate = self
+        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
+        GIDSignIn.sharedInstance().delegate = self
         
         self.view.backgroundColor = UI_Colors.white
         
@@ -118,6 +120,7 @@ class LoginPage: UIViewController {
         GIDSignIn.sharedInstance()?.presentingViewController = self
         GIDSignIn.sharedInstance().signIn()
     }
+    
     @objc func forgotPasswordOption(sender: UIButton!) {
         Auth.auth().sendPasswordReset(withEmail: userEmail.text!) { error in
             self.simpleAlert(title: "Password Reset" , msg: "We have a password reset link to your email! Please take a look")
@@ -158,5 +161,34 @@ extension LoginPage: LoginButtonDelegate {
     }
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
          
+    }
+}
+extension LoginPage: GIDSignInDelegate {
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
+        
+        //handle sign-in errors
+        if let error = error {
+            if (error as NSError).code == GIDSignInErrorCode.hasNoAuthInKeychain.rawValue {
+                print("The user has not signed in before or they have since signed out.")
+            } else {
+            print("error signing into Google \(error.localizedDescription)")
+            }
+        return
+        }
+        
+        // Get credential object using Google ID token and Google access token
+        guard let authentication = user.authentication else { return }
+        
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
+                                                        accessToken: authentication.accessToken)
+        
+        // Authenticate with Firebase using the credential object
+        Auth.auth().signIn(with: credential) { (authResult, error) in
+            if let error = error {
+                print("authentication error \(error.localizedDescription)")
+            } else {
+                self.transitionRootController()
+            }
+        }
     }
 }

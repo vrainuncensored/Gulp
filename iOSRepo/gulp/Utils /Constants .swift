@@ -39,6 +39,12 @@ func segueToOrders() {
       let controller = loginFlow.instantiateViewController(identifier: "entry")
       present(controller, animated: true, completion: nil)
     }
+    func transitionRootController() {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "entry") as! UITabBarController
+        UIApplication.shared.windows.first?.rootViewController = nextViewController
+        UIApplication.shared.windows.first?.makeKeyAndVisible()
+    }
 }
 
 struct CG_Colors {
