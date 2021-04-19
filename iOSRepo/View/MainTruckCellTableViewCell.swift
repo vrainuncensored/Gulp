@@ -28,8 +28,8 @@ class MainTruckCellTableViewCell: UITableViewCell {
         truckName.text = truck.name
         truckCuisine.text = truck.cuisine
         distanceLabel.text = String(format: "%.1f", truck.disTance) + " mi"
-        starsLabel.text = "⭐️ 4.5"
-        dollarBillLabel.text = "$$"
+        starsLabel.text = "⭐️ " + String(truck.stars)
+        dollarBillLabel.text = truck.expensive
         configureDistanceLabel()
         configureTitleLabel()
         configureBillLabel()

@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import Firebase
 import FBSDKLoginKit
+import GoogleSignIn
 
 class LoginPage: UIViewController {
     //Text Outlet
@@ -20,7 +21,8 @@ class LoginPage: UIViewController {
     //Button Outlet
     @IBOutlet weak var signUp: UIButton!
     @IBOutlet weak var signIn: UIButton!
-    
+    let facebookButton =  FBLoginButton()
+    let googleButton =  GIDSignInButton()
     //Label Outlet
     @IBOutlet weak var orLabel: UILabel!
     
@@ -29,7 +31,9 @@ class LoginPage: UIViewController {
         //setup for the buttons
         setupSignInButton()
         setupSignUpButton()
-        //settupFacebookButton()
+        settupFacebookButton()
+        settupGoogleButton()
+        
         //setup for the TextFields
         setupUserEmailTextField()
         setupUserPasswordField()
@@ -38,6 +42,9 @@ class LoginPage: UIViewController {
         userPassword.delegate = self
         
         self.view.backgroundColor = UI_Colors.white
+        
+//        GIDSignIn.sharedInstance()?.presentingViewController = self
+//        GIDSignIn.sharedInstance().signIn()
         }
     
     
@@ -91,7 +98,6 @@ class LoginPage: UIViewController {
         
     }
     func settupFacebookButton() {
-        let facebookButton =  FBLoginButton()
         facebookButton.delegate = self
         facebookButton.permissions = ["public_profile", "email"]
         view.addSubview(facebookButton)
@@ -100,6 +106,17 @@ class LoginPage: UIViewController {
         facebookButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
         facebookButton.topAnchor.constraint(equalTo: orLabel.bottomAnchor, constant: 15).isActive = true
         view.addSubview(facebookButton)
+    }
+    func settupGoogleButton() {
+        let googleButton =  GIDSignInButton()
+        view.addSubview(googleButton)
+        googleButton.translatesAutoresizingMaskIntoConstraints = false
+        googleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
+        googleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
+        googleButton.topAnchor.constraint(equalTo: facebookButton.bottomAnchor, constant: 15).isActive = true
+        view.addSubview(googleButton)
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+        GIDSignIn.sharedInstance().signIn()
     }
     @objc func forgotPasswordOption(sender: UIButton!) {
         Auth.auth().sendPasswordReset(withEmail: userEmail.text!) { error in
@@ -133,10 +150,10 @@ extension LoginPage: LoginButtonDelegate {
         let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
         Auth.auth().signIn(with: credential) { (authResult, error) in
             if let error = error{
-                print("error")
+                print(error.localizedDescription)
             }
             
-//            self.performSegue(withIdentifier: "HomeSegue", sender: self)
+            self.performSegue(withIdentifier: "HomeSegue", sender: self)
         }
     }
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {

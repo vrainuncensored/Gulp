@@ -365,17 +365,19 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - AppAuth
+    - FacebookLogin
+    - FBSDKLoginKit
+    - GoogleSignIn
+    - GTMAppAuth
     - Kingfisher
     - Stripe
   trunk:
     - abseil
-    - AppAuth
     - BoringSSL-GRPC
     - FacebookCore
-    - FacebookLogin
     - FacebookShare
     - FBSDKCoreKit
-    - FBSDKLoginKit
     - FBSDKShareKit
     - Firebase
     - FirebaseAnalytics
@@ -395,11 +397,9 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
-    - GoogleSignIn
     - GoogleUtilities
     - "gRPC-C++"
     - gRPC-Core
-    - GTMAppAuth
     - GTMSessionFetcher
     - leveldb-library
     - nanopb

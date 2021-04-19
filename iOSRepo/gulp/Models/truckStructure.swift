@@ -20,6 +20,9 @@ struct Truck {
     var cuisine: String
     var companyLogoURL: String?
     var categories : [String]
+    var open: Bool
+    var stars : Double
+    var expensive : String
     
     var disTance : Double {
         get { return  haversine_mi(lat1: locationCoordinates.latitude, long1: locationCoordinates.longitude, lat2: userservice.userCoordinates.latitude, long2: userservice.userCoordinates.longitude)}
@@ -36,6 +39,9 @@ struct Truck {
         cuisine: String = "",
         companyLogoURL: String = "",
         categories: [String] = [""],
+        open: Bool = false,
+        stars : Double = 0.0,
+        expensive: String = "",
         disTance : Double = 0.0
         ) {
         
@@ -48,6 +54,9 @@ struct Truck {
         self.cuisine = cuisine
         self.companyLogoURL = companyLogoURL
         self.categories = categories
+        self.open = open
+        self.stars = stars
+        self.expensive = expensive
         self.disTance = disTance
     }
     //the initializer for taking firebase results into useable data
@@ -61,6 +70,9 @@ struct Truck {
         cuisine = data["cuisine"] as? String ?? ""
         companyLogoURL = data["companyLogoURL"] as? String ?? ""
         categories = data["categories"] as? [String] ?? [""]
+        open = data["open"] as? Bool ?? false
+        stars = data["stars"] as? Double ?? 0.0
+        expensive = data["expensive"] as? String ?? "$"
     }
     //this is the code needed to take input and send to the database
     static func modelToData(truck: Truck) -> [String: Any] {

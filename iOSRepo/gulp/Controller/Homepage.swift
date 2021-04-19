@@ -134,15 +134,18 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
                     print("The trucks ", test.name , "distance is", test.disTance)
                     
                     
-                    let mapData = MapData(truckName: test.name, truckCoordinates: mapCoordinates)
-                    coordinateTest.coordinate = mapData.truckCoordinates
-                    coordinateTest.title = mapData.truckName
-                    self.map.addAnnotation(coordinateTest)
-                    self.coordinateArray.append(CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
+                    
+                    if test.open == true  {
                     self.trucksList.append(test)
                     self.trucksList = self.trucksList.sorted(by: { $0.disTance < $1.disTance })
                     //print(sortedArray)
                     tableView.reloadData()
+                        let mapData = MapData(truckName: test.name, truckCoordinates: mapCoordinates)
+                        coordinateTest.coordinate = mapData.truckCoordinates
+                        coordinateTest.title = mapData.truckName
+                        self.map.addAnnotation(coordinateTest)
+                        self.coordinateArray.append(CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
+                    }
                 }
                 print(self.trucksList)
             }

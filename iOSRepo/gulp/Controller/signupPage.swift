@@ -70,8 +70,8 @@ class signupPage: UIViewController, LoginButtonDelegate {
         //setup for Buttons
         setupSignUpButton()
         setupSignInButton()
-        //settupFacebookButton()
-        //settupSignInWithAppleButton()
+        settupFacebookButton()
+        settupSignInWithAppleButton()
         
         
         
@@ -184,7 +184,7 @@ class signupPage: UIViewController, LoginButtonDelegate {
         facebookButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
         //facebookButton.topAnchor.constraint(equalTo: orLabel.bottomAnchor, constant: 15).isActive = true
     }
-    func settupSignInWithAppleButton() {
+    func  settupSignInWithAppleButton() {
         appleButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(appleButton)
         appleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
