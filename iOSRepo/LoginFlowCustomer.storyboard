@@ -8,6 +8,11 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Righteous-Regular.ttf">
+            <string>Righteous-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--loginPage-->
         <scene sceneID="ghn-r5-onE">
@@ -18,23 +23,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="a8W-XG-eKZ">
-                                <rect key="frame" x="20" y="158" width="374" height="136"/>
+                                <rect key="frame" x="20" y="114" width="374" height="116"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="3x0-TZ-EN6">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="58"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="48"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XgG-95-RJ9">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="Ubf-U5-YPd"/>
+                                                    <constraint firstAttribute="height" constant="40" id="Ubf-U5-YPd"/>
                                                 </constraints>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="86d-RL-UCE">
-                                                <rect key="frame" x="0.0" y="53" width="374" height="5"/>
-                                                <color key="backgroundColor" red="0.86054021120000002" green="0.2096580565" blue="0.14896151420000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <rect key="frame" x="0.0" y="43" width="374" height="5"/>
+                                                <color key="backgroundColor" red="0.89000000000000001" green="0.38573785830000001" blue="0.87284586450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="5" id="0BO-M0-fXI"/>
                                                 </constraints>
@@ -48,20 +53,20 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="eN2-aB-cz7">
-                                        <rect key="frame" x="0.0" y="78" width="374" height="58"/>
+                                        <rect key="frame" x="0.0" y="68" width="374" height="48"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GsX-sv-Iwp">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="B9e-FV-5Sx"/>
+                                                    <constraint firstAttribute="height" constant="40" id="B9e-FV-5Sx"/>
                                                 </constraints>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lnj-1K-X3B">
-                                                <rect key="frame" x="0.0" y="53" width="374" height="5"/>
-                                                <color key="backgroundColor" red="0.86054021120000002" green="0.2096580565" blue="0.14896151420000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <rect key="frame" x="0.0" y="43" width="374" height="5"/>
+                                                <color key="backgroundColor" red="0.89000000000000001" green="0.38573785830000001" blue="0.87284586450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="5" id="AIO-om-IpD"/>
                                                 </constraints>
@@ -77,7 +82,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="rgQ-G9-zGv">
-                                <rect key="frame" x="40" y="314" width="334" height="32.5"/>
+                                <rect key="frame" x="40" y="250" width="334" height="32.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ygt-LJ-L8Z">
                                         <rect key="frame" x="20" y="0.0" width="294" height="32.5"/>
@@ -115,20 +120,20 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GAV-4r-nEC">
-                                <rect key="frame" x="30" y="366.5" width="354" height="43"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="22"/>
+                                <rect key="frame" x="30" y="302.5" width="354" height="40"/>
+                                <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="22"/>
                                 <state key="normal" title="Button">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Foodtruck Awaits!🚀" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="020-T7-cSD">
-                                <rect key="frame" x="20" y="84" width="374" height="44"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="32"/>
+                                <rect key="frame" x="20" y="59" width="374" height="40"/>
+                                <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="32"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="84y-Lk-k5G">
-                                <rect key="frame" x="201" y="419.5" width="12.5" height="16.5"/>
-                                <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="12"/>
+                                <rect key="frame" x="201" y="352.5" width="12" height="15"/>
+                                <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -139,7 +144,7 @@
                             <constraint firstItem="GAV-4r-nEC" firstAttribute="top" secondItem="rgQ-G9-zGv" secondAttribute="bottom" constant="20" id="56G-QT-XhW"/>
                             <constraint firstItem="84y-Lk-k5G" firstAttribute="centerX" secondItem="QmH-2a-gTJ" secondAttribute="centerX" id="ARk-hT-hSg"/>
                             <constraint firstItem="ozs-PL-YDs" firstAttribute="trailing" secondItem="c2o-KR-irX" secondAttribute="trailing" constant="30" id="J3X-Mo-MUN"/>
-                            <constraint firstItem="020-T7-cSD" firstAttribute="top" secondItem="ozs-PL-YDs" secondAttribute="top" constant="40" id="Nrt-0y-NVL"/>
+                            <constraint firstItem="020-T7-cSD" firstAttribute="top" secondItem="ozs-PL-YDs" secondAttribute="top" constant="15" id="Nrt-0y-NVL"/>
                             <constraint firstItem="ozs-PL-YDs" firstAttribute="trailing" secondItem="020-T7-cSD" secondAttribute="trailing" constant="20" id="QTy-wW-oOb"/>
                             <constraint firstItem="ozs-PL-YDs" firstAttribute="trailing" secondItem="a8W-XG-eKZ" secondAttribute="trailing" constant="20" id="RKk-ah-Jy5"/>
                             <constraint firstItem="ozs-PL-YDs" firstAttribute="trailing" secondItem="rgQ-G9-zGv" secondAttribute="trailing" constant="40" id="TfN-BX-xqK"/>
@@ -153,7 +158,7 @@
                             <constraint firstItem="020-T7-cSD" firstAttribute="centerX" secondItem="QmH-2a-gTJ" secondAttribute="centerX" id="obz-8H-Hdc"/>
                             <constraint firstItem="a8W-XG-eKZ" firstAttribute="leading" secondItem="ozs-PL-YDs" secondAttribute="leading" constant="20" id="qhS-ix-KeZ"/>
                             <constraint firstItem="84y-Lk-k5G" firstAttribute="top" secondItem="GAV-4r-nEC" secondAttribute="bottom" constant="10" id="rlP-bR-52D"/>
-                            <constraint firstItem="a8W-XG-eKZ" firstAttribute="top" secondItem="020-T7-cSD" secondAttribute="bottom" constant="30" id="tbV-uq-fXP"/>
+                            <constraint firstItem="a8W-XG-eKZ" firstAttribute="top" secondItem="020-T7-cSD" secondAttribute="bottom" constant="15" id="tbV-uq-fXP"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ddu-hj-iNM"/>
@@ -179,12 +184,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Foodtruck Awaits! 🚀" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5U1-NZ-jwG">
-                                <rect key="frame" x="20" y="59" width="374" height="44"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="32"/>
+                                <rect key="frame" x="20" y="59" width="374" height="40"/>
+                                <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="32"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="q86-cw-S8E">
-                                <rect key="frame" x="20" y="118" width="374" height="324"/>
+                                <rect key="frame" x="20" y="114" width="374" height="324"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="rJu-IP-aaC">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="116"/>
@@ -331,7 +336,7 @@
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="rys-h2-sFK">
-                                <rect key="frame" x="30" y="452" width="354" height="18"/>
+                                <rect key="frame" x="30" y="448" width="354" height="18"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Your cell number is how we alert you when your food is ready:)">
                                         <attributes>
@@ -342,8 +347,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8zR-vg-jaI">
-                                <rect key="frame" x="30" y="490" width="354" height="43"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="22"/>
+                                <rect key="frame" x="30" y="486" width="354" height="40"/>
+                                <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="22"/>
                                 <state key="normal" title="Button">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>

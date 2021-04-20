@@ -118,7 +118,7 @@ class LoginPage: UIViewController {
         googleButton.topAnchor.constraint(equalTo: facebookButton.bottomAnchor, constant: 15).isActive = true
         view.addSubview(googleButton)
         GIDSignIn.sharedInstance()?.presentingViewController = self
-        GIDSignIn.sharedInstance().signIn()
+        //GIDSignIn.sharedInstance().signIn()
     }
     
     @objc func forgotPasswordOption(sender: UIButton!) {

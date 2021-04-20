@@ -188,7 +188,7 @@ extension userCartVC : STPPaymentContextDelegate {
             let orderNumberValue = String(random)
             //print(shoppingCart.itemsOrdered)
             
-            let orderticket = Order(customerId: userservice.user.name, merchantId: truckservice.truck.id, items: shoppingCart.itemsOrdered, timestamp: Timestamp.init(), total: shoppingCart.totalCost, additionalRequests: shoppingCart.additionalRequests ?? "", orderNumber: orderNumberValue, customerPhoneNumber: userservice.user.phoneNumber)
+            let orderticket = Order(customerId: userservice.user.name, merchantId: truckservice.truck.id, items: shoppingCart.itemsOrdered, timestamp: Timestamp.init(), total: shoppingCart.totalCost, additionalRequests: shoppingCart.additionalRequests ?? "", orderNumber: orderNumberValue, customerPhoneNumber: userservice.user.phoneNumber, status: "unaccepted")
             cloudFunctions.orderCreated(orderTicket: orderticket)
             shoppingCart.clearCart()
 //            cloudFunctions.notifyCustomer(phoneNumber: userservice.user.phoneNumber)

@@ -85,7 +85,8 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
     view.addSubview(tableView)
     tableView.dataSource = self
     tableView.delegate = self
-    tableView.rowHeight = 140
+    tableView.rowHeight = 150
+    tableView.separatorStyle = .none
     //tableView.separatorColor = UI
     tableView.backgroundColor = UI_Colors.white
 //    tableView.register(TruckItems.self, forCellReuseIdentifier: Cells.truckNames)
