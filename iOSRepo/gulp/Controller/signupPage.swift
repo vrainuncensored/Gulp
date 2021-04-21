@@ -11,6 +11,7 @@ import Firebase
 import FirebaseAuth
 import FBSDKLoginKit
 import AuthenticationServices
+import GoogleSignIn
 //import CryptoKit
 
 
@@ -49,9 +50,16 @@ class signupPage: UIViewController, LoginButtonDelegate {
     //Button Outlets
     @IBOutlet weak var signupButton: UIButton!
     @IBOutlet weak var signinButton: UIButton!
-    let facebookButton =  FBLoginButton()
-    let appleButton = ASAuthorizationAppleIDButton()
     
+    @IBOutlet weak var facebookButton: UIButton!
+    @IBOutlet weak var googleButton: GIDSignInButton!
+    @IBOutlet weak var appleButton: ASAuthorizationAppleIDButton!
+    
+    
+//    let facebookButton =  FBLoginButton()
+//    let appleButton = ASAuthorizationAppleIDButton()
+//    let googleButton =  GIDSignInButton()
+//
     //Label Outlets
     @IBOutlet weak var phoneDisclamer: UILabel!
     
@@ -62,17 +70,18 @@ class signupPage: UIViewController, LoginButtonDelegate {
         setupUserEmailField()
         setupUserPasswordField()
         setupUserPasswordConfirmationField()
-        setupUserPhoneNumberField()
+        //setupUserPhoneNumberField()
         
         //setup for Labels
-        setupPhoneDisclamer()
+        //setupPhoneDisclamer()
         
         //setup for Buttons
         setupSignUpButton()
         setupSignInButton()
-        settupFacebookButton()
-        settupSignInWithAppleButton()
-        
+//        settupFacebookButton()
+        settupAppleButton()
+        settupGoogleButton()
+
         
         
         //establishing delegates
@@ -80,14 +89,16 @@ class signupPage: UIViewController, LoginButtonDelegate {
         userPassword.delegate = self
         userPasswordConfirmation.delegate = self
         userName.delegate = self
-        userPhoneNumber.delegate = self
+        //userPhoneNumber.delegate = self
+        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
+        GIDSignIn.sharedInstance().delegate = self
         
         //establishing tags
         userName.tag = 0
         userEmail.tag = 1
         userPassword.tag = 2
         userPasswordConfirmation.tag = 3
-        userPhoneNumber.tag = 4
+        //userPhoneNumber.tag = 4
         
         self.view.backgroundColor = UI_Colors.white
 
@@ -115,13 +126,13 @@ class signupPage: UIViewController, LoginButtonDelegate {
         userPasswordConfirmation.isSecureTextEntry = true
         
     }
-    func setupUserPhoneNumberField() {
-        userPhoneNumber.attributedPlaceholder = NSAttributedString(string:"Your phone number (required)", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
-        userPhoneNumber.borderStyle = UITextField.BorderStyle.none
-    }
-    func setupPhoneDisclamer() {
-        phoneDisclamer.adjustsFontSizeToFitWidth = true
-    }
+//    func setupUserPhoneNumberField() {
+//        userPhoneNumber.attributedPlaceholder = NSAttributedString(string:"Your phone number (required)", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+//        userPhoneNumber.borderStyle = UITextField.BorderStyle.none
+//    }
+//    func setupPhoneDisclamer() {
+//        phoneDisclamer.adjustsFontSizeToFitWidth = true
+//    }
     func setupSignUpButton() {
         signupButton.layer.cornerRadius = 5
         signupButton.layer.borderWidth = 1
@@ -137,34 +148,35 @@ class signupPage: UIViewController, LoginButtonDelegate {
     }
   
     @objc func signUp(sender: UIButton!) {
-        if testForVaildPhoneNumber() == true{
-            Auth.auth().createUser(withEmail: userEmail.text!, password: userPasswordConfirmation.text!) { (result, error) in
-                if let errors = error {
-                    if let errorcode = AuthErrorCode(rawValue: error!._code) {
-                        switch errorcode {
-                        case .invalidEmail:
-                            self.simpleAlert(title: "Invalid email", msg: "Please be sure your formatting is correct")
-                            print("invalid email")
-                        case .emailAlreadyInUse:
-                            self.simpleAlert(title: "Incorrect Email", msg: "This email is already in use!")
-                        case .weakPassword:
-                            self.simpleAlert(title: "Weak Password", msg: "This password is not secure, please make it longer than 8 characters")
-                        default:
-                            print("Create User Error: \(error!)")
-                        }
-                    }
-          
-                } else {
-                    let authUser = result!.user.uid
-                    let email = self.userEmail.text
-                    let name = self.userName.text
-                    let phoneNumber = self.convertPhoneNumber(userPhoneNumber: self.userPhoneNumber)
-                    let dbUser = User.init(email: email!, id: authUser, stripeId: "", name: name!, phoneNumber: phoneNumber)
-                    self.createFireStoreUser(user: dbUser)
-                    self.segueToHome()
-                }
-            }
-        }
+        seguetoPhoneNumber()
+//        if testForVaildPhoneNumber() == true{
+//            Auth.auth().createUser(withEmail: userEmail.text!, password: userPasswordConfirmation.text!) { (result, error) in
+//                if let errors = error {
+//                    if let errorcode = AuthErrorCode(rawValue: error!._code) {
+//                        switch errorcode {
+//                        case .invalidEmail:
+//                            self.simpleAlert(title: "Invalid email", msg: "Please be sure your formatting is correct")
+//                            print("invalid email")
+//                        case .emailAlreadyInUse:
+//                            self.simpleAlert(title: "Incorrect Email", msg: "This email is already in use!")
+//                        case .weakPassword:
+//                            self.simpleAlert(title: "Weak Password", msg: "This password is not secure, please make it longer than 8 characters")
+//                        default:
+//                            print("Create User Error: \(error!)")
+//                        }
+//                    }
+//
+//                } else {
+//                    let authUser = result!.user.uid
+//                    let email = self.userEmail.text
+//                    let name = self.userName.text
+//                    let phoneNumber = self.convertPhoneNumber(userPhoneNumber: self.userPhoneNumber)
+//                    let dbUser = User.init(email: email!, id: authUser, stripeId: "", name: name!, phoneNumber: phoneNumber)
+//                    self.createFireStoreUser(user: dbUser)
+//                    self.segueToHome()
+//                }
+//            }
+//        }
     }
     
     func createFireStoreUser (user: User) {
@@ -175,22 +187,32 @@ class signupPage: UIViewController, LoginButtonDelegate {
     @objc func signInAction(sender: UIButton!) {
         self.performSegue(withIdentifier: "toSignin", sender: self)
     }
-    func settupFacebookButton() {
-        facebookButton.delegate = self
-        facebookButton.permissions = ["public_profile", "email"]
-        view.addSubview(facebookButton)
-        facebookButton.translatesAutoresizingMaskIntoConstraints = false
-        facebookButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
-        facebookButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
-        //facebookButton.topAnchor.constraint(equalTo: orLabel.bottomAnchor, constant: 15).isActive = true
+    func seguetoPhoneNumber(){
+        self.performSegue(withIdentifier: "toPhoneNumberPage", sender: self)
     }
-    func  settupSignInWithAppleButton() {
-        appleButton.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(appleButton)
-        appleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
-        appleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
-        appleButton.topAnchor.constraint(equalTo: facebookButton.bottomAnchor, constant: 15).isActive = true
-        appleButton.bottomAnchor.constraint(equalTo: signinButton.topAnchor, constant: 15).isActive = true
+//    func settupFacebookButton() {
+//        facebookButton.delegate = self
+//        facebookButton.permissions = ["public_profile", "email"]
+//        view.addSubview(facebookButton)
+//        facebookButton.translatesAutoresizingMaskIntoConstraints = false
+//        facebookButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
+//        facebookButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
+//        facebookButton.topAnchor.constraint(equalTo: signupButton.bottomAnchor, constant: 15).isActive = true
+//        //view.addSubview(facebookButton)
+//    }
+    func settupGoogleButton() {
+       
+        //view.addSubview(googleButton)
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+        //GIDSignIn.sharedInstance().signIn()
+    }
+    func settupAppleButton(){
+        //appleButton.translatesAutoresizingMaskIntoConstraints = false
+        //view.addSubview(appleButton)
+//        appleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
+//        appleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
+//        appleButton.topAnchor.constraint(equalTo: googleButton.bottomAnchor, constant: 15).isActive = true
+        //appleButton.bottomAnchor.constraint(equalTo: signinButton.topAnchor, constant: 15).isActive = true
         appleButton.addTarget(self, action: #selector(handleLogInWithAppleIDButtonPress), for: .touchUpInside)
 
     }
@@ -232,87 +254,8 @@ class signupPage: UIViewController, LoginButtonDelegate {
         }
         
     }
-//    func settupAppleLoginButton() {
-//        let appleLoginButton = ASAuthorizationAppleIDButton()
-//        appleLoginButton.center = view.center
-//        appleLoginButton.addTarget(self, action: #selector(handleSignInWithAppleTapped), for: .touchUpInside)
-//        view.addSubview(appleLoginButton)
-//    }
-//    func createAppleIDRequest() -> ASAuthorizationAppleIDRequest {
-//        let appleIDProvider = ASAuthorizationAppleIDProvider()
-//        let request = appleIDProvider.createRequest()
-//        request.requestedScopes = [.fullName, .email]
+    
 //
-//        let nonce = randomNonceString()
-//        request.nonce = sha256(nonce)
-//        currentNonce = nonce
-//
-//        return request
-//    }
-//    @objc func handleSignInWithAppleTapped() {
-//        startSignInWithAppleFlow()
-//    }
-//
-//    private func randomNonceString(length: Int = 32) -> String {
-//      precondition(length > 0)
-//      let charset: Array<Character> =
-//          Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
-//      var result = ""
-//      var remainingLength = length
-//
-//      while remainingLength > 0 {
-//        let randoms: [UInt8] = (0 ..< 16).map { _ in
-//          var random: UInt8 = 0
-//          let errorCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
-//          if errorCode != errSecSuccess {
-//            fatalError("Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)")
-//          }
-//          return random
-//        }
-//
-//        randoms.forEach { random in
-//          if remainingLength == 0 {
-//            return
-//          }
-//
-//          if random < charset.count {
-//            result.append(charset[Int(random)])
-//            remainingLength -= 1
-//          }
-//        }
-//      }
-//
-//      return result
-//    }
-
-    // Unhashed nonce.
-//    fileprivate var currentNonce: String?
-//
-//    @available(iOS 13, *)
-//    func startSignInWithAppleFlow() {
-//      let nonce = randomNonceString()
-//      currentNonce = nonce
-//      let appleIDProvider = ASAuthorizationAppleIDProvider()
-//      let request = appleIDProvider.createRequest()
-//      request.requestedScopes = [.fullName, .email]
-//      request.nonce = sha256(nonce)
-//
-//      let authorizationController = ASAuthorizationController(authorizationRequests: [request])
-//      authorizationController.delegate = self
-//      authorizationController.presentationContextProvider = self
-//      authorizationController.performRequests()
-//    }
-//
-//    @available(iOS 13, *)
-//    private func sha256(_ input: String) -> String {
-//      let inputData = Data(input.utf8)
-//      let hashedData = SHA256.hash(data: inputData)
-//      let hashString = hashedData.compactMap {
-//        return String(format: "%02x", $0)
-//      }.joined()
-//
-//      return hashString
-//    }
 //}
 }
 
@@ -344,7 +287,37 @@ extension signupPage: UITextFieldDelegate {
          return false
       }
 }
-
+extension signupPage: GIDSignInDelegate {
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
+        
+        //handle sign-in errors
+        if let error = error {
+            if (error as NSError).code == GIDSignInErrorCode.hasNoAuthInKeychain.rawValue {
+                print("The user has not signed in before or they have since signed out.")
+            } else {
+            print("error signing into Google \(error.localizedDescription)")
+            }
+        return
+        }
+        
+        // Get credential object using Google ID token and Google access token
+        guard let authentication = user.authentication else { return }
+        
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
+                                                        accessToken: authentication.accessToken)
+        print(user.profile.name, user.profile.email)
+        // Authenticate with Firebase using the credential object
+        Auth.auth().signIn(with: credential) { (authResult, error) in
+            if let error = error {
+                print("authentication error \(error.localizedDescription)")
+            } else {
+            
+                
+                self.transitionRootController()
+            }
+        }
+    }
+}
 //extension signupPage: ASAuthorizationControllerDelegate {
 //
 //    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
@@ -400,33 +373,13 @@ extension signupPage: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         
         switch authorization.credential {
-            case let appleIDCredential as ASAuthorizationAppleIDCredential:
-                
-                // Create an account in your system.
-                let userIdentifier = appleIDCredential.user
-                let fullName = appleIDCredential.fullName
-                let email = appleIDCredential.email
-                
-                // For the purpose of this demo app, store the `userIdentifier` in the keychain.
-//                self.saveUserInKeychain(userIdentifier)
-                
-                // For the purpose of this demo app, show the Apple ID credential information in the `ResultViewController`.
-                //self.showResultViewController(userIdentifier: userIdentifier, fullName: fullName, email: email)
-            
-            case let passwordCredential as ASPasswordCredential:
-            
-                // Sign in using an existing iCloud Keychain credential.
-                let username = passwordCredential.user
-                let password = passwordCredential.password
-                
-                // For the purpose of this demo app, show the password credential as an alert.
-//                DispatchQueue.main.async {
-//                    self.showPasswordCredentialAlert(username: username, password: password)
-//                }
-                
-            default:
-                break
-            }
+        case let appleIDCredential as ASAuthorizationAppleIDCredential:
+            let userIdentifier = appleIDCredential.user
+            let fullName = appleIDCredential.fullName
+            let email = appleIDCredential.email
+        default:
+            break
+        }
         
     }
     

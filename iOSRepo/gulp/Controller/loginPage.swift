@@ -11,8 +11,11 @@ import FirebaseAuth
 import Firebase
 import FBSDKLoginKit
 import GoogleSignIn
+import AuthenticationServices
+
 
 class LoginPage: UIViewController {
+   
     //Text Outlet
     @IBOutlet weak var userPassword: UITextField!
     @IBOutlet weak var userEmail: UITextField!
@@ -23,6 +26,7 @@ class LoginPage: UIViewController {
     @IBOutlet weak var signIn: UIButton!
     let facebookButton =  FBLoginButton()
     let googleButton =  GIDSignInButton()
+    let appleButton = ASAuthorizationAppleIDButton()
     //Label Outlet
     @IBOutlet weak var orLabel: UILabel!
     
@@ -33,6 +37,7 @@ class LoginPage: UIViewController {
         setupSignUpButton()
         settupFacebookButton()
         settupGoogleButton()
+        settupAppleButton()
         
         //setup for the TextFields
         setupUserEmailTextField()
@@ -110,7 +115,7 @@ class LoginPage: UIViewController {
         view.addSubview(facebookButton)
     }
     func settupGoogleButton() {
-        let googleButton =  GIDSignInButton()
+        //let googleButton =  GIDSignInButton()
         view.addSubview(googleButton)
         googleButton.translatesAutoresizingMaskIntoConstraints = false
         googleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
@@ -119,6 +124,26 @@ class LoginPage: UIViewController {
         view.addSubview(googleButton)
         GIDSignIn.sharedInstance()?.presentingViewController = self
         //GIDSignIn.sharedInstance().signIn()
+    }
+    func settupAppleButton(){
+        appleButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(appleButton)
+        appleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
+        appleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
+        appleButton.topAnchor.constraint(equalTo: googleButton.bottomAnchor, constant: 15).isActive = true
+        //appleButton.bottomAnchor.constraint(equalTo: signinButton.topAnchor, constant: 15).isActive = true
+        appleButton.addTarget(self, action: #selector(handleLogInWithAppleIDButtonPress), for: .touchUpInside)
+        
+    }
+    @objc func handleLogInWithAppleIDButtonPress() {
+        let provider = ASAuthorizationAppleIDProvider()
+        let request = provider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        
+        let controller = ASAuthorizationController(authorizationRequests: [request])
+        controller.delegate = self
+        controller.presentationContextProvider = self
+        controller.performRequests()
     }
     
     @objc func forgotPasswordOption(sender: UIButton!) {
@@ -190,5 +215,51 @@ extension LoginPage: GIDSignInDelegate {
                 self.transitionRootController()
             }
         }
+    }
+}
+extension LoginPage: ASAuthorizationControllerDelegate {
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        print("There was an error")
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        
+        switch authorization.credential {
+            case let appleIDCredential as ASAuthorizationAppleIDCredential:
+                
+                // Create an account in your system.
+                let userIdentifier = appleIDCredential.user
+                let fullName = appleIDCredential.fullName
+                let email = appleIDCredential.email
+                
+                // For the purpose of this demo app, store the `userIdentifier` in the keychain.
+//                self.saveUserInKeychain(userIdentifier)
+                
+                // For the purpose of this demo app, show the Apple ID credential information in the `ResultViewController`.
+                //self.showResultViewController(userIdentifier: userIdentifier, fullName: fullName, email: email)
+            
+            case let passwordCredential as ASPasswordCredential:
+            
+                // Sign in using an existing iCloud Keychain credential.
+                let username = passwordCredential.user
+                let password = passwordCredential.password
+                
+                // For the purpose of this demo app, show the password credential as an alert.
+//                DispatchQueue.main.async {
+//                    self.showPasswordCredentialAlert(username: username, password: password)
+//                }
+                
+            default:
+                break
+            }
+        
+    }
+    
+}
+
+extension LoginPage: ASAuthorizationControllerPresentationContextProviding {
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+    
+        return view.window!
     }
 }

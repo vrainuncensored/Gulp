@@ -106,19 +106,19 @@ class PastOrdersVC: UIViewController {
             // If you want to use an image
         let image : UIImage = UIImage(named: "16")!
             let activityViewController : UIActivityViewController = UIActivityViewController(
-                activityItems: [firstActivityItem, secondActivityItem, image], applicationActivities: nil)
+                activityItems: [firstActivityItem, secondActivityItem], applicationActivities: nil)
             
-//            // This lines is for the popover you need to show in iPad
-            activityViewController.popoverPresentationController?.sourceView = sender
-            
-            // This line remove the arrow of the popover to show in iPad
-            activityViewController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.down
-            activityViewController.popoverPresentationController?.sourceRect = CGRect(x: 150, y: 150, width: 0, height: 0)
-            
-            // Pre-configuring activity items
-            activityViewController.activityItemsConfiguration = [
-            UIActivity.ActivityType.message
-            ] as? UIActivityItemsConfigurationReading
+////            // This lines is for the popover you need to show in iPad
+//            activityViewController.popoverPresentationController?.sourceView = sender
+//
+//            // This line remove the arrow of the popover to show in iPad
+//            activityViewController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.down
+//            activityViewController.popoverPresentationController?.sourceRect = CGRect(x: 150, y: 150, width: 0, height: 0)
+//
+//            // Pre-configuring activity items
+//            activityViewController.activityItemsConfiguration = [
+//            UIActivity.ActivityType.message
+//            ] as? UIActivityItemsConfigurationReading
             
             // Anything you want to exclude
             activityViewController.excludedActivityTypes = [
@@ -130,7 +130,7 @@ class PastOrdersVC: UIViewController {
                 UIActivity.ActivityType.postToFlickr,
                 UIActivity.ActivityType.postToVimeo,
                 UIActivity.ActivityType.postToTencentWeibo,
-                UIActivity.ActivityType.postToFacebook
+                //UIActivity.ActivityType.postToFacebook
             ]
             
             activityViewController.isModalInPresentation = true

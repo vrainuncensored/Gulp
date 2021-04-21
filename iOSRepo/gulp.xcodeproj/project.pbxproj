@@ -102,6 +102,7 @@
 		8B95F0E4262F4951007E3A54 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B95F0E2262F4951007E3A54 /* OrderTableViewCell.swift */; };
 		8B95F0E5262F4951007E3A54 /* OrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B95F0E3262F4951007E3A54 /* OrderTableViewCell.xib */; };
 		8B95F0E8262F4C03007E3A54 /* OrdersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8EFFE72613D96B00C83364 /* OrdersTableViewCell.swift */; };
+		8B95F0F2262FB568007E3A54 /* phoneVerificationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B95F0F1262FB568007E3A54 /* phoneVerificationPage.swift */; };
 		8BA2B10925BF3D8F00F55E34 /* MainTruckCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2B10725BF3D8F00F55E34 /* MainTruckCellTableViewCell.swift */; };
 		8BA2B10A25BF3D8F00F55E34 /* MainTruckCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA2B10825BF3D8F00F55E34 /* MainTruckCellTableViewCell.xib */; };
 		8BA2B14025BF884000F55E34 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2B13E25BF884000F55E34 /* MenuTableViewCell.swift */; };
@@ -215,6 +216,7 @@
 		8B8EFFFD2617CA7300C83364 /* OrderBreakdownTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderBreakdownTableViewCell.xib; sourceTree = "<group>"; };
 		8B95F0E2262F4951007E3A54 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		8B95F0E3262F4951007E3A54 /* OrderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderTableViewCell.xib; sourceTree = "<group>"; };
+		8B95F0F1262FB568007E3A54 /* phoneVerificationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = phoneVerificationPage.swift; sourceTree = "<group>"; };
 		8BA2B10725BF3D8F00F55E34 /* MainTruckCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTruckCellTableViewCell.swift; sourceTree = "<group>"; };
 		8BA2B10825BF3D8F00F55E34 /* MainTruckCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTruckCellTableViewCell.xib; sourceTree = "<group>"; };
 		8BA2B13E25BF884000F55E34 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 				8B3E734125C9029500505845 /* HomePageVC.swift */,
 				8B3E734925C9CCF100505845 /* AccountPage.swift */,
 				8B594D6425CB45CF00F859E0 /* PastOrdersVC.swift */,
+				8B95F0F1262FB568007E3A54 /* phoneVerificationPage.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -826,6 +829,7 @@
 				64DDE6AF242D876C0068223D /* ViewController.swift in Sources */,
 				649A3DB024B56D64007F6367 /* TableViewCell.swift in Sources */,
 				648527762496E1C400E89866 /* Constants .swift in Sources */,
+				8B95F0F2262FB568007E3A54 /* phoneVerificationPage.swift in Sources */,
 				8B8E000D261ED78500C83364 /* optionStructure.swift in Sources */,
 				644B05FD247AE80F003DE98A /* userCartVC.swift in Sources */,
 				8B594D6525CB45CF00F859E0 /* PastOrdersVC.swift in Sources */,
