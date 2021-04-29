@@ -80,16 +80,16 @@ class MenuPage: UIViewController {
                     let value = type(of: sectionTest)
                     let sel = Selection(data: data)
                     var test = MenuItem.init(data: data, selection: sel)
-                    for item in selections {
-                        let name = item["name"] as! String
-                        let description = item["description"] as! String
-                        print(name)
-                        print(description)
-                        let specificItem = SelectionOption(price: 1.0, name: name, description: description)
-                        test.selectionChoice.options.append(specificItem)
-                        self.anArray.append(test)
-                        
-                    }
+//                    for item in selections {
+//                        let name = item["name"] as! String
+//                        let description = item["description"] as! String
+//                        print(name)
+//                        print(description)
+//                        let specificItem = SelectionOption(price: 1.0, name: name, description: description)
+//                        test.selectionChoice.options.append(specificItem)
+//                        self.anArray.append(test)
+//
+//                    }
                     //print(value)
 //                    let name = test.name
 //                    let category = test.itemCategory

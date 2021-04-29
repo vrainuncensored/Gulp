@@ -71,7 +71,7 @@ class ManageLocation: UIViewController, CLLocationManagerDelegate {
     }
     func settupBackgroundView() {
         backgroundView.layer.cornerRadius = 30
-        backgroundView.alpha=0.85
+        backgroundView.alpha=1.0
 //        backgroundView.layer.borderWidth = 1
 //        backgroundView.layer.borderColor = CG_Colors.red
     }
@@ -86,13 +86,14 @@ class ManageLocation: UIViewController, CLLocationManagerDelegate {
            closedButton.setTitleColor(.white, for: .normal)
        }
     func setupWelcomeLabel() {
-        welcomeLabel.text = "Hey, " + userservice.user.name + "!"
+        let trucksName = userservice.user.name.capitalizingFirstLetter()
+        welcomeLabel.text = "Hey, " + trucksName + "!"
     }
     func tryinOutTestView() {
         let testFrame = CGRect(x: 0, y: 100, width: 100, height: 100)
         var testView : UIView = UIView(frame: testFrame)
         testView.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0)
-        testView.alpha=0.5
+        testView.alpha=1.0
         self.view.addSubview(testView)
     }
     @objc func updateUser() {
@@ -107,13 +108,14 @@ class ManageLocation: UIViewController, CLLocationManagerDelegate {
             if Auth.auth().currentUser != nil {
                 let docRef = Firestore.firestore().collection("merchant").document(uid)
                 docRef.updateData([
-                    "locationCoordinates": GeoPoint(latitude: latitude, longitude: longitude)
+                    "locationCoordinates": GeoPoint(latitude: latitude, longitude: longitude),
+                    "open" : true
                 ]) { err in
                     if let err = err {
                         print("Error updating document: \(err)")
                         self.simpleAlert(title: "Error", msg: "Unable to change location.")
                     } else {
-                        print("Document successfully updated")
+                        self.simpleAlert(title: "Location Updated!", msg: "Customers know you're accepting orders and can find you on their app 🥳")
                     }
                 }
                 
@@ -132,13 +134,14 @@ class ManageLocation: UIViewController, CLLocationManagerDelegate {
                if Auth.auth().currentUser != nil {
                    let docRef = Firestore.firestore().collection("merchant").document(uid)
                    docRef.updateData([
-                       "locationCoordinates": GeoPoint(latitude: nullLatitude, longitude: nullLongitude)
+                       "locationCoordinates": GeoPoint(latitude: nullLatitude, longitude: nullLongitude),
+                    "open" : false
                    ]) { err in
                        if let err = err {
                            print("Error updating document: \(err)")
                            self.simpleAlert(title: "Error", msg: "Unable to change location.")
                        } else {
-                           print("Document successfully updated")
+                        self.simpleAlert(title: "Truck Closed!", msg: "A hard day's work has payed off. Customers wont find you on their app 😇")
                        }
                    }
                    
@@ -158,3 +161,12 @@ class ManageLocation: UIViewController, CLLocationManagerDelegate {
     
 }
 
+extension String {
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).capitalized + dropFirst()
+    }
+
+    mutating func capitalizeFirstLetter() {
+        self = self.capitalizingFirstLetter()
+    }
+}

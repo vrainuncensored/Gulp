@@ -92,7 +92,7 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
 //    tableView.register(TruckItems.self, forCellReuseIdentifier: Cells.truckNames)
     tableView.register(UINib(nibName: "MainTruckCellTableViewCell", bundle: nil), forCellReuseIdentifier: "MainTruckCell")
     fbCall(tableView : tableView)
-    settupListner()
+    settupListner(tableView : tableView)
     
     self.view.addSubview(map)
     //print("the coordinates for the user are", coordinatesForUser)
@@ -152,7 +152,7 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
             }
         }
     }
-    func settupListner() {
+    func settupListner(tableView : UITableView) {
         let docRef = Firestore.firestore().collection("merchant")
         docRef.addSnapshotListener { (snap, error) in
             if let error = error {
@@ -168,14 +168,21 @@ class HomePage: UIViewController,  CLLocationManagerDelegate, MKMapViewDelegate 
                 let mapCoordinates = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
                 let mapData = MapData(truckName: test.name, truckCoordinates: mapCoordinates)
                 if change.type == .modified {
-                    self.coordinateArray[Int(change.oldIndex)] = mapCoordinates
+                    //self.coordinateArray[Int(change.oldIndex)] = mapCoordinates
                     coordinateTest.coordinate = mapData.truckCoordinates
                     coordinateTest.title = mapData.truckName
                     self.map.addAnnotation(coordinateTest)
+                    self.updateTruckList(truck: test, tableView: tableView)
                 }
             })
         }
     }
+    func updateTruckList(truck: Truck, tableView : UITableView) {
+        self.trucksList.append(truck)
+        self.trucksList = self.trucksList.sorted(by: { $0.disTance < $1.disTance })
+        tableView.reloadData()
+    }
+    
 }
 
 

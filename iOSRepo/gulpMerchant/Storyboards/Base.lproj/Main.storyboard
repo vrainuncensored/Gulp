@@ -104,44 +104,37 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fzd-jY-gTi">
                                 <rect key="frame" x="0.0" y="663" width="414" height="150"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="140" translatesAutoresizingMaskIntoConstraints="NO" id="ZaI-76-iLv">
-                                        <rect key="frame" x="30" y="77" width="354" height="43"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ZaI-76-iLv">
+                                        <rect key="frame" x="30" y="84" width="354" height="36"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oJX-C3-gmf">
-                                                <rect key="frame" x="0.0" y="0.0" width="33" height="43"/>
-                                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="22"/>
-                                                <state key="normal" title="Closed">
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oJX-C3-gmf">
+                                                <rect key="frame" x="0.0" y="0.0" width="172" height="36"/>
+                                                <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="18"/>
+                                                <state key="normal" title="Close">
                                                     <color key="titleColor" systemColor="darkTextColor"/>
                                                 </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AjG-aM-DBy">
-                                                <rect key="frame" x="173" y="0.0" width="181" height="43"/>
-                                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="22"/>
-                                                <state key="normal" title="Update Location ">
+                                                <rect key="frame" x="182" y="0.0" width="172" height="36"/>
+                                                <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="19"/>
+                                                <state key="normal" title="Update ">
                                                     <color key="titleColor" systemColor="darkTextColor"/>
                                                 </state>
                                             </button>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="oJX-C3-gmf" firstAttribute="top" secondItem="ZaI-76-iLv" secondAttribute="top" id="1hz-TH-Qf3"/>
-                                            <constraint firstAttribute="bottom" secondItem="oJX-C3-gmf" secondAttribute="bottom" id="8e9-gi-RVF"/>
-                                            <constraint firstAttribute="bottom" secondItem="AjG-aM-DBy" secondAttribute="bottom" id="AdS-Dj-wrS"/>
-                                            <constraint firstAttribute="trailing" secondItem="AjG-aM-DBy" secondAttribute="trailing" id="BxK-jD-I06"/>
-                                            <constraint firstItem="AjG-aM-DBy" firstAttribute="top" secondItem="ZaI-76-iLv" secondAttribute="top" id="EUI-XE-YeF"/>
-                                            <constraint firstItem="AjG-aM-DBy" firstAttribute="leading" secondItem="oJX-C3-gmf" secondAttribute="trailing" constant="10" id="QYt-ry-rcq"/>
-                                            <constraint firstItem="AjG-aM-DBy" firstAttribute="leading" secondItem="oJX-C3-gmf" secondAttribute="trailing" constant="10" id="bNJ-1Y-Wvr"/>
-                                            <constraint firstItem="oJX-C3-gmf" firstAttribute="leading" secondItem="ZaI-76-iLv" secondAttribute="leading" id="ggJ-2U-EFB"/>
-                                            <constraint firstAttribute="bottom" secondItem="oJX-C3-gmf" secondAttribute="bottom" id="h9a-R3-yK1"/>
-                                            <constraint firstItem="oJX-C3-gmf" firstAttribute="top" secondItem="ZaI-76-iLv" secondAttribute="top" id="jXS-mC-RIy"/>
-                                            <constraint firstAttribute="bottom" secondItem="AjG-aM-DBy" secondAttribute="bottom" id="qiv-S6-sbq"/>
-                                            <constraint firstItem="oJX-C3-gmf" firstAttribute="leading" secondItem="ZaI-76-iLv" secondAttribute="leading" id="ts7-uy-YKq"/>
-                                            <constraint firstItem="AjG-aM-DBy" firstAttribute="top" secondItem="ZaI-76-iLv" secondAttribute="top" id="xTa-W2-5cF"/>
-                                            <constraint firstAttribute="trailing" secondItem="AjG-aM-DBy" secondAttribute="trailing" id="zL9-nz-MZL"/>
+                                            <constraint firstItem="oJX-C3-gmf" firstAttribute="leading" secondItem="ZaI-76-iLv" secondAttribute="leading" id="7NT-X4-g56"/>
+                                            <constraint firstItem="oJX-C3-gmf" firstAttribute="top" secondItem="ZaI-76-iLv" secondAttribute="top" id="AM7-zc-c5R"/>
+                                            <constraint firstAttribute="bottom" secondItem="AjG-aM-DBy" secondAttribute="bottom" id="Fr0-LX-23B"/>
+                                            <constraint firstAttribute="bottom" secondItem="oJX-C3-gmf" secondAttribute="bottom" id="SFa-aX-iEx"/>
+                                            <constraint firstItem="AjG-aM-DBy" firstAttribute="top" secondItem="ZaI-76-iLv" secondAttribute="top" id="UPy-mW-myu"/>
+                                            <constraint firstAttribute="trailing" secondItem="AjG-aM-DBy" secondAttribute="trailing" id="g29-ha-6ud"/>
+                                            <constraint firstAttribute="trailing" secondItem="AjG-aM-DBy" secondAttribute="trailing" id="lrs-2J-0gN"/>
                                         </constraints>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hey, Fernando's!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgL-zS-E0D">
-                                        <rect key="frame" x="121" y="28" width="172" height="29"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <rect key="frame" x="114.5" y="34" width="185" height="30"/>
+                                        <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="24"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>

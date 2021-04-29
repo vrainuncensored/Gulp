@@ -45,7 +45,7 @@ class orders: UIViewController, CLLocationManagerDelegate {
         view.addSubview(tableView)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.rowHeight = 150
+        tableView.rowHeight = 175
         tableView.allowsMultipleSelectionDuringEditing = false
         tableView.allowsSelection = true
         tableView.allowsMultipleSelection = false
@@ -56,10 +56,10 @@ class orders: UIViewController, CLLocationManagerDelegate {
         tableView.translatesAutoresizingMaskIntoConstraints = false
 
         
-        fbCallOrders(tableView: tableView)
+        //fbCallOrders(tableView: tableView)
         settupListner (tableView : tableView)
-        reloadInputViews()
-        tableView.reloadData()
+//        reloadInputViews()
+//        tableView.reloadData()
         
         }
         
@@ -112,6 +112,7 @@ class orders: UIViewController, CLLocationManagerDelegate {
                         }
                         if change.type == .added {
                             self.listOfOrders.append(order)
+                            print(self.listOfOrders)
                             tableView.reloadData()
                         }
                     })
@@ -156,12 +157,12 @@ extension orders: UITableViewDelegate, UITableViewDataSource{
         cell.layer.shadowOpacity = 0.5
         cell.layer.shadowRadius = 4.0
         if listOfOrders.count == 0 {
-            reloadInputViews()
+            //reloadInputViews()
             return cell
         } else {
             let item = listOfOrders[indexPath.section]
             cell.configureCell(order: item)
-            reloadInputViews()
+            //reloadInputViews()
             return cell
         }
 }

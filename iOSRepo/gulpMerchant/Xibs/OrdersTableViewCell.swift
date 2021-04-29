@@ -30,7 +30,7 @@ class OrdersTableViewCell: UITableViewCell {
         let formattedDateInString = formatter.string(from: timeFromServer)
         time.text = "Time: " + formattedDateInString
         Status.backgroundColor = UI_Colors.red
-        Status.text = order.status
+        Status.text = " " + order.status + " "
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
